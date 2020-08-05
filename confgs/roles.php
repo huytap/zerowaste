@@ -1,8 +1,8 @@
 <?php
 return array(
-	'booking' => array('admin','delete','view', 'showcard', 'report', 'cancel'),
-	'hotel' => array('admin', 'create', 'update', 'delete'),
-	'roomtype' => array('admin', 'create', 'update', 'delete', 'deletephoto'),
+	'store' => array('admin', 'create', 'update','delete','view'),
+	'storebrand' => array('admin', 'create', 'update', 'delete'),
+	'category' => array('admin', 'create', 'update', 'delete'),
 	'room' => array('admin'),
 	'rate' => array('admin'),
 	'promotion' => array('admin', 'create', 'update', 'delete'),

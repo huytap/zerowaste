@@ -30,32 +30,42 @@
         <div class="main-menu">
             <ul>
                 <li>
-                    <a href="<?php echo Yii::app()->createUrl('admin/cms/admin');?>">
+                    <a href="<?php echo Yii::app()->createUrl('admin/store/admin');?>">
                         <span class="menu-icon">
-                            <i class="fa fa-th-large"></i> 
+                            <i class="fa fa-th-large"></i>
                         </span>
                         <span class="text">
-                            CMS
+                            Stores
                         </span>
                         <span class="menu-hover"></span>
                     </a>
                 </li>
                 <li>
-                    <a href="<?php echo Yii::app()->createUrl('admin/gallery/admin');?>">
+                    <a href="<?php echo Yii::app()->createUrl('admin/storebrand/admin');?>">
                         <span class="menu-icon">
-                            <i class="fa fa-th-large"></i> 
+                            <i class="fa fa-th-large"></i>
                         </span>
                         <span class="text">
-                            Gallery
+                            Store Brands
                         </span>
                         <span class="menu-hover"></span>
                     </a>
                 </li>
-                
+			 <li>
+			     <a href="<?php echo Yii::app()->createUrl('admin/category/admin');?>">
+			 	   <span class="menu-icon">
+			 		  <i class="fa fa-th-large"></i>
+			 	   </span>
+			 	   <span class="text">
+			 		  Category
+			 	   </span>
+			 	   <span class="menu-hover"></span>
+			     </a>
+			 </li>
                 <li>
                     <a href="<?php echo Yii::app()->createUrl('admin/slideshow/admin');?>">
                         <span class="menu-icon">
-                            <i class="fa fa-th-large"></i> 
+                            <i class="fa fa-th-large"></i>
                         </span>
                         <span class="text">
                             Slider Control
@@ -66,7 +76,7 @@
                 <li>
                     <a href="<?php echo Yii::app()->createUrl('admin/settings/admin');?>">
                         <span class="menu-icon">
-                            <i class="fa fa-th-large"></i> 
+                            <i class="fa fa-th-large"></i>
                         </span>
                         <span class="text">
                             Settings

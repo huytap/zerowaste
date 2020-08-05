@@ -1,64 +1,32 @@
 <?php
 
 class ExtraHelper{
-    public static function zipCode($code){
-        $result=$code;
-        for($i=0;$i<10;$i++){
-            $result = base64_encode($result);
-        }
-        return $result;
-    }
-    public static function unzipCode($code){
-        $result=$code;
-        for($i=0;$i<10;$i++){
-            $result = base64_decode($result);
-        }
-        return $result;
-    }
-    public static $cardType = array(
-        'visa' => 'Visa',
-        'mastercard' => 'Master Card',
-        'amex' => 'Amex',
-        'jcb' => 'JCB'
-    );
+	public static function changeTitle($str){
+	        $unicode = array(
+	          'a'=>'á|à|à|ả|ã|ạ|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ|ạ|á|ả|ã',
+	          'A'=>'Á|À|Ả|Ã|Ạ|Ă|Ắ|Ằ|Ẳ|Ẵ|Ặ|Â|Ấ|Ầ|Ẩ|Ẫ|Ậ|Ả',
+	          'd'=>'đ','D'=>'Đ',
+	          'e'=>'è|é|è|ẻ|ẽ|ẹ|ê|ế|ề|ể|ễ|ệ|è|ễ|ẽ|é|ẻ|ẹ',
+	          'E'=>'É|È|Ẻ|Ẽ|Ẹ|Ê|Ế|Ề|Ể|Ễ|Ệ',
+	          'i'=>'í|ì|ỉ|ĩ|ị|ị','I'=>'Í|Ì|Ỉ|Ĩ|Ị',
+	          'o'=>'ó|ò|ỏ|õ|ọ|ô|ố|ồ|ổ|ỗ|ộ|ơ|ớ|ờ|ở|ỡ|ợ|ó|ỏ|ọ|õ|õ|ồ|ò',
+	          'O'=>'Ó|Ò|Ỏ|Õ|Ọ|Ô|Ố|Ồ|Ổ|Ỗ|Ộ|Ơ|Ớ|Ờ|Ở|Ỡ|Ợ',
+	          'u'=>'ú|ù|ủ|ũ|ụ|ư|ứ|ừ|ử|ữ|ự|ú|ự', 'U'=>'Ú|Ù|Ủ|Ũ|Ụ|Ư|Ứ|Ừ|Ử|Ữ|Ự',
+	          'y'=>'ý|ỳ|ỷ|ỹ|ỵ|ỹ','Y'=>'Ý|Ỳ|Ỷ|Ỹ|Ỵ'
+	        );
+	        foreach($unicode as $khongdau=>$codau) {
+	          $arr = explode("|",$codau);
+	          $str = str_replace($arr,$khongdau,$str);
+	        }
 
-    public static function cardType($type){
-        $arr = array(
-            'visa' => 4, //13 or 16
-            'mastercard' => 51, //16
-            'amex' => 34, //15
-            'jcb' => 35 //15
-        );
-        $length = array(
-            'visa' => 16,
-            'mastercard' => 16,
-            'amex' => 15,
-            'jcb' => 15
-        );
-        if(isset($arr[$type]))
-            return array($arr[$type], $length[$type]);
-        else
-            return '';
-    }
-    public static function roundMoney($currency, $money){
-        $exchangeRate = ExchangeRate::model()->exchangeRate2('VND', 'VND');
-        $money = $money*$exchangeRate;
-        $default = Settings::model()->getSetting('currency', 1);
-        $exchangeRate = ExchangeRate::model()->exchangeRate2($default, $currency);
-        if($currency == 'VND'){
-            return number_format(round($money, -3),0);
-        }else{
-            return number_format($money,2);
-        }
-    }
-
-    public static function roundMoney2($currency, $money){
-        if($currency === 'VND'){
-            return round($money,-3);
-        }else{
-            return $money;
-        }
-    }
+	        $str = str_replace(array('?','`','~','!','#','$','%','^','&','*','@','’','‘','(',')','_','+','=','/','\\','{','}','|',"'",'"',';','“','”',':',';','.','’','ä','‘','˚','-',',')," ",$str);
+	        //$str = str_replace(array('?','&','+','%',"'",'"','*','@','#','$','*',';','“','”',':','.','/','\\','}','{','|','=',')','(','`','~')," ",$str);
+	        $str = trim($str);
+	        while (strpos($str,'  ')>0) $str = str_replace("  "," ",$str);
+	        $str = mb_convert_case($str , MB_CASE_LOWER , 'utf-8');
+	        $str = str_replace(" ","-",$str);
+	        return $str;;
+	    }
 
     public static function getEmail($emailString){
         $email = explode(';', $emailString);
@@ -70,229 +38,6 @@ class ExtraHelper{
             }
         }
         return $string;
-    }
-    public static function makeLinkBook($params){
-        $params['checkin'] = date('d-m-Y',strtotime($params['checkin']));
-        $params['checkout'] = date('d-m-Y', strtotime($params['checkout']));
-        $url = '?checkindate='.$params['checkin'].'&checkoutdate='.$params['checkout'].'&adult='.$params['adult'].'&children='.$params['children'];
-        if($params['currency']){
-            $url .= '&currency=USD';            
-        }
-        if($params['roomtype']){
-            $url .= '&rtype='.$params['roomtype'];
-        }
-        if($params['promo']){
-            $url .= '&promo='.$params['promo'];
-        }
-        $lang = '';
-        if(Yii::app()->language !== 'en'){
-            $lang = Yii::app()->language.'/';
-        }
-        return Yii::app()->params['booking'].$lang.'search'.$url;
-    }
-    public function mailsend($to, $from, $from_name, $subject, $message)
-    {
-        $mail   = Yii::app()->Smtpmail;
-        $mail->IsSMTP();
-        $mail->SMTPAuth   = TRUE; 
-        $mail->SetFrom($from,'No Reply');
-        $mail->Subject  = $subject;
-        $mail->MsgHTML($message);
-        $mail->AddAddress($to, "");
-
-        // Add CC
-        // if(!empty($cc)){
-        //  foreach($cc as $email){
-        //      $mail->AddCC($email);
-        //  }
-        // }
-
-        // // Add Attchments
-        // if(!empty($attachment)){
-        //  foreach($attachment as $attach){
-        //  $mail->AddAttachment($attach);
-        //  }
-        // }
-
-        if(!$mail->Send()) {
-            //Yii::app()->user->setFlash('contact',$mail->ErrorInfo);
-            $mail->ClearAddresses();
-            return 0;
-        }else {
-            $mail->ClearAddresses();
-            return 1;
-        }
-        
-    }
-
-    public function mail_confirm($booked, $hotel){
-        $lang = 'en';
-        $address = json_decode($hotel['address'], true);
-        $city = json_decode($hotel['city'], true);
-        $country = json_decode($hotel['country'], true);
-        $special_offers = json_decode($hotel['special_offer'], true);
-        $short_id = strtoupper($booked['short_id']);
-        $first_name = ucfirst($booked['first_name']);
-        $last_name = ucfirst($booked['last_name']);
-        $promotion = json_decode($booked['promotion']['name'], true);
-
-        $promtion_name = $promotion[$lang];
-
-        $checkin = date('d M Y', strtotime($booked['checkin'])) ;
-        $checkout = date('d M Y', strtotime($booked['checkout'])) ;
-
-        $rate_vnd = number_format($booked['rate_vnd'], 2) ;
-        $html = "<table style=\"font-size:12px;font-family:arial,sans-serif;width: 98%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" >
-                <tr style=\"height:19.95pt;background: #0b1317;color: #fff\">
-                    <td valign=top style=\"padding: 0 10px;height:19.95pt;font-size:12px\">
-                        <a style=\"text-decoration:none;color:#fff;\" href=\"{Yii::app()->params['link']}\">
-                        <img src=\"http://aristosaigonhotel.com/themes/aristosaigonhotel/images/logo_email.jpg\" alt=\"{$hotel['name']}\"></a>
-                    </td>
-                    <td style=\"line-height: 20px;padding:10px;height:19.95pt;font-size:12px;color:#fff;\" valign=\"top\">
-                        <span style=\"font-family:arial,sans-serif;font-size:12px\">".Yii::t('lang', 'address_3').": ".$address[$lang].", ".$city[$lang].", ".$country[$lang]."</span>
-                        <br>
-                        Website: <u><span style=\"color:blue\">
-                        <a target=\"_blank\" style=\"color:#fff\" href=\"http://aristosaigonhotel.com\">aristosaigonhotel.com</a>
-                    </span></u> <br> 
-                    Email: <u><span>
-                            <a style=\"color:#fff\" href=\"mailto:".$hotel['email_info']."\">".$hotel['email_info']."</a></span></u><br>
-                    ".Yii::t('lang', 'tel').": ".$hotel['tel']."<br>";
-
-                    if ($hotel['hotline'] !== '') {
-                        $html .= 'Hotline: ' . $hotel['hotline'];
-                    }
-                    $date = date('d M y H:m:i', strtotime($booked->request_date));
-                $html .= "</td></tr>
-            </table>
-
-            <table style=\"width: 98%;border-collapse: collapse\" border=\"1\" cellpadding=\"0\" cellspacing=\"0\">
-                <tr><td align=\"center\" valign=\"middle\" style=\"font-size:12px;font-family:arial,sans-serif;padding:5px 3px\">
-                        <h2 style=\"margin-top: 10px;text-align: center;\">RESERVATION LETTER</h2></td></tr>
-                <tr><td align=\"right\" valign=\"middle\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\">
-                        Booking ID: <strong>{$short_id}</strong><br>
-                        Request Date: {$date} Ho Chi Minh City Time</td></tr>
-                <tr><td valign=\"middle\">
-                        <table width=\"100%\" border=\"0\" style=\"border-collapse:collapse\" cellpadding=\"0\" cellspacing=\"0\"><tr>
-                                <td align=\"left\" width=\"150px\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\">Booker:</td>
-                                <td align=\"left\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\">
-                                    {$first_name} 
-                                    {$last_name}</td></tr>
-                            <tr><td align=\"left\" width=\"150px\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\">Email:</td>
-                                <td align=\"left\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\">
-                                    <a href=\"mailto:{$booked['email'] }\" target=\"_blank\">
-                                        {$booked['email'] }</a>
-                                </td></tr></table>
-                    </td></tr>
-                <tr>
-                    <td valign=\"middle\">
-                        <table style=\"border-collapse:collapsewidth:100%\" border=\"1\" cellpadding=\"10\" cellspacing=\"0\">
-                            <tbody>
-                                <tr>
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\"><strong>".Yii::t('lang', 'guestname')."</strong></td>
-                                    
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\"><strong>".Yii::t('lang', 'promtion')."</strong></td>
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\"><strong>".Yii::t('lang', 'no_room')."</strong></td>
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\"><strong>".Yii::t('lang', 'no_adult')."</strong></td>
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\"><strong>".Yii::t('lang', 'no_of_child')."</strong></td>
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\"><strong>".Yii::t('lang', 'checkin')."</strong></td>
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\"><strong>".Yii::t('lang', 'checkout')."</strong></td>
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\"><strong>".Yii::t('lang', 'rate_per_night'). "({$booked['currency']})</strong></td>
-                                </tr>
-
-                                <tr>
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\">
-                                        {$first_name} {$last_name}
-                                    </td>
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\">
-                                        {$booked['roomtype']['name']}<br>
-                                        {$promtion_name}
-                                    </td>
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\">{$booked['no_of_room'] }</td>
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\">{$booked['no_of_adults'] }</td>
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\">{$booked['no_of_child']}</td>
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\">{$checkin}</td>
-                                    <td align=\"center\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\">{$checkout}</td>
-                                    <td align=\"center\" style=\"font-size:12pxfont-family:arial,sans-serifpadding:5px 3pxtext-align: centerborder-collapse:collapseborder-bottom: 1px solid #000\">{$rate_vnd}</td>
-                                </tr>";
-
-                                if($booked['notes']):        
-                                    $html .= "<tr>
-                                        <td align=\"left\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\"><strong>Notes</strong></td>
-                                        <td align=\"left\" colspan=\"8\" style=\"word-wrap:break-wordwidth:78%padding:10px;font-size:12px;font-family:arial,sans-seriftext-align:left\">
-                                            {$booked['notes'] }
-                                        </td>
-                                    </tr>";
-                                endif;
-                            $html .= "</tbody>
-                        </table>
-                    </td>
-                </tr>
-                
-                <tr>
-                    <td valign=\"middle\" style=\"border-collapse:collapseborder:1px solid #000000\">
-                        <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">
-                            <tbody>
-
-                                <tr>";
-                                    if($booked['pickup_price']>0):
-                                        $price_pickup = number_format($booked['pickup_price'],2);
-                                        $html .= "<td align=\"left\" valign=\"middle\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serifwidth: 10%;border:1px soild #000\"><strong>Arrival airport:</strong></td>
-                                        <td align=\"left\" style=\"border-right:1px soild #000word-wrap:break-wordpadding:10px;font-size:12px;font-family:arial,sans-serif;width: 30%\" valign=\"middle\">
-                                            {$booked['pickup_flight'] } - {$booked['pickup_time']} {$booked['pickup_date']} - {$price_pickup} VND
-                                        </td>";
-                                    endif;
-                                    
-                                    if($booked['dropoff_price']>0):
-                                        $price_drop = number_format($booked['dropoff_price'],2);
-                                        $html .= "<td align=\"left\" valign=\"middle\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif;width: 15%\"><strong>Departure see off:</strong></td>
-                                        <td align=\"left\" style=\"font-size:12px;word-wrap:break-word;padding:5px 3px;border-collapse:collapse;width: 30%;border-right:1px soild #000\">
-                                            {$booked['dropoff_flight'] } - {$booked['dropoff_time']} {$booked['dropoff_date']} - {$price_drop} VND
-                                        </td>";
-                                    endif;
-                                    $total_vnd = number_format($booked['total_vnd'], 2);
-                                    $total_usd = number_format($booked['total']/$booked['change_currency_rate'],2);
-                                $html .= "</tr>
-                                <tr><td colspan=\"4\" align=\"left\" style=\"padding:5px 3px;font-size:12px;font-family:arial,sans-serif;border-collapse:collapse;border:1px soild #000\">
-                                        For information, please contact: <strong>{$hotel['email_info']}</strong> Tel <strong>{$hotel['tel']}</strong><br></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </td>
-                </tr>
-                <tr>
-                    <td align=\"left\" valign=\"middle\" style=\"padding:10px;font-size:12px;font-family:arial,sans-serif;border:1px solid #000000\">
-                        <strong>Total to be paid in VND (include VAT & Service Charge Rate): {$total_vnd}</strong> (~ {$total_usd} USD)
-                    </td>
-                </tr>";
-                
-                if(isset($special_offers[$lang]) && $special_offers[$lang]):
-                    $html .= "<tr>
-                        <td valign=\"middle\" align=\"left\" style=\"padding:5px 3px;font-size:12px;font-family:arial,sans-serif;border-collapse:collapse;border:1px solid #000000\">
-                            {$special_offers[$lang]}
-                        </td>
-                    </tr>";
-                endif;
-
-                $html .= "<tr>
-                    <td valign=\"middle\" align=\"left\" style=\"padding:5px 3px;font-size:12px;font-family:arial,sans-serif;border-collapse:collapse;border:1px solid #000000\">
-                        <p>Notes: kindly be informed that your booking has not been paid yet. Credit card verification and/or full payment should be requested in 7 days before check-in date.</p>
-                    </td>
-                </tr>
-                <tr>
-                    <td valign=\"middle\" align=\"left\" style=\"padding:5px 3px;font-size:12px;font-family:arial,sans-serif;border-collapse:collapse;border:1px solid #000000\">
-                        Any cancellations received less than 168 hours (07 days) before 12.00 pm of arrival date will be subject to a cancellation fee, equal to the amount of 01 night room charge. Failure to arrive at your hotel will incur 100% of total amount of the booking.
-                    </td>
-                </tr>
-                <tr>
-                    <td style=\"padding:10px;font-size:12px;font-family:arial,sans-serif\">
-                        <h3>Terms & Conditions</h3>";
-                        $term = json_decode($hotel['term_condition'], true);
-
-    $html .= $term[$lang]. "
-                    </td>
-                </tr>
-            </table>";
-        return $html;
     }
     public static $gender = array(
         '' => 'Title',
@@ -319,15 +64,15 @@ class ExtraHelper{
         else{
             if($number){
                 for($i=0;$i<$loop;$i++){
-                    $randomstring .= mt_rand( 10000000, 99999999);    
+                    $randomstring .= mt_rand( 10000000, 99999999);
                 }
             }else{
                 $characters = '0123456789abcdefghijklmnopqrstuvwxyz';
                 $randomstring = '';
                 for ($i = 0; $i < $length; $i++) {
                     $randomstring .= $characters[mt_rand(0, strlen($characters) - 1)];
-                }     
-            }       
+                }
+            }
         }
         return $randomstring;
     }
@@ -365,30 +110,8 @@ class ExtraHelper{
             $month[$add_zero]= $add_zero;
         }
         return $month;
-    }
-    public static $currency = array(
-        'VND' => 'Vietnamese Dong (VND)', //20
-        'USD' => 'US Dollar (USD)', //1
-        'EUR' => 'Euro (EUR)', //2
-        'GBP' => 'British Pound (GBP)', //3
-        'HKD' => 'Hong Kong Dollar (HKD)', //4
-        'JPY' => 'Japanese Yen (JPY)', //5
-        'CHF' => 'Swiss Franc (CHF)', //6
-        'AUD' => 'Australian Dollar (AUD)', //7
-        'CAD' => 'Canadian Dollar (CAD)', //8
-        'SGD' => 'Singapore Dollar (SGD)', //9
-        'THB' => 'Thai Baht (THB)', //10
-        'DKK' => 'Danish Krone (DKK)', //11
-        'INR' => 'Indian Rupee (INR)', //12
-        'KRW' => 'Korean Won (KRW)', //13
-        'MYR' => 'Malaysian Ringgit (MYR)', //14
-        'KWD' => 'Kuwaiti Dinar (KWD)', //15
-        'NOK' => 'Norwegian Krone (NOK)', //16
-        'RUB' => 'Russian Ruble (RUB)', //17
-        'SAR' => 'Saudi Riyal (SAR)', //18
-        'SEK' => 'Swedish Krona (SEK)' //19
-    );
-    
+   }
+
 	public static $status = array(
 		0=> 'Publish',
 		1=>'Unpublish'
@@ -403,9 +126,9 @@ class ExtraHelper{
         $model->updated_by = Yii::app()->user->id;
     }
 
-    //write log 
+    //write log
     public static function writeLog($type, $object_type, $object_id, $object_name, $old_value, $new_value){
-        
+
         if (Yii::app()->user->id<=0) {
             return FALSE;
         }
@@ -417,7 +140,7 @@ class ExtraHelper{
             $log->object_name = $object_name;
             $old_value = ($old_value !== null ? $old_value->attributes : $old_value);
             $new_value = ($new_value !== null ? $new_value->attributes : $new_value);
-        if($type !== 'delete'){         
+        if($type !== 'delete'){
             if($old_value !== null){
                 $old_value = array_diff($new_value, $old_value);
                 $new_ = '{';
@@ -443,12 +166,12 @@ class ExtraHelper{
             $log->value = '{"old_value":['.json_encode($old_value).'], "new_value":[]}';
         }
         $log->date = date('Y-m-d H:i:s');
-        $log->user_id = Yii::app()->user->id;       
+        $log->user_id = Yii::app()->user->id;
         $log->save();
 
-        return TRUE;    
+        return TRUE;
     }
-    
+
     public static function date_diff($date_1 , $date_2 , $format = '%a'){
         $date1=ExtraHelper::date_2_save($date_1);
         $date2=ExtraHelper::date_2_save($date_2);
@@ -462,7 +185,7 @@ class ExtraHelper{
         $date1=ExtraHelper::date_2_save($date_1);
         $date2=ExtraHelper::date_2_save($date_2);
         $datetime1 = date_create($date1['date']);
-        $datetime2 = date_create($date2['date']);        
+        $datetime2 = date_create($date2['date']);
         $interval = date_diff($datetime1, $datetime2);
         if($datetime1 > $datetime2){
             return -1;
@@ -500,8 +223,8 @@ class ExtraHelper{
                 } else {
                     return array('valid' => FALSE, 'error' => 'Invalid date', 'date' => '');
                 }
-            }       
-        
+            }
+
         } else {
             return array('valid' => TRUE, 'error' => '', 'date' => $date);
         }
@@ -523,8 +246,8 @@ class ExtraHelper{
             $ret = str_replace(' ', $date_time_separator, $ret);
         }
         return $ret;
-    }   
-    
+    }
+
     public static function expiry_time_2_show($date) {
         $ret = '';
         if (!$date) {
@@ -533,7 +256,7 @@ class ExtraHelper{
         if ($date=='0000-00-00 00:00:00') {
             return '';
         }
-        
+
         $the_time = strtotime($date);
         $format = "H:i";
         $tmp = date($format, $the_time);
@@ -542,9 +265,9 @@ class ExtraHelper{
         } else {
             $format = "d M Y H:i";
         }
-        
+
         $ret = date($format, $the_time);
-        
+
         return $ret;
     }
 
@@ -566,7 +289,7 @@ class ExtraHelper{
         $criteria=new CDbCriteria;
         $criteria->distinct = true;
         $criteria->select = array($field_name);
-        
+
         if ($condition) {
             $criteria->addCondition($condition);
         }
@@ -590,7 +313,7 @@ class ExtraHelper{
         asort($arrCates);
         return $arrCates;
     }
-    
+
     public static $country = array(
         "PA7" => 'Afghanistan',
         "PA12" => 'Aland Islands',

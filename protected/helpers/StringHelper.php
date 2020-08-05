@@ -5,21 +5,21 @@ class StringHelper{
            return substr(strip_tags($str),0,strrpos(substr(strip_tags($str),0,$number)," ")) .$char;
         }
         return $str;
-        
+
     }
-    
+
     public static function makeLink($theString=''){
         return strtolower(preg_replace(array('/[.\s+]/', '/[,\']/', '/&(amp;)?#?[a-z0-9]+;/i','/[&?*%]/'), array('-', ''), StringHelper::safeField($theString)));
-   }
-       
+    }
+
     public static function safeField($field){
         $field = StringHelper::remove_vietnamese_accents($field);
         $field = iconv('UTF-8', 'ISO-8859-1//TRANSLIT//IGNORE', $field);
         $remove = array("'", '"', ':');
-        $field = str_replace($remove, '', $field);     
-        return  $field;                
+        $field = str_replace($remove, '', $field);
+        return  $field;
     }
-    
+
     public static function remove_vietnamese_accents($str){
         $accents_arr=array(
             "à","á","ạ","ả","ã","â","ầ","ấ","ậ","ẩ","ẫ","ă",
@@ -64,5 +64,5 @@ class StringHelper{
             );
 
         return str_replace($accents_arr,$no_accents_arr,$str);
-    }      
+    }
 }

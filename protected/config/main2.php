@@ -89,5 +89,6 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 		'all_roles' => require_once('confgs/roles.php'),
+		'category' => require_once('confgs/category.php'),
 	),
 );
