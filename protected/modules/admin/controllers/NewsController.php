@@ -1,5 +1,5 @@
 <?php
-class StoreController extends AdminController{
+class NewsController extends AdminController{
     public function filters(){
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -21,11 +21,11 @@ class StoreController extends AdminController{
     }
 
     public function actionAdmin(){
-        $model = new Store('search');
+        $model = new News('search');
         $model->unsetAttributes();
 
-        if(isset($_GET['Store'])){
-            $model->attributes = $_GET['Store'];
+        if(isset($_GET['News'])){
+            $model->attributes = $_GET['News'];
         }
 
         if (Yii::app()->getRequest()->getIsAjaxRequest()) {
@@ -38,9 +38,9 @@ class StoreController extends AdminController{
     }
 
     public function actionCreate(){
-        $model = new Store;
-        if(isset($_POST['Store'])){
-            $model->attributes = $_POST['Store'];
+        $model = new News;
+        if(isset($_POST['News'])){
+            $model->attributes = $_POST['News'];
             $file = CUploadedFile::getInstance($model, 'photo');
             if ($file !== null) {
                 $ran = rand(0, 999999999);
@@ -52,7 +52,7 @@ class StoreController extends AdminController{
             //ExtraHelper::update_tracking_data($model, 'create');
             $model->validate();
             if(!$model->hasErrors() && $model->save()){
-                $this->redirect(Yii::app()->createAbsoluteUrl('admin/store/admin'));
+                $this->redirect(Yii::app()->createAbsoluteUrl('admin/news/admin'));
             }
         }
         $this->render('create', compact(array('model')));
@@ -61,8 +61,8 @@ class StoreController extends AdminController{
     public function actionUpdate($id){
         $model = $this->loadModel($id);
         $old_photo = $model['photo'];
-        if(isset($_POST['Store'])){
-            $model->attributes = $_POST['Store'];
+        if(isset($_POST['News'])){
+            $model->attributes = $_POST['News'];
             $file = CUploadedFile::getInstance($model, 'photo');
             if($file !== null){
                 $ran = rand(0, 999999999);
@@ -78,7 +78,7 @@ class StoreController extends AdminController{
 
             $model->validate();
             if(!$model->hasErrors() && $model->save()){
-                $this->redirect(Yii::app()->createAbsoluteUrl('admin/store/admin'));
+                $this->redirect(Yii::app()->createAbsoluteUrl('admin/news/admin'));
             }
         }
         $this->render('update', compact(array('model')));
@@ -96,7 +96,7 @@ class StoreController extends AdminController{
     }
 
     public function loadModel($id){
-        $model = Store::model()->findByPk($id);
+        $model = News::model()->findByPk($id);
 
         return $model;
     }

@@ -1,5 +1,5 @@
 <?php
-class StorebrandController extends AdminController{
+class NewscategoryController extends AdminController{
     public function filters(){
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -21,11 +21,11 @@ class StorebrandController extends AdminController{
     }
 
     public function actionAdmin(){
-        $model = new StoreBrand('search');
+        $model = new NewsCategory('search');
         $model->unsetAttributes();
 
-        if(isset($_GET['StoreBrand'])){
-            $model->attributes = $_GET['StoreBrand'];
+        if(isset($_GET['NewsCategory'])){
+            $model->attributes = $_GET['NewsCategory'];
         }
 
         if (Yii::app()->getRequest()->getIsAjaxRequest()) {
@@ -38,13 +38,12 @@ class StorebrandController extends AdminController{
     }
 
     public function actionCreate(){
-        $model = new StoreBrand;
-        if(isset($_POST['StoreBrand'])){
-            $model->attributes = $_POST['StoreBrand'];
-            //ExtraHelper::update_tracking_data($model, 'create');
+        $model = new NewsCategory;
+        if(isset($_POST['NewsCategory'])){
+            $model->attributes = $_POST['NewsCategory'];
             $model->validate();
             if(!$model->hasErrors() && $model->save()){
-                $this->redirect(Yii::app()->createAbsoluteUrl('admin/storebrand/admin'));
+                $this->redirect(Yii::app()->createAbsoluteUrl('admin/newscategory/admin'));
             }
         }
         $this->render('create', compact(array('model')));
@@ -52,12 +51,11 @@ class StorebrandController extends AdminController{
 
     public function actionUpdate($id){
         $model = $this->loadModel($id);
-        if(isset($_POST['Store'])){
-            $model->attributes = $_POST['StoreBrand'];
-
+        if(isset($_POST['NewsCategory'])){
+            $model->attributes = $_POST['NewsCategory'];
             $model->validate();
             if(!$model->hasErrors() && $model->save()){
-                $this->redirect(Yii::app()->createAbsoluteUrl('admin/storebrand/admin'));
+                $this->redirect(Yii::app()->createAbsoluteUrl('admin/newscategory/admin'));
             }
         }
         $this->render('update', compact(array('model')));
@@ -71,7 +69,7 @@ class StorebrandController extends AdminController{
     }
 
     public function loadModel($id){
-        $model = StoreBrand::model()->findByPk($id);
+        $model = NewsCategory::model()->findByPk($id);
 
         return $model;
     }

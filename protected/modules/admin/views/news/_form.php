@@ -11,41 +11,41 @@ $form = $this->beginWidget('CActiveForm', array(
     <div class="row">
 	    <div class="col-sm-3">
 	        <div class="form-group">
-	            <?php echo $form->labelEx($model, 'category', array('class' => 'control-label'));?>
-	            <?php echo $form->dropDownlist($model, 'category', array('' => '--------------')+ Yii::app()->params['category'],array('class'=>'form-control')); ?>
-	            <?php echo $form->error($model, 'category'); ?>
+	            <?php echo $form->labelEx($model, 'news_category_id', array('class' => 'control-label'));?>
+	            <?php echo $form->dropDownlist($model, 'news_category_id', array('' => '--------------')+ NewsCategory::model()->getList2(),array('class'=>'form-control')); ?>
+	            <?php echo $form->error($model, 'news_category_id'); ?>
 	        </div>
 	    </div>
        <div class="col-sm-3 form-group">
            <?php echo $form->label($model, 'name');?>
-           <?php echo $form->textField($model, 'name', array('class' => 'form-control input-sm', 'placeholder' => 'Store Name'));?>
+           <?php echo $form->textField($model, 'name', array('class' => 'form-control input-sm', 'placeholder' => 'Title'));?>
            <?php echo $form->error($model, 'name'); ?>
        </div>
    </div>
-   <div class="row">
-	   <div class="col-sm-12"><h3>List store</h3></div>
-	   <?php
-	   $stores = Store::model()->getList2();
-	   foreach($stores as $key => $value){
-		   $checked = '';
-		   if (isset($model['store_id'])){
-			  if(in_array($key, $model['store_id'])){
-				 $checked = 'checked="checked"';
-			  }
-		   }
-		   ?>
-		   <div class="col-sm-2" style="margin-left:0%">
-			  <div class="form-group">
-				 <label class="label-checkbox inline">
-					<input type="checkbox"  value="<?php echo $key;?>" name="Category[store_id][<?php echo $key ?>]" <?php echo $checked ?>/>
-					<span class="custom-checkbox"></span> <?php echo ucwords($value) ?>
-				 </label>
-			  </div>
-		   </div>
-		   <?php
-	   }
-	   ?>
-   </div>
+  <div class="row">
+     <div class="col-sm-3 form-group">
+	    <?php echo $form->label($model, 'organiser');?>
+	    <?php echo $form->textField($model, 'organiser', array('class' => 'form-control input-sm', 'placeholder' => 'Organiser'));?>
+	    <?php echo $form->error($model, 'organiser'); ?>
+     </div>
+	<div class="col-sm-3 form-group">
+	    <?php echo $form->label($model, 'date');?>
+	    <?php echo $form->textField($model, 'date', array('class' => 'form-control input-sm', 'placeholder' => 'Date'));?>
+	    <?php echo $form->error($model, 'date'); ?>
+     </div>
+	<div class="col-sm-3 form-group">
+	    <?php echo $form->label($model, 'link');?>
+	    <?php echo $form->textField($model, 'link', array('class' => 'form-control input-sm', 'placeholder' => 'Link'));?>
+	    <?php echo $form->error($model, 'link'); ?>
+     </div>
+  </div>
+  <div class="row">
+     <div class="col-sm-6 form-group">
+	    <?php echo $form->label($model, 'address');?>
+	    <?php echo $form->textField($model, 'address', array('class' => 'form-control input-sm', 'placeholder' => 'Address'));?>
+	    <?php echo $form->error($model, 'address'); ?>
+     </div>
+</div>
   <div class="row">
        <div class="col-sm-3 form-group">
            <?php echo $form->label($model, 'photo');?>
@@ -61,6 +61,13 @@ $form = $this->beginWidget('CActiveForm', array(
        }
        ?>
   </div>
+  <div class="row">
+	  <div class="col-md-9 form-group">
+		 <?php echo $form->label($model, 'short_description');?>
+		 <?php echo $form->textArea($model, 'short_description', array('class' => 'form-control input-sm', 'placeholder' => 'Short description'));?>
+		 <?php echo $form->error($model, 'short_description'); ?>
+	  </div>
+   </div>
   <div class="row">
 	  <div class="col-md-9 form-group">
 		 <?php echo $form->label($model, 'description');?>
@@ -83,15 +90,15 @@ $form = $this->beginWidget('CActiveForm', array(
 			?>
 	  </div>
    </div>
-   <div class="row">
- 	  <div class="col-sm-3">
- 		 <div class="form-group">
- 			<?php echo $form->labelEx($model, 'status', array('class' => 'control-label'));?>
- 			<?php echo $form->dropDownlist($model, 'status', ExtraHelper::$status,array('class'=>'form-control')); ?>
- 			<?php echo $form->error($model, 'status'); ?>
- 		 </div>
- 	  </div>
-   </div>
+  <div class="row">
+	  <div class="col-sm-3">
+		 <div class="form-group">
+			<?php echo $form->labelEx($model, 'status', array('class' => 'control-label'));?>
+			<?php echo $form->dropDownlist($model, 'status', ExtraHelper::$status,array('class'=>'form-control')); ?>
+			<?php echo $form->error($model, 'status'); ?>
+		 </div>
+	  </div>
+  </div>
     <div class="row">
         <div class="col-sm-9">
             <button type="submit" class="btn btn-primary">Save changes</button>

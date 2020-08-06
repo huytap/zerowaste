@@ -62,6 +62,28 @@
 			 	   <span class="menu-hover"></span>
 			     </a>
 			 </li>
+			 <li>
+			     <a href="<?php echo Yii::app()->createUrl('admin/newscategory/admin');?>">
+			 	   <span class="menu-icon">
+			 		  <i class="fa fa-th-large"></i>
+			 	   </span>
+			 	   <span class="text">
+			 		  News Category
+			 	   </span>
+			 	   <span class="menu-hover"></span>
+			     </a>
+			 </li>
+			 <li>
+			     <a href="<?php echo Yii::app()->createUrl('admin/news/admin');?>">
+			 	   <span class="menu-icon">
+			 		  <i class="fa fa-th-large"></i>
+			 	   </span>
+			 	   <span class="text">
+			 		  News
+			 	   </span>
+			 	   <span class="menu-hover"></span>
+			     </a>
+			 </li>
                 <li>
                     <a href="<?php echo Yii::app()->createUrl('admin/slideshow/admin');?>">
                         <span class="menu-icon">

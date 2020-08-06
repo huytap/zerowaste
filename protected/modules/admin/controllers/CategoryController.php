@@ -38,6 +38,9 @@ class CategoryController extends AdminController
 		$model=new Category;
 		if(isset($_POST['Category'])){
 			$model->attributes=$_POST['Category'];
+			if($model['store_id'] !== ''){
+			    $model->store_id = implode(',', $model['store_id']);
+			}
 			$file = CUploadedFile::getInstance($model, 'photo');
                if ($file !== null) {
                    $ran = rand(0, 999999999);
@@ -49,6 +52,9 @@ class CategoryController extends AdminController
                 $this->redirect(Yii::app()->createUrl('admin/category/admin'));
                }
 		}
+		if($model){
+		    $model->store_id = explode(',',$model->store_id);
+		}
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -57,9 +63,11 @@ class CategoryController extends AdminController
 	public function actionUpdate($id){
 		$model=$this->loadModel($id);
 		$old_photo = $model['photo'];
-		if(isset($_POST['Category']))
-		{
+		if(isset($_POST['Category'])){
 			$model->attributes=$_POST['Category'];
+			if($model['store_id'] !== ''){
+			    $model->store_id = implode(',', $model['store_id']);
+			}
 			$file = CUploadedFile::getInstance($model, 'photo');
                if($file !== null){
                    $ran = rand(0, 999999999);
@@ -76,7 +84,9 @@ class CategoryController extends AdminController
                 $this->redirect(Yii::app()->createUrl('admin/category/admin'));
                }
 		}
-		$model->title = json_decode($model->title, true);
+		if($model){
+		    $model->store_id = explode(',',$model->store_id);
+		}
 		$this->render('update',array(
 			'model'=>$model,
 		));

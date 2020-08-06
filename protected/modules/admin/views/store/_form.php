@@ -41,7 +41,7 @@ $form = $this->beginWidget('CActiveForm', array(
        <?php
        if($model->photo){?>
            <div class="col-sm-3 form-group">
-               <?php echo '<img src="'.Yii::app()->baseUrl.'/uploads/cover/'.$model->photo.'" width="100">';?>
+               <?php echo '<img src="'.Yii::app()->baseUrl.'/uploads/'.$model->photo.'" width="100">';?>
            </div>
        <?php
        }
