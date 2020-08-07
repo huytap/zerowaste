@@ -90,5 +90,6 @@ return array(
 		'adminEmail'=>'webmaster@example.com',
 		'all_roles' => require_once('confgs/roles.php'),
 		'category' => require_once('confgs/category.php'),
+		'slide_type' => require_once('confgs/slide_type.php'),
 	),
 );

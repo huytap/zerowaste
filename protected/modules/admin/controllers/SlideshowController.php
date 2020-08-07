@@ -48,6 +48,9 @@ class SlideshowController extends AdminController
             ExtraHelper::update_tracking_data($model, 'create');
             $model->type = 1;
             $model->save();
+		  if(!is_dir(Yii::app()->basePath . '/../uploads/slide')){
+			 mkdir(Yii::app()->basePath . '/../uploads/slide');
+		  }
             $gallery_id = $model->id;
             $image = CUploadedFile::getInstancesByName('items');
             if (isset($image) && count($image) > 0) {
@@ -141,7 +144,7 @@ class SlideshowController extends AdminController
                     $title[$key]=$_POST['title_'.$key];
                 }
             }
-            
+
             if(is_array($title)){
                 $model->title = json_encode($title);
             }

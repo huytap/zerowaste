@@ -29,13 +29,24 @@
         </div><!-- /search-block -->
         <div class="main-menu">
             <ul>
+		  <li>
+			 <a href="<?php echo Yii::app()->createUrl('admin/storecategory/admin');?>">
+			    <span class="menu-icon">
+				   <i class="fa fa-th-large"></i>
+			    </span>
+			    <span class="text">
+				   Ngành hàng
+			    </span>
+			    <span class="menu-hover"></span>
+			 </a>
+		  </li>
                 <li>
                     <a href="<?php echo Yii::app()->createUrl('admin/store/admin');?>">
                         <span class="menu-icon">
                             <i class="fa fa-th-large"></i>
                         </span>
                         <span class="text">
-                            Stores
+                            Địa điểm
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -46,7 +57,7 @@
                             <i class="fa fa-th-large"></i>
                         </span>
                         <span class="text">
-                            Store Brands
+                            Chi nhánh địa điểm
                         </span>
                         <span class="menu-hover"></span>
                     </a>
@@ -57,7 +68,7 @@
 			 		  <i class="fa fa-th-large"></i>
 			 	   </span>
 			 	   <span class="text">
-			 		  Category
+			 		  Danh mục sản phẩm
 			 	   </span>
 			 	   <span class="menu-hover"></span>
 			     </a>
@@ -68,7 +79,7 @@
 			 		  <i class="fa fa-th-large"></i>
 			 	   </span>
 			 	   <span class="text">
-			 		  News Category
+			 		  Danh mục tin tức
 			 	   </span>
 			 	   <span class="menu-hover"></span>
 			     </a>
@@ -79,18 +90,29 @@
 			 		  <i class="fa fa-th-large"></i>
 			 	   </span>
 			 	   <span class="text">
-			 		  News
+			 		  Tin tức
 			 	   </span>
 			 	   <span class="menu-hover"></span>
 			     </a>
 			 </li>
+                <li>
+                    <a href="<?php echo Yii::app()->createUrl('admin/gallery/admin');?>">
+                        <span class="menu-icon">
+                            <i class="fa fa-th-large"></i>
+                        </span>
+                        <span class="text">
+                            Hình ảnh địa điểm
+                        </span>
+                        <span class="menu-hover"></span>
+                    </a>
+                </li>
                 <li>
                     <a href="<?php echo Yii::app()->createUrl('admin/slideshow/admin');?>">
                         <span class="menu-icon">
                             <i class="fa fa-th-large"></i>
                         </span>
                         <span class="text">
-                            Slider Control
+                            Sliders
                         </span>
                         <span class="menu-hover"></span>
                     </a>

@@ -34,7 +34,7 @@ class News extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('news_category_id, name, photo, organiser, short_description, description', 'required'),
+			array('news_category_id, name, photo, short_description, description', 'required'),
 			array('news_category_id, status', 'numerical', 'integerOnly'=>true),
 			array('name, link, short_description, address', 'length', 'max'=>255),
 			array('description', 'safe'),

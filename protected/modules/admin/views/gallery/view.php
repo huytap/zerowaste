@@ -11,9 +11,6 @@ $this->menu=array(
     <div class="panel-heading">Slider Control: <?php echo $gallery['name'];?>. Drag photo to sort order</div>
     <div class="panel-body wrapper-content" id="items">
     	<?php
-		                $language = Yii::app()->params['language_config'];?>
-        <?php //$this->renderPartial('_grid', compact(array('model','gallery')));
-
         	$data = Item::model()->getListByGallery($gallery['id']);
         	if($data)
         	foreach($data->getData() as $dt){
@@ -21,21 +18,14 @@ $this->menu=array(
         			echo '<img src="'.Yii::app()->baseUrl.'/timthumb.php?src='.Yii::app()->baseUrl.'/uploads/gallery/'.$dt['name'].'&h=150&w=150">';
         			echo '<div class="description">';
         				echo '<div class="col-md-6" style="cursor:pointer;">';
-        					echo '<span class="fa fa-pencil" onclick="showPopupUpdate('.$dt['id'].',\''.Yii::app()->baseUrl.'/uploads/gallery/'.$dt['name'].'\', this)"></span>';
-        					$description=json_decode($dt['description'], true);
-        					$title = json_decode($dt['title'], true);
-        					$url = json_decode($dt['url'], true);
-        					foreach($language as $key => $lang){
-	        					if(is_array($title) && count($title)>0){
-	        						echo '<span class="title_'.$key.'" style="display:none;">'.$title[$key].'</span>';
-	        					}
-	        					if(is_array($description) && count($description)>0){
-		        					echo '<span class="des_'.$key.'" style="display:none;">'.$description[$key].'</span>';
-		        				}
-		        				if(is_array($url) && count($url)>0){
-		        					echo '<span class="url_'.$key.'" style="display:none;">'.$url[$key].'</span>';
-		        				}
-		        			}
+        					//echo '<span class="fa fa-pencil" onclick="showPopupUpdate('.$dt['id'].',\''.Yii::app()->baseUrl.'/uploads/gallery/'.$dt['name'].'\', this)"></span>';
+        					$description=$dt['description'];
+        					$title = $dt['title'];
+        					$url = $dt['url'];
+
+   						echo '<span class="title_" style="display:none;">'.$title.'</span>';
+        					echo '<span class="des_" style="display:none;">'.$description.'</span>';
+        					echo '<span class="url_" style="display:none;">'.$url.'</span>';
 
         					echo '</div>';
         				echo '<div class="col-md-6" style="text-align:right;cursor:pointer;"><span class="fa fa-times" onclick="deleteItem('.$dt['id'].', this)"></span></div>';
@@ -61,49 +51,24 @@ $this->menu=array(
 	            </div>
 	            <div class="row">
 		            <div class="panel panel-default">
-		                
-		                <div class="panel-tab clearfix">
-		                    <ul class="tab-bar">
-		                        <?php
-		                        $i=0;
-		                        foreach($language as $key => $lang){
-		                            $class='';
-		                            if($i==0){
-		                                $class="active";
-		                            }
-		                            $i++;
-		                            echo '<li class="'.$class.'"><a href="#'.$key.'" data-toggle="tab"> '.$lang.'</a></li>';
-		                        }?>
-		                    </ul>
-		                </div>
 		                <div class="panel-body">
 		                    <div class="tab-content">
-		                        <?php
-		                        $i=0; 
-		                        foreach($language as $key => $lang){
-		                            $class='';
-		                            if($i==0)
-		                                $class='active';?>
-		                            <div class="tab-pane fade in <?php echo $class?>" id="<?php echo $key?>">
-		                                <div class="form-group">
-		                                    <label>Title</label>
-		                                    <?php echo CHtml::textField("title[$key]", '', array('class' => 'form-control', 'placeholder' => 'Title')); ?>
-		                                </div>
-		                                <div class="row">
-								            <div class="col-md-12">
-							                    <div class="form-group">
-							                        <label>Url</label>
-							                        <?php echo CHtml::textField("url[$key]", '', array('class' => 'form-control', 'placeholder' => 'Link url')); ?>
-							                    </div>
-							            	</div>
-							            </div>
-		                                <div class="form-group">
-		                                    <label>Description</label>
-		                                    <?php echo CHtml::textArea("description[$key]", '', array('class' => 'form-control', 'rows'=>'6', 'placeholder' => 'Description')); ?>
-		                                </div>
-		                            </div>
-		                        <?php $i++;
-		                        }?>
+	                                <div class="form-group">
+	                                    <label>Title</label>
+	                                    <?php echo CHtml::textField("title[$key]", '', array('class' => 'form-control', 'placeholder' => 'Title')); ?>
+	                                </div>
+	                                <div class="row">
+						            <div class="col-md-12">
+					                    <div class="form-group">
+					                        <label>Url</label>
+					                        <?php echo CHtml::textField("url[$key]", '', array('class' => 'form-control', 'placeholder' => 'Link url')); ?>
+					                    </div>
+					            	</div>
+					            </div>
+	                                <div class="form-group">
+	                                    <label>Description</label>
+	                                    <?php echo CHtml::textArea("description[$key]", '', array('class' => 'form-control', 'rows'=>'6', 'placeholder' => 'Description')); ?>
+	                                </div>
 		                    </div>
 		                </div>
 		            </div><!-- /panel -->
@@ -170,20 +135,16 @@ $(function(){
 		$('#altPhoto').addClass('in');
 		$('#altField').val(description);
 		$('#photoAlt').find('img').attr('src', Linkimg);
-		<?php foreach($language as $key => $lang){?>
-			$('#title_<?php echo $key?>').val($(object).parent().find('.title_<?php echo $key?>').html());
-			$('#url_<?php echo $key?>').val($(object).parent().find('.url_<?php echo $key?>').html());
-			$('#description_<?php echo $key?>').val($(object).parent().find('.des_<?php echo $key?>').html());
-		<?php 
-		}?>
+
+			$('#title_').val($(object).parent().find('.title_').html());
+			$('#url_').val($(object).parent().find('.url_').html());
+			$('#description_').val($(object).parent().find('.des').html());
 
 		$('#saveAlt').click(function(){
 			var data = {id:id}
-			<?php foreach($language as $key => $lang){?>
-				data['title_<?php echo $key?>'] = $('#title_<?php echo $key?>').val();
-				data['des_<?php echo $key?>'] = $('#description_<?php echo $key?>').val();
-				data['url_<?php echo $key?>'] = $('#url_<?php echo $key?>').val();
-			<?php }?>
+				data['title_'] = $('#title_').val();
+				data['des_'] = $('#description_').val();
+				data['url_'] = $('#url_').val();
 			console.log(data)
 			$.ajax({
 				url: '<?php echo Yii::app()->createUrl("admin/slideshow/updateitem");?>',

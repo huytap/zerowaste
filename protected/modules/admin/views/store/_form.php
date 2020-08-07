@@ -14,6 +14,11 @@ $form = $this->beginWidget('CActiveForm', array(
            <?php echo $form->textField($model, 'name', array('class' => 'form-control input-sm', 'placeholder' => 'Store Name'));?>
            <?php echo $form->error($model, 'name'); ?>
        </div>
+	  <div class="col-sm-3 form-group">
+           <?php echo $form->label($model, 'email');?>
+           <?php echo $form->textField($model, 'email', array('class' => 'form-control input-sm', 'placeholder' => 'Email'));?>
+           <?php echo $form->error($model, 'email'); ?>
+       </div>
    </div>
   <div class="row">
      <div class="col-sm-3 form-group">
@@ -33,6 +38,23 @@ $form = $this->beginWidget('CActiveForm', array(
      </div>
   </div>
   <div class="row">
+     <div class="col-sm-3 form-group">
+	    <?php echo $form->label($model, 'youtube');?>
+	    <?php echo $form->textField($model, 'youtube', array('class' => 'form-control input-sm', 'placeholder' => 'Youtube'));?>
+	    <?php echo $form->error($model, 'youtube'); ?>
+     </div>
+	<div class="col-sm-3 form-group">
+	    <?php echo $form->label($model, 'shopee');?>
+	    <?php echo $form->textField($model, 'shopee', array('class' => 'form-control input-sm', 'placeholder' => 'Shopee'));?>
+	    <?php echo $form->error($model, 'shopee'); ?>
+     </div>
+	<div class="col-sm-3 form-group">
+	    <?php echo $form->label($model, 'lazada');?>
+	    <?php echo $form->textField($model, 'lazada', array('class' => 'form-control input-sm', 'placeholder' => 'Lazada'));?>
+	    <?php echo $form->error($model, 'lazada'); ?>
+     </div>
+  </div>
+  <div class="row">
        <div class="col-sm-3 form-group">
            <?php echo $form->label($model, 'photo');?>
            <?php echo $form->fileField($model, "photo"); ?>
@@ -46,6 +68,30 @@ $form = $this->beginWidget('CActiveForm', array(
        <?php
        }
        ?>
+  </div>
+  <div class="row">
+	  <div class="col-sm-12"><h3>Ngành hàng</h3></div>
+	  <?php
+	  $stores = StoreCategory::model()->getList2();
+	  foreach($stores as $key => $value){
+		  $checked = '';
+		  if (isset($model['store_category_id']) && $model['store_category_id']){
+			 if(in_array($key, $model['store_category_id'])){
+				$checked = 'checked="checked"';
+			 }
+		  }
+		  ?>
+		  <div class="col-sm-2" style="margin-left:0%">
+			 <div class="form-group">
+				<label class="label-checkbox inline">
+				    <input type="checkbox"  value="<?php echo $key;?>" name="Store[store_category_id][<?php echo $key ?>]" <?php echo $checked ?>/>
+				    <span class="custom-checkbox"></span> <?php echo ucwords($value) ?>
+				</label>
+			 </div>
+		  </div>
+		  <?php
+	  }
+	  ?>
   </div>
   <div class="row">
 	  <div class="col-md-9 form-group">

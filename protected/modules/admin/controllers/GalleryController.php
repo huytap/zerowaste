@@ -44,7 +44,7 @@ class GalleryController extends AdminController{
 
     /*public function actionAdmin(){
 
-        $data = Gallery::model()->getGalleryByType(0, Yii::app()->session['hotel']);        
+        $data = Gallery::model()->getGalleryByType(0, Yii::app()->session['hotel']);
 
 
 
@@ -83,15 +83,12 @@ class GalleryController extends AdminController{
         if (isset($_POST['Gallery'])) {
 
             $model->attributes = $_POST['Gallery'];
-
             $model->type = 0;
-
-            $model->hotel_id=Yii::app()->session['hotel'];
-
             ExtraHelper::update_tracking_data($model, 'create');
-
             $model->save();
-
+		  if(!is_dir(Yii::app()->basePath . '/../uploads/gallery')){
+			mkdir(Yii::app()->basePath . '/../uploads/gallery');
+		 }
             $gallery_id = $model->id;
 
             $image = CUploadedFile::getInstancesByName('items');
@@ -152,24 +149,15 @@ class GalleryController extends AdminController{
 
     public function actionUpdate($id){
         $model = Gallery::model()->findByPk($id);
-        /*if(Users::checkPermissionHotel($model->hotel_id)==FALSE){
-            throw new CHttpException(404,'404 Page Not Found OR You have not permision.');
-        }else{*/
-            //if($model['hotel_id'] == Yii::app()->session['hotel']){
-                if(isset($_POST['Gallery'])){
-                    $model->attributes = $_POST['Gallery'];
-                    $model->hotel_id = Yii::app()->session['hotel'];
-                    if($model->update()){
-                        $this->redirect(Yii::app()->createUrl('admin/gallery/admin'));
-                    }
-                }
-                $this->render('update', compact('model'));
-            /*}else{
-                $this->render('../site/error');
-            }*/
-        //}
+      if(isset($_POST['Gallery'])){
+          $model->attributes = $_POST['Gallery'];
+          if($model->update()){
+              $this->redirect(Yii::app()->createUrl('admin/gallery/admin'));
+          }
+      }
+      $this->render('update', compact('model'));
     }
-    
+
     public function actionUpload($id){
 
         $gallery = Gallery::model()->with('items')->findByPk($id);

@@ -26,17 +26,6 @@ $this->widget('booster.widgets.TbJsonGridView', array(
             }
         ),
         array(
-            'name' => 'name',
-            'header' => 'Sản phẩm',
-            'type' => 'raw',
-            'headerHtmlOptions' => array('width' => 300,'style' => 'text-align:center;'),
-            'htmlOptions' => array('style' => 'text-align:center;vertical-align:middle','class' => 'main_name'),
-            'value' => function($data){
-                $title = json_decode($data->cms->title, true);
-                return $title['vi'];
-            }
-        ),
-        array(
             'header' => 'Actions',
             'headerHtmlOptions' => array('width' => 280,'style' => 'text-align:center;width:80px'),
             'htmlOptions' => array('style' => 'text-align:center;vertical-align:middle;width:80px;'),

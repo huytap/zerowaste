@@ -30,31 +30,13 @@ class GallerycategoriesController extends AdminController
 		$this->performAjaxValidation($model);
 		if(isset($_POST['GalleryCategories'])){
 			$model->attributes=$_POST['GalleryCategories'];
-			$languages = Yii::app()->params['language_config'];
-            $title = $short_content= $full_content=array();
-
-            $model->hotel_id = implode(',', $_POST['GalleryCategories']['hotel_id']);
-            
-            foreach($languages as $key => $lang){
-                if(!$_POST['GalleryCategories']['title'][$key]){
-                    $title[$key]=$_POST['GalleryCategories']['name']['en'];
-                }else{
-                    $title[$key]=$_POST['GalleryCategories']['name'][$key];
-                }
-            }
-            $model->slug=ExtraHelper::changeTitle($_POST['GalleryCategories']['name']['en']);
+            $model->slug=ExtraHelper::changeTitle($_POST['GalleryCategories']['name']);
             ExtraHelper::update_tracking_data($model, 'create');
-            if(is_array($title)){
-                $model->name=json_encode($title);
-            }
 			if($model->save()){
                 $this->redirect(Yii::app()->createUrl('admin/gallerycategories/admin'));
             }
 
 		}
-		if($model['hotel_id']){
-            $model['hotel_id'] = explode(',', $model['hotel_id']);
-        }
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -65,29 +47,13 @@ class GallerycategoriesController extends AdminController
 	 * If update is successful, the browser will be redirected to the 'view' page.
 	 * @param integer $id the ID of the model to be updated
 	 */
-	public function actionUpdate($id)
-	{
+	public function actionUpdate($id){
 		$model=$this->loadModel($id);
-
-		// Uncomment the following line if AJAX validation is needed
-		// $this->performAjaxValidation($model);
-
-		if(isset($_POST['GalleryCategories']))
-		{
+		if(isset($_POST['GalleryCategories'])){
 			$model->attributes=$_POST['GalleryCategories'];
-			
 			ExtraHelper::update_tracking_data($model, 'update');
-			$languages = Yii::app()->params['language_config'];
-            $title = $short_content= $full_content=array();
-            $model->hotel_id = implode(',', $_POST['GalleryCategories']['hotel_id']);
-            foreach($languages as $key => $lang){
-                if(!$_POST['GalleryCategories']['name'][$key]){
-                    $title[$key]=$_POST['GalleryCategories']['name']['en'];
-                }else{
-                    $title[$key]=$_POST['GalleryCategories']['name'][$key];
-                }
-            }
-            $model->slug=ExtraHelper::changeTitle($_POST['GalleryCategories']['name']['en']);
+
+            $model->slug=ExtraHelper::changeTitle($_POST['GalleryCategories']['name']);
             if(is_array($title)){
                 $model->name=json_encode($title);
             }
@@ -95,17 +61,12 @@ class GallerycategoriesController extends AdminController
 				$this->redirect(Yii::app()->createAbsoluteUrl('admin/gallerycategories/admin'));
 			}
 		}
-		if($model['hotel_id']){
-            $model['hotel_id'] = explode(',', $model['hotel_id']);
-        }
-		$model->name=json_decode($model->name,true);
 		$this->render('update',array(
 			'model'=>$model,
 		));
 	}
 
-	public function actionDelete($id)
-	{
+	public function actionDelete($id){
 		$model = $this->loadModel($id);
         if($model->delete()){
             echo json_encode(1);

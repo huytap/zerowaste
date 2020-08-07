@@ -1,5 +1,5 @@
 <?php
-class StoreController extends AdminController{
+class StorecategoryController extends AdminController{
     public function filters(){
         return array(
             'accessControl', // perform access control for CRUD operations
@@ -21,11 +21,11 @@ class StoreController extends AdminController{
     }
 
     public function actionAdmin(){
-        $model = new Store('search');
+        $model = new StoreCategory('search');
         $model->unsetAttributes();
 
-        if(isset($_GET['Store'])){
-            $model->attributes = $_GET['Store'];
+        if(isset($_GET['StoreCategory'])){
+            $model->attributes = $_GET['StoreCategory'];
         }
 
         if (Yii::app()->getRequest()->getIsAjaxRequest()) {
@@ -38,75 +38,56 @@ class StoreController extends AdminController{
     }
 
     public function actionCreate(){
-        $model = new Store;
-        if(isset($_POST['Store'])){
-            $model->attributes = $_POST['Store'];
-            $file = CUploadedFile::getInstance($model, 'photo');
+        $model = new StoreCategory;
+        if(isset($_POST['StoreCategory'])){
+            $model->attributes = $_POST['StoreCategory'];
+		  $file = CUploadedFile::getInstance($model, 'icon');
             if ($file !== null) {
                 $ran = rand(0, 999999999);
                 $cover_photo = date("Y-m-d-H-i-s") . '-'.ExtraHelper::changeTitle(str_replace(array('.gif','.jpg','.png'),'',$file->name)).".jpg";
-                $model['photo'] = $cover_photo;
+                $model['icon'] = $cover_photo;
                 $file->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo");
             }
-		  if($model['store_category_id'] !== ''){
-			 $model->store_category_id = implode(',', $model['store_category_id']);
-		  }
-            //ExtraHelper::update_tracking_data($model, 'create');
+
             $model->validate();
             if(!$model->hasErrors() && $model->save()){
-                $this->redirect(Yii::app()->createAbsoluteUrl('admin/store/admin'));
+                $this->redirect(Yii::app()->createAbsoluteUrl('admin/storecategory/admin'));
             }
         }
-	   if($model){
-		  $model->store_category_id = explode(',',$model->store_category_id);
-	   }
+
         $this->render('create', compact(array('model')));
     }
 
     public function actionUpdate($id){
         $model = $this->loadModel($id);
-        $old_photo = $model['photo'];
-        if(isset($_POST['Store'])){
-            $model->attributes = $_POST['Store'];
-            $file = CUploadedFile::getInstance($model, 'photo');
-            if($file !== null){
+	   $old_photo = $model['icon'];
+        if(isset($_POST['StoreCategory'])){
+            $model->attributes = $_POST['StoreCategory'];
+		  $file = CUploadedFile::getInstance($model, 'icon');
+            if ($file !== null) {
                 $ran = rand(0, 999999999);
                 $cover_photo = date("Y-m-d-H-i-s") . '-'.ExtraHelper::changeTitle(str_replace(array('.gif','.jpg','.png'),'',$file->name)).".jpg";
-                $model['photo'] = $cover_photo;
+                $model['icon'] = $cover_photo;
                 $file->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo");
-                if($old_photo && file_exists(Yii::app()->basePath . "/../uploads/$old_photo")){
-                    unlink(Yii::app()->basePath . "/../uploads/$old_photo");
-                }
-            }else{
-                $model->photo = $old_photo;
             }
-		  if($model['store_category_id'] !== ''){
-			 $model->store_category_id = implode(',', $model['store_category_id']);
-		  }
+
             $model->validate();
             if(!$model->hasErrors() && $model->save()){
-                $this->redirect(Yii::app()->createAbsoluteUrl('admin/store/admin'));
+                $this->redirect(Yii::app()->createAbsoluteUrl('admin/storecategory/admin'));
             }
         }
-	   if($model){
-		  $model->store_category_id = explode(',',$model->store_category_id);
-	   }
         $this->render('update', compact(array('model')));
     }
 
     public function actionDelete($id){
         $model = $this->loadModel($id);
-	   $old_photo = $model['photo'];
         if($model->delete()){
-		   if($old_photo && file_exists(Yii::app()->basePath . "/../uploads/$old_photo")){
-			  unlink(Yii::app()->basePath . "/../uploads/$old_photo");
-		   }
             echo json_encode(1);
         }
     }
 
     public function loadModel($id){
-        $model = Store::model()->findByPk($id);
+        $model = StoreCategory::model()->findByPk($id);
 
         return $model;
     }

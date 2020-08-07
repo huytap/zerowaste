@@ -1,25 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "store_brands".
+ * This is the model class for table "store_categries".
  *
- * The followings are the available columns in table 'store_brands':
+ * The followings are the available columns in table 'store_categries':
  * @property integer $id
- * @property integer $store_id
- * @property string $address
- * @property string $ward
- * @property string $district
- * @property string $phone
+ * @property string $name
+ * @property string $icon
  * @property integer $status
  */
-class StoreBrand extends CActiveRecord
+class StoreCategory extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'store_brands';
+		return 'store_categries';
 	}
 
 	/**
@@ -30,13 +27,12 @@ class StoreBrand extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('store_id, address, status', 'required'),
-			array('store_id, status', 'numerical', 'integerOnly'=>true),
-			array('address', 'length', 'max'=>255),
-			array('ward, district, phone', 'length', 'max'=>32),
+			array('name, icon, status', 'required'),
+			array('status', 'numerical', 'integerOnly'=>true),
+			array('name, icon', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, store_id, address, ward, district, phone, status', 'safe', 'on'=>'search'),
+			array('id, name, icon, status', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -48,7 +44,6 @@ class StoreBrand extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'store' => array(self::BELONGS_TO, 'Store', 'store_id')
 		);
 	}
 
@@ -59,11 +54,8 @@ class StoreBrand extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'store_id' => 'Store',
-			'address' => 'Address',
-			'ward' => 'Ward',
-			'district' => 'District',
-			'phone' => 'Phone',
+			'name' => 'Name',
+			'icon' => 'Icon',
 			'status' => 'Status',
 		);
 	}
@@ -87,11 +79,8 @@ class StoreBrand extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('store_id',$this->store_id);
-		$criteria->compare('address',$this->address,true);
-		$criteria->compare('ward',$this->ward,true);
-		$criteria->compare('district',$this->district,true);
-		$criteria->compare('phone',$this->phone,true);
+		$criteria->compare('name',$this->name,true);
+		$criteria->compare('icon',$this->icon,true);
 		$criteria->compare('status',$this->status);
 
 		return new CActiveDataProvider($this, array(
@@ -103,10 +92,32 @@ class StoreBrand extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return StoreBrand the static model class
+	 * @return StoreCategory the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function getList(){
+		$criteria=new CDbCriteria;
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => array('pageSize' => false)
+		));
+	}
+
+	public function getList2(){
+		$criteria=new CDbCriteria;
+		$data = new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => array('pageSize' => false)
+		));
+		$arrData = array();
+		foreach($data->getData() as $dt){
+			$arrData[$dt['id']] = $dt['name'];
+		}
+
+		return $arrData;
 	}
 }

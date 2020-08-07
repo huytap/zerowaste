@@ -18,18 +18,6 @@ $type = Yii::app()->params['slide_type'];
                 <?php echo $form->error($model, 'name'); ?>
             </div>
         </div>
-        <?php
-        if(Yii::app()->session['hotel']){?>
-        <div class="col-lg-4" style="<?php if(!$model['name']) echo 'display:none;'?>" id="roomtype">
-            <div class="form-group">
-                <?php echo $form->labelEx($model, 'roomtype_id', array('class' => 'control-label'));?>
-                <?php echo $form->dropDownlist($model, 'roomtype_id', array('' => '--------------')+Roomtype::model()->getList2(0, Yii::app()->session['hotel']),array('class'=>'form-control')); ?>
-                <?php echo $form->error($model, 'roomtype_id'); ?>
-            </div>
-        </div>
-        <?php
-        }
-        ?>
         <div class="col-lg-4">
             <div class="form-group">
                 <?php echo $form->labelEx($model, 'description', array('class' => 'control-label'));?>
@@ -40,7 +28,7 @@ $type = Yii::app()->params['slide_type'];
     </div>
     <div class="row">
         <div class="col-lg-4">
-            <div class="form-group">       
+            <div class="form-group">
                 <lebel>Photos</lebel>
                 <input multiple="" type="file" name="items[]" />
             </div>

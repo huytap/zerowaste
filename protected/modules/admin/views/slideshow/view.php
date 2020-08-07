@@ -58,42 +58,16 @@ $this->menu=array(
 	            </div>
 	            <div class="row">
 		            <div class="panel panel-default">
-		                <?php
-		                $language = Yii::app()->params['language_config'];?>
-		                <div class="panel-tab clearfix">
-		                    <ul class="tab-bar">
-		                        <?php
-		                        $i=0; 
-		                        foreach($language as $key => $lang){
-		                            $class='';
-		                            if($i==0){
-		                                $class="active";
-		                            }
-		                            $i++;
-		                            echo '<li class="'.$class.'"><a href="#'.$key.'" data-toggle="tab"> '.$lang.'</a></li>';
-		                        }?>
-		                    </ul>
-		                </div>
 		                <div class="panel-body">
 		                    <div class="tab-content">
-		                        <?php
-		                        $i=0; 
-		                        foreach($language as $key => $lang){
-		                            $class='';
-		                            if($i==0)
-		                                $class='active';?>
-		                            <div class="tab-pane fade in <?php echo $class?>" id="<?php echo $key?>">
-		                                <div class="form-group">
-		                                    <label>Title</label>
-		                                    <?php echo CHtml::textField("title[$key]", '', array('class' => 'form-control', 'placeholder' => 'Title')); ?>
-		                                </div>
-		                                <div class="form-group">
-		                                    <label>Description</label>
-		                                    <?php echo CHtml::textArea("description[$key]", '', array('class' => 'form-control', 'rows'=>'6', 'placeholder' => 'Description')); ?>
-		                                </div>
-		                            </div>
-		                        <?php $i++;
-		                        }?>
+	                                <div class="form-group">
+	                                    <label>Title</label>
+	                                    <?php echo CHtml::textField("title", '', array('class' => 'form-control', 'placeholder' => 'Title')); ?>
+	                                </div>
+	                                <div class="form-group">
+	                                    <label>Description</label>
+	                                    <?php echo CHtml::textArea("description", '', array('class' => 'form-control', 'rows'=>'6', 'placeholder' => 'Description')); ?>
+	                                </div>
 		                    </div>
 		                </div>
 		            </div><!-- /panel -->
@@ -142,7 +116,7 @@ $(function(){
 		        beforeSend: function(){
 					$('#loading').show();
 				},
-		        dataType:'json',			        
+		        dataType:'json',
 		        success:function (data){
 		            $('#loading').hide()
 		        }
@@ -160,33 +134,18 @@ $(function(){
 		$('#altPhoto').addClass('in');
 		$('#altField').val(description);
 		$('#photoAlt').find('img').attr('src', Linkimg);
-		
-		$('#title_en').val($(object).parent().find('.title_en').html());
-		$('#title_vi').val($(object).parent().find('.title_vi').html());
-		$('#title_ja').val($(object).parent().find('.title_ja').html());
-		$('#title_ko').val($(object).parent().find('.title_ko').html());
-
-		$('#description_en').val($(object).parent().find('.des_en').html());
-		$('#description_vi').val($(object).parent().find('.des_vi').html());
-		$('#description_ja').val($(object).parent().find('.des_ja').html());
-		$('#description_ko').val($(object).parent().find('.des_ko').html());
-
+		$('#title').val($(object).parent().find('.title_en').html());
+		$('#description').val($(object).parent().find('.des_en').html());
 
 		$('#saveAlt').click(function(){
-			var title_en = $('#title_en').val();
-			var title_vi = $('#title_vi').val();
-			var title_ja = $('#title_ja').val();
-			var title_ko = $('#title_ko').val();
+			var title = $('#title').val();
 
-			var des_en = $('#description_en').val();
-			var des_vi = $('#description_vi').val();
-			var des_ja = $('#description_ja').val();
-			var des_ko = $('#description_ko').val();
+			var des = $('#description').val();
 			$.ajax({
 				url: '<?php echo Yii::app()->createUrl("admin/slideshow/updateitem");?>',
 				type: 'post',
 				dataType: 'json',
-				data:{id: id, title_ko:title_ko, title_en:title_en,title_vi:title_vi,title_ja:title_ja,des_en:des_en,des_vi:des_vi,des_ja:des_ja,des_ko:des_ko},
+				data:{id: id, title:title,des:des},
 				beforeSend: function(){
 					$('#loading').show();
 				},

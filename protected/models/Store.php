@@ -29,9 +29,9 @@ class Store extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, photo', 'required'),
-			array('name, website, facebook, instagram', 'length', 'max'=>255),
-			array('photo', 'length', 'max' => 128),
+			array('name, description, photo, store_category_id', 'required'),
+			array('name, website, facebook, instagram, youtube, lazada, shopee', 'length', 'max'=>255),
+			array('photo, email', 'length', 'max' => 128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, description, website, facebook, instagram', 'safe', 'on'=>'search'),
@@ -61,6 +61,7 @@ class Store extends CActiveRecord
 			'website' => 'Website',
 			'facebook' => 'Facebook',
 			'instagram' => 'Instagram',
+			'store_category_id' => 'Ngành hàng'
 		);
 	}
 
