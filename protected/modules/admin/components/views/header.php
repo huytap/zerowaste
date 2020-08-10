@@ -1,6 +1,6 @@
 <div id="top-nav" class="fixed skin-6">
     <a href="#" class="brand">
-        <span>Hotel</span>
+        <span>Zerowaste</span>
         <span class="text-toggle"> Administrator</span>
     </a><!-- /brand -->                 
     <button type="button" class="navbar-toggle pull-left" id="sidebarToggle">

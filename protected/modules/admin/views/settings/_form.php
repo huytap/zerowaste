@@ -19,7 +19,9 @@
 							<?php echo $form->error($model,'s_key'); ?>
 						</div>
 					</div>
-					<div class="col-lg-9">
+				</div>
+				<div class="row">
+					<div class="col-lg-6">
 						<div class="form-group">
 							<?php 
 							if(is_array($config)){
@@ -31,7 +33,22 @@
 							  <?php endforeach;
 							  }else{?>						
 								<?php echo $form->labelEx($model,'s_value'); ?>
-								<?php echo $form->textArea($model,'s_value', array('class'=>'form-control')); ?>
+                                <?php
+                                    $this->widget('ext.editMe.widgets.ExtEditMe', array(
+                                        'id' => 'description_'.$key,
+                                        'height' => '250px',
+                                        'width' => '100%',
+                                        'model' => $model,
+                                        'attribute' => "s_value",
+                                        'toolbar' => Yii::app()->params['ckeditor'],
+                                        'filebrowserBrowseUrl' => Yii::app()->baseUrl . '/ckfinder/ckfinder.html',
+                                        'filebrowserImageBrowseUrl' => Yii::app()->baseUrl . '/ckfinder/ckfinder.html?type=Images',
+                                        'filebrowserFlashBrowseUrl' => Yii::app()->baseUrl . '/ckfinder/ckfinder.html?type=Flash',
+                                        'filebrowserUploadUrl' => Yii::app()->baseUrl . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+                                        'filebrowserImageUploadUrl' => Yii::app()->baseUrl . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+                                        'filebrowserFlashUploadUrl' => Yii::app()->baseUrl . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+                                    ));
+                                    ?> 
 								<?php echo $form->error($model,'s_value'); ?>
 								<?php 
 							}?>

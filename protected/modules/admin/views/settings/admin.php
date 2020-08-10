@@ -8,9 +8,9 @@ $this->breadcrumbs=array(
 	'Settings'=>array('admin'),
 	'Control',
 );
-/*$this->menu=array(
+$this->menu=array(
 	array('label'=>'Create', 'url'=>array('create')),
-);*/?>
+);?>
 <div class="row">
 <?php
 	if(isset($_GET['update']))
