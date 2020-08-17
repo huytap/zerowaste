@@ -33,11 +33,11 @@
 		<div class="map row">
 			<div class="map-left">
 				<div class="text">
-					<div class="line1">phiêu lưu</div>
+					<div class="line1">Dò tìm</div>
 					<div class="line2">khám phá</div>
-					<p>Dạo quanh Sài Gòn và khám phá 315 địa điểm zero-waste thú vị!</p>
-					<a href="#store" class="btn-view" data-toggle="modal">
-						<img src="images/btn-store.png">
+					<p>Khám phá <span class="dd">315</span> địa điểm zero-waste thú vị ở TP. HCM!</p>
+					<a href="#store" class="btn-view btncontact" data-toggle="modal">
+						Xem danh sách
 					</a>
 				</div>
 			</div>
@@ -891,12 +891,12 @@
 			</div>
 			<p>Mỗi một cửa hàng, sản phẩm zero-waste đều là<br/>một đóng góp có ý nghĩa cho Zero Waste Wonderland.</p>
 			<p>Đừng ngại giới thiệu cửa hàng và sản phẩm zero-waste với tụi mình nhé!</p>
-			<a href="#popup" class="btn" data-toggle="modal">
-				<img src="images/btn-user.png" class="img-responsive">
+			<a href="#popup" data-toggle="modal" class="btncontact">
+				Có Chỗ này hay lắm!
 			</a>
-			<a href="#popup" class="btn" data-toggle="modal">
+			<!--a href="#popup" class="btn" data-toggle="modal">
 				<img src="images/btn-bussiness.png">
-			</a>
+			</a-->
 		</div>
 	</div>
 </div>
