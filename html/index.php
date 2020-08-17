@@ -3,21 +3,28 @@
 	<div class="header">
 		<div class="header-top">
 			<a href="index.html" class="logo"><img src="images/logo.png" width="67"></a>
-			<a href="#menu" class="pull-right" data-toggle="modal" role="button"><img src="images/menu.png" width="42"></a>
+			<!--a href="#menu" class="pull-right" data-toggle="modal" role="button"><img src="images/menu.png" width="42"></a-->
+			<ul class="main-menu pull-right">
+				<li><a href="#">Địa điểm</a></li>
+				<li><a href="#">Vật dụng</a></li>
+				<li><a href="#">Thông tin</a></li>
+				<li><a href="#">Giới thiệu</a></li>
+			</div>
 		</div>
 		<div class="clip">
-			<video playsinline="playsinline" muted="muted" preload="yes" autoplay="autoplay" loop="loop" id="video" class="video-js" data-setup='{"autoplay":"any"}'>
+			<!--video playsinline="playsinline" muted="muted" preload="yes" autoplay="autoplay" loop="loop" id="video" class="video-js" data-setup='{"autoplay":"any"}'>
     		<source src="images/video.mp4" type="video/mp4">
-      </video>
+      </video-->
+			<img src="images/slide1.jpg" class="img-responsive"/>
 		</div>
 	</div>
 	<div class="section">
-		<div class="text-line">
+		<!--div class="text-line">
 			<div class="text-run">#reduce #reuse #recycle</div>
-		</div>
+		</div-->
 		<div class="home-content">
 			<p class="home-content-first">
-				Zero Waste Wonderland là một <span>cổng thông tin</span> giúp bạn dễ dàng tìm kiếm các <span>địa điểm, sản phẩm, sự kiện</span> liên quan đến zero-waste. Mong rằng với Zero Waste Wonderland, bạn sẽ thấy <span>zero-waste không hề bất tiện mà còn rất thú vị</span>.
+				Zero Waste Wonderland là một <span>cổng thông tin</span> giúp bạn dễ dàng tìm kiếm các <span>địa điểm, sản phẩm, sự kiện</span> liên quan đến zero-waste. Mong rằng với Zero Waste Wonderland, bạn sẽ thấy <span>zero-waste không hề bất tiện mà còn rất thú vị.</span>
 			</p>
 			<p class="home-content-last">
 				Thay đổi thói quen hôm nay để thay đổi tương lai ngày sau. Hãy chung tay với Zero Waste Wonderland trả lại màu xanh cho Trái Đất của chúng ta nhé!
@@ -882,7 +889,8 @@
 			<div class="footer-bottom">
 				Zero-Waste Wonderland
 			</div>
-			<p>Mỗi một cửa hàng, sản phẩm zero-waste đều là một đóng góp có ý nghĩa cho Zero Waste Wonderland.<br/>Đừng ngại giới thiệu cửa hàng và sản phẩm zero-waste với tụi mình nhé!</p>
+			<p>Mỗi một cửa hàng, sản phẩm zero-waste đều là<br/>một đóng góp có ý nghĩa cho Zero Waste Wonderland.</p>
+			<p>Đừng ngại giới thiệu cửa hàng và sản phẩm zero-waste với tụi mình nhé!</p>
 			<a href="#popup" class="btn" data-toggle="modal">
 				<img src="images/btn-user.png" class="img-responsive">
 			</a>
