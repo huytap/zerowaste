@@ -108,9 +108,12 @@ class Store extends CActiveRecord
 
 	public function getList(){
 		$criteria=new CDbCriteria;
+		if(isset($_GET['filter'])){
+			$criteria->addInCondition('id', array($_GET['filter']));
+		}
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'pagination' => array('pageSize' => false)
+			'pagination' => array('pageSize' => 3)
 		));
 	}
 
@@ -126,6 +129,28 @@ class Store extends CActiveRecord
 		}
 
 		return $arrData;
+	}
+
+	public function getListSearch($cate, $where, $text_search){
+		$criteria=new CDbCriteria;
+		if($text_search){
+			$criteria->addCondition('name like "%'.$text_search.'%"');
+		}elseif($where || $cate){
+			if($cate)
+				$criteria->addCondition('FIND_IN_SET('.$cate.', store_category_id)');
+			if($where){
+				$criteria->addCondition('store_brands.district="'.$where.'"');
+				$criteria->join = 'LEFT JOIN store_brands ON store_brands.store_id = t.id';
+				//$criteria->group = 'GROUP BY t.id';
+			}
+		}
+
+		$data = new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => array('pageSize' => false)
+		));
+
+		return $data;
 	}
 
 	public function getOne($id){

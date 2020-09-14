@@ -12,7 +12,7 @@ $form = $this->beginWidget('CActiveForm', array(
 	    <div class="col-sm-3">
 	        <div class="form-group">
 	            <?php echo $form->labelEx($model, 'category', array('class' => 'control-label'));?>
-	            <?php echo $form->dropDownlist($model, 'category', array('' => '--------------')+ Yii::app()->params['category'],array('class'=>'form-control')); ?>
+	            <?php echo $form->dropDownlist($model, 'category', array('' => '--------------')+ StoreCategory::model()->getList2(),array('class'=>'form-control')); ?>
 	            <?php echo $form->error($model, 'category'); ?>
 	        </div>
 	    </div>

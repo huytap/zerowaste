@@ -1,31 +1,28 @@
 <div class="wrapper home">
 	<div class="header">
 		<div class="header-top">
-			<a href="index.html" class="logo"><img src="<?php echo Yii::app()->baseUrl?>/images/logo.png" width="67"></a>
-			<a href="#menu" class="pull-right" data-toggle="modal" role="button"><img src="<?php echo Yii::app()->baseUrl?>/images/menu.png" width="42"></a>
+			<?php $this->widget('MenuWidget');?>
 		</div>
-		<div class="clip">
-			<video playsinline="playsinline" muted="muted" preload="yes" autoplay="autoplay" loop="loop" id="video" class="video-js" data-setup='{"autoplay":"any"}'>
-    		<source src="<?php echo Yii::app()->baseUrl?>/images/video.mp4" type="video/mp4">
-      </video>
+		<div class="clip hidden-xs hidden-sm">
+			<img src="images/slide1.jpg" class="img-responsive"/>
+		</div>
+		<div class="clip hidden-lg hidden-md">
+			<img src="images/slide-m1.png?v=1" class="img-responsive"/>
 		</div>
 	</div>
 	<div class="section">
-		<div class="text-line">
-			<div class="text-run">#reduce #reuse #recycle</div>
-		</div>
 		<div class="home-content">
 			<?php
 			echo Settings::model()->getSetting('zw_intro');?>
 		</div>
-		<div class="map row">
+		<div class="map row hidden-xs">
 			<div class="map-left">
 				<div class="text">
 					<div class="line1">phiêu lưu</div>
 					<div class="line2">khám phá</div>
-					<p>Dạo quanh Sài Gòn và khám phá 315 địa điểm zero-waste thú vị!</p>
-					<a href="#store" class="btn-view" data-toggle="modal">
-						<img src="<?php echo Yii::app()->baseUrl?>/images/btn-store.png">
+					<p>Khám phá <span class="dd">315</span> địa điểm zero-waste thú vị ở TP. HCM!</p>
+					<a href="<?php echo Yii::app()->baseUrl?>/store.html" class="btn-view btncontact">
+						Xem danh sách
 					</a>
 				</div>
 			</div>
@@ -859,40 +856,48 @@
 				<rect x="-1313" y="7.9" class="st25" width="1009.1" height="800.1"/>
 				<rect x="-1325" y="42" class="st25" width="1009.1" height="800.1"/>
 				</svg>
-
-
-				<!--img src="<?php echo Yii::app()->baseUrl?>/images/map.png" usemap="#mapMap" class="img-responsive" id="map">
-                <map name="mapMap">
-                  <area shape="poly" coords="610,421,649,451,650,458,586,514,606,544,674,497,673,486,675,476,700,443,675,428,626,414,608,419" href="#">
-                </map-->
 			</div>
 		</div>
 	</div>
 	<a href="store.html" id="map2"><img src="<?php echo Yii::app()->baseUrl?>/images/map-hover.png" class="img-responsive"></a>
-	<div class="footer">
-		<div class="container">
-			<div class="footer-top">
-				Tham gia cùng
+	<div class="cta text-center hidden-lg hidden-md hidden-sm">
+		<img src="<?php echo Yii::app()->baseUrl?>/images/cta-m.png"/>
+		<img src="<?php echo Yii::app()->baseUrl?>/images/tree-m.png" class="tree-m"/>
+	</div>
+	<div class="map-m hidden-lg hidden-md">
+		<div class="map-intro">
+			Dò tìm<br/>
+			khám phá
+			<p>Khám phá <span class="dd">315</span> địa điểm zero-waste thú vị ở TP. HCM!</p>
+		</div>
+		<div id="map-m">
+			<div class="bxslider">
+				<div class="map-item">
+					<img src="<?php echo Yii::app()->baseUrl?>/images/quan1.png" class="img-responsive" />
+					<div class="map-title">
+						<h3>Quận nhứt</h3>
+						<p>38 cửa hàng</p>
+					</div>
+				</div>
+				<div class="map-item">
+					<img src="<?php echo Yii::app()->baseUrl?>/images/quan1.png" class="img-responsive" />
+					<div class="map-title">
+						<h3>Quận nhứt</h3>
+						<p>38 cửa hàng</p>
+					</div>
+				</div>
+				<div class="map-item">
+					<img src="<?php echo Yii::app()->baseUrl?>/images/quan1.png" class="img-responsive" />
+					<div class="map-title">
+						<h3>Quận nhứt</h3>
+						<p>38 cửa hàng</p>
+					</div>
+				</div>
 			</div>
-			<div class="footer-bottom">
-				Zero-Waste Wonderland
-			</div>
-			<p>Mỗi một cửa hàng, sản phẩm zero-waste đều là một đóng góp có ý nghĩa cho Zero Waste Wonderland.<br/>Đừng ngại giới thiệu cửa hàng và sản phẩm zero-waste với tụi mình nhé!</p>
-			<a href="#popup" class="btn" data-toggle="modal">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/btn-user.png" class="img-responsive">
-			</a>
-			<a href="#popup" class="btn" data-toggle="modal">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/btn-bussiness.png">
-			</a>
 		</div>
 	</div>
+
 </div>
-<?php
-$this->widget('MenuWidget');
-//popup
-$this->widget('PopupWidget');
-//store
-?>
 <div id="store" class="modal fade store-modal" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -905,6 +910,22 @@ $this->widget('PopupWidget');
     </div>
   </div>
 </div>
-<?php
-//$this->widget('StoredetailWidget');
-?>
+<?php Yii::app()->clientScript->registerCssFile('https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css');?>
+<?php Yii::app()->clientScript->registerCss('MapCss', '
+.bx-wrapper{
+	border:0;
+	box-shadow:0 0;
+	-webkit-box-shadow:0 0;
+}
+');?>
+<?php Yii::app()->clientScript->registerScriptFile('https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js', CClientScript::POS_END);?>
+
+<?php Yii::app()->clientScript->registerScript('SlideMap',"
+  $(document).ready(function(){
+    $('.bxslider').bxSlider({
+			controls: false,
+			minSlides:3,
+			maxSlides:3,
+		});
+  });
+", CClientScript::POS_END);?>

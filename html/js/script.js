@@ -52,11 +52,14 @@ $(document).ready(function(){
   if($('.product-content').length){
     $('.item').each(function(i, j){
       $(j).click(function(){
-        var marginTop = $(j).position().top + $(j).height()-28;
+        let bg = $(j).attr('style').split(':');
+        var marginTop = $(j).position().top + $(j).height()+30;
         var marginLeft = $(j).position().left + $(j).width()/2;
         $('.product-detail').css({top:marginTop+"px"});
         $('.arrow-up').css({left:marginLeft+"px"});
         $('.product-detail').show();
+        $('.product-detail').css('background', bg[1]);
+        $('.arrow-up').css('border-bottom', '18px solid ' + bg[1])
         if($(j).hasClass('active')){
           $(j).removeClass('active')
           $('.product-detail').hide();

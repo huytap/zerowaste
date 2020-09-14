@@ -122,4 +122,13 @@ class News extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function getList($category){
+		$criteria=new CDbCriteria;
+		$criteria->compare('news_category_id', $category, false);
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => array('pageSize' => false)
+		));
+	}
 }

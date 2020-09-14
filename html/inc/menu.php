@@ -1,4 +1,4 @@
-<div id="menu" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
+<!--div id="menu" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -19,4 +19,11 @@
       </div>
     </div>
   </div>
-</div>
+</div-->
+<a href="index.html" class="logo"><img src="images/logo.png" width="67"></a>
+<ul class="main-menu pull-right">
+  <li><a href="store.html">Địa điểm</a></li>
+  <li><a href="products.html">Vật dụng</a></li>
+  <li><a href="events.html">Thông tin</a></li>
+  <li><a href="about.html">Giới thiệu</a></li>
+</ul>

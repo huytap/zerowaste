@@ -9,7 +9,7 @@
 	        <hr>
 			<?php
 			$config = json_decode($model->s_value, true);
-		  
+
 			if(Yii::app()->user->id == 1):?>
 				<div class="row">
 					<div class="col-lg-3">
@@ -23,7 +23,7 @@
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="form-group">
-							<?php 
+							<?php
 							if(is_array($config)){
 								foreach($config as $key=> $setting):?>
 					            	<div class="col-md-2"><?php echo ucwords(str_replace('_',' ',$key));?></div>
@@ -31,26 +31,12 @@
 				            			<?php  echo CHtml::textArea("s_value[$key]",$setting, array('class' => 'form-control'));?>
 					           		 </div>
 							  <?php endforeach;
-							  }else{?>						
-								<?php echo $form->labelEx($model,'s_value'); ?>
-                                <?php
-                                    $this->widget('ext.editMe.widgets.ExtEditMe', array(
-                                        'id' => 'description_'.$key,
-                                        'height' => '250px',
-                                        'width' => '100%',
-                                        'model' => $model,
-                                        'attribute' => "s_value",
-                                        'toolbar' => Yii::app()->params['ckeditor'],
-                                        'filebrowserBrowseUrl' => Yii::app()->baseUrl . '/ckfinder/ckfinder.html',
-                                        'filebrowserImageBrowseUrl' => Yii::app()->baseUrl . '/ckfinder/ckfinder.html?type=Images',
-                                        'filebrowserFlashBrowseUrl' => Yii::app()->baseUrl . '/ckfinder/ckfinder.html?type=Flash',
-                                        'filebrowserUploadUrl' => Yii::app()->baseUrl . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-                                        'filebrowserImageUploadUrl' => Yii::app()->baseUrl . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-                                        'filebrowserFlashUploadUrl' => Yii::app()->baseUrl . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-                                    ));
-                                    ?> 
+							  }else{?>
+									<?php echo $form->labelEx($model,'s_value'); ?>
+									<?php echo $form->textArea($model, 's_value', array('class' => 'editor1'));?>
+
 								<?php echo $form->error($model,'s_value'); ?>
-								<?php 
+								<?php
 							}?>
 						</div>
 					</div>
@@ -75,7 +61,7 @@
 					</div>
 					<div class="col-lg-3">
 						<div class="form-group">
-						<?php 
+						<?php
 						if(is_array($config)){
 							foreach($config as $key=> $setting):?>
 				            	<div class="col-md-4"><?php echo ucwords(str_replace('_',' ',$key));?></div>
@@ -83,11 +69,11 @@
 			            			<?php  echo CHtml::textField("s_value[$key]",$setting, array('class' => 'form-control'));?>
 				           		 </div>
 						  <?php endforeach;
-						  }else{?>						
+						  }else{?>
 							<?php echo $form->labelEx($model,'s_value'); ?>
 							<?php echo $form->textArea($model,'s_value', array('class'=>'form-control')); ?>
 							<?php echo $form->error($model,'s_value'); ?>
-							<?php 
+							<?php
 						}?>
 						</div>
 					</div>
@@ -112,3 +98,8 @@
 		</div>
 	</div>
 <?php $this->endWidget(); ?>
+<script>
+        CKEDITOR.replace( 'Settings[s_value]', {
+			      allowedContent: 'p span'
+			  });
+</script>

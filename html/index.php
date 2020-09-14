@@ -2,13 +2,9 @@
 <div class="wrapper home">
 	<div class="header">
 		<div class="header-top">
-			<a href="index.html" class="logo"><img src="images/logo.png" width="67"></a>
+
 			<!--a href="#menu" class="pull-right" data-toggle="modal" role="button"><img src="images/menu.png" width="42"></a-->
-			<ul class="main-menu pull-right">
-				<li><a href="#">Địa điểm</a></li>
-				<li><a href="#">Vật dụng</a></li>
-				<li><a href="#">Thông tin</a></li>
-				<li><a href="#">Giới thiệu</a></li>
+			<?php require('inc/menu.php');?>
 			</div>
 		</div>
 		<div class="clip">
@@ -881,28 +877,11 @@
 		</div>
 	</div>
 	<a href="store.html" id="map2"><img src="images/map-hover.png" class="img-responsive"></a>
-	<div class="footer">
-		<div class="container">
-			<div class="footer-top">
-				Tham gia cùng
-			</div>
-			<div class="footer-bottom">
-				Zero-Waste Wonderland
-			</div>
-			<p>Mỗi một cửa hàng, sản phẩm zero-waste đều là<br/>một đóng góp có ý nghĩa cho Zero Waste Wonderland.</p>
-			<p>Đừng ngại giới thiệu cửa hàng và sản phẩm zero-waste với tụi mình nhé!</p>
-			<a href="#popup" data-toggle="modal" class="btncontact">
-				Có Chỗ này hay lắm!
-			</a>
-			<!--a href="#popup" class="btn" data-toggle="modal">
-				<img src="images/btn-bussiness.png">
-			</a-->
-		</div>
-	</div>
+	<?php require('inc/footer.php');?>
 </div>
 <?php
 //menu
-require('inc/menu.php');
+//require('inc/menu.php');
 //popup
 require('inc/popup.php');
 //store

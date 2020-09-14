@@ -12,3 +12,5 @@ ALTER TABLE `news` ADD `address` VARCHAR(255) NOT NULL AFTER `description`;
 ALTER TABLE `stores` ADD `store_category_id` VARCHAR(128) NOT NULL AFTER `id`;
 ALTER TABLE `stores` ADD `youtube` VARCHAR(256) NOT NULL AFTER `instagram`, ADD `shopee` VARCHAR(256) NOT NULL AFTER `youtube`, ADD `lazada` VARCHAR(256) NOT NULL AFTER `shopee`, ADD `email` VARCHAR(128) NOT NULL AFTER `lazada`;
 ALTER TABLE `galleries` CHANGE `hotel_id` `store_id` INT(11) NOT NULL;
+/*30-08*/
+ALTER TABLE `contact` CHANGE `connect` `website` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;

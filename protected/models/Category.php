@@ -105,4 +105,28 @@ class Category extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function getListSearch($cate, $text_search){
+		$criteria=new CDbCriteria;
+		if($text_search){
+			$criteria->addCondition('name like "%'.$text_search.'%"');
+		}elseif($cate){
+				$criteria->addCondition('FIND_IN_SET('.$cate.', store_id)');
+		}
+
+		$data = new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => array('pageSize' => false)
+		));
+
+		return $data;
+	}
+
+	public function getList(){
+		$criteria=new CDbCriteria;
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => array('pageSize' => false)
+		));
+	}
 }

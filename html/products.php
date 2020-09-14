@@ -1,115 +1,123 @@
 <?php require('inc/head.php');?>
+<?php
+$background = array(
+  array('title' => 'ddcde7', 'content' => 'e4d9eb'),
+  array('title' => 'c0d7de', 'content' => 'cce5ec'),
+  array('title' => 'f0e3c3', 'content' => 'fff3d6'),
+  array('title' => 'ded6c2', 'content' => 'ebe6d9'),
+  array('title' => 'c4e2db', 'content' => 'd9ebe7'),
+  array('title' => 'f0e3c3', 'content' => 'fff3d6'),
+  array('title' => 'f4cfcf', 'content' => 'ffdfdf'),
+  array('title' => 'e4d9eb', 'content' => 'e4d9eb')
+);
+?>
 <div class="wrapper">
   <div class="header">
     <div class="header-top">
-      <a href="index.html" class="logo"><img src="images/logo.png" width="67"></a>
-      <a href="#menu" class="pull-right" data-toggle="modal" role="button"><img src="images/menu.png" width="42"></a>
+      <?php require('inc/menu.php');?>
     </div>
     <div class="banner">
-      <img src="images/product_banner.png" class="img-responsive">
+      <img src="images/product_banner.png?v=01" class="img-responsive">
       <div class="banner-text">
         <h1>SƯU TẬP<br/><span>SẢN PHẨM</span></h1>
-        <p>Bộ sưu tập sản phẩm zero-waste phong phú với hơn 20 sản phẩm.</p>
+        <p>Bộ sưu tập sản phẩm zero-waste<br/>phong phú với hơn 20 sản phẩm.</p>
       </div>
     </div>
   </div>
   <div class="product-content">
     <div class="container">
-      <div class="box-search text-right">
-        <a href="javascript:void(0)" class="btn-search" id="btnsearch"><img src="images/btn-search.png"></a>
-        <div class="box-category box">
-          <div class="box-title">
-            <span>Tiêu dùng</span>
-            <a href="javascript:void(0)" class="arrow"><img src="images/icon-arrow.png"></a>
-          </div>
-          <ul>
-            <li>Tiêu dùng</li>
-            <li>Nhà hàng/Cafe</li>
-            <li>Thực phẩm</li>
-            <li>Thời trang</li>
-          </ul>
+      <div class="filter-box">
+        <select>
+          <option>Chọn loại hàng</option>
+          <option>Tiêu dùng</option>
+          <option>Nhà hàng/Cafe</option>
+          <option>Thực phẩm</option>
+          <option>Thời trang</option>
+        </select>
+        <div class="box-search pull-right">
+          <input type="text" class="" placeholder="Search with love...">
         </div>
       </div>
       <div class="grid-container" id="photos">
-        <div class="item" data-filter="Tiêu dùng">
+        <div class="item" data-filter="Tiêu dùng" style="background:#<?php echo $background [0]['content'];?>">
           <img src="images/products/sp1.png">
-          <h3>hộp cơm</h3>
+          <h3 style="background:#<?php echo $background [0]['title'];?>">hộp cơm</h3>
         </div>
-        <div class="item">
-          <img src="images/products/sp2.png" data-filter="Tiêu dùng">
-          <h3>Bàn chải gỗ</h3>
-        </div>
-        <div class="item">
-          <img src="images/products/sp3.png" data-filter="Tiêu dùng">
-          <h3>Bình nước</h3>
-        </div>
-        <div class="item">
-          <img src="images/products/sp4.png" data-filter="Thực phẩm">
-          <h3>Màng bọc thực phẩm</h3>
-        </div>
-        <div class="item" data-filter="Tiêu dùng">
-          <img src="images/products/sp5.png">
-          <h3>Tăm bông</h3>
-        </div>
-        <div class="item" data-filter="Tiêu dùng">
-          <img src="images/products/sp6.png">
-          <h3>Cốc nguyệt san</h3>
-        </div>
-        <div class="item" data-filter="Tiêu dùng">
-          <img src="images/products/sp7.png">
-          <h3>Túi đi chợ</h3>
-        </div>
-        <div class="item" data-filter="Thời trang">
-          <img src="images/products/sp8.png">
-          <h3>Bông Tẩy Trang</h3>
-        </div>
-        <div class="item" data-filter="Tiêu dùng">
-          <img src="images/products/sp9.png">
-          <h3>Kem Đánh Răng</h3>
-        </div>
-        <div class="item" data-filter="Tiêu dùng">
-          <img src="images/products/sp10.png">
-          <h3>Ống hút</h3>
-        </div>
-        <div class="item" data-filter="Thời trang">
-          <img src="images/products/sp11.png">
-          <h3>Vải Đa Năng</h3>
-        </div>
-        <div class="item" data-filter="Nhà hàng/Cafe">
-          <img src="images/products/sp12.png">
-          <h3>Hũ Thủy Tinh</h3>
-        </div>
-        <div class="item" data-filter="Tiêu dùng">
-          <img src="images/products/sp13.png">
-          <h3>Chỉ Nha Khoa</h3>
-        </div>
-        <div class="item" data-filter="Tiêu dùng">
+        <div class="item" data-filter="Tiêu dùng" style="background:#<?php echo $background [0]['content'];?>">
           <img src="images/products/sp14.png">
-          <h3>Mỹ Phẩm</h3>
+          <h3 style="background:#<?php echo $background [0]['title'];?>">Mỹ Phẩm</h3>
         </div>
-        <div class="item" data-filter="Thời trang">
+        <div class="item" style="background:#<?php echo $background [1]['content'];?>">
+          <img src="images/products/sp2.png" data-filter="Tiêu dùng">
+          <h3 style="background:#<?php echo $background [1]['title'];?>">Bàn chải gỗ</h3>
+        </div>
+        <div class="item" style="background:#<?php echo $background [2]['content'];?>">
+          <img src="images/products/sp3.png" data-filter="Tiêu dùng">
+          <h3 style="background:#<?php echo $background [2]['title'];?>">Bình nước</h3>
+        </div>
+        <div class="item" style="background:#<?php echo $background [3]['content'];?>">
+          <img src="images/products/sp4.png" data-filter="Thực phẩm">
+          <h3 style="background:#<?php echo $background [3]['title'];?>">Màng bọc thực phẩm</h3>
+        </div>
+        <div class="item" data-filter="Tiêu dùng" style="background:#<?php echo $background [4]['content'];?>">
+          <img src="images/products/sp5.png">
+          <h3 style="background:#<?php echo $background [4]['title'];?>">Tăm bông</h3>
+        </div>
+        <div class="item" data-filter="Tiêu dùng" style="background:#<?php echo $background [5]['content'];?>">
+          <img src="images/products/sp6.png">
+          <h3 style="background:#<?php echo $background [5]['title'];?>">Cốc nguyệt san</h3>
+        </div>
+        <div class="item" data-filter="Tiêu dùng" style="background:#<?php echo $background [6]['content'];?>">
+          <img src="images/products/sp7.png">
+          <h3 style="background:#<?php echo $background [6]['title'];?>">Túi đi chợ</h3>
+        </div>
+        <div class="item" data-filter="Thời trang" style="background:#<?php echo $background [7]['content'];?>">
+          <img src="images/products/sp8.png">
+          <h3 style="background:#<?php echo $background [7]['title'];?>">Bông Tẩy Trang</h3>
+        </div>
+        <div class="item" data-filter="Tiêu dùng" style="background:#<?php echo $background [2]['content'];?>">
+          <img src="images/products/sp9.png">
+          <h3 style="background:#<?php echo $background [2]['title'];?>">Kem Đánh Răng</h3>
+        </div>
+        <div class="item" data-filter="Tiêu dùng" style="background:#<?php echo $background [2]['content'];?>">
+          <img src="images/products/sp10.png">
+          <h3 style="background:#<?php echo $background [2]['title'];?>">Ống hút</h3>
+        </div>
+        <div class="item" data-filter="Thời trang" style="background:#<?php echo $background [4]['content'];?>">
+          <img src="images/products/sp11.png">
+          <h3 style="background:#<?php echo $background [4]['title'];?>">Vải Đa Năng</h3>
+        </div>
+        <div class="item" data-filter="Nhà hàng/Cafe" style="background:#<?php echo $background [6]['content'];?>">
+          <img src="images/products/sp12.png">
+          <h3 style="background:#<?php echo $background [6]['title'];?>">Hũ Thủy Tinh</h3>
+        </div>
+        <div class="item" data-filter="Tiêu dùng" style="background:#<?php echo $background [1]['content'];?>">
+          <img src="images/products/sp13.png">
+          <h3 style="background:#<?php echo $background [1]['title'];?>">Chỉ Nha Khoa</h3>
+        </div>
+        <div class="item" data-filter="Thời trang" style="background:#<?php echo $background [7]['content'];?>">
           <img src="images/products/sp15.png">
-          <h3>Áo quần</h3>
+          <h3 style="background:#<?php echo $background [7]['title'];?>">Áo quần</h3>
         </div>
-        <div class="item" data-filter="Tiêu dùng">
+        <div class="item" data-filter="Tiêu dùng" style="background:#<?php echo $background [1]['content'];?>">
           <img src="images/products/sp16.png">
-          <h3>Dụng cụ cọ rửa</h3>
+          <h3 style="background:#<?php echo $background [1]['title'];?>">Dụng cụ cọ rửa</h3>
         </div>
-        <div class="item" data-filter="Tiêu dùng">
+        <div class="item" data-filter="Tiêu dùng" style="background:#<?php echo $background [5]['content'];?>">
           <img src="images/products/sp17.png">
-          <h3>Dao Cạo</h3>
+          <h3 style="background:#<?php echo $background [5]['title'];?>">Dao Cạo</h3>
         </div>
-        <div class="item" data-filter="Tiêu dùng">
+        <div class="item" data-filter="Tiêu dùng" style="background:#<?php echo $background [3]['content'];?>">
           <img src="images/products/sp18.png">
-          <h3>Lăn khử mùi</h3>
+          <h3 style="background:#<?php echo $background [3]['title'];?>">Lăn khử mùi</h3>
         </div>
-        <div class="item" data-filter="Nhà hàng">
+        <div class="item" data-filter="Nhà hàng" style="background:#<?php echo $background [6]['content'];?>">
           <img src="images/products/sp19.png">
-          <h3>Bộ thìa đũa</h3>
+          <h3 style="background:#<?php echo $background [6]['title'];?>">Bộ thìa đũa</h3>
         </div>
-        <div class="item" data-filter="Tiêu dùng">
+        <div class="item" data-filter="Tiêu dùng" style="background:#<?php echo $background [0]['content'];?>">
           <img src="images/products/sp20.png">
-          <h3>Xà bông</h3>
+          <h3 style="background:#<?php echo $background [0]['title'];?>">Xà bông</h3>
         </div>
       </div>
     </div>
@@ -118,38 +126,19 @@
       <div class="arrow-up"></div>
       <div class="container">
         <div class="row detail-text">
-          <div class="col-md-5"><img src="images/product-img-detail.png" /></div>
-          <div class="col-md-1">&nbsp;</div>
-          <div class="col-md-6">
+          <div class="col-md-5"><img src="images/product_pic.png" /></div>
+          <div class="col-md-7">
             <h3>Bông tẩy trang</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. </p>
-            <a href="#store" data-toggle="modal"><img src="images/btn-find-store.png" /></a>
+            <a href="store.html" class="btncontact btn-buy">TÌM MUA</a>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="footer footer-product">
-    <div class="container">
-      <div class="footer-top">
-        Tham gia cùng
-      </div>
-      <div class="footer-bottom">
-        Zero-Waste Wonderland
-      </div>
-      <p>Mỗi một cửa hàng, sản phẩm zero-waste đều là một đóng góp có ý nghĩa cho Zero Waste Wonderland.<br/>Đừng ngại giới thiệu cửa hàng và sản phẩm zero-waste với tụi mình nhé!</p>
-      <a href="#popup" class="btn" data-toggle="modal">
-        <img src="images/btn-user.png" class="img-responsive">
-      </a>
-      <a href="#popup" class="btn" data-toggle="modal">
-        <img src="images/btn-bussiness.png">
-      </a>
-    </div>
-  </div>
+  <?php require('inc/footer.php');?>
 </div>
 <?php
-//menu
-require('inc/menu.php');
 //popup
 require('inc/popup.php');
 ?>
@@ -167,7 +156,7 @@ require('inc/popup.php');
 </div>
 <?php
 //store
-require('inc/store-detail.php');
+//require('inc/store-detail.php');
 //js
 require('inc/end.php');
 ?>

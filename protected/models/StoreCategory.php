@@ -120,4 +120,8 @@ class StoreCategory extends CActiveRecord
 
 		return $arrData;
 	}
+
+	public function getById($id){
+		return StoreCategory::model()->findByPk($id);
+	}
 }

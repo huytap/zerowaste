@@ -48,26 +48,7 @@ $(document).ready(function(){
       lastScrollTop = st;
   }
 
-  /*products*/
-  if($('.product-content').length){
-    $('.item').each(function(i, j){
-      $(j).click(function(){
-        var marginTop = $(j).position().top + $(j).height()-28;
-        var marginLeft = $(j).position().left + $(j).width()/2;
-        $('.product-detail').css({top:marginTop+"px"});
-        $('.arrow-up').css({left:marginLeft+"px"});
-        $('.product-detail').show();
-        if($(j).hasClass('active')){
-          $(j).removeClass('active')
-          $('.product-detail').hide();
-        }else{
-          $('.item').removeClass('active');
-          $(j).addClass('active')
-          $('.product-detail').show();
-        }
-      })
-    })
-  }
+
   /*filter box*/
   if($('.box-category').length){
     $('.box-category').find('.box-title').click(function(){
@@ -129,26 +110,27 @@ $(document).ready(function(){
   }
 
   /*slide event*/
-  $(".slider").slick({
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: false,
-    autoplaySpeed: 2000,
-    arrows: true,
-    prevArrow: "",
-    nextArrow: ""
-  });
-  $(".slick-left").click(function(){
-    $(".slider").slick("slickPrev");
-  })
+  if($(".slider").length){
+    $(".slider").slick({
+      dots: false,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: false,
+      autoplaySpeed: 2000,
+      arrows: true,
+      prevArrow: "",
+      nextArrow: ""
+    });
+    $(".slick-left").click(function(){
+      $(".slider").slick("slickPrev");
+    })
 
-  $(".slick-right").click(function(){
-    $(".slider").slick("slickNext");
-  });
-
+    $(".slick-right").click(function(){
+      $(".slider").slick("slickNext");
+    });
+  }
   //map2
   $('.map-right').find("g").hover(function() {
 	  var offset = $(this).offset();
@@ -162,3 +144,12 @@ $(document).ready(function(){
     $('#map2').hide();
   */
 });
+//MenuWidget
+var url = window.location.href;
+$('.main-menu').find('li').each(function(i,j){
+  if(url.indexOf($(j).find('a').attr('href'))>-1){
+    $(j).addClass('active')
+  }else{
+    $(j).removeClass('active')
+  }
+})

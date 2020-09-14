@@ -27,7 +27,7 @@ class SettingsController extends AdminController{
         if(isset($_POST['Settings'])){
             $model->attributes=$_POST['Settings'];
             $model->hotel_id = Yii::app()->session['hotel'];
-            ExtraHelper::update_tracking_data($model, 'update');
+            ExtraHelper::update_tracking_data($model, 'create');
             if($model->save())
                 $this->redirect(array('admin'));
         }
@@ -78,7 +78,7 @@ class SettingsController extends AdminController{
             $this->renderPartial('_grid', compact(array('model')));
             Yii::app()->end();
         }
-        
+
         $this->render('admin',array(
             'model'=>$model,
         ));

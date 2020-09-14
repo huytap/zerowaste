@@ -1,22 +1,20 @@
-<div id="menu" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="images/btn-close.png"></span></button>
-      </div>
-      <div class="modal-body">
-        <div class="container">
-          <a href="/" class="logo"><img src="images/logo.png" width="67"></a>
-          <div class="menu-c">
-            <ul class="menu">
-              <li><a href="store.html">Phiêu lưu khám phá</a></li>
-              <li><a href="products.html">Sưu tập sản phẩm</a></li>
-              <li><a href="events.html">Tàu siêu tốc thông tin</a></li>
-              <li><a href="about.html">Về ZERO-Waste Wonderland</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<a href="<?php echo Yii::app()->baseUrl;?>/" class="logo"><img src="<?php echo Yii::app()->baseUrl;?>/images/logo.png" width="67"></a>
+<span class="menuicon pull-right"><img src="<?php echo Yii::app()->baseUrl?>/images/menu-icon.png" /></span>
+<div class="menu-main pull-right">
+  <a class="logo-m hidden-lg hidden-md" href="<?php echo Yii::app()->baseUrl;?>/" class="logo"><img src="<?php echo Yii::app()->baseUrl;?>/images/logo.png" width="67"></a>
+  <a href="javascript:void(0)" class="menuclose pull-right hidden-lg hidden-md"><img src="<?php echo Yii::app()->baseUrl?>/images/menu-close.png"/></a>
+  <ul class="main-menu">
+    <li><a href="<?php echo Yii::app()->baseUrl;?>/store.html"><span>Địa điểm</span></a></li>
+    <li><a href="<?php echo Yii::app()->baseUrl;?>/products.html"><span>Vật dụng</span></a></li>
+    <li><a href="<?php echo Yii::app()->baseUrl;?>/events.html"><span>Thông tin</span></a></li>
+    <li><a href="<?php echo Yii::app()->baseUrl;?>/about.html"><span>Giới thiệu</span></a></li>
+  </ul>
 </div>
+<?php Yii::app()->clientScript->registerScript('menu', '
+$(".menuicon").click(function(){
+  $(".menu-main").show();
+})
+$(".menuclose").click(function(){
+  $(".menu-main").hide();
+})
+', CClientScript::POS_END);?>

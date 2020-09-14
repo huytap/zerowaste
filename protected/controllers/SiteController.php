@@ -20,6 +20,40 @@ class SiteController extends Controller{
 		$this->render('index');
 	}
 
+	public function actionStore($page){
+		if(isset($_POST['page'])){
+			$this->layout = false;
+			$criteria = new CDbCriteria;
+			$criteria->limit = 3;
+			$criteria->offset = $_POST['page']*$criteria->limit - $criteria->limit;
+	    //$total = Store::model()->count();
+	    //$pages = new CPagination($total);
+			//$pages->pageSize = 3;
+			//$pages->offset = $_POST['page']*$pages->pageSize = 3;
+	    //$pages->applyLimit($criteria);
+			
+	    $model = Store::model()->findAll($criteria);
+			//echo json_encode($model);
+			$this->render('loadstore', compact('model'));
+			Yii::app()->end();
+		}
+		//echo "<pre>";print_r($model);die;
+		$model = Store::model()->getList();
+		$this->render('store', compact(array('model', 'pages')));
+	}
+
+	public function actionProduct($page){
+		$model = Category::model()->getList();
+		$this->render('product', compact(array('model')));
+	}
+
+	public function actionEvent($page){
+		$this->render('pages/event');
+	}
+
+	public function actionAbout($page){
+		$this->render('pages/about');
+	}
 	/**
 	 * This is the action to handle external exceptions.
 	 */

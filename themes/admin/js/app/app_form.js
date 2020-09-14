@@ -1,9 +1,19 @@
+CKEDITOR.editorConfig = function( config ) {
+	config.allowedContent = true;
+
+	// Set the most common block elements.
+	config.format_tags = 'p;h1;h2;h3;pre;span';
+
+	// Simplify the dialog windows.
+	config.removeDialogTabs = 'image:advanced;link:advanced';
+};
+
 $(function()	{
-	// Chosen 
+	// Chosen
 	if($(".chzn-select").length){
 		$(".chzn-select").chosen();
 	}
-	
+
 	// Datepicker
 	if($('.datepicker').length){
 		$('.datepicker').datepicker({dateFormat:'dd-mm-yy',autoclose: true}).on('changeDate', function (ev) {
@@ -12,14 +22,14 @@ $(function()	{
 	}
 	// Timepicker
 	$('.timepicker').timepicker();
-			
-	// Slider		
+
+	// Slider
 	/*$('#sl1').slider();
 	$('#sl2').slider();
 	$('#sl3').slider();
 	$('#sl4').slider();
 	$('#sl5').slider();*/
-			
+
 	// Tags input
 	if($('.tag').length){
 		$('.tag').tagsInput({
@@ -29,7 +39,7 @@ $(function()	{
 	}
 
 	// Masked input
-	/*$(".date").mask("99/99/9999");		
+	/*$(".date").mask("99/99/9999");
 	$(".phone").mask("(999) 999-9999");
 	$(".ssn").mask("999-99-9999");
 	$(".eyescript").mask("~9.99 ~9.99 999");
@@ -41,7 +51,7 @@ $(function()	{
 	}
 
 	// Toggle border of control group
-	$('#toggleLine').click(function()	{			
+	$('#toggleLine').click(function()	{
 		if($(this).is(':checked'))	{
 			$('#formToggleLine').addClass('form-border');
 		}
@@ -52,29 +62,29 @@ $(function()	{
 
 	// Draggable Multiselect
 	$('#btnSelect').click(function()	{
-				
-		$('#selectedBox1 option:selected').appendTo('#selectedBox2');  
+
+		$('#selectedBox1 option:selected').appendTo('#selectedBox2');
 		return false;
 	});
 
 	$('#btnRemove').click(function()	{
-		$('#selectedBox2 option:selected').appendTo('#selectedBox1'); 
+		$('#selectedBox2 option:selected').appendTo('#selectedBox1');
 		return false;
 	});
 
 	$('#btnSelectAll').click(function()	{
-			
-		$('#selectedBox1 option').each(function() {               
-           $(this).appendTo('#selectedBox2');                   
+
+		$('#selectedBox1 option').each(function() {
+           $(this).appendTo('#selectedBox2');
         });
 
 		return false;
 	});
 
 	$('#btnRemoveAll').click(function()	{
-			
-		$('#selectedBox2 option').each(function() {                  
-			$(this).appendTo('#selectedBox1');            
+
+		$('#selectedBox2 option').each(function() {
+			$(this).appendTo('#selectedBox1');
         });
 
 		return false;

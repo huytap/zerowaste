@@ -32,7 +32,7 @@ class StoreBrand extends CActiveRecord
 		return array(
 			array('store_id, address, status', 'required'),
 			array('store_id, status', 'numerical', 'integerOnly'=>true),
-			array('address', 'length', 'max'=>255),
+			array('address,city', 'length', 'max'=>255),
 			array('ward, district, phone', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
