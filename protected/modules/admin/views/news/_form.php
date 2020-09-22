@@ -72,8 +72,9 @@ $form = $this->beginWidget('CActiveForm', array(
 	  <div class="col-md-9 form-group">
 		 <?php echo $form->label($model, 'description');?>
 		 <?php echo $form->error($model, 'description'); ?>
+     <?php echo $form->textArea($model, 'description');?>
 		 <?php
-			$this->widget('ext.editMe.widgets.ExtEditMe', array(
+			/*$this->widget('ext.editMe.widgets.ExtEditMe', array(
 			    'id' => 'description_',
 			    'height' => '250px',
 			    'width' => '100%',
@@ -86,7 +87,7 @@ $form = $this->beginWidget('CActiveForm', array(
 			    'filebrowserUploadUrl' => Yii::app()->baseUrl . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
 			    'filebrowserImageUploadUrl' => Yii::app()->baseUrl . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
 			    'filebrowserFlashUploadUrl' => Yii::app()->baseUrl . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-			));
+			));*/
 			?>
 	  </div>
    </div>
@@ -105,3 +106,9 @@ $form = $this->beginWidget('CActiveForm', array(
         </div>
     </div>
 <?php $this->endWidget(); ?>
+
+<script>
+        CKEDITOR.replace( 'News[description]', {
+			      allowedContent: 'p span'
+			  });
+</script>

@@ -15,7 +15,7 @@
 			<?php
 			echo Settings::model()->getSetting('zw_intro');?>
 		</div>
-		<div class="map row hidden-xs">
+		<div class="map row hidden-sm hidden-xs">
 			<div class="map-left">
 				<div class="text">
 					<div class="line1">phiêu lưu</div>

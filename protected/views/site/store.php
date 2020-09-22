@@ -16,9 +16,9 @@
   ?>
   <div class="container">
     <div class="filter-box">
-      <div class="filter-m">Lọc kết qủa</div>
+      <div class="filter-m hidden-lg hidden-md">Lọc kết qủa</div>
       <div class="subbox">
-        <h3>Lọc kết qủa</h3>
+        <h3 class="hidden-lg hidden-md">Lọc kết qủa</h3>
         <select id="storecate">
           <option value="">Chọn ngành hàng</option>
           <?php foreach(StoreCategory::model()->getList2() as $key => $value){
@@ -32,7 +32,7 @@
           <option value="Quận 3">Quận 3</option>
         </select>
       </div>
-      <span class="btn_apply hidden-xs"><img src="images/btn_apply.png" /></span>
+      <span class="btn_apply hidden-sm hidden-xs"><img src="images/btn_apply.png" /></span>
       <div class="box-search pull-right hidden-xs">
         <input type="text" class="" placeholder="Search with love..." id="typeStore">
       </div>

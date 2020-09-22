@@ -31,7 +31,7 @@ class SiteController extends Controller{
 			//$pages->pageSize = 3;
 			//$pages->offset = $_POST['page']*$pages->pageSize = 3;
 	    //$pages->applyLimit($criteria);
-			
+
 	    $model = Store::model()->findAll($criteria);
 			//echo json_encode($model);
 			$this->render('loadstore', compact('model'));
