@@ -8,7 +8,8 @@ class EventController extends Controller{
 
   public function actionDetail($eventid){
 	  $model = News::model()->findByPk($eventid);
-       $this->render('detail', compact(array('model')));
+	  $related = News::model()->getNewsRelated($model['news_category_id'], $model['id']);
+       $this->render('detail', compact(array('model', 'related')));
   }
 }
  ?>

@@ -131,4 +131,14 @@ class News extends CActiveRecord
 			'pagination' => array('pageSize' => false)
 		));
 	}
+
+	public function getNewsRelated($category, $id){
+		$criteria=new CDbCriteria;
+		$criteria->compare('news_category_id', $category, false);
+		$criteria->addCondition('id>'.$id);
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => array('pageSize' => 3)
+		));
+	}
 }

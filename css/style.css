@@ -1315,6 +1315,7 @@ a:hover{
   width: 420px;
   border:0;
   border-bottom: 1px solid #000;
+  background: transparent;
 }
 .form #connect .field{
   width: auto;
@@ -1459,6 +1460,7 @@ input[type="radio"]:checked:before {
 }
 .step2 textarea{
   height: 125px;
+  background: transparent;
 }
 .step2 select:focus,
 .step2 textarea:focus{
