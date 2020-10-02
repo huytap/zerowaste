@@ -74,6 +74,17 @@
 			     </a>
 			 </li>
 			 <li>
+			     <a href="<?php echo Yii::app()->createUrl('admin/productphoto/admin');?>">
+			 	   <span class="menu-icon">
+			 		  <i class="fa fa-th-large"></i>
+			 	   </span>
+			 	   <span class="text">
+			 		  Hình sản phẩm
+			 	   </span>
+			 	   <span class="menu-hover"></span>
+			     </a>
+			 </li>
+			 <li>
 			     <a href="<?php echo Yii::app()->createUrl('admin/newscategory/admin');?>">
 			 	   <span class="menu-icon">
 			 		  <i class="fa fa-th-large"></i>

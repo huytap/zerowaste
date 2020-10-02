@@ -40,22 +40,6 @@ class GalleryController extends AdminController{
 
     }
 
-
-
-    /*public function actionAdmin(){
-
-        $data = Gallery::model()->getGalleryByType(0, Yii::app()->session['hotel']);
-
-
-
-        $this->render('index',array(
-
-            'model'=>$data,
-
-        ));
-
-    }*/
-
     public function actionAdmin(){
         $model=new Gallery('search');
         $model->unsetAttributes();  // clear any default values
@@ -68,20 +52,14 @@ class GalleryController extends AdminController{
             $this->renderPartial('_grid_2', compact(array('model')));
             Yii::app()->end();
         }
-
         $this->render('index',array(
             'model'=>$model,
         ));
     }
 
     public function actionCreate(){
-
         $model = new Gallery();
-
-
-
         if (isset($_POST['Gallery'])) {
-
             $model->attributes = $_POST['Gallery'];
             $model->type = 0;
             ExtraHelper::update_tracking_data($model, 'create');
@@ -90,59 +68,31 @@ class GalleryController extends AdminController{
 			mkdir(Yii::app()->basePath . '/../uploads/gallery');
 		 }
             $gallery_id = $model->id;
-
             $image = CUploadedFile::getInstancesByName('items');
-
             if (isset($image) && count($image) >=1) {
-
                 $i = 0;
-
                 foreach ($image as $key => $value) {
-
                     $i++;
-
                     $gallery_item = new Item();
-
                     $gallery_item->display_order = $i;
-
                     $gallery_item->gallery_id = $gallery_id;
-
                     $gallery_item->file_ext = $value->type;
-
                     $gallery_item->old_name = $value->name;
-
                     $gallery_item->name = date("Y-m-d-H-i-s") . '-' . str_replace(' ', '-',$value->name);
-
                     $gallery_item->url = Yii::app()->basePath . "/../uploads/gallery/";
-
                     if ($i == 1) {
-
                         $gallery_item['thumb_nails'] = 1;
-
                         $gallery_item['cover_image'] = 1;
-
                     } else {
-
                         $gallery_item['thumb_nails'] = 0;
-
                         $gallery_item['cover_image'] = 0;
-
                     }
-
-
-
                     $gallery_item->save();
-
                     $value->saveAs(Yii::app()->basePath . "/../uploads/gallery/$gallery_item->name");
-
                 }
-
             }
-
             $this->redirect(Yii::app()->createAbsoluteUrl('admin/gallery/admin'));
-
         }
-
         $this->render('create', array('model' => $model));
 
     }

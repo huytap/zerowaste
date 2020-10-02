@@ -28,7 +28,7 @@ $background = array(
     <div class="container">
       <div class="filter-box">
         <select id="storecate">
-          <option value="">Chọn loại hàng</option>
+          <option value="">Chọn loại sản phẩm</option>
           <?php foreach(StoreCategory::model()->getList2() as $key => $value){
             echo '<option value="'.$key.'">'.$value.'</option>';
           }?>
@@ -42,8 +42,10 @@ $background = array(
         foreach($model->getData() as $dt){
           $rand_keys = array_rand($background, 1);?>
           <div class="item" data-id="<?php echo $dt['id'];?>" data-filter="<?php echo $dt['category'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
-            <img src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $dt['photo'];?>" class="img-responsive">
-            <h3 style="background:#<?php echo $background[$rand_keys]['title'];?>"><?php echo $dt['name'];?></h3>
+			<div>
+			  <img src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $dt['photo'];?>" class="img-responsive">
+	            <h3 style="background:#<?php echo $background[$rand_keys]['title'];?>"><?php echo $dt['name'];?></h3>
+		     </div>
           </div>
         <?php }?>
       </div>
@@ -65,6 +67,15 @@ function viewDetail(){
     $(j).click(function(){
       let id = $(j).attr("data-id");
       let bg = $(j).attr("data-bg");
+	 let flag = true;
+	 let attr = $(".product-detail").attr("data-id");
+	 if (typeof attr !== typeof undefined){
+		 $(".product-detail").attr("data-id") = id;
+		 flag = false;
+	 }else{
+
+	 }
+	 if(flag)
       $.ajax({
         url: "'.Yii::app()->baseUrl.'/ajax/product",
         data: {id: id},
@@ -86,6 +97,9 @@ function viewDetail(){
             $(j).addClass("active")
             $(".product-detail").show();
           }
+		$("html, body").animate({
+	        scrollTop: $("#product-detail").offset().top
+	    }, 2000);
         }
       })
     })
@@ -93,7 +107,7 @@ function viewDetail(){
 }
 //search
 function searchByText(){
-  $("#text_search").change(function(){
+  $("#text_search").keyup(function(){
     let text_search = $(this).val();
     $.ajax({
       url:"'.Yii::app()->baseUrl.'/ajax/searchproduct",

@@ -1,6 +1,19 @@
 .menuicon{
   display: none;
 }
+@media only screen and (max-width:1440px) {
+	h1{
+		font-size: 65px;
+	}
+	.banner-text{
+		width: 380px;
+		top: 180px;
+	}
+	h1 span{
+		padding-left: 20px;
+		text-align: left;
+	}
+}
 @media only screen and (max-width: 768px){
   .logo-m{
     position: relative;
@@ -361,5 +374,8 @@
   }
   .category li{
     display: inline-block;
+  }
+  #photos .item{
+	  margin-bottom: 20px;
   }
 }

@@ -14,3 +14,9 @@ ALTER TABLE `stores` ADD `youtube` VARCHAR(256) NOT NULL AFTER `instagram`, ADD 
 ALTER TABLE `galleries` CHANGE `hotel_id` `store_id` INT(11) NOT NULL;
 /*30-08*/
 ALTER TABLE `contact` CHANGE `connect` `website` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;
+/*28-9*/
+ALTER TABLE `store_brands` ADD `address_photo` VARCHAR(128) NOT NULL AFTER `phone`;
+/*30-9*/
+ALTER TABLE `galleries` CHANGE `roomtype_id` `product_id` INT(11) NOT NULL;
+/*2-10*/
+ALTER TABLE `news` ADD `large_photo` VARCHAR(128) NOT NULL AFTER `photo`;

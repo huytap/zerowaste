@@ -40,13 +40,14 @@
     <div class="row store" id="store-items">
       <?php
       foreach($model->getData() as $data){
+		 $district = StoreBrand::model()->getDistrict($data['id']);
         ?>
         <?php $rand_keys = array_rand($background, 1);?>
         <div class="item col-md-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
-          <a href="javascript:void(0);" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
+          <a href="javascript:void(0);" data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
             <div class="item-title" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
               <h3><?php echo $data['name'];?></h3>
-              <span><?php //echo $data['address'];?></span>
+              <span><?php echo $district['address'].', '.$district['district'];?></span>
             </div>
             <div class="photo">
               <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
@@ -68,10 +69,6 @@
                 ?>
 
                 <?php echo $data['description'];?>
-                <span class="wishlist"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                      <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                    </svg>
-                  </span>
               </div>
             </div>
           </a>
@@ -80,27 +77,6 @@
       }
       ?>
     </div>
-      <?php
-      /*$this->widget('zii.widgets.CListView', array(
-       'id' => 'store-items',
-       'dataProvider' => $model,
-       'itemView' => '_viewstore',
-       'viewData' => array('background' => $background),
-       'template' => '{items} {pager}',
-       'htmlOptions' => array(
-         'class' => 'row store'
-       ),
-       'pager' => array(
-                    'class' => 'ext.infiniteScroll.IasPager',
-                    'rowSelector'=>'.row',
-                    'listViewId' => 'store-items',
-                    'header' => '',
-                    //'loaderText'=>'Loading...',
-                    'options' => array('history' => false, 'triggerPageTreshold' => 2, 'trigger'=>'XEM THÊM'),
-                  )
-            )
-       );*/
-        ?>
         <?php if(count($model->getData())>3){?>
             <div class="text-center"><a class="btncontact" href="javascript:void(0);" id="btnLoadmore">XEM THÊM <img src="images/arrow-down2.png"></a></div>
           <?php }?>
@@ -110,7 +86,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" id="btn-closeStoreDetail" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="images/btn_Close.png"></span></button>
+        <button type="button" id="btn-closeStoreDetail" class="close"><span><img src="images/btn_Close.png"></span></button>
       </div>
       <div class="modal-body" id="store-content-detail">
       </div>
@@ -187,6 +163,13 @@ function loadStore(){
           $("#store-detail").modal({
               show: "false"
           });
+		let current_url = $(j).find("a").attr("data-href");
+		history.pushState(null, null, current_url);
+
+		$("#btn-closeStoreDetail").click(function(){
+		  $("#store-detail").modal("hide");
+		  history.pushState(null, null, "'.Yii::app()->baseUrl.'/store.html");
+	  	});
         }
       })
     });
@@ -194,7 +177,7 @@ function loadStore(){
 }
 loadStore();
 //search
-$("#typeStore").change(function(){
+$("#typeStore").keyup(function(){
   let text_search = $(this).val();
   $.ajax({
     url:"'.Yii::app()->baseUrl.'/ajax/searchstore",

@@ -33,14 +33,14 @@
 			<img src="<?php echo Yii::app()->baseUrl?>/images/duck.png" class="img-responsive"/>
 		</div>
   </div>
-  <div class="about-zwww"><img src="images/about-zww-m.png?v=001" class="img-responsive"></div>
-  <div class="container about-content2">
+  <div class="about-zwww hidden-lg hidden-md"><img src="images/about-zww-m.png?v=001" class="img-responsive"></div>
+  <div class="container about-content2 hidden-lg hidden-md">
     <p>Đến với Zero Waste Wonderland, bạn có thể thỏa thích "tham quan" các địa điểm zero-waste, tìm hiểu bộ sưu tập sản phẩm zero-waste độc đáo. Ngoài ra, trang của chúng mình cũng sẽ cập nhật các thông tin mới nhất về môi trường, đặc biệt là các sự kiện zero-waste để các bạn tiện theo dõi!</p>
     <p>Nào, hãy dạo một vòng Zero Waste Wonderland. Bạn sẽ thấy lối sống zero-waste không khó chút nào mà vừa vui lại vừa dễ.</p>
   </div>
 </div>
 <style>
 .footer{
-  background-color: #ffbdc5;
+  background-color: #90daec;
 }
 </style>

@@ -10,8 +10,12 @@ class AjaxController extends Controller{
   public function actionStore(){
     if(isset($_POST['id'])){
       $store = Store::model()->findByPk($_POST['id']);
+	 $district = StoreBrand::model()->getDistrict($_POST['id']);
       $bg = $_POST['bg'];
-      $this->render('store', compact(array('store', 'bg')));
+	 $store_near = Store::model()->getListNear($_POST['id'], $district);
+	 $store_related = Store::model()->getListRelated($_POST['id'], $store);
+	 $gallery = Gallery::model()->getListByStore($_POST['store_id']);
+      $this->render('store', compact(array('store', 'bg', 'store_near', 'district', 'store_related')));
     }
   }
 

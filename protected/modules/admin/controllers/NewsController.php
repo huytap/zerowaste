@@ -49,6 +49,14 @@ class NewsController extends AdminController{
                 $file->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo");
             }
 
+		  $file2 = CUploadedFile::getInstance($model, 'large_photo');
+            if ($file2 !== null) {
+                $ran = rand(0, 999999999);
+                $cover_photo2 = date("Y-m-d-H-i-s") . '-'.ExtraHelper::changeTitle(str_replace(array('.gif','.jpg','.png'),'',$file2->name)).".jpg";
+                $model['large_photo'] = $cover_photo2;
+                $file2->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo2");
+            }
+
             //ExtraHelper::update_tracking_data($model, 'create');
             $model->validate();
             if(!$model->hasErrors() && $model->save()){
@@ -61,6 +69,7 @@ class NewsController extends AdminController{
     public function actionUpdate($id){
         $model = $this->loadModel($id);
         $old_photo = $model['photo'];
+	   $old_photo2 = $model['large_photo'];
         if(isset($_POST['News'])){
             $model->attributes = $_POST['News'];
             $file = CUploadedFile::getInstance($model, 'photo');
@@ -74,6 +83,19 @@ class NewsController extends AdminController{
                 }
             }else{
                 $model->photo = $old_photo;
+            }
+
+		  $file2 = CUploadedFile::getInstance($model, 'large_photo');
+		  if($file2 !== null){
+                $ran = rand(0, 999999999);
+                $cover_photo2 = date("Y-m-d-H-i-s") . '-'.ExtraHelper::changeTitle(str_replace(array('.gif','.jpg','.png'),'',$file2->name)).".jpg";
+                $model['large_photo'] = $cover_photo2;
+                $file2->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo2");
+                if($old_photo2 && file_exists(Yii::app()->basePath . "/../uploads/$old_photo2")){
+                    unlink(Yii::app()->basePath . "/../uploads/$old_photo2");
+                }
+            }else{
+                $model->large_photo = $old_photo2;
             }
 
             $model->validate();

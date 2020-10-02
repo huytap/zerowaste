@@ -62,6 +62,21 @@ $form = $this->beginWidget('CActiveForm', array(
        ?>
   </div>
   <div class="row">
+       <div class="col-sm-3 form-group">
+           <?php echo $form->label($model, 'large_photo');?>
+           <?php echo $form->fileField($model, "large_photo"); ?>
+           <?php echo $form->error($model, 'large_photo'); ?>
+       </div>
+       <?php
+       if($model->large_photo){?>
+           <div class="col-sm-3 form-group">
+               <?php echo '<img src="'.Yii::app()->baseUrl.'/uploads/'.$model->large_photo.'" width="100">';?>
+           </div>
+       <?php
+       }
+       ?>
+  </div>
+  <div class="row">
 	  <div class="col-md-9 form-group">
 		 <?php echo $form->label($model, 'short_description');?>
 		 <?php echo $form->textArea($model, 'short_description', array('class' => 'form-control input-sm', 'placeholder' => 'Short description'));?>

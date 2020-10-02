@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <img src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $model['photo'];?>" class="img-responsive">
+    <img src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $model['large_photo'];?>" class="img-responsive">
   </div>
 </div>
 <div class="row event-content">

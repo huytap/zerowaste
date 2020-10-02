@@ -15,19 +15,26 @@
 			<?php
 			echo Settings::model()->getSetting('zw_intro');?>
 		</div>
+		<div class="btn-cta"><img src="<?php echo Yii::app()->baseUrl?>/images/btn-cta.png" ></div>
+		<div class="games text-right">
+			<img src="<?php echo Yii::app()->baseUrl?>/images/tree.png" />
+		</div>
 		<div class="map row hidden-sm hidden-xs">
-			<div class="map-left">
-				<div class="text">
-					<div class="line1">phiêu lưu</div>
-					<div class="line2">khám phá</div>
-					<p>Khám phá <span class="dd">315</span> địa điểm zero-waste thú vị ở TP. HCM!</p>
-					<a href="<?php echo Yii::app()->baseUrl?>/store.html" class="btn-view btncontact">
-						Xem danh sách
-					</a>
+			<div class="col-md-5" style="height:100%;">
+				<div class="map-left">
+					<div class="text">
+						<div class="line1">Dò tìm</div>
+						<div class="line2">khám phá</div>
+						<p>Khám phá <span class="dd"><?php echo StoreBrand::model()->getTotalStore();?></span> địa điểm zero-waste thú vị ở TP. HCM!</p>
+						<a href="<?php echo Yii::app()->baseUrl?>/store.html" class="btn-view btncontact">
+							Xem danh sách
+						</a>
+					</div>
 				</div>
 			</div>
-			<div class="map-right">
-				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+			<div class="col-md-7">
+				<div class="map-right">
+				<svg version="1.1" class="img-responsive" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 					 width="1009.1px" height="800.1px" viewBox="0 0 1009.1 800.1" style="enable-background:new 0 0 1009.1 800.1;"
 					 xml:space="preserve">
 				<style type="text/css">
@@ -856,6 +863,7 @@
 				<rect x="-1313" y="7.9" class="st25" width="1009.1" height="800.1"/>
 				<rect x="-1325" y="42" class="st25" width="1009.1" height="800.1"/>
 				</svg>
+				</div>
 			</div>
 		</div>
 	</div>

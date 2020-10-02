@@ -38,7 +38,7 @@ class News extends CActiveRecord
 			array('news_category_id, status', 'numerical', 'integerOnly'=>true),
 			array('name, link, short_description, address', 'length', 'max'=>255),
 			array('description', 'safe'),
-			array('photo, date', 'length', 'max'=>128),
+			array('photo, date, large_photo', 'length', 'max'=>128),
 			array('organiser', 'length', 'max'=>64),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

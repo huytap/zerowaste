@@ -42,6 +42,13 @@ class StorebrandController extends AdminController{
         if(isset($_POST['StoreBrand'])){
             $model->attributes = $_POST['StoreBrand'];
             //ExtraHelper::update_tracking_data($model, 'create');
+		  $file = CUploadedFile::getInstance($model, 'address_photo');
+            if ($file !== null) {
+                $ran = rand(0, 999999999);
+                $cover_photo = date("Y-m-d-H-i-s") . '-'.ExtraHelper::changeTitle(str_replace(array('.gif','.jpg','.png'),'',$file->name)).".jpg";
+                $model['address_photo'] = $cover_photo;
+                $file->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo");
+            }
             $model->validate();
             if(!$model->hasErrors() && $model->save()){
                 $this->redirect(Yii::app()->createAbsoluteUrl('admin/storebrand/admin'));
@@ -52,9 +59,21 @@ class StorebrandController extends AdminController{
 
     public function actionUpdate($id){
         $model = $this->loadModel($id);
-        if(isset($_POST['Store'])){
+	   $old_photo = $model['address_photo'];
+        if(isset($_POST['StoreBrand'])){
             $model->attributes = $_POST['StoreBrand'];
-
+		  $file = CUploadedFile::getInstance($model, 'address_photo');
+            if($file !== null){
+                $ran = rand(0, 999999999);
+                $cover_photo = date("Y-m-d-H-i-s") . '-'.ExtraHelper::changeTitle(str_replace(array('.gif','.jpg','.png'),'',$file->name)).".jpg";
+                $model['address_photo'] = $cover_photo;
+                $file->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo");
+                if($old_photo && file_exists(Yii::app()->basePath . "/../uploads/$old_photo")){
+                    unlink(Yii::app()->basePath . "/../uploads/$old_photo");
+                }
+            }else{
+                $model->address_photo = $old_photo;
+            }
             $model->validate();
             if(!$model->hasErrors() && $model->save()){
                 $this->redirect(Yii::app()->createAbsoluteUrl('admin/storebrand/admin'));

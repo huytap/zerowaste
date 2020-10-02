@@ -33,7 +33,13 @@ $background = array(
 );
 $category = explode(',', $store['store_category_id']);
 ?>
-        <div class="top-info" style="background:<?php echo $_POST['bg'];?>;">
+<div class="wrapper stores">
+  <div class="header">
+    <div class="header-top">
+      <?php $this->widget('MenuWidget');?>
+    </div>
+  </div>
+        <div class="top-info" <?php if(isset($_GET['bg'])) echo 'style="background:#'.$_GET['bg'].'"';?>;>
           <div class="container">
             <div class="col-md-1 hidden-xs">
               <ul class="category">
@@ -108,7 +114,7 @@ $category = explode(',', $store['store_category_id']);
           </div>
         </div>
         <div class="container">
-		   <?php if($store_near && count($store_near->getData())){?>
+		<?php if($store_near && count($store_near->getData())){?>
 	          <div class="headline">
 	            <div class="row">
 	              <div class="col-md-6"><h3 class="title">Cửa hàng gần đó</h3></div>
@@ -157,57 +163,57 @@ $category = explode(',', $store['store_category_id']);
 	          </div>
 		<?php }?>
 		<?php if($store_related && count($store_related->getData())){?>
-          <div class="headline">
-            <div class="row">
-              <div class="col-md-6"><h3 class="title">Cửa hàng Liên quan</h3></div>
-              <div class="col-md-6 text-right"><a href="<?php echo Yii::app()->baseUrl?>/store.html?related=<?php echo $store['store_category_id'];?>">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right.png"></a></div>
-            </div>
-          </div>
-          <div class="store row">
-			<?php
-   		  foreach($store_related->getData() as $data){?>
-               <?php $rand_keys = array_rand($background, 1);?>
-   		  	<div class="item col-md-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
-                 <a href="javascript:void(0);" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
-                   <div class="item-title" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
-                     <h3><?php echo $data['name'];?></h3>
-                     <span><?php //echo $data['address'];?></span>
-                   </div>
-                   <div class="photo">
-                     <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
-                     <div class="item-content" style="background:#<?php echo $background[$rand_keys]['content'];shuffle($background);?>">
-                       <?php
-                       $category = explode(',', $data['store_category_id']);
-                       if(count($category)){
-                         ?>
-                         <ul>
-                           <?php
-                           foreach ($category as $key => $value) {
-                             $cate = StoreCategory::model()->getById($value);
-                             echo '<li><img src="'. Yii::app()->baseUrl.'/uploads/'. $cate['icon'].'" class="img-responsive"> '.$cate['name'].'</li>';
-                           }?>
+	          <div class="headline">
+	            <div class="row">
+	              <div class="col-md-6"><h3 class="title">Cửa hàng Liên quan</h3></div>
+	              <div class="col-md-6 text-right"><a href="<?php echo Yii::app()->baseUrl?>/store.html?related=<?php echo $store['store_category_id'];?>">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right.png"></a></div>
+	            </div>
+	          </div>
+	          <div class="store row">
+				<?php
+	   		  foreach($store_related->getData() as $data){?>
+	               <?php $rand_keys = array_rand($background, 1);?>
+	   		  	<div class="item col-md-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
+	                 <a href="javascript:void(0);" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
+	                   <div class="item-title" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
+	                     <h3><?php echo $data['name'];?></h3>
+	                     <span><?php //echo $data['address'];?></span>
+	                   </div>
+	                   <div class="photo">
+	                     <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
+	                     <div class="item-content" style="background:#<?php echo $background[$rand_keys]['content'];shuffle($background);?>">
+	                       <?php
+	                       $category = explode(',', $data['store_category_id']);
+	                       if(count($category)){
+	                         ?>
+	                         <ul>
+	                           <?php
+	                           foreach ($category as $key => $value) {
+	                             $cate = StoreCategory::model()->getById($value);
+	                             echo '<li><img src="'. Yii::app()->baseUrl.'/uploads/'. $cate['icon'].'" class="img-responsive"> '.$cate['name'].'</li>';
+	                           }?>
 
-                         </ul>
-                         <?php
-                       }
-                       ?>
+	                         </ul>
+	                         <?php
+	                       }
+	                       ?>
 
-                       <?php echo $data['description'];?>
-                       <!--span class="wishlist"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                             <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
-                           </svg>
-				  </span-->
-                     </div>
-                   </div>
-                 </a>
-               </div>
-             <?php }?>
-          </div>
+	                       <?php echo $data['description'];?>
+	                       <!--span class="wishlist"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+	                             <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+	                           </svg>
+					  </span-->
+	                     </div>
+	                   </div>
+	                 </a>
+	               </div>
+	             <?php }?>
+	          </div>
 		<?php }?>
         </div>
         </div>
+   </div>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/swiper-bundle.min.js', CClientScript::POS_END);?>
-
 <?php Yii::app()->clientScript->registerScript('storeSlide', '
 let wi = ($(window).width() - 1140)/2;
 $(".gallery").css("margin-left", wi);
@@ -218,4 +224,5 @@ $(".gallery").css("margin-left", wi);
     grabCursor: true,
     pagination: false
   });
+
 ', CClientScript::POS_END);

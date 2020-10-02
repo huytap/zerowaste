@@ -12,17 +12,17 @@
             hãy giới thiệu với tụi mình!
           </p>
           <div class="step1">
-            <div class="bg-hide"></div>
+            <!--div class="bg-hide"></div-->
             <div class="step">1/2</div>
             <div class="icon hidden-xs"><img src="<?php echo Yii::app()->baseUrl?>/images/form-icon-top.png"></div>
             <div class="box-form">
               <div class="form">
                 <label class="left">Tên</label>
-                <input class="field" type="text" placeholder="Linh Tang" id="yourname">
+                <input class="field" type="text" id="yourname">
               </div>
               <div class="form">
                 <label class="left">Email</label>
-                <input class="field" type="text" placeholder="linhlonton@gmail.com" id="youremail">
+                <input class="field" type="text" id="youremail">
               </div>
               <div class="form">
                 <label class="left">Bạn là</label>
@@ -59,7 +59,7 @@
             </div>
           </div>
           <div class="step1 step2">
-            <div class="bg-hide"></div>
+            <!--div class="bg-hide"></div-->
             <div class="step">2/2</div>
             <div class="box-form">
               <div class="form">
@@ -72,33 +72,33 @@
               </div>
               <div class="form">
                 <label class="left">Tên cửa hàng</label>
-                <input class="field" type="text" placeholder="Cửa hàng rau củ organic Bà Linh" id="yourshop">
+                <input class="field" type="text" id="yourshop">
               </div>
               <div class="form">
                 <label class="left">Kết nối</label>
                 <ul id="connect">
                   <li>
                     <img src="<?php echo Yii::app()->baseUrl?>/images/icon-ins.png">
-                    <input type="text" placeholder="balinh_organicfood" class="field" id="instagram"/>
+                    <input type="text" placeholder="Instagram" class="field" id="instagram"/>
                   </li>
                   <li>
                     <img src="<?php echo Yii::app()->baseUrl?>/images/icon-wb.png">
-                    <input type="text" placeholder="balinh_organicfood" class="field" id="website"/>
+                    <input type="text" placeholder="Website" class="field" id="website"/>
                   </li>
                   <li>
                     <img src="<?php echo Yii::app()->baseUrl?>/images/icon-fb.png">
-                    <input type="text" placeholder="balinh_organicfood" class="field" id="facebook"/>
+                    <input type="text" placeholder="Facebook" class="field" id="facebook"/>
                   </li>
                 </ul>
               </div>
               <div class="form">
                 <label class="left">Địa chỉ</label>
-                <input class="field" type="text" placeholder="386/21B Lê Văn Sỹ, Phường 14, Quận 3, TP. HCM" id="youraddress">
+                <input class="field" type="text" id="youraddress">
               </div>
               <div class="form form-intro">
                 <label class="left">Giới thiệu<br/>cửa hàng</label>
                 <div class="group-intro">
-                  <textarea id="yourintro" placeholder="Cung cấp sản phẩm organic, hữu cơ có giấy chứng nhận quốc tế. Bột Hữu Cơ, Sản phẩm hữu cơ, kem đánh răng hữu cơ, hóa mỹ phẩm hữu cơ, Organic 100% An Toàn cho Sức khỏe. Thiết kế cao cấp. Tiêu chuẩn Châu Âu. Giỏ quà đa dạng."></textarea>
+                  <textarea id="yourintro" placeholder="Hãy cho chúng mình biết địa điểm hay cửa hàng này ủng hộ cho sự bền vững, giúp giảm nhựa, sống xanh như thế nào nhé!"></textarea>
                 </div>
               </div>
             </div>
@@ -106,9 +106,9 @@
           <div class="goiy text-center"><a id="btnGoiy" href="javascript:void(0);" class="btncontact btngoiy">Gợi ý</a></div>
         </div>
         <div class="popup-footer">
-          <img src="<?php echo Yii::app()->baseUrl?>/images/form-footer-bg.png" class="img-responsive hidden-xs">
-          <img src="<?php echo Yii::app()->baseUrl?>/images/form-footer-bg-m.png" class="img-responsive hidden-lg hidden-md">
-        </div>
+          <!--img src="<?php echo Yii::app()->baseUrl?>/images/form-footer-bg.png" class="img-responsive hidden-xs">
+          <img src="<?php echo Yii::app()->baseUrl?>/images/form-footer-bg-m.png" class="img-responsive hidden-lg hidden-md"-->
+	</div>
       </div>
     </div>
   </div>

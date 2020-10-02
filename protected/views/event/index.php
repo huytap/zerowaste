@@ -4,6 +4,11 @@ $background = array(
   array('title' => '594dd0', 'content' => 'fef3d5')
 );
 ?>
+<style>
+.banner{
+	padding-top: 0;
+}
+</style>
 <div class="wrapper">
   <div class="header">
     <div class="header-top">
@@ -21,16 +26,16 @@ $background = array(
       foreach($model->getData() as $dt){
         $rand_keys = array_rand($background, 1); ?>
         <div class="col-md-4">
-          <div class="event-item">
+          <div class="event-item" data-href="<?php echo Yii::app()->baseUrl?>/events/<?php echo StringHelper::makeLink($dt['name']).'-'.$dt['id'];?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" style="background: #<?php echo $background[$rand_keys]['content'];?>;" data-id="<?php echo $dt['id'];?>">
             <img src="<?php echo Yii::app()->baseUrl?>/timthumb.php?src=<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $dt['photo'];?>&h=367&w=367" class="img-responsive">
-            <div class="event-content" style="background:#<?php echo $background[$rand_keys]['content'];?>">
+            <div class="event-content" style="background:#<?php echo $background[$rand_keys]['content'];?>;">
               <h4><a href="#event-detail" data-toggle="modal" style="color:#<?php echo $background[$rand_keys]['title'];?>;"><?php echo $dt['name'];?></a></h4>
               <p><?php echo $dt['date'];?></p>
               <p><?php echo $dt['address'];?></p>
               <div class="popup">
                 <p><?php echo $dt['short_description'];?></p>
                 <div class="btnXemThem">
-                  <a data-id="<?php echo $dt['id'];?>" href="javascript:void(0);" class="btnViewmore">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right2.png"/></a>
+                  <a href="javascript:void(0);" class="btnViewmore">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right2.png"/></a>
                 </div>
               </div>
             </div>
@@ -58,7 +63,7 @@ $background = array(
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" id="btn-closeStoreDetail" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="images/btn_Close.png"></span></button>
+        <button type="button" id="btn-closeStoreDetail" class="close"><span aria-hidden="true"><img src="images/btn_Close.png"></span></button>
       </div>
       <div class="modal-body">
         <div class="container" id="news">
@@ -71,8 +76,7 @@ $background = array(
 
 Yii::app()->clientScript->registerScript('loadNews', '
 $(".events").find(".event-item").each(function(i, j){
-  console.log("abc")
-  $(j).find(".btnViewmore").click(function(){
+  $(j).click(function(){
     let id = $(this).attr("data-id");
     $.ajax({
       url: "'.Yii::app()->baseUrl.'/ajax/news",
@@ -84,6 +88,15 @@ $(".events").find(".event-item").each(function(i, j){
         $("#event-detail").modal({
             show: "false"
         });
+
+	   let current_url = $(j).attr("data-href");
+	   history.pushState(null, null, current_url);
+
+	   $("#btn-closeStoreDetail").click(function(){
+		$("#event-detail").modal("hide");
+		history.pushState(null, null, "'.Yii::app()->baseUrl.'/events.html");
+	   });
+
       }
     })
   });

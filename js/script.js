@@ -17,8 +17,7 @@ $(document).ready(function(){
   function hasScrolled() {
       var st = $(this).scrollTop();
 
-      if(Math.abs(lastScrollTop - st) <= delta)
-          return;
+      if(Math.abs(lastScrollTop - st) <= delta) return;
 
       if (st > lastScrollTop && st > navbarHeight){
           // Scroll Down
@@ -39,9 +38,9 @@ $(document).ready(function(){
                 $('.category-nav.cate').removeClass('nav-up').addClass('nav-down');
 
               if (jQuery(window).scrollTop() >= 1)
-                $('.category-nav.cate').removeClass('nav-up').addClass('nav-down');
+                $('.header-top').removeClass('nav-up').addClass('nav-down');
               else
-                $('.category-nav.cate').removeClass('nav-down');
+                $('.header-top').removeClass('nav-down');
           }
       }
 

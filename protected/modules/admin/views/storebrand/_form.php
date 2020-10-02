@@ -47,6 +47,21 @@ $form = $this->beginWidget('CActiveForm', array(
      </div>
   </div>
   <div class="row">
+       <div class="col-sm-3 form-group">
+           <?php echo $form->label($model, 'address_photo');?>
+           <?php echo $form->fileField($model, "address_photo"); ?>
+           <?php echo $form->error($model, 'address_photo'); ?>
+       </div>
+       <?php
+       if($model->address_photo){?>
+           <div class="col-sm-3 form-group">
+               <?php echo '<img src="'.Yii::app()->baseUrl.'/uploads/'.$model->address_photo.'" width="100">';?>
+           </div>
+       <?php
+       }
+       ?>
+  </div>
+  <div class="row">
 	  <div class="col-sm-3">
 		 <div class="form-group">
 			<?php echo $form->labelEx($model, 'status', array('class' => 'control-label'));?>

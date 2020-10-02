@@ -71,11 +71,20 @@ class Gallery extends CActiveRecord
 			'updated_by' => 'Updated By',
 		);
 	}
-
-	public function getGalleryByType($type, $hotel='', $roomtype_id=0){
+
+	public function getListByStore($store_id){
+		$criteria = new CDbCriteria;
+		$criteria->compare('product_id', $product_id, false, 'AND');
+		$criteria->compare('store_id', $store_id, false, 'AND');
+		$data = Gallery::model()->find($criteria);
+		return $data;
+	}
+
+
+	public function getGalleryByType($type, $hotel='', $product_id=0){
 		$criteria = new CDbCriteria;
 		$criteria->compare('type', $type, false, 'AND');
-		$criteria->compare('roomtype_id', $roomtype_id, false, 'AND');
+		$criteria->compare('product_id', $product_id, false, 'AND');
 		if($hotel){
 				$criteria->compare('store_id', $hotel, false, 'AND');
 		}
@@ -83,10 +92,10 @@ class Gallery extends CActiveRecord
 		return $data;
 	}
 
-	public function getGalleryByType2($type, $hotel='', $roomtype_id=''){
+	public function getGalleryByType2($type, $hotel='', $product_id=''){
 		$criteria = new CDbCriteria;
 		$criteria->compare('type', $type, false, 'AND');
-		$criteria->addInCondition('roomtype_id', explode(',', $roomtype_id));
+		$criteria->addInCondition('product_id', explode(',', $product_id));
 		if($hotel){
 			$criteria->compare('store_id', $hotel, false, 'AND');
 		}
@@ -99,8 +108,8 @@ class Gallery extends CActiveRecord
 	}
 
 
-	public function getList($type, $hotel='', $roomtype_id=0){
-		$gallery = $this->getGalleryByType($type, $hotel, $roomtype_id);
+	public function getList($type, $hotel='', $product_id=0){
+		$gallery = $this->getGalleryByType($type, $hotel, $product_id);
 
 		if($gallery){
 			$criteria = new CDbCriteria;
@@ -118,8 +127,8 @@ class Gallery extends CActiveRecord
 		}
 	}
 
-	public function getList2($type, $hotel, $roomtype_id=0){
-		$gallery = $this->getGalleryByType2($type, $hotel, $roomtype_id);
+	public function getList2($type, $hotel, $product_id=0){
+		$gallery = $this->getGalleryByType2($type, $hotel, $product_id);
 		if($gallery){
 			$criteria = new CDbCriteria;
 			$criteria->addInCondition('gallery_id', $gallery);
@@ -135,7 +144,7 @@ class Gallery extends CActiveRecord
 
 	public function search($type=''){
 		$criteria=new CDbCriteria;
-		$criteria->compare('store_id', Yii::app()->session['hotel'],false, 'AND');
+		$criteria->compare('store_id', $this->store_id,false, 'AND');
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('description',$this->description,true);
@@ -149,7 +158,7 @@ class Gallery extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'pagination' => array('pageSize' => 100),
-			
+
 		));
 	}
 

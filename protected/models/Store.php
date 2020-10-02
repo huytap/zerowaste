@@ -113,7 +113,7 @@ class Store extends CActiveRecord
 		}
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'pagination' => array('pageSize' => 3)
+			'pagination' => array('pageSize' => 6)
 		));
 	}
 
@@ -137,7 +137,7 @@ class Store extends CActiveRecord
 			$criteria->addCondition('name like "%'.$text_search.'%"');
 		}elseif($where || $cate){
 			if($cate)
-				$criteria->addCondition('FIND_IN_SET('.$cate.', store_category_id)');
+				$criteria->addCondition('FIND_IN_SET("'.$cate.'", store_category_id)');
 			if($where){
 				$criteria->addCondition('store_brands.district="'.$where.'"');
 				$criteria->join = 'LEFT JOIN store_brands ON store_brands.store_id = t.id';
@@ -148,6 +148,29 @@ class Store extends CActiveRecord
 		$data = new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 			'pagination' => array('pageSize' => false)
+		));
+
+		return $data;
+	}
+
+	public function getListNear($id, $store){
+		$criteria=new CDbCriteria;
+		$criteria->addCondition('store_brands.district="'.$store['district'].'" AND t.id!='.$id);
+		$criteria->join = 'LEFT JOIN store_brands ON store_brands.store_id = t.id';
+		$data = new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => array('pageSize' => 3)
+		));
+
+		return $data;
+	}
+
+	public function getListRelated($id, $store){
+		$criteria=new CDbCriteria;
+		$criteria->addCondition('FIND_IN_SET("'.$store['store_category_id'].'", `store_category_id`) AND t.id!='.$id);
+		$data = new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => array('pageSize' => 3)
 		));
 
 		return $data;

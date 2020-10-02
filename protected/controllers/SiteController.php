@@ -21,25 +21,33 @@ class SiteController extends Controller{
 	}
 
 	public function actionStore($page){
-		if(isset($_POST['page'])){
-			$this->layout = false;
-			$criteria = new CDbCriteria;
-			$criteria->limit = 3;
-			$criteria->offset = $_POST['page']*$criteria->limit - $criteria->limit;
-	    //$total = Store::model()->count();
-	    //$pages = new CPagination($total);
-			//$pages->pageSize = 3;
-			//$pages->offset = $_POST['page']*$pages->pageSize = 3;
-	    //$pages->applyLimit($criteria);
-
-	    $model = Store::model()->findAll($criteria);
-			//echo json_encode($model);
-			$this->render('loadstore', compact('model'));
-			Yii::app()->end();
+		if(isset($_GET['tag'])){
+			$model = Store::model()->getListSearch('', $_GET['tag'], '');
+		}elseif(isset($_GET['related'])){
+			$model = Store::model()->getListSearch($_GET['related'], '', '');
+		}else{
+			if(isset($_POST['page'])){
+				$this->layout = false;
+				$criteria = new CDbCriteria;
+				$criteria->limit = 3;
+				$criteria->offset = $_POST['page']*$criteria->limit - $criteria->limit;
+			     $model = Store::model()->findAll($criteria);
+				$this->render('loadstore', compact('model'));
+				Yii::app()->end();
+			}
+			$model = Store::model()->getList();
 		}
-		//echo "<pre>";print_r($model);die;
-		$model = Store::model()->getList();
 		$this->render('store', compact(array('model', 'pages')));
+	}
+
+	public function actionStoredetail($storeid){
+		$store = Store::model()->findByPk($storeid);
+    	 	$district = StoreBrand::model()->getDistrict($storeid);
+          $bg = '';
+    	 	$store_near = Store::model()->getListNear($storeid, $district);
+    	 	$store_related = Store::model()->getListRelated($storeid, $store);
+    	 	$gallery = Gallery::model()->getListByStore($storeid);
+          $this->render('storedetail', compact(array('store', 'bg', 'store_near', 'district', 'store_related')));
 	}
 
 	public function actionProduct($page){

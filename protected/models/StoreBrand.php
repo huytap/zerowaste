@@ -34,6 +34,7 @@ class StoreBrand extends CActiveRecord
 			array('store_id, status', 'numerical', 'integerOnly'=>true),
 			array('address,city', 'length', 'max'=>255),
 			array('ward, district, phone', 'length', 'max'=>32),
+			array('address_photo', 'length', 'max' => 128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, store_id, address, ward, district, phone, status', 'safe', 'on'=>'search'),
@@ -108,5 +109,15 @@ class StoreBrand extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function getDistrict($id){
+		$criteria = new CDbCriteria;
+		$criteria->compare('store_id', $id, false);
+		return StoreBrand::model()->find($criteria);
+	}
+
+	public function getTotalStore(){
+		return Store::model()->count();
 	}
 }
