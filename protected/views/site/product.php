@@ -12,9 +12,7 @@ $background = array(
 ?>
 <div class="wrapper">
   <div class="header">
-    <div class="header-top">
-      <?php $this->widget('MenuWidget');?>
-    </div>
+    <?php $this->widget('MenuWidget');?>
     <div class="products banner">
       <img src="<?php echo Yii::app()->baseUrl?>/images/product_banner.png?v=01" class="hidden-xs img-responsive">
       <img src="<?php echo Yii::app()->baseUrl?>/images/product-banner-m.png?v=01" class="hidden-lg hidden-md img-responsive">
@@ -27,12 +25,14 @@ $background = array(
   <div class="product-content">
     <div class="container">
       <div class="filter-box">
-        <select id="storecate">
-          <option value="">Chọn loại sản phẩm</option>
-          <?php foreach(StoreCategory::model()->getList2() as $key => $value){
-            echo '<option value="'.$key.'">'.$value.'</option>';
-          }?>
-        </select>
+		 <div class="custom-select" style="width:210px">
+	        <select id="storecate">
+	          <option value="">Mặt hàng ...</option>
+	          <?php foreach(StoreCategory::model()->getList2() as $key => $value){
+	            echo '<option value="'.$key.'">'.$value.'</option>';
+	          }?>
+	        </select>
+	   </div>
         <div class="box-search pull-right hidden-xs">
           <input type="text" class="" placeholder="Search with love..." id="text_search"/>
         </div>
@@ -41,8 +41,8 @@ $background = array(
         <?php
         foreach($model->getData() as $dt){
           $rand_keys = array_rand($background, 1);?>
-          <div class="item" data-id="<?php echo $dt['id'];?>" data-filter="<?php echo $dt['category'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
-			<div>
+          <div class="item">
+			<div data-id="<?php echo $dt['id'];?>" data-filter="<?php echo $dt['category'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
 			  <img src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $dt['photo'];?>" class="img-responsive">
 	            <h3 style="background:#<?php echo $background[$rand_keys]['title'];?>"><?php echo $dt['name'];?></h3>
 		     </div>
@@ -52,8 +52,8 @@ $background = array(
     </div>
 
     <div class="product-detail">
-      <div class="arrow-up"></div>
       <div class="container">
+        <div class="arrow-up"></div>
         <div class="row detail-text" id="product-detail">
 
         </div>
@@ -61,9 +61,10 @@ $background = array(
     </div>
   </div>
 </div>
+
 <?php Yii::app()->clientScript->registerScript('product', '
 function viewDetail(){
-  $("#photos").find(".item").each(function(i, j){
+  $("#photos").find(".item div").each(function(i, j){
     $(j).click(function(){
       let id = $(j).attr("data-id");
       let bg = $(j).attr("data-bg");
@@ -75,7 +76,7 @@ function viewDetail(){
 	 }else{
 
 	 }
-	 if(flag)
+	 if(flag && $(this).hasClass("active") == false)
       $.ajax({
         url: "'.Yii::app()->baseUrl.'/ajax/product",
         data: {id: id},
@@ -87,7 +88,7 @@ function viewDetail(){
           var marginLeft = $(j).position().left + $(j).width()/2;
           $(".product-detail").css({top:marginTop+"px"});
           $(".arrow-up").css({left:marginLeft+"px"});
-          $(".product-detail").css("background", bg);
+          $("#product-detail").css("background", bg);
           $(".arrow-up").css("border-bottom", "18px solid " + bg)
           if($(j).hasClass("active")){
             $(j).removeClass("active")
@@ -101,7 +102,11 @@ function viewDetail(){
 	        scrollTop: $("#product-detail").offset().top
 	    }, 2000);
         }
-      })
+   	  });
+	  else {
+	    $(j).removeClass("active")
+	    $(".product-detail").hide();
+	  }
     })
   });
 }
@@ -125,7 +130,6 @@ function searchByText(){
   });
 }
 function searchByCate(){
-  $("#storecate").change(function(){
     let cate = $("#storecate").val();
     let where = $("#where").val();
     $.ajax({
@@ -140,10 +144,74 @@ function searchByCate(){
         $("#photos").html("Không tìm thấy kết quả")
         viewDetail()
       }
-    })
-  });
+ });
 }
-searchByCate();
+var x, i, j, l, ll, selElmnt, a, b, c;
+x = document.getElementsByClassName("custom-select");
+l = x.length;
+for (i = 0; i < l; i++) {
+  selElmnt = x[i].getElementsByTagName("select")[0];
+  ll = selElmnt.length;
+  a = document.createElement("DIV");
+  a.setAttribute("class", "select-selected");
+  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+  x[i].appendChild(a);
+  b = document.createElement("DIV");
+  b.setAttribute("class", "select-items select-hide");
+  for (j = 1; j < ll; j++) {
+    c = document.createElement("DIV");
+    c.innerHTML = selElmnt.options[j].innerHTML;
+    c.addEventListener("click", function(e) {
+        var y, i, k, s, h, sl, yl;
+        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+        sl = s.length;
+        h = this.parentNode.previousSibling;
+        for (i = 0; i < sl; i++) {
+          if (s.options[i].innerHTML == this.innerHTML) {
+            s.selectedIndex = i;
+            h.innerHTML = this.innerHTML;
+            y = this.parentNode.getElementsByClassName("same-as-selected");
+            yl = y.length;
+            for (k = 0; k < yl; k++) {
+              y[k].removeAttribute("class");
+            }
+            this.setAttribute("class", "same-as-selected");
+            break;
+          }
+        }
+        h.click();
+	   s.onchange = searchByCate()
+    });
+    b.appendChild(c);
+  }
+  x[i].appendChild(b);
+  a.addEventListener("click", function(e) {
+      e.stopPropagation();
+      closeAllSelect(this);
+      this.nextSibling.classList.toggle("select-hide");
+      this.classList.toggle("select-arrow-active");
+    });
+}
+function closeAllSelect(elmnt) {
+  var x, y, i, xl, yl, arrNo = [];
+  x = document.getElementsByClassName("select-items");
+  y = document.getElementsByClassName("select-selected");
+  xl = x.length;
+  yl = y.length;
+  for (i = 0; i < yl; i++) {
+    if (elmnt == y[i]) {
+      arrNo.push(i)
+    } else {
+      y[i].classList.remove("select-arrow-active");
+    }
+  }
+  for (i = 0; i < xl; i++) {
+    if (arrNo.indexOf(i)) {
+      x[i].classList.add("select-hide");
+    }
+  }
+}
+document.addEventListener("click", closeAllSelect);
 searchByText();
 viewDetail()
 ', CClientScript::POS_END);

@@ -41,15 +41,15 @@
                 <label class="left">Bạn muốn giới thiệu</label>
                 <div class="group-intro">
                   <ul id="introcate">
-                    <li data-id="shop">
+                    <li data-toggle="tab" data-id="shop" data-toggle="tab" data-target="#cuahang">
                       <img src="<?php echo Yii::app()->baseUrl?>/images/icon-shop.png">
                       Cửa hàng
                     </li>
-                    <li data-id="product">
+                    <li data-toggle="tab" data-id="product" data-target="#sanpham">
                       <img src="<?php echo Yii::app()->baseUrl?>/images/icon-product.png">
                       Sản phẩm
                     </li>
-                    <li data-id="event">
+                    <li data-toggle="tab" data-id="event" data-target="#tintuc">
                       <img src="<?php echo Yii::app()->baseUrl?>/images/icon-event.png">
                       Sự kiện
                     </li>
@@ -58,51 +58,135 @@
               </div>
             </div>
           </div>
-          <div class="step1 step2">
+          <div class="step1 step2 tab-content">
             <!--div class="bg-hide"></div-->
             <div class="step">2/2</div>
-            <div class="box-form">
-              <div class="form">
+            <div class="box-form tab-pane active" id="cuahang">
+              <div class="form" id="cuahang">
                 <label class="left">Ngành hàng</label>
-                <select class="category" id="nganhhang">
-                  <option value="Thực phẩm">Thực phẩm</option>
-                  <option value="Thời trang">Thời trang</option>
-                  <option value="Làm đẹp">Làm đẹp</option>
+                <select class="category nganhhang">
+				 <?php foreach(StoreCategory::model()->getList2() as $key => $value){
+   	               echo '<option value="'.$key.'">'.$value.'</option>';
+   	             }?>
                 </select>
               </div>
               <div class="form">
                 <label class="left">Tên cửa hàng</label>
-                <input class="field" type="text" id="yourshop">
+                <input class="field yourshop" type="text">
               </div>
               <div class="form">
                 <label class="left">Kết nối</label>
-                <ul id="connect">
+                <ul class="connect">
                   <li>
                     <img src="<?php echo Yii::app()->baseUrl?>/images/icon-ins.png">
-                    <input type="text" placeholder="Instagram" class="field" id="instagram"/>
+                    <input type="text" placeholder="Instagram" class="field instagram"/>
                   </li>
                   <li>
                     <img src="<?php echo Yii::app()->baseUrl?>/images/icon-wb.png">
-                    <input type="text" placeholder="Website" class="field" id="website"/>
+                    <input type="text" placeholder="Website" class="field website"/>
                   </li>
                   <li>
                     <img src="<?php echo Yii::app()->baseUrl?>/images/icon-fb.png">
-                    <input type="text" placeholder="Facebook" class="field" id="facebook"/>
+                    <input type="text" placeholder="Facebook" class="field facebook"/>
                   </li>
                 </ul>
               </div>
               <div class="form">
                 <label class="left">Địa chỉ</label>
-                <input class="field" type="text" id="youraddress">
+                <input class="field youraddress" type="text">
               </div>
               <div class="form form-intro">
                 <label class="left">Giới thiệu<br/>cửa hàng</label>
                 <div class="group-intro">
-                  <textarea id="yourintro" placeholder="Hãy cho chúng mình biết địa điểm hay cửa hàng này ủng hộ cho sự bền vững, giúp giảm nhựa, sống xanh như thế nào nhé!"></textarea>
+                  <textarea class="yourintro" placeholder="Hãy cho chúng mình biết địa điểm hay cửa hàng này ủng hộ cho sự bền vững, giúp giảm nhựa, sống xanh như thế nào nhé!"></textarea>
                 </div>
               </div>
             </div>
-          </div>
+		  <!--sản phẩm-->
+		  <div class="box-form tab-pane" id="sanpham">
+              <div class="form">
+                <label class="left">Loại sản phẩm</label>
+                <select class="category nganhhang">
+				 <?php foreach(StoreCategory::model()->getList2() as $key => $value){
+	   	               echo '<option value="'.$key.'">'.$value.'</option>';
+	   	             }?>
+
+                </select>
+              </div>
+              <div class="form">
+                <label class="left">Tên sản phẩm</label>
+                <input class="field yourshop" type="text">
+              </div>
+              <div class="form">
+                <label class="left">Kết nối</label>
+                <ul class="connect">
+                  <li>
+                    <img src="<?php echo Yii::app()->baseUrl?>/images/icon-ins.png">
+                    <input type="text" placeholder="Instagram" class="field instagram"/>
+                  </li>
+                  <li>
+                    <img src="<?php echo Yii::app()->baseUrl?>/images/icon-wb.png">
+                    <input type="text" placeholder="Website" class="field website"/>
+                  </li>
+                  <li>
+                    <img src="<?php echo Yii::app()->baseUrl?>/images/icon-fb.png">
+                    <input type="text" placeholder="Facebook" class="field facebook"/>
+                  </li>
+                </ul>
+              </div>
+              <div class="form">
+                <label class="left">Địa chỉ</label>
+                <input class="field youraddress" type="text">
+              </div>
+              <div class="form form-intro">
+                <label class="left">Giới thiệu<br>sản phẩm</label>
+                <div class="group-intro">
+                  <textarea class="yourintro" placeholder="Hãy cho chúng mình biết sản phẩm này ủng hộ cho sự bền vững, giúp giảm nhựa, sống xanh như thế nào nhé!"></textarea>
+                </div>
+              </div>
+            </div>
+		  <!--sự kiện-->
+		  <div class="box-form tab-pane" id="tintuc">
+              <div class="form">
+                <label class="left">Loại sự kiện</label>
+                <select class="category nganhhang">
+				 <option value="Thực phẩm">Tin tức</option>
+                     <option value="Thời trang">Sự kiện</option>
+                </select>
+              </div>
+              <div class="form">
+                <label class="left">Tên sự kiện</label>
+                <input class="field yourshop" type="text">
+              </div>
+              <div class="form">
+                <label class="left">Kết nối</label>
+                <ul class="connect">
+                  <li>
+                    <img src="<?php echo Yii::app()->baseUrl?>/images/icon-ins.png">
+                    <input type="text" placeholder="Instagram" class="field instagram"/>
+                  </li>
+                  <li>
+                    <img src="<?php echo Yii::app()->baseUrl?>/images/icon-wb.png">
+                    <input type="text" placeholder="Website" class="field website"/>
+                  </li>
+                  <li>
+                    <img src="<?php echo Yii::app()->baseUrl?>/images/icon-fb.png">
+                    <input type="text" placeholder="Facebook" class="field facebook"/>
+                  </li>
+                </ul>
+              </div>
+              <div class="form">
+                <label class="left">Địa chỉ</label>
+                <input class="field youraddress" type="text">
+              </div>
+              <div class="form form-intro">
+                <label class="left">Giới thiệu<br/>sự kiện</label>
+                <div class="group-intro">
+                  <textarea class="yourintro" placeholder="Hãy cho chúng mình biết sự kiện này ủng hộ cho sự bền vững, giúp giảm nhựa, sống xanh như thế nào nhé!"></textarea>
+                </div>
+              </div>
+            </div>
+		</div>
           <div class="goiy text-center"><a id="btnGoiy" href="javascript:void(0);" class="btncontact btngoiy">Gợi ý</a></div>
         </div>
         <div class="popup-footer">
@@ -113,14 +197,76 @@
     </div>
   </div>
 </div>
+<div id="popupsuccess" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="<?php echo Yii::app()->baseUrl?>/images/btn_Close.png"></span></button>
+	 <img src="<?php echo Yii::app()->baseUrl?>/images/success.png" class="img-responsive"/>
+	</div>
+  </div>
+</div>
 <?php
 
 Yii::app()->clientScript->registerScript('loadPopup', '
+$(document).ready(function(){
+	$("#btnGoiy").click(function(){
+	  let introcate = $("#introcate").find("li.active").attr("data-id");
+	  let name = $("#yourname").val();
+	  let email = $("#youremail").val();
+
+	  let who = $("input[name=\"who\"]:checked").val();
+	  let cate = $(".nganhhang").val();
+	  let address = $(".box-form.active").find(".youraddress").val();
+	  let intro = $(".box-form.active").find(".yourintro").val();
+	  let shop = $(".box-form.active").find(".yourshop").val();
+	  if($.trim(name) === ""){
+	    $("#yourname").focus();
+	  }else if($.trim(email) == ""){
+	    $("#youremail").focus();
+	  }else if(!isEmail(email)){
+	    alert("Email sai định dạng");
+	    $("#youremail").focus();
+	  }else if($.trim(who) == ""){
+	    alert("Vui lòng chọn mục Bạn là");
+	  }else if($.trim(introcate) == ""){
+	    alert("Vui lòng chọn mục Bạn muốn giới thiệu")
+	  }else if($.trim(cate) == ""){
+	    alert("Vui lòng chọn ngành hàng")
+	  }else if($.trim(shop) == ""){
+	    $(".box-form.active").find(".yourshop").focus();
+	  }else if($.trim(address) == ""){
+	    $(".box-form.active").find(".youraddress").focus();
+	  }else if($.trim(intro) == ""){
+	    $(".box-form.active").find(".yourintro").focus();
+	  }else{
+	    let facebook = $(".box-form.active").find(".facebook").val();
+	    let instagram = $(".box-form.active").find(".instagram").val();
+	    let website = $(".box-form.active").find(".website").val();
+	    $.ajax({
+	      url: "'.Yii::app()->baseUrl.'/ajax/contact",
+	      type: "post",
+	      dataType: "json",
+	      data:{name:name, email: email, who:who, introcate: introcate, cate:cate,shop:shop, facebook:facebook, instagram:instagram, website:website,address: address, intro:intro},
+	      success:function(data){
+	        if(data == 0){
+	          $("#popup").find("input").val("");
+	          $("#popupsuccess").modal({
+				show: "false"
+			});
+	          $("#popup .close").click()
+	        }else{
+	          alert("Dữ liệu chưa được gửi đi!")
+	        }
+	      }
+	    })
+	  }
+	})
+})
 function isEmail(email) {
   var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   return regex.test(email);
 }
-$("#connect").find("li").each(function(i,j){
+$(".connect").find("li").each(function(i,j){
   $(j).click(function(){
     //$("#connect").find("li").removeClass("active");
     $(this).addClass("active");
@@ -134,53 +280,4 @@ $("#introcate").find("li").each(function(i, j){
     $(this).addClass("active");
   });
 });
-
-$("#btnGoiy").click(function(){
-  let introcate = $("#introcate").find("li.active").attr("data-id");
-  let cate = $("#nganhhang").val();
-  let name = $("#yourname").val();
-  let email = $("#youremail").val();
-  let who = $("input[name=\"who\"]:checked").val();
-  let address = $("#youraddress").val();
-  let intro = $("#yourintro").val();
-  let shop = $("#yourshop").val();
-  if($.trim(name) === ""){
-    $("#yourname").focus();
-  }else if($.trim(email) == ""){
-    $("#youremail").focus();
-  }else if(!isEmail(email)){
-    alert("Email sai định dạng");
-    $("#youremail").focus();
-  }else if($.trim(who) == ""){
-    alert("Vui lòng chọn mục Bạn là");
-  }else if($.trim(introcate) == ""){
-    alert("Vui lòng chọn mục Bạn muốn giới thiệu")
-  }else if($.trim(cate) == ""){
-    alert("Vui lòng chọn ngành hàng")
-  }else if($.trim(shop) == ""){
-    $("#yourshop").focus();
-  }else if($.trim(address) == ""){
-    $("#youraddress").focus();
-  }else if($.trim(intro) == ""){
-    $("#yourintro").focus();
-  }else{
-    let facebook = $("#facebook").val();
-    let instagram = $("#instagram").val();
-    let website = $("#website").val();
-    $.ajax({
-      url: "'.Yii::app()->baseUrl.'/ajax/contact",
-      type: "post",
-      dataType: "json",
-      data:{name:name, email: email, who:who, introcate: introcate, cate:cate,shop:shop, facebook:facebook, instagram:instagram, website:website,address: address, intro:intro},
-      success:function(data){
-        if(data == 0){
-          $("#popup").find("input").val("");
-          alert("Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất");
-          $("#popup .close").click()
-        }else{
-          alert("Dữ liệu chưa được gửi đi!")
-        }
-      }
-    })
-  }
-})', CClientScript::POS_END);?>
+', CClientScript::POS_END);?>

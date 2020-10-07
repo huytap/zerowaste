@@ -7,6 +7,7 @@ return array(
 	'newscategory' => array('admin', 'create', 'update', 'delete'),
 	'news' => array('admin', 'create', 'update', 'delete'),
 	'gallery' => array('admin', 'create', 'upload', 'update_order', 'deleteItem', 'view', 'update', 'delete'),
+	'productgallery' => array('admin', 'create', 'upload', 'update_order', 'deleteItem', 'view', 'update', 'delete'),
 	'gallerycategories' => array('admin','create','update', 'delete'),
 	'slideshow' => array('admin', 'create', 'delete', 'update', 'updateItem', 'view', 'upload','deleteItem'),
 	'settings' => array('admin','create','update', 'delete'),

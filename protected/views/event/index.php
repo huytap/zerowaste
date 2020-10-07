@@ -11,9 +11,7 @@ $background = array(
 </style>
 <div class="wrapper">
   <div class="header">
-    <div class="header-top">
       <?php $this->widget('MenuWidget');?>
-    </div>
     <div class="banner banner-event">
       <img src="<?php echo Yii::app()->baseUrl?>/images/event-bg-banner.png?v=001" class="img-responsive hidden-xs">
       <img src="<?php echo Yii::app()->baseUrl?>/images/event-bg-banner-m.png?v=001" class="img-responsive hidden-lg hidden-md">

@@ -74,7 +74,7 @@
 			     </a>
 			 </li>
 			 <li>
-			     <a href="<?php echo Yii::app()->createUrl('admin/productphoto/admin');?>">
+			     <a href="<?php echo Yii::app()->createUrl('admin/productgallery/admin');?>">
 			 	   <span class="menu-icon">
 			 		  <i class="fa fa-th-large"></i>
 			 	   </span>

@@ -1,8 +1,6 @@
 <div class="wrapper stores">
   <div class="header">
-    <div class="header-top">
       <?php $this->widget('MenuWidget');?>
-    </div>
   </div>
   <?php
   $background = array(
@@ -19,20 +17,24 @@
       <div class="filter-m hidden-lg hidden-md">Lọc kết qủa</div>
       <div class="subbox">
         <h3 class="hidden-lg hidden-md">Lọc kết qủa</h3>
-        <select id="storecate">
-          <option value="">Chọn ngành hàng</option>
-          <?php foreach(StoreCategory::model()->getList2() as $key => $value){
-            echo '<option value="'.$key.'">'.$value.'</option>';
-          }?>
-        </select>
-        <select id="where">
-          <option value="">Chọn quận</option>
-          <option value="Quận 1">Quận 1</option>
-          <option value="Quận 2">Quận 2</option>
-          <option value="Quận 3">Quận 3</option>
-        </select>
+	   <div class="custom-select" style="width:190px">
+	        <select id="storecate">
+	          <option value="">Ngành hàng ...</option>
+	          <?php foreach(StoreCategory::model()->getList2() as $key => $value){
+	            echo '<option value="'.$key.'">'.$value.'</option>';
+	          }?>
+	        </select>
+	   </div>
+	   <div class="custom-select" style="width:180px">
+	        <select id="where">
+	          <option value="">Chọn quận</option>
+	          <option value="Quận 1">Quận 1</option>
+	          <option value="Quận 2">Quận 2</option>
+	          <option value="Quận 3">Quận 3</option>
+	        </select>
+	   </div>
       </div>
-      <span class="btn_apply hidden-sm hidden-xs"><img src="images/btn_apply.png" /></span>
+      <!--span class="btn_apply hidden-sm hidden-xs"><img src="images/btn_apply.png" /></span-->
       <div class="box-search pull-right hidden-xs">
         <input type="text" class="" placeholder="Search with love..." id="typeStore">
       </div>
@@ -47,7 +49,7 @@
           <a href="javascript:void(0);" data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
             <div class="item-title" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
               <h3><?php echo $data['name'];?></h3>
-              <span><?php echo $district['address'].', '.$district['district'];?></span>
+              <span><?php echo $district[0]['address'].', '.$district[0]['district'];?></span>
             </div>
             <div class="photo">
               <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
@@ -195,26 +197,93 @@ $("#typeStore").keyup(function(){
   })
 });
 
-$("#storecate,#where").change(function(){
-  let cate = $("#storecate").val();
-  let where = $("#where").val();
-  $.ajax({
-    url:"'.Yii::app()->baseUrl.'/ajax/searchstore",
-    data:{cate:cate, where:where},
-    type: "post",
-    dataType: "html",
-    success: function(data){
-      $("#btnLoadmore").parent().hide();
-      if(data.length){
-        $("#store-items").html(data);
-        loadStore();
-      }else
-      $("#store-items").html("Không tìm thấy kết quả")
-    }
-  })
-});
+function changeData(){
+	let cate = $("#storecate").val();
+     let where = $("#where").val();
+     $.ajax({
+       url:"'.Yii::app()->baseUrl.'/ajax/searchstore",
+       data:{cate:cate, where:where},
+       type: "post",
+       dataType: "html",
+       success: function(data){
+         $("#btnLoadmore").parent().hide();
+         if(data.length){
+           $("#store-items").html(data);
+           loadStore();
+         }else
+         $("#store-items").html("Không tìm thấy kết quả")
+       }
+     })
+}
 $(".filter-m").click(function(){
   $(".subbox").show();
-})
+});
+
+var x, i, j, l, ll, selElmnt, a, b, c;
+x = document.getElementsByClassName("custom-select");
+l = x.length;
+for (i = 0; i < l; i++) {
+  selElmnt = x[i].getElementsByTagName("select")[0];
+  ll = selElmnt.length;
+  a = document.createElement("DIV");
+  a.setAttribute("class", "select-selected");
+  a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+  x[i].appendChild(a);
+  b = document.createElement("DIV");
+  b.setAttribute("class", "select-items select-hide");
+  for (j = 1; j < ll; j++) {
+    c = document.createElement("DIV");
+    c.innerHTML = selElmnt.options[j].innerHTML;
+    c.addEventListener("click", function(e) {
+        var y, i, k, s, h, sl, yl;
+        s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+        sl = s.length;
+        h = this.parentNode.previousSibling;
+        for (i = 0; i < sl; i++) {
+          if (s.options[i].innerHTML == this.innerHTML) {
+            s.selectedIndex = i;
+            h.innerHTML = this.innerHTML;
+            y = this.parentNode.getElementsByClassName("same-as-selected");
+            yl = y.length;
+            for (k = 0; k < yl; k++) {
+              y[k].removeAttribute("class");
+            }
+            this.setAttribute("class", "same-as-selected");
+            break;
+          }
+        }
+        h.click();
+	   s.onchange = changeData()
+    });
+    b.appendChild(c);
+  }
+  x[i].appendChild(b);
+  a.addEventListener("click", function(e) {
+      e.stopPropagation();
+      closeAllSelect(this);
+      this.nextSibling.classList.toggle("select-hide");
+      this.classList.toggle("select-arrow-active");
+    });
+}
+function closeAllSelect(elmnt) {
+  var x, y, i, xl, yl, arrNo = [];
+  x = document.getElementsByClassName("select-items");
+  y = document.getElementsByClassName("select-selected");
+  xl = x.length;
+  yl = y.length;
+  for (i = 0; i < yl; i++) {
+    if (elmnt == y[i]) {
+      arrNo.push(i)
+    } else {
+      y[i].classList.remove("select-arrow-active");
+    }
+  }
+  for (i = 0; i < xl; i++) {
+    if (arrNo.indexOf(i)) {
+      x[i].classList.add("select-hide");
+    }
+  }
+}
+document.addEventListener("click", closeAllSelect);
 ', CClientScript::POS_END);
  ?>

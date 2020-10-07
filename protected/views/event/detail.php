@@ -1,8 +1,6 @@
 <div class="wrapper stores">
   <div class="header">
-    <div class="header-top">
       <?php $this->widget('MenuWidget');?>
-    </div>
   </div>
   <div class="top-info" id="event-detail">
  <div class="container">

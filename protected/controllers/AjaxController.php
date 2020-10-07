@@ -58,7 +58,8 @@ class AjaxController extends Controller{
   public function actionProduct(){
     if(isset($_POST['id'])){
       $model = Category::model()->findByPk($_POST['id']);
-      $this->render('product', compact(array('model')));
+	 $gallery = Gallery::model()->getListByProduct($_POST['id']);
+      $this->render('product', compact(array('model', 'gallery')));
     }
   }
 

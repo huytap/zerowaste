@@ -1,53 +1,17 @@
 $(document).ready(function(){
-  var didScroll;
-  var lastScrollTop = 0;
-  var delta = 2;
-  var navbarHeight = $('a.pull-right').outerHeight();
-
-  $(window).scroll(function(event){
-      didScroll = true;
-  });
-
-  setInterval(function() {
-      if (didScroll) {
-          hasScrolled();
-          didScroll = false;
-      }
-  }, 250);
-  function hasScrolled() {
-      var st = $(this).scrollTop();
-
-      if(Math.abs(lastScrollTop - st) <= delta) return;
-
-      if (st > lastScrollTop && st > navbarHeight){
-          // Scroll Down
-          $('.header-top').removeClass('nav-down').addClass('nav-up');
-          if(jQuery(window).width() >= 768)
-            $('.category-nav.cate').removeClass('nav-down').addClass('nav-up');
-          else{
-            if (jQuery(window).scrollTop() >= 1)
-              $('.category-nav.cate').removeClass('nav-down').addClass('nav-up');
-            else
-              $('.category-nav.cate').removeClass('nav-up');
-          }
-      } else {
-          // Scroll Up
-          if(st + $(window).height() < $(document).height()) {
-              $('.header-top').removeClass('nav-up').addClass('nav-down');
-              if(jQuery(window).width() >= 768)
-                $('.category-nav.cate').removeClass('nav-up').addClass('nav-down');
-
-              if (jQuery(window).scrollTop() >= 1)
-                $('.header-top').removeClass('nav-up').addClass('nav-down');
-              else
-                $('.header-top').removeClass('nav-down');
-          }
-      }
-
-      lastScrollTop = st;
-  }
-
-
+	var lastScroll = 62;
+	$(window).scroll(function(event){
+	    var st = $(this).scrollTop();
+	    if (st > lastScroll){
+		 $('.header-top').addClass('nav-up');
+		 $('.header-top').removeClass('nav-down');
+	    }
+	    else {
+		 $('.header-top').removeClass('nav-up');
+		 $('.header-top').addClass('nav-down');
+	    }
+	    lastScroll = st;
+    });
   /*filter box*/
   if($('.box-category').length){
     $('.box-category').find('.box-title').click(function(){

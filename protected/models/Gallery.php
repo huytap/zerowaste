@@ -35,7 +35,7 @@ class Gallery extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('updated_by, type, store_id', 'numerical', 'integerOnly'=>true),
+			array('updated_by, type, store_id, product_id', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>255),
 			array('description, added_date, updated_date, updated_by', 'safe'),
 			// The following rule is used by search().
@@ -63,7 +63,8 @@ class Gallery extends CActiveRecord
 		return array(
 			'id' => 'ID',
 			'store_id'=>'Địa điểm',
-			'name' => 'Name',
+			'product_id' => 'Sản phẩm',
+			'name' => 'Tên album',
 			'description' => 'Description',
 			'added_date' => 'Created Date',
 			'updated_by' => 'Created By',
@@ -74,12 +75,27 @@ class Gallery extends CActiveRecord
 
 	public function getListByStore($store_id){
 		$criteria = new CDbCriteria;
-		$criteria->compare('product_id', $product_id, false, 'AND');
 		$criteria->compare('store_id', $store_id, false, 'AND');
 		$data = Gallery::model()->find($criteria);
 		return $data;
 	}
 
+	public function getListByProduct($product_id){
+		$criteria = new CDbCriteria;
+		$criteria->compare('product_id', $product_id, false);
+		$gallery = Gallery::model()->find($criteria);
+		if($gallery){
+			$criteria = new CDbCriteria;
+			$criteria->compare('gallery_id', $gallery['id'], false);
+			$dataProvide = new CActiveDataProvider('Item', array(
+				'criteria' => $criteria,
+				'sort' => array('defaultOrder' => 'display_order ASC')));
+			$dataProvide->setPagination(false);
+			return $dataProvide;
+		}else{
+			return '';
+		}
+	}
 
 	public function getGalleryByType($type, $hotel='', $product_id=0){
 		$criteria = new CDbCriteria;
@@ -108,8 +124,8 @@ class Gallery extends CActiveRecord
 	}
 
 
-	public function getList($type, $hotel='', $product_id=0){
-		$gallery = $this->getGalleryByType($type, $hotel, $product_id);
+	public function getList($type, $product_id=0){
+		$gallery = $this->getGalleryByType($type, $product_id);
 
 		if($gallery){
 			$criteria = new CDbCriteria;

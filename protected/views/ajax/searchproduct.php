@@ -11,8 +11,10 @@ $background = array(
 );
 foreach($model->getData() as $dt){
   $rand_keys = array_rand($background, 1);?>
-  <div class="item" data-id="<?php echo $dt['id'];?>" data-filter="<?php echo $dt['category'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
-    <img src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $dt['photo'];?>">
+  <div class="item">
+	  <div data-id="<?php echo $dt['id'];?>" data-filter="<?php echo $dt['category'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
+    <img src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $dt['photo'];?>" class="img-responsive">
     <h3 style="background:#<?php echo $background[$rand_keys]['title'];?>"><?php echo $dt['name'];?></h3>
+  </div>
   </div>
 <?php }?>

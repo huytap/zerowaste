@@ -35,9 +35,7 @@ $category = explode(',', $store['store_category_id']);
 ?>
 <div class="wrapper stores">
   <div class="header">
-    <div class="header-top">
-      <?php $this->widget('MenuWidget');?>
-    </div>
+     <?php $this->widget('MenuWidget');?>
   </div>
         <div class="top-info" <?php if(isset($_GET['bg'])) echo 'style="background:#'.$_GET['bg'].'"';?>;>
           <div class="container">
@@ -71,22 +69,48 @@ $category = explode(',', $store['store_category_id']);
               <div class="info">
                 <div class="">
                   <h3><?php echo $store['name'];?></h3>
-                  <p class="address"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-map.png"> <?php echo $district['address'].', '.$district['district'].', '.$district['city'];?></p>
+                  <p class="address"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-map.png"> <?php echo $district[0]['address'].', '.$district[0]['district'];?></p>
                   <ul class="category hidden-lg hidden-md">
                     <?php echo $ct_html;?>
                   </ul>
                   <?php echo $store['description'];?>
                   <ul class="social hidden-lg hidden-md">
-                    <li><a href="#" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-instagram.png" /></a></li>
-                    <li><a href="#" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-website.png" /></a></li>
-                    <li><a href="#" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-facebook.png" /></a></li>
+				   <?php if($store['website']){?>
+   	 			    <li><a href="<?php echo $store['website'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-website.png" /></a></li>
+   	 		    <?php }?>
+   	 		    <?php if($store['facebook']){?>
+   	 			   <li><a href="<?php echo $store['facebook'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-facebook.png" /></a></li>
+   	 		   <?php }?>
+   	 		      <?php if($store['instagram']){?>
+   	 	                <li><a href="<?php echo $store['instagram'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-instagram.png" /></a></li>
+   	 			 <?php }?>
                   </ul>
                   <div class="moreinfo hidden-xs">
-                    <span class="wishlist2"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <!--span class="wishlist2"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                       </svg>
-                    </span>
-                    <a href="https://www.google.com/maps/place/<?php echo urlencode($district['address'].', '.$district['district'].', '.$district['city']);?>" target="_blank" class="btncontact viewmap">xem bản đồ</a>
+			  </span-->
+				<?php
+				$html_map = '';
+				$linkmap = '';
+		   		  if(count($district)>1){
+		   			  $linkmap = '<a href="#viewmap" data-toggle="modal" class="btncontact viewmap">xem bản đồ</a>';
+		   			  $html_map = '<div id="viewmap" class="modal fade store-modal" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
+		   			    <div class="modal-dialog" role="document">
+		   				 <div class="modal-content">
+		   				   <div class="modal-header">
+		   					<button type="button" id="btn-closeStoreDetail" class="close"><span><img src="'.Yii::app()->baseUrl.'/images/btn_Close.png"></span></button>
+		   				   </div>
+		   				   <div class="modal-body" id="store-content-detail">
+		   				   </div>
+		   				 </div>
+		   			    </div>
+		   			  </div>';
+		   		  }else{
+		   			  $linkmap = '<a href="https://www.google.com/maps/place/'.urlencode($district[0]['address'].', '.$district[0]['district'].', '.$district[0]['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
+		   		  }
+		   		  echo $linkmap;
+				 ?>
                   </div>
                 </div>
               </div>
@@ -110,7 +134,27 @@ $category = explode(',', $store['store_category_id']);
                 <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
               </svg>
             </span>
-            <a href="https://www.google.com/maps/place/318+Phan+%C4%90%C4%83ng+L%C6%B0u,+Ph%C6%B0%E1%BB%9Dng+1,+Ph%C3%BA+Nhu%E1%BA%ADn,+H%E1%BB%93+Ch%C3%AD+Minh/@10.7992818,106.6782823,17z/data=!3m1!4b1!4m5!3m4!1s0x317528d715c116ef:0x27b41b9cd9e95d1b!8m2!3d10.7992818!4d106.680471" target="_blank" class="btncontact viewmap">xem bản đồ</a>
+		  <?php
+		  $html_map = '';
+		  $linkmap = '';
+		  if(count($district)>1){
+			  $linkmap = '<a href="#viewmap" data-toggle="modal" class="btncontact viewmap">xem bản đồ</a>';
+			  $html_map = '<div id="viewmap" class="modal fade store-modal" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
+			    <div class="modal-dialog" role="document">
+				 <div class="modal-content">
+				   <div class="modal-header">
+					<button type="button" id="btn-closeStoreDetail" class="close"><span><img src="'.Yii::app()->baseUrl.'/images/btn_Close.png"></span></button>
+				   </div>
+				   <div class="modal-body" id="store-content-detail">
+				   </div>
+				 </div>
+			    </div>
+			  </div>';
+		  }else{
+			  $linkmap = '<a href="https://www.google.com/maps/place/'.urlencode($district[0]['address'].', '.$district[0]['district'].', '.$district[0]['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
+		  }
+		  echo $linkmap;
+		   ?>
           </div>
         </div>
         <div class="container">
@@ -213,6 +257,7 @@ $category = explode(',', $store['store_category_id']);
         </div>
         </div>
    </div>
+<?php echo $html_map;?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/swiper-bundle.min.js', CClientScript::POS_END);?>
 <?php Yii::app()->clientScript->registerScript('storeSlide', '
 let wi = ($(window).width() - 1140)/2;

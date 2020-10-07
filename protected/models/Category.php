@@ -92,6 +92,7 @@ class Category extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'pagination' => false
 		));
 	}
 
@@ -116,7 +117,7 @@ class Category extends CActiveRecord
 
 		$data = new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'pagination' => array('pageSize' => false)
+			'pagination' => false
 		));
 
 		return $data;
@@ -126,7 +127,21 @@ class Category extends CActiveRecord
 		$criteria=new CDbCriteria;
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'pagination' => array('pageSize' => false)
+			'pagination' => false
 		));
+	}
+
+	public function getList2(){
+		$criteria=new CDbCriteria;
+		$data = new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => false
+		));
+		$arrData = array();
+		foreach($data->getData() as $dt){
+			$arrData[$dt['id']] = $dt['name'];
+		}
+
+		return $arrData;
 	}
 }

@@ -65,7 +65,7 @@ $category = explode(',', $store['store_category_id']);
               <div class="info">
                 <div class="">
                   <h3><?php echo $store['name'];?></h3>
-                  <p class="address"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-map.png"> <?php echo $district['address'].', '.$district['district'].', '.$district['city'];?></p>
+                  <p class="address"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-map.png"> <?php echo $district[0]['address'].', '.$district[0]['district'].', '.$district[0]['city'];?></p>
                   <ul class="category hidden-lg hidden-md">
                     <?php echo $ct_html;?>
                   </ul>
@@ -76,11 +76,40 @@ $category = explode(',', $store['store_category_id']);
                     <li><a href="#" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-facebook.png" /></a></li>
                   </ul>
                   <div class="moreinfo hidden-xs">
-                    <span class="wishlist2"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <!--span class="wishlist2"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
                       </svg>
-                    </span>
-                    <a href="https://www.google.com/maps/place/<?php echo urlencode($district['address'].', '.$district['district'].', '.$district['city']);?>" target="_blank" class="btncontact viewmap">xem bản đồ</a>
+			  </span-->
+				<?php
+				$html_map = '';
+				$linkmap = '';
+				if(count($district)>1){
+					$linkmap = '<a href="#viewmap" data-toggle="modal" class="btncontact viewmap">xem bản đồ</a>';
+					$html_map = '<div id="viewmap" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <button type="button" class="btnCloseMap close"><span><img src="'.Yii::app()->baseUrl.'/images/btn_Close.png"></span></button>
+					      </div>
+					      <div class="modal-body" id="store-content-detail">';
+						 foreach($district as $dt){
+							 $html_map .= '<div class="map-row">';
+							 $html_map .= '<p class="address"><img src="'.Yii::app()->baseUrl.'/images/icon-map-popup.png"> '.$dt['address'].', '.$dt['district'].'</p>';
+							 $html_map .= '<p class="phone"><img src="'.Yii::app()->baseUrl.'/images/icon-phone-popup.png"> '.$dt['phone'].'</p>';
+							 $html_map .=' <a href="https://www.google.com/maps/place/'.urlencode($dt['address'].', '.$dt['district'].', '.$dt['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
+							 $html_map .= '</div>';
+						 }
+				     $html_map .= '
+					      </div>
+					    </div>
+					  </div>
+					</div>';
+				}else{
+					$linkmap = '<a href="https://www.google.com/maps/place/'.urlencode($district[0]['address'].', '.$district[0]['district'].', '.$district[0]['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
+				}
+				echo $linkmap;
+				 ?>
+
                   </div>
                 </div>
               </div>
@@ -100,11 +129,13 @@ $category = explode(',', $store['store_category_id']);
             </div>
           </div>
           <div class="moreinfo hidden-lg hidden-md">
-            <span class="wishlist2"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <!--span class="wishlist2"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                 <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
               </svg>
-            </span>
-            <a href="https://www.google.com/maps/place/318+Phan+%C4%90%C4%83ng+L%C6%B0u,+Ph%C6%B0%E1%BB%9Dng+1,+Ph%C3%BA+Nhu%E1%BA%ADn,+H%E1%BB%93+Ch%C3%AD+Minh/@10.7992818,106.6782823,17z/data=!3m1!4b1!4m5!3m4!1s0x317528d715c116ef:0x27b41b9cd9e95d1b!8m2!3d10.7992818!4d106.680471" target="_blank" class="btncontact viewmap">xem bản đồ</a>
+	    </span-->
+		  <?php
+		  echo $linkmap;
+		   ?>
           </div>
         </div>
         <div class="container">
@@ -117,13 +148,14 @@ $category = explode(',', $store['store_category_id']);
 	          </div>
 	          <div class="store row">
 	            <?php
-			  foreach($store_near->getData() as $data){?>
+			  foreach($store_near->getData() as $data){
+				  $district = StoreBrand::model()->getDistrict($data['id']);?>
 	            <?php $rand_keys = array_rand($background, 1);?>
 			  <div class="item col-md-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
 	              <a href="javascript:void(0);" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
 	                <div class="item-title" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
 	                  <h3><?php echo $data['name'];?></h3>
-	                  <span><?php //echo $data['address'];?></span>
+	                  <span><?php echo $district['address'].', '.$district['district'];?></span>
 	                </div>
 	                <div class="photo">
 	                  <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
@@ -165,14 +197,15 @@ $category = explode(',', $store['store_category_id']);
           </div>
           <div class="store row">
 			<?php
-   		  foreach($store_related->getData() as $data){?>
+   		  foreach($store_related->getData() as $data){
+			  $district = StoreBrand::model()->getDistrict($data['id']);?>
                <?php $rand_keys = array_rand($background, 1);?>
    		  	<div class="item col-md-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
                  <a href="javascript:void(0);" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
                    <div class="item-title" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
                      <h3><?php echo $data['name'];?></h3>
-                     <span><?php //echo $data['address'];?></span>
-                   </div>
+                     <span><?php echo $district['address'].', '.$district['district'];?></span>
+			 </div>
                    <div class="photo">
                      <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
                      <div class="item-content" style="background:#<?php echo $background[$rand_keys]['content'];shuffle($background);?>">
@@ -206,9 +239,16 @@ $category = explode(',', $store['store_category_id']);
 		<?php }?>
         </div>
         </div>
+<?php echo $html_map;?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/swiper-bundle.min.js', CClientScript::POS_END);?>
 
 <?php Yii::app()->clientScript->registerScript('storeSlide', '
+$(".btnCloseMap").click(function(){
+	$("#viewmap").modal("hide");
+	$("#viewmap").on("hidden.bs.modal", function () {
+	   $("body").addClass("modal-open");
+	 });
+})
 let wi = ($(window).width() - 1140)/2;
 $(".gallery").css("margin-left", wi);
   var swiper = new Swiper(".swiper-container", {
