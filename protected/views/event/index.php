@@ -47,7 +47,7 @@ $background = array(
         <?php
         foreach($eco->getData() as $dt){?>
           <div class="col-md-3">
-            <a href="#event-detail" data-toggle="modal">
+            <a href="javascript:void(0);" data-href="<?php echo Yii::app()->baseUrl?>/events/<?php echo StringHelper::makeLink($dt['name']).'-'.$dt['id'];?>.html" data-id="<?php echo $dt['id'];?>">
               <img src="<?php echo Yii::app()->baseUrl?>/timthumb.php?src=<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $dt['photo'];?>&h=367&w=367" class="img-responsive">
               <span><?php echo $dt['name'];?></span>
             </a>
@@ -98,4 +98,32 @@ $(".events").find(".event-item").each(function(i, j){
       }
     })
   });
-})', CClientScript::POS_END);
+})
+
+$(".eco-items").find("a").each(function(i, j){
+  $(j).click(function(){
+    let id = $(this).attr("data-id");
+    $.ajax({
+      url: "'.Yii::app()->baseUrl.'/ajax/news",
+      data: {id: id},
+      dataType: "html",
+      type: "post",
+      success: function(data){
+        $("#news").html(data)
+        $("#event-detail").modal({
+            show: "false"
+        });
+
+     let current_url = $(j).attr("data-href");
+     history.pushState(null, null, current_url);
+
+     $("#btn-closeStoreDetail").click(function(){
+    $("#event-detail").modal("hide");
+    history.pushState(null, null, "'.Yii::app()->baseUrl.'/events.html");
+     });
+
+      }
+    })
+  });
+})
+', CClientScript::POS_END);

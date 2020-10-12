@@ -27,7 +27,7 @@ $background = array(
       <div class="filter-box">
 		 <div class="custom-select" style="width:210px">
 	        <select id="storecate">
-	          <option value="">Mặt hàng ...</option>
+	          <option value="">Loại sản phẩm</option>
 	          <?php foreach(StoreCategory::model()->getList2() as $key => $value){
 	            echo '<option value="'.$key.'">'.$value.'</option>';
 	          }?>

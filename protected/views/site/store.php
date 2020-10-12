@@ -28,9 +28,10 @@
 	   <div class="custom-select" style="width:180px">
 	        <select id="where">
 	          <option value="">Chọn quận</option>
-	          <option value="Quận 1">Quận 1</option>
-	          <option value="Quận 2">Quận 2</option>
-	          <option value="Quận 3">Quận 3</option>
+	          <?php foreach(Yii::app()->params['district'] as $key => $value){
+              echo '<option value="'.$key.'">'.$value.'</option>';
+            }
+            ?>
 	        </select>
 	   </div>
       </div>
@@ -43,6 +44,11 @@
       <?php
       foreach($model->getData() as $data){
 		 $district = StoreBrand::model()->getDistrict($data['id']);
+     if(!isset($district[0])){
+      $district = array(
+        array('address' => '', 'district' => '')
+      );
+     }
         ?>
         <?php $rand_keys = array_rand($background, 1);?>
         <div class="item col-md-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
@@ -88,7 +94,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" id="btn-closeStoreDetail" class="close"><span><img src="images/btn_Close.png"></span></button>
+        <button type="button" id="btn-closeStoreDetail" class="close"><span><img src="<?php echo Yii::app()->baseUrl?>/images/btn_Close.png"></span></button>
       </div>
       <div class="modal-body" id="store-content-detail">
       </div>
@@ -151,7 +157,7 @@ Yii::app()->clientScript->registerScript('loadStore', '
       });
   });
 function loadStore(){
-  $("#store-items").find(".item").each(function(i, j){
+  $(".store").find(".item").each(function(i, j){
     $(j).click(function(){
       let id = $(j).attr("data-id");
       let bg = $(j).attr("data-bg");
@@ -165,6 +171,7 @@ function loadStore(){
           $("#store-detail").modal({
               show: "false"
           });
+          loadStore();
 		let current_url = $(j).find("a").attr("data-href");
 		history.pushState(null, null, current_url);
 

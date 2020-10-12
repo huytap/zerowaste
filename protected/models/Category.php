@@ -47,6 +47,7 @@ class Category extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'category' => array(self::BELONGS_TO, 'StoreCategory', 'category')
 		);
 	}
 
@@ -112,7 +113,7 @@ class Category extends CActiveRecord
 		if($text_search){
 			$criteria->addCondition('name like "%'.$text_search.'%"');
 		}elseif($cate){
-				$criteria->addCondition('FIND_IN_SET('.$cate.', store_id)');
+				$criteria->compare('category', $cate, false);
 		}
 
 		$data = new CActiveDataProvider($this, array(

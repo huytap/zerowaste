@@ -12,6 +12,14 @@ $this->widget('booster.widgets.TbJsonGridView', array(
          }),
         'name',
         array(
+            'name' => 'category',
+            'type' => 'raw',
+            'value' => function($data){
+                $cate = StoreCategory::model()->getById($data->category);
+                return $cate['name'];
+            }
+        ),
+        array(
             'header' => 'Action',
             'headerHtmlOptions' => array('width' => 80,'style' => 'text-align:center;width:80px'),
             'htmlOptions' => array('style' => 'text-align:center;vertical-align:middle;width:80px;'),

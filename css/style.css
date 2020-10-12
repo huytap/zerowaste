@@ -597,6 +597,11 @@ h1 span{
     break-inside: avoid;
     page-break-inside: avoid;
 }
+#photos .item div:hover{
+  border-radius: 15px;
+  border:2px solid #000;
+  box-shadow: 9px 8px 5px 0px rgba(0, 0, 0, 0.17)
+}
 #photos .item div{
 	border-radius: 10px;
 	position: relative;
@@ -628,6 +633,7 @@ h1 span{
   padding: 20px 20px 0;
   position: relative;
   z-index: 10;
+      margin: 0 auto;
 }
 .btn-buy{
   padding-left: 30px;
@@ -979,6 +985,8 @@ h1 span{
   user-select: none;
 }
 .select-items {
+      max-height: 300px;
+    overflow-y: scroll;
   position: absolute;
   top: 100%;
   left: 0;
@@ -988,6 +996,18 @@ h1 span{
   border:2px solid #000;
   border-radius: 10px;
   margin-top: 10px;
+}
+.select-items::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+} 
+.select-items::-webkit-scrollbar-thumb {
+    background-color: #000000;
+    border-radius: 10px;
+}
+.select-items::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.93);
+    border-radius: 10px;
 }
 .select-items div{
 	padding: 13px 25px;
@@ -1152,6 +1172,9 @@ h1 span{
 .banner{
 	padding-top: 170px;
 }*/
+.events {
+  padding-top: 100px;
+}
 .slick-slider{
   z-index: -1;
 }
@@ -1204,6 +1227,9 @@ h1 span{
   cursor: pointer;
 }
 .event-content{
+  padding: 40px 0;
+}
+.event-item .event-content{
   padding: 40px 20px 0;
   margin-bottom: 20px;
   border-bottom-left-radius: 20px;
