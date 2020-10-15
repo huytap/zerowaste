@@ -18,8 +18,8 @@ $this->widget('HeadWidget');?>
 	    <div class="footer-bottom">
 		    <h2>HÃY TÌM TỤI MÌNH TẠI</h2>
 		    <ul>
-			    <li><a href="#" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_fb_footer.png"></a></li>
-			    <li><a href="#" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_instagram_footer.png"></a></li>
+			    <li><a href="https://www.facebook.com/gozerowastevn/" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_fb_footer.png"></a></li>
+			    <li><a href="https://www.instagram.com/gozerowastevn/" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_instagram_footer.png"></a></li>
 		    </ul>
 	    </div>
 	  </div>

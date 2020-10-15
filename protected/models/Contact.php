@@ -36,7 +36,7 @@ class Contact extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, email, who, invite, category, shop_name, address, shop_intro', 'required'),
+			array('name, email, who, invite, category, shop_name, shop_intro', 'required'),
 			array('name, email, who, invite, category, shop_name, facebook, instagram, website, address', 'length', 'max'=>128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

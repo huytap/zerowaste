@@ -23,7 +23,7 @@
 		padding: 50px 50px 30px;
 	}
 ');?>
-<div class="col-md-5 col-xs-12">
+<div class="col-md-5 col-xs-12" id="ptgallery">
 	<div class="swiper-container">
 	  <div class="swiper-wrapper">
 		<?php
@@ -49,6 +49,7 @@ $(document).ready(function(){
        grabCursor: true,
 	  pagination: {
         el: ".swiper-pagination",
+	   clickable: true,
       },
      });
 })

@@ -147,7 +147,7 @@ class Store extends CActiveRecord
 
 		$data = new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'pagination' => array('pageSize' => false)
+			'pagination' => false
 		));
 
 		return $data;
@@ -155,7 +155,7 @@ class Store extends CActiveRecord
 
 	public function getListNear($id, $store){
 		$criteria=new CDbCriteria;
-		$criteria->addCondition('store_brands.district="'.$store['district'].'" AND t.id!='.$id);
+		$criteria->addCondition('store_brands.district="'.$store[0]['district'].'" AND t.id!='.$id);
 		$criteria->join = 'LEFT JOIN store_brands ON store_brands.store_id = t.id';
 		$data = new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

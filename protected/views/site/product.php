@@ -28,6 +28,7 @@ $background = array(
 		 <div class="custom-select" style="width:210px">
 	        <select id="storecate">
 	          <option value="">Loại sản phẩm</option>
+			<option value="">Tất cả</option>
 	          <?php foreach(StoreCategory::model()->getList2() as $key => $value){
 	            echo '<option value="'.$key.'">'.$value.'</option>';
 	          }?>
@@ -99,8 +100,8 @@ function viewDetail(){
             $(".product-detail").show();
           }
 		$("html, body").animate({
-	        scrollTop: $("#product-detail").offset().top
-	    }, 2000);
+	        scrollTop: ($("#product-detail").offset().top - 200)
+	   }, 1000);
         }
    	  });
 	  else {

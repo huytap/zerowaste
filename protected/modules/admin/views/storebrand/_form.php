@@ -30,7 +30,7 @@ $form = $this->beginWidget('CActiveForm', array(
      </div>
 	<div class="col-sm-3 form-group">
 	    <?php echo $form->label($model, 'district');?>
-	    <?php echo $form->textField($model, 'district', array('class' => 'form-control input-sm', 'placeholder' => 'District'));?>
+	    <?php echo $form->dropDownlist($model, 'district',array('----------') + Yii::app()->params['district'], array('class' => 'form-control input-sm', 'placeholder' => 'District'));?>
 	    <?php echo $form->error($model, 'district'); ?>
      </div>
 </div>

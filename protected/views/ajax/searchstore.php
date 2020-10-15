@@ -7,6 +7,7 @@
     array('title' => 'cd9fea', 'content' => 'e4d9eb'),
     array('title' => '7dcee5', 'content' => 'd9e7eb')
   );
+  $arr_district = Yii::app()->params['district'];
   ?>
   <?php
   foreach($model->getData() as $data){
@@ -16,7 +17,7 @@
       <a href="javascript:void(0);" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
         <div class="item-title" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
           <h3><?php echo $data['name'];?></h3>
-          <span><?php echo $district[0]['address'].', '.$district[0]['district'];?></span>
+          <span><?php echo $district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
         </div>
         <div class="photo">
           <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">

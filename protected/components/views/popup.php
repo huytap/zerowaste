@@ -200,7 +200,8 @@
 <div id="popupsuccess" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="<?php echo Yii::app()->baseUrl?>/images/btn_Close.png"></span></button>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		 <span aria-hidden="true"><img src="<?php echo Yii::app()->baseUrl?>/images/btn_Close.png" width="30"></span></button>
 	 <img src="<?php echo Yii::app()->baseUrl?>/images/success.png" class="img-responsive"/>
 	</div>
   </div>
@@ -234,9 +235,9 @@ $(document).ready(function(){
 	    alert("Vui lòng chọn ngành hàng")
 	  }else if($.trim(shop) == ""){
 	    $(".box-form.active").find(".yourshop").focus();
-	  }else if($.trim(address) == ""){
+    }/*else if($.trim(address) == ""){
 	    $(".box-form.active").find(".youraddress").focus();
-	  }else if($.trim(intro) == ""){
+    }*/else if($.trim(intro) == ""){
 	    $(".box-form.active").find(".yourintro").focus();
 	  }else{
 	    let facebook = $(".box-form.active").find(".facebook").val();
@@ -250,10 +251,10 @@ $(document).ready(function(){
 	      success:function(data){
 	        if(data == 0){
 	          $("#popup").find("input").val("");
-	          $("#popupsuccess").modal({
-				show: "false"
-			});
-	          $("#popup .close").click()
+			$("#popup").modal("hide").on("hidden.bs.modal", function (e) {
+	                $("#popupsuccess").modal("show");
+	                $(this).off("hidden.bs.modal");
+	            });
 	        }else{
 	          alert("Dữ liệu chưa được gửi đi!")
 	        }

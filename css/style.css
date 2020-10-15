@@ -48,7 +48,7 @@ body{
 }
 .header{
   position: relative;
-  margin-top: -65px;
+  /*margin-top: -65px;*/
 }
 video {
   	width: 100%;
@@ -295,7 +295,7 @@ video {
   text-align:center;
   display:inline-block;
   font-family: 'Bungee';
-  padding: 10px 15px;
+  padding: 10px 25px;
   border-radius: 40px;
   box-shadow: 9px 8px 5px 0px rgba(0, 0, 0, 0.17);
 }
@@ -525,7 +525,12 @@ ul li{
 	padding-top: 105px;
 }
 #popupsuccess .modal-dialog{
-	width: 44%;
+	width: 30%;
+}
+.modal-content{
+	box-shadow: 0 0;
+	border: 0;
+	background: transparent;
 }
 #popupsuccess button{
 	top: 45px;
@@ -543,7 +548,6 @@ ul li{
   font-size: 20px;
 }
 .banner{
-	top:62px;
 	position: relative;
 }
 /*.nav-down + .banner,
@@ -597,10 +601,20 @@ h1 span{
     break-inside: avoid;
     page-break-inside: avoid;
 }
-#photos .item div:hover{
-  border-radius: 15px;
-  border:2px solid #000;
-  box-shadow: 9px 8px 5px 0px rgba(0, 0, 0, 0.17)
+#photos .item div{
+	position: relative;
+}
+#photos .item div:hover:before{
+	content: "";
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: 12;
+    border: 2px solid #000;
+    border-radius: 12px;
+    box-shadow: 9px 8px 5px 0px rgba(0, 0, 0, 0.17);
 }
 #photos .item div{
 	border-radius: 10px;
@@ -627,13 +641,19 @@ h1 span{
   text-align: center;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  margin:-25px 0 0;
+  margin:-20px 0 0;
 }
 #photos img {
   padding: 20px 20px 0;
   position: relative;
   z-index: 10;
       margin: 0 auto;
+}
+#ptgallery .swiper-slide img{
+	position: relative;
+	border: 2px solid #000;
+    padding: 10px;
+    background: #fff;
 }
 .btn-buy{
   padding-left: 30px;
@@ -800,6 +820,10 @@ h1 span{
 	background: rgba(0,0,0,.5);
 	height: 100%;
 }
+#viewmap.fade.in{
+	display: flex!important;
+	align-items: center;
+}
 #viewmap .modal-content{
 	border-radius: 30px;
 	background: #f1f0f0;
@@ -946,7 +970,7 @@ h1 span{
   margin-left: 15px;
 }
 .stores .filter-box{
-  margin-top: 280px;
+  margin-top: 220px;
 }
 .subbox{
   display: inline-block;
@@ -985,7 +1009,7 @@ h1 span{
   user-select: none;
 }
 .select-items {
-      max-height: 300px;
+      max-height: 385px;
     overflow-y: scroll;
   position: absolute;
   top: 100%;
@@ -1000,7 +1024,7 @@ h1 span{
 .select-items::-webkit-scrollbar {
     width: 6px;
     background-color: #F5F5F5;
-} 
+}
 .select-items::-webkit-scrollbar-thumb {
     background-color: #000000;
     border-radius: 10px;

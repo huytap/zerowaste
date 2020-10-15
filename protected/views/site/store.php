@@ -11,6 +11,7 @@
     array('title' => 'cd9fea', 'content' => 'e4d9eb'),
     array('title' => '7dcee5', 'content' => 'd9e7eb')
   );
+  $arr_district = Yii::app()->params['district'];
   ?>
   <div class="container">
     <div class="filter-box">
@@ -20,6 +21,7 @@
 	   <div class="custom-select" style="width:190px">
 	        <select id="storecate">
 	          <option value="">Ngành hàng ...</option>
+			<option value="">Tất cả</option>
 	          <?php foreach(StoreCategory::model()->getList2() as $key => $value){
 	            echo '<option value="'.$key.'">'.$value.'</option>';
 	          }?>
@@ -28,7 +30,8 @@
 	   <div class="custom-select" style="width:180px">
 	        <select id="where">
 	          <option value="">Chọn quận</option>
-	          <?php foreach(Yii::app()->params['district'] as $key => $value){
+			<option value="">Tất cả</option>
+	          <?php foreach($arr_district as $key => $value){
               echo '<option value="'.$key.'">'.$value.'</option>';
             }
             ?>
@@ -55,7 +58,7 @@
           <a href="javascript:void(0);" data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
             <div class="item-title" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
               <h3><?php echo $data['name'];?></h3>
-              <span><?php echo $district[0]['address'].', '.$district[0]['district'];?></span>
+              <span><?php echo $district[0]['address'].', '. (isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
             </div>
             <div class="photo">
               <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
@@ -104,6 +107,7 @@
 <?php
 
 Yii::app()->clientScript->registerScript('loadStore', '
+
   // Biến dùng kiểm tra nếu đang gửi ajax thì ko thực hiện gửi thêm
   var is_busy = false;
   // Biến lưu trữ trang hiện tại
@@ -171,7 +175,7 @@ function loadStore(){
           $("#store-detail").modal({
               show: "false"
           });
-          loadStore();
+
 		let current_url = $(j).find("a").attr("data-href");
 		history.pushState(null, null, current_url);
 
@@ -179,6 +183,7 @@ function loadStore(){
 		  $("#store-detail").modal("hide");
 		  history.pushState(null, null, "'.Yii::app()->baseUrl.'/store.html");
 	  	});
+		loadStore();
         }
       })
     });

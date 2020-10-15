@@ -25,7 +25,7 @@
 	foreach($related->getData() as $dt){?>
 	  <div class="col-md-4">
 	    <div class="event-items" data-href="<?php echo Yii::app()->baseUrl?>/events/<?php echo StringHelper::makeLink($dt['name']).'-'.$dt['id'];?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $dt['id'];?>">
-		 <img src="<?php echo Yii::app()->baseUrl?>/timthumb.php?src=<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $dt['photo'];?>&h=367&w=367" class="img-responsive">
+		 <a href="javascript:void(0);" style="color:#<?php echo $background[$rand_keys]['title'];?>;"><img src="<?php echo Yii::app()->baseUrl?>/timthumb.php?src=<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $dt['photo'];?>&h=367&w=367" class="img-responsive"></a>
 		 <div class="event-content" style="background:#<?php echo $background[$rand_keys]['content'];?>;">
 		   <h4><a href="javascript:void(0);" style="color:#<?php echo $background[$rand_keys]['title'];?>;"><?php echo $dt['name'];?></a></h4>
 		   <p><?php echo $dt['date'];?></p>

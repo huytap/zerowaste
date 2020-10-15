@@ -35,6 +35,7 @@ $background = array(
   array('title' => 'cd9fea', 'content' => 'e4d9eb'),
   array('title' => '7dcee5', 'content' => 'd9e7eb')
 );
+$arr_district = Yii::app()->params['district'];
 $category = explode(',', $store['store_category_id']);
 ?>
         <div class="top-info" style="background:<?php echo $_POST['bg'];?>;">
@@ -69,7 +70,7 @@ $category = explode(',', $store['store_category_id']);
               <div class="info">
                 <div class="">
                   <h3><?php echo $store['name'];?></h3>
-                  <p class="address"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-map.png"> <?php echo $district[0]['address'].', '.$district[0]['district'].', '.$district[0]['city'];?></p>
+                  <p class="address"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-map.png"> <?php echo $district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').', '.$district[0]['city'];?></p>
                   <ul class="category hidden-lg hidden-md">
                     <?php echo $ct_html;?>
                   </ul>
@@ -93,7 +94,7 @@ $category = explode(',', $store['store_category_id']);
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <button type="button" class="btnCloseMap close"><span><img src="'.Yii::app()->baseUrl.'/images/btn_Close.png"></span></button>
+					        <button type="button" class="btnCloseMap close" data-dismiss="modal" aria-label="Close"><span><img src="'.Yii::app()->baseUrl.'/images/btn_Close.png"></span></button>
 					      </div>
 					      <div class="modal-body" id="store-content-detail">';
 						 foreach($district as $dt){
@@ -109,7 +110,7 @@ $category = explode(',', $store['store_category_id']);
 					  </div>
 					</div>';
 				}else{
-					$linkmap = '<a href="https://www.google.com/maps/place/'.urlencode($district[0]['address'].', '.$district[0]['district'].', '.$district[0]['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
+					$linkmap = '<a href="https://www.google.com/maps/place/'.urlencode($district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').', '.$district[0]['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
 				}
 				echo $linkmap;
 				 ?>
@@ -143,7 +144,7 @@ $category = explode(',', $store['store_category_id']);
 	          <div class="headline">
 	            <div class="row">
 	              <div class="col-md-6"><h3 class="title">Cửa hàng gần đó</h3></div>
-	              <div class="col-md-6 text-right"><a href="<?php echo Yii::app()->baseUrl?>/store.html?tag=<?php echo $district['district'];?>">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right.png"></a></div>
+	              <div class="col-md-6 text-right"><a href="<?php echo Yii::app()->baseUrl?>/store.html?tag=<?php echo $district[0]['district'];?>">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right.png"></a></div>
 	            </div>
 	          </div>
 	          <div class="store row">
@@ -152,10 +153,10 @@ $category = explode(',', $store['store_category_id']);
 				  $district = StoreBrand::model()->getDistrict($data['id']);?>
 	            <?php $rand_keys = array_rand($background, 1);?>
 			  <div class="item col-md-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
-	              <a href="javascript:void(0);" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
+	              <a href="javascript:void(0);" data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
 	                <div class="item-title" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
 	                  <h3><?php echo $data['name'];?></h3>
-	                  <span><?php echo $district['address'].', '.$district['district'];?></span>
+	                  <span><?php echo $district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
 	                </div>
 	                <div class="photo">
 	                  <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
@@ -197,10 +198,10 @@ $category = explode(',', $store['store_category_id']);
 			  $district = StoreBrand::model()->getDistrict($data['id']);?>
                <?php $rand_keys = array_rand($background, 1);?>
    		  	<div class="item col-md-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
-                 <a href="javascript:void(0);" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
+                 <a href="javascript:void(0);" data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
                    <div class="item-title" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
                      <h3><?php echo $data['name'];?></h3>
-                     <span><?php echo $district['address'].', '.$district['district'];?></span>
+                     <span><?php echo $district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
 			 </div>
                    <div class="photo">
                      <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
@@ -241,15 +242,16 @@ $(".btnCloseMap").click(function(){
 	   $("body").addClass("modal-open");
 	 });
 })
-let wi = ($(window).width() - 1140)/2;
-$(".gallery").css("margin-left", wi);
-  var swiper = new Swiper(".swiper-container", {
+$(".gallery").css("margin-left", ($(window).width() - 1140)/2);
+  setTimeout(function(){
+	  var swiper = new Swiper(".swiper-container", {
     slidesPerView: 6,
     spaceBetween: 25,
     centeredSlides: false,
     grabCursor: true,
     pagination: false
   });
+  swiper.update();
+}, 200);
 
-  
 ', CClientScript::POS_END);
