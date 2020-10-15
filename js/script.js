@@ -97,6 +97,8 @@ $(document).ready(function(){
   //map2
   $('.map-right').find("g").hover(function() {
 	  var offset = $(this).offset();
+		var dis = $(this).attr('data-dist');
+		console.log(dis)
 	var top = offset.top + $(this).height()-180;
     var left = offset.left + $(this).width()/2;
     $('#map2').css({'top':top+'px','left':left+'px'})
