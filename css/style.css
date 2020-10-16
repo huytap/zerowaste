@@ -237,6 +237,36 @@ video {
 #map2{
   position: absolute;
   display: none;
+  width: 280px;
+background: #fff;
+border-radius: 15px;
+box-shadow: 9px 8px 5px 0px rgba(0, 0, 0, 0.17);
+height: 158px;
+}
+.box-pp{
+	width: 105px;
+    float: left;
+}
+.box-pp img{
+	float: right;
+	margin-top: -35px;
+}
+.box-pr{
+	float: left;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: calc(100% - 105px);
+}
+.box-title{
+	color:#ec5c89;
+	font-size: 30px;
+	font-family: 'Bungee';
+}
+.box-pr p{
+	font-family: 'Comfortaa';
+	font-size: 18px;
+	color:#010000;
 }
 .map-right g:hover path,
 .map-right g:hover polygon,

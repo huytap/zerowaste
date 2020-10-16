@@ -1,6 +1,15 @@
 <?php
 class AjaxController extends Controller{
   public $layout = false;
+
+  public function actionLoadmap(){
+	  if(isset($_POST['dist'])){
+		  $dist = $_POST['dist'];
+		  $data = StoreBrand::model()->getTotalByDist($dist);
+		  $district = Yii::app()->params['district'];
+		  echo json_encode(array('total' => $data, 'district' => $district[$dist]));
+	  }
+  }
   public function actionLoadMoreStore(){
     if(isset($_POST['page'])){
       $store = Store::model()->findByPk($_POST['id']);

@@ -76,9 +76,15 @@ $category = explode(',', $store['store_category_id']);
                   </ul>
                   <?php echo $store['description'];?>
                   <ul class="social hidden-lg hidden-md">
-                    <li><a href="#" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-instagram.png" /></a></li>
-                    <li><a href="#" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-website.png" /></a></li>
-                    <li><a href="#" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-facebook.png" /></a></li>
+				   <?php if($store['website']){?>
+   	 			    <li><a href="<?php echo $store['website'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-website.png" /></a></li>
+   	 		    <?php }?>
+   	 		    <?php if($store['facebook']){?>
+   	 			   <li><a href="<?php echo $store['facebook'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-facebook.png" /></a></li>
+   	 		   <?php }?>
+   	 		      <?php if($store['instagram']){?>
+   	 	                <li><a href="<?php echo $store['instagram'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-instagram.png" /></a></li>
+   	 			 <?php }?>
                   </ul>
                   <div class="moreinfo hidden-xs">
                     <!--span class="wishlist2"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -123,13 +129,11 @@ $category = explode(',', $store['store_category_id']);
           <div class="gallery">
             <div class="swiper-container">
               <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="<?php echo Yii::app()->baseUrl?>/images/gallery.png?v=01" class="img-responsive" /></div>
-                <div class="swiper-slide"><img src="<?php echo Yii::app()->baseUrl?>/images/gallery.png?v=01" class="img-responsive" /></div>
-                <div class="swiper-slide"><img src="<?php echo Yii::app()->baseUrl?>/images/gallery.png?v=01" class="img-responsive" /></div>
-                <div class="swiper-slide"><img src="<?php echo Yii::app()->baseUrl?>/images/gallery.png?v=01" class="img-responsive" /></div>
-                <div class="swiper-slide"><img src="<?php echo Yii::app()->baseUrl?>/images/gallery.png?v=01" class="img-responsive" /></div>
-                <div class="swiper-slide"><img src="<?php echo Yii::app()->baseUrl?>/images/gallery.png?v=01" class="img-responsive" /></div>
-                <div class="swiper-slide"><img src="<?php echo Yii::app()->baseUrl?>/images/gallery.png?v=01" class="img-responsive" /></div>
+			    <?php
+   	 		if($gallery)
+   	 		foreach($gallery->getData() as $gl){
+   	 			echo '<div class="swiper-slide"><img src="'.Yii::app()->baseUrl.'/uploads/gallery/'.$gl['name'].'" class="img-responsive" /></div>';
+   	 		}?>
               </div>
             </div>
           </div>
