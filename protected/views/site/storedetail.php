@@ -101,9 +101,9 @@ $category = explode(',', $store['store_category_id']);
 					<div class="modal-body" id="store-content-detail">';
 					foreach($district as $dt){
 						$html_map .= '<div class="map-row">';
-						$html_map .= '<p class="address"><img src="'.Yii::app()->baseUrl.'/images/icon-map-popup.png"> '.$dt['address'].', '.$dt['district'].'</p>';
+						$html_map .= '<p class="address"><img src="'.Yii::app()->baseUrl.'/images/icon-map-popup.png"> '.$dt['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').'</p>';
 						$html_map .= '<p class="phone"><img src="'.Yii::app()->baseUrl.'/images/icon-phone-popup.png"> '.$dt['phone'].'</p>';
-						$html_map .=' <a href="https://www.google.com/maps/place/'.urlencode($dt['address'].', '.$dt['district'].', '.$dt['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
+						$html_map .=' <a href="https://www.google.com/maps/place/'.urlencode($dt['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').', '.$dt['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
 						$html_map .= '</div>';
 					}
 			    $html_map .= '
@@ -271,7 +271,7 @@ function loadStore(){
           $("#store-detail").modal({
               show: "false"
           });
-          loadStore();
+
 		let current_url = $(j).find("a").attr("data-href");
 		history.pushState(null, null, current_url);
 
@@ -279,6 +279,10 @@ function loadStore(){
 		  $("#store-detail").modal("hide");
 		  history.pushState(null, null, "'.Yii::app()->baseUrl.'/store.html");
 	  	});
+		loadStore();
+		$("#store-detail").animate({
+	        scrollTop: 0
+	     }, 1000);
         }
       })
     });

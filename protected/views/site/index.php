@@ -1,5 +1,5 @@
 <?php
-
+$map = Yii::app()->params['district'];
 
 ?>
 
@@ -18,7 +18,7 @@
 			<?php
 			echo Settings::model()->getSetting('zw_intro');?>
 		</div>
-		<div class="btn-cta"><img src="<?php echo Yii::app()->baseUrl?>/images/btn-cta.png" ></div>
+		<div class="btn-cta hidden-xs"><img src="<?php echo Yii::app()->baseUrl?>/images/btn-cta.png" ></div>
 		<div class="games text-right hidden-sm hidden-xs">
 			<img src="<?php echo Yii::app()->baseUrl?>/images/tree.png" />
 		</div>
@@ -687,31 +687,21 @@
 		<div class="map-intro">
 			Dò tìm<br/>
 			khám phá
-			<p>Khám phá <span class="dd">315</span> địa điểm zero-waste thú vị ở TP. HCM!</p>
+			<p>Khám phá <span class="dd"><?php echo StoreBrand::model()->getTotalStore();?></span> địa điểm zero-waste thú vị ở TP. HCM!</p>
 		</div>
 		<div id="map-m">
 			<div class="bxslider">
-				<div class="map-item">
-					<img src="<?php echo Yii::app()->baseUrl?>/images/quan1.png" class="img-responsive" />
-					<div class="map-title">
-						<h3>Quận nhứt</h3>
-						<p>38 cửa hàng</p>
+				<?php
+				foreach($map as $k => $m){
+					$getDist = StoreBrand::model()->getTotalByDist($k);?>
+					<div class="map-item">
+						<img src="<?php echo Yii::app()->baseUrl?>/images/m<?php echo $k;?>.svg" class="img-responsive" />
+						<div class="map-title">
+							<h3><?php echo $m;?></h3>
+							<p><?php echo $getDist;?> cửa hàng</p>
+						</div>
 					</div>
-				</div>
-				<div class="map-item">
-					<img src="<?php echo Yii::app()->baseUrl?>/images/quan1.png" class="img-responsive" />
-					<div class="map-title">
-						<h3>Quận nhứt</h3>
-						<p>38 cửa hàng</p>
-					</div>
-				</div>
-				<div class="map-item">
-					<img src="<?php echo Yii::app()->baseUrl?>/images/quan1.png" class="img-responsive" />
-					<div class="map-title">
-						<h3>Quận nhứt</h3>
-						<p>38 cửa hàng</p>
-					</div>
-				</div>
+				<?php }?>
 			</div>
 		</div>
 	</div>
@@ -770,7 +760,7 @@
 	    		    html += '<div class=\"box-pr\"><div><h3 class=\"box-title\">'+ data.district+'</h3>';
 			    html +='<p>'+data.total+' cửa hàng</p></div></div>';
 			    $('#map2').html(html);
-			    $('#map2').show();
+			    $('#map2').css('display', 'flex');
 		    }
 	    })
     }

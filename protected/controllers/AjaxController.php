@@ -23,8 +23,8 @@ class AjaxController extends Controller{
       $bg = $_POST['bg'];
 	 $store_near = Store::model()->getListNear($_POST['id'], $district);
 	 $store_related = Store::model()->getListRelated($_POST['id'], $store);
-	 $gallery = Gallery::model()->getListByStore($_POST['store_id']);
-      $this->render('store', compact(array('store', 'bg', 'store_near', 'district', 'store_related')));
+	 $gallery = Gallery::model()->getListByStore($_POST['id']);
+      $this->render('store', compact(array('store', 'bg', 'store_near', 'district', 'store_related', 'gallery')));
     }
   }
 

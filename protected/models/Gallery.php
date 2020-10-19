@@ -77,7 +77,12 @@ class Gallery extends CActiveRecord
 		$criteria = new CDbCriteria;
 		$criteria->compare('store_id', $store_id, false, 'AND');
 		$data = Gallery::model()->find($criteria);
-		return $data;
+		if($data){
+			$items = Item::model()->getListByGallery($data['id']);
+			return $items;
+		}else{
+			return '';
+		}
 	}
 
 	public function getListByProduct($product_id){

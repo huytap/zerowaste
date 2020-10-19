@@ -47,7 +47,7 @@ class SiteController extends Controller{
     	 	$store_near = Store::model()->getListNear($storeid, $district);
     	 	$store_related = Store::model()->getListRelated($storeid, $store);
     	 	$gallery = Gallery::model()->getListByStore($storeid);
-          $this->render('storedetail', compact(array('store', 'bg', 'store_near', 'district', 'store_related')));
+          $this->render('storedetail', compact(array('store', 'bg', 'store_near', 'district', 'store_related', 'gallery')));
 	}
 
 	public function actionProduct($page){

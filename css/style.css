@@ -194,6 +194,10 @@ video {
 	position: relative;
 }*/
 @media(min-width: 1366px){
+	.footer-container{
+		position: relative;
+		top: 80px;
+	}
 .section:before{
   content:"";
   background: url(../images/dua-ngua.png?v=01) no-repeat;
@@ -237,32 +241,32 @@ video {
   display: none;
 }*/
 #map2{
+	align-items: center;
   position: absolute;
   display: none;
   width: 280px;
 background: #fff;
 border-radius: 15px;
 box-shadow: 9px 8px 5px 0px rgba(0, 0, 0, 0.17);
-height: 158px;
+height: 135px;
 }
 .box-pp{
-	width: 105px;
+	width: 115px;
     float: left;
 }
 .box-pp img{
-	float: right;
-	margin-top: -35px;
+
 }
 .box-pr{
 	float: left;
     display: flex;
     align-items: center;
     height: 100%;
-    width: calc(100% - 105px);
+    width: calc(100% - 115px);
 }
 .box-title{
 	color:#ec5c89;
-	font-size: 30px;
+	font-size: 25px;
 	font-family: 'Bungee';
 }
 .box-pr p{
@@ -300,10 +304,7 @@ height: 158px;
 	color:#fff;
 	text-align: center;
 }
-.footer-container{
-	position: relative;
-	top: 80px;
-}
+
 .footer p{
   margin-top: 20px;
   margin-bottom: 30px;

@@ -130,9 +130,13 @@
     font-size: 14px;
   }
   .footer{
-    background: url(../images/footer-m.png) no-repeat;
+    background: url(../images/footer-m.png) no-repeat center top;
     background-size: 100%;
     padding-bottom: 0;
+  }
+  .footer .container{
+	  background: #4bbaa2;
+    padding-bottom: 35px;
   }
   .footer .footer-top, .footer .footer-bottom{
     font-size: 22px;
@@ -388,4 +392,7 @@
 	  margin-bottom: 20px;
 	  padding-bottom: 0;
   }
+  #viewmap .modal-body {
+    padding: 50px 30px;
+}
 }

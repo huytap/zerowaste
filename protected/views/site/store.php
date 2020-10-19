@@ -184,6 +184,9 @@ function loadStore(){
 		  history.pushState(null, null, "'.Yii::app()->baseUrl.'/store.html");
 	  	});
 		loadStore();
+		$("#store-detail").animate({
+	        scrollTop: $("#store-content-detail").offset().top
+	     }, 1000);
         }
       })
     });

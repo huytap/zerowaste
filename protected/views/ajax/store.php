@@ -87,10 +87,6 @@ $category = explode(',', $store['store_category_id']);
    	 			 <?php }?>
                   </ul>
                   <div class="moreinfo hidden-xs">
-                    <!--span class="wishlist2"><svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-heart-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-                      </svg>
-			  </span-->
 				<?php
 				$html_map = '';
 				$linkmap = '';
@@ -100,14 +96,14 @@ $category = explode(',', $store['store_category_id']);
 					  <div class="modal-dialog" role="document">
 					    <div class="modal-content">
 					      <div class="modal-header">
-					        <button type="button" class="btnCloseMap close" data-dismiss="modal" aria-label="Close"><span><img src="'.Yii::app()->baseUrl.'/images/btn_Close.png"></span></button>
+					        <button type="button" class="btnCloseMap close"><span><img src="'.Yii::app()->baseUrl.'/images/btn_Close.png"></span></button>
 					      </div>
 					      <div class="modal-body" id="store-content-detail">';
 						 foreach($district as $dt){
 							 $html_map .= '<div class="map-row">';
-							 $html_map .= '<p class="address"><img src="'.Yii::app()->baseUrl.'/images/icon-map-popup.png"> '.$dt['address'].', '.$dt['district'].'</p>';
+							 $html_map .= '<p class="address"><img src="'.Yii::app()->baseUrl.'/images/icon-map-popup.png"> '.$dt['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').'</p>';
 							 $html_map .= '<p class="phone"><img src="'.Yii::app()->baseUrl.'/images/icon-phone-popup.png"> '.$dt['phone'].'</p>';
-							 $html_map .=' <a href="https://www.google.com/maps/place/'.urlencode($dt['address'].', '.$dt['district'].', '.$dt['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
+							 $html_map .=' <a href="https://www.google.com/maps/place/'.urlencode($dt['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').', '.$dt['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
 							 $html_map .= '</div>';
 						 }
 				     $html_map .= '
@@ -130,7 +126,7 @@ $category = explode(',', $store['store_category_id']);
             <div class="swiper-container">
               <div class="swiper-wrapper">
 			    <?php
-   	 		if($gallery)
+   	 		if($gallery && $gallery->getData())
    	 		foreach($gallery->getData() as $gl){
    	 			echo '<div class="swiper-slide"><img src="'.Yii::app()->baseUrl.'/uploads/gallery/'.$gl['name'].'" class="img-responsive" /></div>';
    	 		}?>
