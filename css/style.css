@@ -193,6 +193,7 @@ video {
 	float: left;
 	position: relative;
 }*/
+@media(min-width: 1366px){
 .section:before{
   content:"";
   background: url(../images/dua-ngua.png?v=01) no-repeat;
@@ -202,6 +203,7 @@ video {
   top: 325px;
   left: 50px;
   z-index: 999;
+}
 }
 .map-left{
 	/*display: flex;

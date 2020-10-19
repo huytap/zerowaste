@@ -15,6 +15,12 @@
 	}
 }
 @media only screen and (max-width: 768px){
+	.moreinfo{
+		display: block;
+		margin: 0 auto;
+		text-align: center;
+		float: none;
+	}
   .logo-m{
     position: relative;
     top: 20px;
@@ -375,7 +381,11 @@
   .category li{
     display: inline-block;
   }
+  #photo{
+	  padding: 0;
+  }
   #photos .item{
 	  margin-bottom: 20px;
+	  padding-bottom: 0;
   }
 }

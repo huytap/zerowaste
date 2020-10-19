@@ -38,7 +38,7 @@ $category = explode(',', $store['store_category_id']);
   <div class="header">
      <?php $this->widget('MenuWidget');?>
   </div>
-  <div class="top-info" style="background:<?php echo $_POST['bg'];?>;">
+  <div class="top-info" style="background:#<?php echo $_GET['bg'];?>;">
     <div class="container">
 	 <div class="col-md-1 hidden-xs">
 	   <ul class="category">

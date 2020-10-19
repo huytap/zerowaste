@@ -19,7 +19,7 @@
 			echo Settings::model()->getSetting('zw_intro');?>
 		</div>
 		<div class="btn-cta"><img src="<?php echo Yii::app()->baseUrl?>/images/btn-cta.png" ></div>
-		<div class="games text-right">
+		<div class="games text-right hidden-sm hidden-xs">
 			<img src="<?php echo Yii::app()->baseUrl?>/images/tree.png" />
 		</div>
 		<div class="map row hidden-sm hidden-xs">
