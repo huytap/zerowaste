@@ -38,7 +38,9 @@
   </div>
 </div>
 <style>
+@media(min-width: 1366px){
 .footer{
   background-color: #90daec;
+}
 }
 </style>
