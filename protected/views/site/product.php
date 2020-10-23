@@ -38,6 +38,7 @@ $background = array(
           <input type="text" class="" placeholder="Search with love..." id="text_search"/>
         </div>
       </div>
+	 <div id="result"></div>
       <div class="grid-container" id="photos">
         <?php
         foreach($model->getData() as $dt){
@@ -123,10 +124,12 @@ function searchByText(){
       success: function(data){
         if(data.length){
           $("#photos").html(data);
-        }else
-        $("#photos").html("Không tìm thấy kết quả")
+	}else{
+		$("#photos").html("");
+        $("#result").html("Không tìm thấy kết quả")
         viewDetail()
       }
+ }
     })
   });
 }
@@ -141,10 +144,12 @@ function searchByCate(){
       success: function(data){
         if(data.length){
           $("#photos").html(data);
-        }else
-        $("#photos").html("Không tìm thấy kết quả")
+	}else{
+		$("#photos").html("");
+        $("#result").html("Không tìm thấy kết quả")
         viewDetail()
-      }
+   }
+}
  });
 }
 var x, i, j, l, ll, selElmnt, a, b, c;

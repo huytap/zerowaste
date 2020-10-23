@@ -1,4 +1,3 @@
-<?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/swiper-bundle.min.css');?>
 <?php Yii::app()->clientScript->registerCss('cssStore', '
   .swiper-container {
      width: 100%;
@@ -40,6 +39,7 @@ $category = explode(',', $store['store_category_id']);
 ?>
         <div class="top-info" style="background:<?php echo $_POST['bg'];?>;">
           <div class="container">
+			<div class="row">
             <div class="col-md-1 hidden-xs">
               <ul class="category">
 			    <?php
@@ -66,11 +66,20 @@ $category = explode(',', $store['store_category_id']);
 		      <?php if($store['instagram']){?>
 	                <li><a href="<?php echo $store['instagram'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-instagram.png" /></a></li>
 			 <?php }?>
+			 <?php if($store['youtube']){?>
+  			    <li><a href="<?php echo $store['youtube'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_youtube.png" /></a></li>
+  		    <?php }?>
+  		    <?php if($store['shopee']){?>
+  			   <li><a href="<?php echo $store['shopee'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_shopee.png" /></a></li>
+  		   <?php }?>
+  		      <?php if($store['lazada']){?>
+  	                <li><a href="<?php echo $store['lazada'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_lazada.png" /></a></li>
+  			 <?php }?>
               </ul>
               <div class="info">
                 <div class="">
                   <h3><?php echo $store['name'];?></h3>
-                  <p class="address"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-map.png"> <?php echo $district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').', '.$district[0]['city'];?></p>
+                  <p class="address"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-map.png" class="hidden-xs"> <?php echo $district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').', '.$district[0]['city'];?></p>
                   <ul class="category hidden-lg hidden-md">
                     <?php echo $ct_html;?>
                   </ul>
@@ -85,6 +94,15 @@ $category = explode(',', $store['store_category_id']);
    	 		      <?php if($store['instagram']){?>
    	 	                <li><a href="<?php echo $store['instagram'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-instagram.png" /></a></li>
    	 			 <?php }?>
+				 <?php if($store['youtube']){?>
+	  			    <li><a href="<?php echo $store['youtube'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_youtube.png" /></a></li>
+	  		    <?php }?>
+	  		    <?php if($store['shopee']){?>
+	  			   <li><a href="<?php echo $store['shopee'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_shopee.png" /></a></li>
+	  		   <?php }?>
+	  		      <?php if($store['lazada']){?>
+	  	                <li><a href="<?php echo $store['lazada'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_lazada.png" /></a></li>
+	  			 <?php }?>
                   </ul>
                   <div class="moreinfo hidden-xs">
 				<?php
@@ -101,9 +119,10 @@ $category = explode(',', $store['store_category_id']);
 					      <div class="modal-body" id="store-content-detail">';
 						 foreach($district as $dt){
 							 $html_map .= '<div class="map-row">';
-							 $html_map .= '<p class="address"><img src="'.Yii::app()->baseUrl.'/images/icon-map-popup.png"> '.$dt['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').'</p>';
-							 $html_map .= '<p class="phone"><img src="'.Yii::app()->baseUrl.'/images/icon-phone-popup.png"> '.$dt['phone'].'</p>';
-							 $html_map .=' <a href="https://www.google.com/maps/place/'.urlencode($dt['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').', '.$dt['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
+							 $html_map .= '<p class="address"><img src="'.Yii::app()->baseUrl.'/images/icon-map-popup.png"> '.$dt['address'].', '.(isset($arr_district[$dt['district']])?$arr_district[$dt['district']]:'').'</p>';
+							 if($dt['phone'])
+							 	$html_map .= '<p class="phone"><img src="'.Yii::app()->baseUrl.'/images/icon-phone-popup.png"> '.$dt['phone'].'</p>';
+							 $html_map .=' <a href="https://www.google.com/maps/place/'.urlencode($dt['address'].', '.(isset($arr_district[$dt['district']])?$arr_district[$dt['district']]:'').', '.$dt['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
 							 $html_map .= '</div>';
 						 }
 				     $html_map .= '
@@ -121,9 +140,10 @@ $category = explode(',', $store['store_category_id']);
                 </div>
               </div>
             </div>
+	  </div>
           </div>
           <div class="gallery">
-            <div class="swiper-container">
+            <div class="swiper-container" id="gallery">
               <div class="swiper-wrapper">
 			    <?php
    	 		if($gallery && $gallery->getData())
@@ -143,62 +163,75 @@ $category = explode(',', $store['store_category_id']);
 		   <?php if($store_near && count($store_near->getData())){?>
 	          <div class="headline">
 	            <div class="row">
-	              <div class="col-md-6"><h3 class="title">Cửa hàng gần đó</h3></div>
-	              <div class="col-md-6 text-right"><a href="<?php echo Yii::app()->baseUrl?>/store.html?tag=<?php echo $district[0]['district'];?>">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right.png"></a></div>
+	              <div class="col-md-6">
+				    <h3 class="title">Cửa hàng gần đó</h3>
+				    <a class="viewmore-store hidden-lg hidden-md" href="<?php echo Yii::app()->baseUrl?>/store.html?related=<?php echo (isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?>"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="20"></a>
+			    </div>
+	              <div class="col-md-6 text-right hidden-xs"><a href="<?php echo Yii::app()->baseUrl?>/store.html?tag=<?php echo $district[0]['district'];?>">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right.png"></a></div>
 	            </div>
 	          </div>
 	          <div class="store row">
-	            <?php
-			  foreach($store_near->getData() as $data){
-				  $district = StoreBrand::model()->getDistrict($data['id']);?>
-	            <?php $rand_keys = array_rand($background, 1);?>
-			  <div class="item col-md-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
-	              <a href="javascript:void(0);" data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
-	                <div class="item-title" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
-	                  <h3><?php echo $data['name'];?></h3>
-	                  <span><?php echo $district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
-	                </div>
-	                <div class="photo">
-	                  <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
-	                  <div class="item-content" style="background:#<?php echo $background[$rand_keys]['content'];shuffle($background);?>">
-	                    <?php
-	                    $category = explode(',', $data['store_category_id']);
-	                    if(count($category)){
-	                      ?>
-	                      <ul>
-	                        <?php
-	                        foreach ($category as $key => $value) {
-	                          $cate = StoreCategory::model()->getById($value);
-	                          echo '<li><img src="'. Yii::app()->baseUrl.'/uploads/'. $cate['icon'].'" class="img-responsive"> '.$cate['name'].'</li>';
-	                        }?>
+				<div class="swiper-container" id="nearstore">
+	                 <div class="swiper-wrapper">
+			            <?php
+					  foreach($store_near->getData() as $data){
+						  $district = StoreBrand::model()->getDistrict($data['id']);?>
+			            <?php $rand_keys = array_rand($background, 1);?>
+					  <div class="swiper-slide item col-md-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
+			              <div class="subitem" data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
+			                <div class="item-title" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
+			                  <h3><?php echo $data['name'];?></h3>
+			                  <span><?php echo $district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
+			                </div>
+			                <div class="photo">
+			                  <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
+			                  <div class="item-content" style="background:#<?php echo $background[$rand_keys]['content'];shuffle($background);?>">
+			                    <?php
+			                    $category = explode(',', $data['store_category_id']);
+			                    if(count($category)){
+			                      ?>
+			                      <ul>
+			                        <?php
+			                        foreach ($category as $key => $value) {
+			                          $cate = StoreCategory::model()->getById($value);
+			                          echo '<li><img src="'. Yii::app()->baseUrl.'/uploads/'. $cate['icon'].'" class="img-responsive"> '.$cate['name'].'</li>';
+			                        }?>
 
-	                      </ul>
-	                      <?php
-	                    }
-	                    ?>
+			                      </ul>
+			                      <?php
+			                    }
+			                    ?>
 
-	                    <?php echo $data['description'];?>
-	                  </div>
-	                </div>
-	              </a>
-	            </div>
-	          <?php }?>
-	          </div>
+			                    <?php echo $data['description'];?>
+			                  </div>
+			                </div>
+			              </div>
+			            </div>
+			          <?php }?>
+	          	</div>
+				<div class="swiper-pagination"></div>
+			   </div>
+			</div>
 		<?php }?>
 		<?php if($store_related && count($store_related->getData())){?>
           <div class="headline">
             <div class="row">
-              <div class="col-md-6"><h3 class="title">Cửa hàng Liên quan</h3></div>
-              <div class="col-md-6 text-right"><a href="<?php echo Yii::app()->baseUrl?>/store.html?related=<?php echo $store['store_category_id'];?>">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right.png"></a></div>
+              <div class="col-md-6">
+			    <h3 class="title">Cửa hàng Liên quan</h3>
+			    <a class="viewmore-store hidden-lg hidden-md" href="<?php echo Yii::app()->baseUrl?>/store.html?related=<?php echo $store['store_category_id'];?>"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="20"></a>
+		    </div>
+              <div class="col-md-6 text-right hidden-xs"><a href="<?php echo Yii::app()->baseUrl?>/store.html?related=<?php echo $store['store_category_id'];?>">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right.png"></a></div>
             </div>
           </div>
           <div class="store row">
+			<div class="swiper-container" id="relatedstore">
+                 <div class="swiper-wrapper">
 			<?php
    		  foreach($store_related->getData() as $data){
 			  $district = StoreBrand::model()->getDistrict($data['id']);?>
                <?php $rand_keys = array_rand($background, 1);?>
-   		  	<div class="item col-md-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
-                 <a href="javascript:void(0);" data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
+   		  	<div class="swiper-slide item col-md-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
+                 <div class="subitem" data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
                    <div class="item-title" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
                      <h3><?php echo $data['name'];?></h3>
                      <span><?php echo $district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
@@ -225,9 +258,12 @@ $category = explode(',', $store['store_category_id']);
                        <?php echo $data['description'];?>
                      </div>
                    </div>
-                 </a>
+                 </div>
                </div>
              <?php }?>
+		   </div>
+		   <div class="swiper-pagination"></div>
+		   </div>
           </div>
 		<?php }?>
         </div>
@@ -242,16 +278,29 @@ $(".btnCloseMap").click(function(){
 	   $("body").addClass("modal-open");
 	 });
 })
-$(".gallery").css("margin-left", ($(window).width() - 1140)/2);
-  setTimeout(function(){
-	  var swiper = new Swiper(".swiper-container", {
-    slidesPerView: 6,
-    spaceBetween: 25,
-    centeredSlides: false,
-    grabCursor: true,
-    pagination: false
-  });
-  swiper.update();
-}, 200);
-
+if($(window).width()<=768){
+	  setTimeout(function(){
+	var swiper = new Swiper("#relatedstore,#nearstore", {
+	    speed: 400,
+	    pagination: {
+	    el: ".swiper-pagination",
+	    type: "bullets",
+	    clickable: true
+	  },
+	  });
+	}, 200);
+}else{
+	$(".gallery").css("margin-left", ($(window).width() - 1140)/2);
+	  setTimeout(function(){
+		  var swiper = new Swiper("#gallery", {
+	    slidesPerView: 6,
+	    spaceBetween: 25,
+	    centeredSlides: false,
+	    grabCursor: true,
+	    pagination: false
+	  });
+	  swiper.update();
+	}, 200);
+}
+loadStore();
 ', CClientScript::POS_END);

@@ -15,9 +15,20 @@
   ?>
   <div class="container">
     <div class="filter-box">
-      <div class="filter-m hidden-lg hidden-md">Lọc kết qủa</div>
+      <div class="filter-m hidden-lg hidden-md">
+		 <img src="<?php echo Yii::app()->baseUrl?>/images/filterbutton.png" width="22" />
+	 </div>
+	 <div class="filter-search-m hidden-lg hidden-md pull-right hidden-lg hidden-md">
+		 <img id="inputsearch" src="<?php echo Yii::app()->baseUrl?>/images/btn_search.png" width="28" />
+	 </div>
+      <div class="box-search pull-right">
+        <input type="text" class="" placeholder="Search with love..." id="typeStore">
+      </div>
+	 <ul class="hidden-lg hidden-md hidden-lg hidden-md" id="filteroption">
+	 </ul>
       <div class="subbox">
-        <h3 class="hidden-lg hidden-md">Lọc kết qủa</h3>
+        <h3 class="hidden-lg hidden-md"><img src="<?php echo Yii::app()->baseUrl?>/images/filterbutton.png" width="22" /> Lọc kết qủa</h3>
+	   <a href="javascript:void(0);" class="btnclose-m hidden-lg hidden-md"><img src="<?php echo Yii::app()->baseUrl?>/images/btnclose-m.png" width="30" /></a>
 	   <div class="custom-select" style="width:190px">
 	        <select id="storecate">
 	          <option value="">Ngành hàng ...</option>
@@ -37,11 +48,11 @@
             ?>
 	        </select>
 	   </div>
+	   <div class="apply text-center hidden-lg hidden-md">
+		   <a href="javascript:void(0);" class="btncontact" id="btnapply">Áp dụng</a>
+	   </div>
       </div>
       <!--span class="btn_apply hidden-sm hidden-xs"><img src="images/btn_apply.png" /></span-->
-      <div class="box-search pull-right hidden-xs">
-        <input type="text" class="" placeholder="Search with love..." id="typeStore">
-      </div>
     </div>
     <div class="row store" id="store-items">
       <?php
@@ -55,14 +66,17 @@
         ?>
         <?php $rand_keys = array_rand($background, 1);?>
         <div class="item col-md-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
-          <a href="javascript:void(0);" data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>">
-            <div class="item-title" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
-              <h3><?php echo $data['name'];?></h3>
-              <span><?php echo $district[0]['address'].', '. (isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
-            </div>
+          <div data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>" class="subitem">
+		  <div class="row item-title active" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
+			  <div class="col-xs-4 hidden-lg hidden-md"><img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>"></div>
+			  <div class="col-xs-8 col-lg-12">
+	              <h3><?php echo $data['name'];?></h3>
+	              <span><?php echo $district[0]['address'].', '. (isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
+	            </div>
+		  </div>
             <div class="photo">
-              <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
-              <div class="item-content" style="background:#<?php echo $background[$rand_keys]['content'];shuffle($background);?>">
+              <img class="img-responsive hidden-xs" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
+              <div class="item-content" style="background:#<?php echo $background[$rand_keys]['content'];?>">
                 <?php
                 $category = explode(',', $data['store_category_id']);
                 if(count($category)){
@@ -71,7 +85,7 @@
                     <?php
                     foreach ($category as $key => $value) {
                       $cate = StoreCategory::model()->getById($value);
-                      echo '<li><img src="'. Yii::app()->baseUrl.'/uploads/'. $cate['icon'].'" class="img-responsive"> '.$cate['name'].'</li>';
+                      echo '<li><img src="'. Yii::app()->baseUrl.'/uploads/'. $cate['icon'].'" class="img-responsive" width="22"> '.$cate['name'].'</li>';
                     }?>
 
                   </ul>
@@ -82,13 +96,14 @@
                 <?php echo $data['description'];?>
               </div>
             </div>
-          </a>
+		  <span style="background:#<?php echo $background[$rand_keys]['title'];?>" href="javascript:void(0)" class="viewdetail hidden-lg hidden-md"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="16"></span>
+	  </div>
         </div>
         <?php
       }
       ?>
     </div>
-        <?php if(count($model->getData())>3){?>
+        <?php if(count($model->getData())>12){?>
             <div class="text-center"><a class="btncontact" href="javascript:void(0);" id="btnLoadmore">XEM THÊM <img src="images/arrow-down2.png"></a></div>
           <?php }?>
   </div>
@@ -146,7 +161,10 @@ Yii::app()->clientScript->registerScript('loadStore', '
                   }else{
                       //$button.html("XEM THÊM <img src=\"images/arrow-down2.png\"");
                   }
-                  $element.append(result)
+                  $element.append(result);
+			   /*$("html, body").animate({
+				   scrollTop: $("#store-items").offset().top + ($("#store-items").find(".item").length/4)*490
+			   }, 1000)*/
               },
               complete:function(data){
                 loadStore()
@@ -176,14 +194,18 @@ function loadStore(){
               show: "false"
           });
 
-		let current_url = $(j).find("a").attr("data-href");
+		let current_url = $(j).find(".subitem").attr("data-href");
 		history.pushState(null, null, current_url);
 
 		$("#btn-closeStoreDetail").click(function(){
 		  $("#store-detail").modal("hide");
 		  history.pushState(null, null, "'.Yii::app()->baseUrl.'/store.html");
 	  	});
-		loadStore();
+		if($(window).width()>768){
+			loadStore();
+		}else{
+			loadStoreM()
+		}
 		$("#store-detail").animate({
 	        scrollTop: $("#store-content-detail").offset().top
 	     }, 1000);
@@ -192,8 +214,13 @@ function loadStore(){
     });
   })
 }
-loadStore();
+if($(window).width()>768){
+	loadStore();
+}else{
+	loadStoreM()
+}
 //search
+
 $("#typeStore").keyup(function(){
   let text_search = $(this).val();
   $.ajax({
@@ -211,7 +238,6 @@ $("#typeStore").keyup(function(){
     }
   })
 });
-
 function changeData(){
 	let cate = $("#storecate").val();
      let where = $("#where").val();
@@ -230,9 +256,6 @@ function changeData(){
        }
      })
 }
-$(".filter-m").click(function(){
-  $(".subbox").show();
-});
 
 var x, i, j, l, ll, selElmnt, a, b, c;
 x = document.getElementsByClassName("custom-select");
@@ -268,7 +291,9 @@ for (i = 0; i < l; i++) {
           }
         }
         h.click();
-	   s.onchange = changeData()
+	   if($(window).width()>768){
+	   	s.onchange = changeData()
+   	   }
     });
     b.appendChild(c);
   }
@@ -300,5 +325,63 @@ function closeAllSelect(elmnt) {
   }
 }
 document.addEventListener("click", closeAllSelect);
+
+//mobile
+$(".filter-m").click(function(){
+  $(".subbox").show();
+});
+$(".btnclose-m").click(function(){
+	$(".subbox").hide();
+});
+$("#btnapply").click(function(){
+	var ht = "";
+	if($("#storecate").val() !== ""){
+		ht += "<li id=\"catestore\">"+$("#storecate").next().html()+" <img src=\"'.Yii::app()->baseUrl.'/images/btncloseitem.png\" width=\"13\"></li>";
+	}
+
+	if($("#where").val() !== ""){
+		ht += "<li id=\"whereis\">"+$("#where").next().html()+" <img src=\"'.Yii::app()->baseUrl.'/images/btncloseitem.png\" width=\"13\"></li>";
+	}
+	$("#filteroption").html(ht)
+
+	changeData();
+	$(".subbox").hide();
+	$("#catestore").find("img").click(function(){
+		$("#catestore").remove();
+		$("#catestore").val("");
+		$("#storecate").next().html("Tất cả")
+		$("#storecate").next().next().find("div").removeClass("same-as-selected");
+		changeData();
+	})
+
+	$("#whereis").find("img").click(function(){
+		$("#whereis").remove();
+		$("#where").val("");
+		$("#where").next().html("Tất cả")
+		$("#where").next().next().find("div").removeClass("same-as-selected");
+		changeData();
+	});
+});
+$("#inputsearch").click(function(){
+	$("#typeStore").show();
+	$(this).parent().hide();
+});
+function loadStoreM(){
+	$(".store").find(".item").each(function(i, j){
+	  	$(j).find(".item-title").click(function(){
+			$(".store").find(".item").find(".photo").removeClass("active");
+			$(".store").find(".item").find(".subitem").removeClass("active");
+			$(".store").find(".item").find(".item-title").addClass("active");
+			$(this).removeClass("active");
+			$(j).find(".subitem").addClass("active");
+			$(j).find(".photo").addClass("active");
+		});
+		$(j).find(".viewdetail").click(function(){
+			let id = $(j).attr("data-id");
+	 	    let bg = $(j).attr("data-bg");
+		    loadStore();
+		})
+	});
+}
 ', CClientScript::POS_END);
  ?>

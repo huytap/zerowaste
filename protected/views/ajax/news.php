@@ -14,10 +14,16 @@
     </div>
   </div>
 </div>
+<?php if($related && $related->getData()){?>
 <div class="headline">
   <div class="row">
-    <div class="col-md-6"><h3 class="title">Sự kiện liên quan</h3></div>
-    <div class="col-md-6 text-right"><a href="<?php echo Yii::app()->baseUrl?>/events.html">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right.png"></a></div>
+    <div class="col-md-6">
+	    <h3 class="title">Sự kiện liên quan
+		    <a href="#" class="viewmore-store hidden-lg hidden-md hidden-sm"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="20"/></a>
+	    </h3>
+    </div>
+    <div class="col-md-6 text-right hidden-xs">
+	    <a href="<?php echo Yii::app()->baseUrl?>/events.html">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right.png"></a></div>
   </div>
 </div>
 <div class="row event-lq">
@@ -36,7 +42,7 @@
    <?php }?>
 </div>
 <?php
-
+}
 Yii::app()->clientScript->registerScript('loadNews2', '
 $(".event-lq").find(".event-items").each(function(i, j){
   $(j).click(function(){

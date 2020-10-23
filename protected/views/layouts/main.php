@@ -10,9 +10,10 @@ $this->widget('HeadWidget');?>
 	    <div class="footer-bottom">
 	      Zero-Waste Wonderland
 	    </div>
-	    <p>Mỗi một cửa hàng, sản phẩm zero-waste đều là<br/>một đóng góp có ý nghĩa cho Zero Waste Wonderland.</p>
+	    <p class="hidden-xs">Mỗi một cửa hàng, sản phẩm zero-waste đều là<br/>một đóng góp có ý nghĩa cho Zero Waste Wonderland.</p>
+	    <p class="hidden-lg hidden-md hidden-sm">Mỗi một cửa hàng, sản phẩm zero-waste đều là một đóng góp có ý nghĩa cho Zero Waste Wonderland.</p>
 	    <p>Đừng ngại giới thiệu cửa hàng và sản phẩm zero-waste với tụi mình nhé!</p>
-	    <a href="#popup" data-toggle="modal" class="btncontact">
+	    <a href="#popup" data-toggle="modal" class="btncontact" id="btncontact">
 	      Có Chỗ này hay lắm!
 	    </a>
 	    <div class="footer-bottom">

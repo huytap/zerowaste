@@ -113,7 +113,7 @@ class Store extends CActiveRecord
 		}
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'pagination' => array('pageSize' => 6)
+			'pagination' => array('pageSize' => 12)
 		));
 	}
 

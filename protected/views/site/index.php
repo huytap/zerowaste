@@ -694,13 +694,13 @@ $map = Yii::app()->params['district'];
 				<?php
 				foreach($map as $k => $m){
 					$getDist = StoreBrand::model()->getTotalByDist($k);?>
-					<div class="map-item">
+					<a href="<?php echo Yii::app()->baseUrl?>/store.html?tag=<?php echo $k?>" class="map-item">
 						<img src="<?php echo Yii::app()->baseUrl?>/images/m<?php echo $k;?>.svg" class="img-responsive" />
 						<div class="map-title">
 							<h3><?php echo $m;?></h3>
 							<p><?php echo $getDist;?> cửa hàng</p>
 						</div>
-					</div>
+					</a>
 				<?php }?>
 			</div>
 		</div>
@@ -738,23 +738,25 @@ $map = Yii::app()->params['district'];
 		});
   });
   //map hover
-  $('.map-right').find('g').click(function() {
+  $('.map-right').find('g[data-dist]').click(function() {
 	var dis = $(this).attr('data-dist');
 	location.href= '".Yii::app()->baseUrl."/store.html?tag='+dis
   });
-  $('.map-right').find('g').hover(function() {
+  var dis_new = 0;
+  $('.map-right').find('g[data-dist]').hover(function() {
     var offset = $(this).offset();
     var dis = $(this).attr('data-dist');
     var top = offset.top + $(this).height()-150;
     var left = offset.left + $(this).width()/2;
-    $('#map2').css({'top':top+'px','left':left+'px'})
-    if(dis !== undefined){
+    $('#map2').css({'top':top+'px','left':left+'px'});
+    if(dis !== undefined && dis_new !== dis){
 	    $.ajax({
 		    url: '".Yii::app()->baseUrl."/ajax/loadmap',
 		    type: 'post',
 		    data:{dist:dis},
 		    dataType: 'json',
 		    success:function(data){
+			    dis_new = dis;
 			    var html = '';
 			    html += '<div class=\"box-pp\"><img class=\"img-responsive\" src=\"".Yii::app()->baseUrl."\/images/'+dis+'.svg\"></div>';
 	    		    html += '<div class=\"box-pr\"><div><h3 class=\"box-title\">'+ data.district+'</h3>';
