@@ -19,7 +19,7 @@ $background = array(
    </div>
    <div class="container events">
       <h3>
-         eco events <a href="<?php echo Yii::app()->baseUrl?>/events.html?tag=events" class="viewmore-store hidden-lg hidden-md hidden-sm"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="20"/></a>
+         eco events
       </h3>
       <div class="row">
          <?php
@@ -43,22 +43,6 @@ $background = array(
             </div>
          </div>
          <?php }?>
-      </div>
-      <div class="eco-items">
-         <h3>
-            eco news <a href="<?php echo Yii::app()->baseUrl?>/events.html?tag=news" class="viewmore-store hidden-lg hidden-md hidden-sm"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="20"/></a>
-         </h3>
-         <div class="row">
-            <?php
-               foreach($eco->getData() as $dt){?>
-            <div class="col-md-3">
-               <a href="javascript:void(0);" data-href="<?php echo Yii::app()->baseUrl?>/events/<?php echo StringHelper::makeLink($dt['name']).'-'.$dt['id'];?>.html" data-id="<?php echo $dt['id'];?>">
-               <img src="<?php echo Yii::app()->baseUrl?>/timthumb.php?src=<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $dt['photo'];?>&h=367&w=367" class="img-responsive">
-               <span><?php echo $dt['name'];?></span>
-               </a>
-            </div>
-            <?php }?>
-         </div>
       </div>
    </div>
 </div>
@@ -136,32 +120,5 @@ function loadNews(){
   }
 }
 
-loadNews()
-
-$(".eco-items").find("a").each(function(i, j){
-  $(j).click(function(){
-    let id = $(this).attr("data-id");
-    $.ajax({
-      url: "'.Yii::app()->baseUrl.'/ajax/news",
-      data: {id: id},
-      dataType: "html",
-      type: "post",
-      success: function(data){
-        $("#news").html(data)
-        $("#event-detail").modal({
-            show: "false"
-        });
-
-         let current_url = $(j).attr("data-href");
-         history.pushState(null, null, current_url);
-
-        $("#btn-closeStoreDetail").click(function(){
-          $("#event-detail").modal("hide");
-          history.pushState(null, null, "'.Yii::app()->baseUrl.'/events.html");
-        });
-
-      }
-    })
-  });
-})
+loadNews();
 ', CClientScript::POS_END);

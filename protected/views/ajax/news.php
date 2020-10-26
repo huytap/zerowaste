@@ -44,6 +44,8 @@
 <?php
 }
 Yii::app()->clientScript->registerScript('loadNews2', '
+loadNews()
+/*
 $(".event-lq").find(".event-items").each(function(i, j){
   $(j).click(function(){
     let id = $(this).attr("data-id");
@@ -58,15 +60,15 @@ $(".event-lq").find(".event-items").each(function(i, j){
             show: "false"
         });
 
-	   let current_url = $(j).attr("data-href");
-	   history.pushState(null, null, current_url);
+  	   let current_url = $(j).attr("data-href");
+  	   history.pushState(null, null, current_url);
 
-	   $("#btn-closeStoreDetail").click(function(){
-		$("#event-detail").modal("hide");
-		history.pushState(null, null, "'.Yii::app()->baseUrl.'/events.html");
-	   });
+  	   $("#btn-closeStoreDetail").click(function(){
+    		 $("#event-detail").modal("hide");
+    		 history.pushState(null, null, "'.Yii::app()->baseUrl.'/events.html");
+  	   });
 
       }
     })
-  });
+  });*/
 })', CClientScript::POS_END);

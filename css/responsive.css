@@ -57,7 +57,7 @@
     padding-bottom: 55px;
   }
   .main-menu li a{
-    font-size: 22px;
+    font-size: 32px;
   }
   .main-menu li a span{
     position: relative;
@@ -638,6 +638,7 @@ a.viewmore-store{
 .event-item .popup{
 	display: none;
 	padding-top: 20px;
+  width: 100%;
 }
 .events h4 a{
 	font-size: 18px;
@@ -652,7 +653,7 @@ a.viewmore-store{
 }
 .event-item .event-content{
 	padding-top: 20px;
-	min-height: auto;
+	min-height: 120px;
 }
 .event-item .viewdetail {
     position: absolute;
@@ -696,6 +697,12 @@ a.viewmore-store{
     background: transparent;
     padding: 10px;
 }
+.detail-text p{
+  margin-bottom: 5px;
+}
+.detail-text p:last-child{
+  margin-bottom: 25px;
+}
 }
 @media(max-width:375px){
 	.home-content{
@@ -714,4 +721,12 @@ a.viewmore-store{
 	    padding-left: 15px;
 	    padding-right: 15px;
 	}
+  .event-item .event-content{
+  	min-height: 140px;
+  }
+}
+@media(max-width:320px){
+  .event-item .event-content{
+  	min-height: 180px;
+  }
 }

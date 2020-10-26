@@ -1334,6 +1334,14 @@ h1 span{
     left: 0;
     right: 0;
 }
+.btnXemThem a.hidden-xs{
+  background: #329b82;
+  border:2px solid #000;
+  border-radius: 25px;
+  box-shadow: 9px 8px 5px 0px rgba(0, 0, 0, 0.17);
+  padding:10px 20px;
+  color:#fff;
+}
 .btnViewmore{
   background: #329b82;
   color:#fff;
@@ -1558,6 +1566,7 @@ a:hover{
 .step1.step2{
 	position: relative;
 }
+@media(min-width:1024px){
 .step1.step2:before{
   content:"";
   background: url(../images/boy.png?v=002) no-repeat;
@@ -1577,6 +1586,7 @@ a:hover{
   right: -250px;
   top: 20px;
   z-index: 9;
+}
 }
 .connect .field{
   display: none;

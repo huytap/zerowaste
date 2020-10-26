@@ -190,8 +190,8 @@
           <div class="goiy text-center"><a id="btnGoiy" href="javascript:void(0);" class="btncontact btngoiy">Gợi ý</a></div>
         </div>
         <div class="popup-footer">
-          <!--img src="<?php echo Yii::app()->baseUrl?>/images/form-footer-bg.png" class="img-responsive hidden-xs">
-          <img src="<?php echo Yii::app()->baseUrl?>/images/form-footer-bg-m.png" class="img-responsive hidden-lg hidden-md"-->
+          <!--img src="<?php echo Yii::app()->baseUrl?>/images/form-footer-bg.png" class="img-responsive hidden-xs"-->
+          <img src="<?php echo Yii::app()->baseUrl?>/images/form-footer-bg-m.png" class="img-responsive hidden-lg hidden-md">
 	</div>
       </div>
     </div>

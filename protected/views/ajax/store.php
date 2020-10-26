@@ -302,5 +302,9 @@ if($(window).width()<=768){
 	  swiper.update();
 	}, 200);
 }
-loadStore();
+if($(window).with()>768){
+  loadStore();
+}else{
+  loadStoreM();
+}
 ', CClientScript::POS_END);
