@@ -124,6 +124,6 @@ $form = $this->beginWidget('CActiveForm', array(
 
 <script>
         CKEDITOR.replace( 'News[description]', {
-			      allowedContent: 'p span a[!href]'
+			      allowedContent: 'p span a[!href,!target]'
 			  });
 </script>

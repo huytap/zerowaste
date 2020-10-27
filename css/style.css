@@ -50,6 +50,10 @@ body{
   position: relative;
   /*margin-top: -65px;*/
 }
+.event-content p a{
+  color: rgb(75,186,162);
+    text-decoration: underline;
+}
 video {
   	width: 100%;
   	height: auto;
