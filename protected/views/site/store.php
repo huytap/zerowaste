@@ -396,7 +396,8 @@ function loadStoreM(){
                 show: "false"
             });
 
-            let current_url = $(this).parent().parent().find(".subitem").attr("data-href");
+            let current_url = $("#store-items").find(".subitem.active").attr("data-href");
+            console.log(current_url)
             history.pushState(null, null, current_url);
 
             $("#btn-closeStoreDetail").click(function(){

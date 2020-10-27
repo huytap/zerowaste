@@ -777,8 +777,11 @@ h1 span{
   align-items: center;
 }
 .detail-text p{
-  margin-bottom: 55px;
+  margin-bottom: 0;
   margin-top: 25px;
+}
+.detail-text p:last-child{
+  margin-bottom: 55px;
 }
 /*store*/
 .store-footer{

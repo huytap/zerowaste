@@ -635,10 +635,16 @@ a.viewmore-store{
 #popupsuccess .modal-dialog {
     width: 95.5%;
 }
+.about:after{
+  background: #ffbdc5;
+}
 .event-item .popup{
 	display: none;
 	padding-top: 20px;
   width: 100%;
+}
+.headline h3{
+  display: block;
 }
 .events h4 a{
 	font-size: 18px;

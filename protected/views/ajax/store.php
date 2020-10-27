@@ -164,9 +164,10 @@ $category = explode(',', $store['store_category_id']);
 	          <div class="headline">
 	            <div class="row">
 	              <div class="col-md-6">
-				    <h3 class="title">Cửa hàng gần đó</h3>
+				    <h3 class="title">Cửa hàng gần đó
 				    <a class="viewmore-store hidden-lg hidden-md" href="<?php echo Yii::app()->baseUrl?>/store.html?related=<?php echo (isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?>"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="20"></a>
-			    </div>
+            </h3>
+          </div>
 	              <div class="col-md-6 text-right hidden-xs"><a href="<?php echo Yii::app()->baseUrl?>/store.html?tag=<?php echo $district[0]['district'];?>">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right.png"></a></div>
 	            </div>
 	          </div>
@@ -217,8 +218,9 @@ $category = explode(',', $store['store_category_id']);
           <div class="headline">
             <div class="row">
               <div class="col-md-6">
-			    <h3 class="title">Cửa hàng Liên quan</h3>
+			    <h3 class="title">Cửa hàng Liên quan
 			    <a class="viewmore-store hidden-lg hidden-md" href="<?php echo Yii::app()->baseUrl?>/store.html?related=<?php echo $store['store_category_id'];?>"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="20"></a>
+          </h3>
 		    </div>
               <div class="col-md-6 text-right hidden-xs"><a href="<?php echo Yii::app()->baseUrl?>/store.html?related=<?php echo $store['store_category_id'];?>">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right.png"></a></div>
             </div>
@@ -302,7 +304,7 @@ if($(window).width()<=768){
 	  swiper.update();
 	}, 200);
 }
-if($(window).with()>768){
+if($(window).width()>768){
   loadStore();
 }else{
   loadStoreM();
