@@ -44,8 +44,6 @@
 <?php
 }
 Yii::app()->clientScript->registerScript('loadNews2', '
-loadNews()
-/*
 $(".event-lq").find(".event-items").each(function(i, j){
   $(j).click(function(){
     let id = $(this).attr("data-id");
@@ -70,5 +68,5 @@ $(".event-lq").find(".event-items").each(function(i, j){
 
       }
     })
-  });*/
+  });
 })', CClientScript::POS_END);

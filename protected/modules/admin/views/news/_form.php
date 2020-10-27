@@ -86,7 +86,7 @@ $form = $this->beginWidget('CActiveForm', array(
   <div class="row">
 	  <div class="col-md-9 form-group">
 		 <?php echo $form->label($model, 'description');?>
-		 <?php echo $form->error($model, 'description'); ?>
+     <?php echo $form->error($model, 'description'); ?>
      <?php echo $form->textArea($model, 'description');?>
 		 <?php
 			/*$this->widget('ext.editMe.widgets.ExtEditMe', array(
@@ -124,6 +124,6 @@ $form = $this->beginWidget('CActiveForm', array(
 
 <script>
         CKEDITOR.replace( 'News[description]', {
-			      allowedContent: 'p span'
+			      allowedContent: 'p span a[!href]'
 			  });
 </script>

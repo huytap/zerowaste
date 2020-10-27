@@ -830,6 +830,7 @@ h1 span{
   border-radius: 15px;
   position: relative;
   cursor: pointer;
+  text-align: left;
 }
 @media(min-width:1366px){
 .store .item .subitem:hover:before{
@@ -1416,12 +1417,17 @@ h1 span{
   font-family: 'Bungee';
   position: relative;
   display: block;
+  
+}
+.eco-items a img{
   border-radius: 15px;
 }
-.eco-items a:hover{
+.eco.eco-items a{
   color:#fff;
 }
-
+.eco-items .col-md-3{
+  margin-bottom: 30px;
+}
 a{
   color:#000;
   text-decoration: none;
@@ -1762,15 +1768,17 @@ input[type="radio"]:checked:before {
 }
 .eco-items span{
   position: absolute;
-  display: block;
+  display: flex;
+  align-items: flex-end;
+  height: 120px;
   bottom: 0;
-  padding:15px;
+  padding:15px 15px 10px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+19,000000+100&0+39,0.7+100 */
-  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 19%, rgba(0,0,0,0) 39%, rgba(0,0,0,0.7) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 19%,rgba(0,0,0,0) 39%,rgba(0,0,0,0.7) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,  rgba(0,0,0,0) 19%,rgba(0,0,0,0) 39%,rgba(0,0,0,0.7) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 19%, rgba(0,0,0,0) 32%, rgba(0,0,0,0.7) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 19%,rgba(0,0,0,0) 32%,rgba(0,0,0,0.7) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom,  rgba(0,0,0,0) 19%,rgba(0,0,0,0) 32%,rgba(0,0,0,0.7) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#b3000000',GradientType=0 ); /* IE6-9 */
 
 }

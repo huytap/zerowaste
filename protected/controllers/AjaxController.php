@@ -75,7 +75,7 @@ class AjaxController extends Controller{
   public function actionNews(){
     if(isset($_POST['id'])){
       $model = News::model()->findByPk($_POST['id']);
-	 $related = News::model()->getNewsRelated($model['news_category_id'], $model['id']);
+	   $related = News::model()->getNewsRelated($model['news_category_id'], $model['id']);
       $this->render('news', compact(array('model', 'related')));
     }
   }

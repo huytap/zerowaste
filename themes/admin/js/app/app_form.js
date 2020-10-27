@@ -2,12 +2,14 @@ CKEDITOR.editorConfig = function( config ) {
 	config.allowedContent = true;
 
 	// Set the most common block elements.
-	config.format_tags = 'p;h1;h2;h3;pre;span';
+	config.format_tags = 'p;h1;h2;h3;h4;h5;h6;pre;span;a;div';
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 };
-
+CKEDITOR.replace( 'editor1', {
+    format_tags: 'p;a;h1;h2;h3;h4;h5;h6;pre;address;div'
+});
 $(function()	{
 	// Chosen
 	if($(".chzn-select").length){

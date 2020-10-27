@@ -2,7 +2,7 @@
   <div class="header">
       <?php $this->widget('MenuWidget');?>
   </div>
-  <div class="top-info" id="event-detail">
+  <div class="top-info" id="event-detail2">
  <div class="container">
 	<div class="row">
 	  <div class="col-md-12">
@@ -34,24 +34,18 @@
 	</div>
 	<div class="row event-lq">
 		<?php
-     	foreach($related->getData() as $dt){?>
-     	  <div class="col-md-4">
-     	    <div class="event-items" data-href="<?php echo Yii::app()->baseUrl?>/events/<?php echo StringHelper::makeLink($dt['name']).'-'.$dt['id'];?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $dt['id'];?>">
-     		 <img src="<?php echo Yii::app()->baseUrl?>/timthumb.php?src=<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $dt['photo'];?>&h=367&w=367" class="img-responsive">
-     		 <div class="event-content" style="background:#<?php echo $background[$rand_keys]['content'];?>;">
-     		   <h4><a href="#event-detail" data-toggle="modal" style="color:#<?php echo $background[$rand_keys]['title'];?>;"><?php echo $dt['name'];?></a></h4>
-     		   <p><?php echo $dt['date'];?></p>
-     		   <p><?php echo $dt['address'];?></p>
-     		   <!--div class="popup">
-     			<p><?php echo $dt['short_description'];?></p>
-     			<div class="btnXemThem">
-     			  <a href="javascript:void(0);" class="btnViewmore">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right2.png"/></a>
-     			</div>
-     		</div-->
-     		 </div>
-     	  </div>
-     	</div>
-        <?php }?>
+  foreach($related->getData() as $dt){?>
+    <div class="col-md-4">
+      <div class="event-items" data-href="<?php echo Yii::app()->baseUrl?>/events/<?php echo StringHelper::makeLink($dt['name']).'-'.$dt['id'];?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $dt['id'];?>">
+     <a href="javascript:void(0);" style="color:#<?php echo $background[$rand_keys]['title'];?>;"><img src="<?php echo Yii::app()->baseUrl?>/timthumb.php?src=<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $dt['photo'];?>&h=367&w=367" class="img-responsive"></a>
+     <div class="event-content" style="background:#<?php echo $background[$rand_keys]['content'];?>;">
+       <h4><a href="javascript:void(0);" style="color:#<?php echo $background[$rand_keys]['title'];?>;"><?php echo $dt['name'];?></a></h4>
+       <p><?php echo $dt['date'];?></p>
+       <p><?php echo $dt['address'];?></p>
+     </div>
+    </div>
+  </div>
+   <?php }?>
 	</div>
 <?php }?>
 </div>
@@ -61,7 +55,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" id="btn-closeStoreDetail" class="close"><span aria-hidden="true"><img src="images/btn_Close.png"></span></button>
+        <button type="button" id="btn-closeStoreDetail" class="close"><span aria-hidden="true"><img src="<?php echo Yii::app()->baseUrl?>/images/btn_Close.png"></span></button>
       </div>
       <div class="modal-body">
         <div class="container" id="news">
@@ -71,7 +65,7 @@
   </div>
 </div><?php
 
-Yii::app()->clientScript->registerScript('loadNews2', '
+Yii::app()->clientScript->registerScript('loadNews3', '
 $(".event-lq").find(".event-items").each(function(i, j){
   $(j).click(function(){
     let id = $(this).attr("data-id");
@@ -83,16 +77,16 @@ $(".event-lq").find(".event-items").each(function(i, j){
       success: function(data){
         $("#news").html(data)
         $("#event-detail").modal({
-            show: "true"
+            show: "false"
         });
 
-	   let current_url = $(j).attr("data-href");
-	   history.pushState(null, null, current_url);
+  	   let current_url = $(j).attr("data-href");
+  	   history.pushState(null, null, current_url);
 
-	   $("#btn-closeStoreDetail").click(function(){
-		$("#event-detail").modal("hide");
-		history.pushState(null, null, "'.Yii::app()->baseUrl.'/events.html");
-	   });
+  	   $("#btn-closeStoreDetail").click(function(){
+    		$("#event-detail").modal("hide");
+    		history.pushState(null, null, "'.Yii::app()->baseUrl.'/events.html");
+  	   });
 
       }
     })
