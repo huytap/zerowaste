@@ -50,6 +50,10 @@ body{
   position: relative;
   /*margin-top: -65px;*/
 }
+.lg-outer{
+  z-index: 999999!important;
+  background: rgba(0,0,0,.8);
+}
 .event-content p a{
   color: rgb(75,186,162);
     text-decoration: underline;
@@ -814,6 +818,16 @@ h1 span{
   font-family: 'Comfortaa';
   font-size: 16px;
   color:#010101;
+}
+@media(min-width: 1024px){
+.store .item-title span{
+  height: 22px;
+  overflow: hidden;
+}
+.store .item-title h3 {
+    height: 19px;
+    overflow: hidden;
+}
 }
 .store ul{
   padding-bottom: 30px;

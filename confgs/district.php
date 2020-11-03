@@ -1,22 +1,22 @@
 <?php
 $array_map = array(
-1 => 'Quận 1',
-'Quận 2',
-'Quận 3',
-'Quận 4',
-'Quận 5',
-'Quận 6',
-'Quận 7',
-'Quận 8',
-'Quận 10',
-'Quận 11',
-'Quận 12',
-'Quận Gò Vấp',
-'Quận Tân Bình',
-'Quận Tân Phú',
-'Quận Phú Nhuận',
-'Quận Bình Thạnh',
-'Quận Bình Tân'
+1 => 'Q.1',
+'Q.2',
+'Q.3',
+'Q.4',
+'Q.5',
+'Q.6',
+'Q.7',
+'Q.8',
+'Q.10',
+'Q.11',
+'Q.12',
+'Q.Gò Vấp',
+'Q.Tân Bình',
+'Q.Tân Phú',
+'Q.Phú Nhuận',
+'Q.Bình Thạnh',
+'Q.Bình Tân'
 );
 return $array_map;
 ?>

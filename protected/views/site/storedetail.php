@@ -21,6 +21,7 @@
       align-items: center;
     }
    ');?>
+   <?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/lightgallery.min.css');?>
 <?php
    $background = array(
      array('title' => 'fd949e', 'content' => 'ffdfdf'),
@@ -122,7 +123,7 @@
 	                     $html_map .= '<p class="address"><img src="'.Yii::app()->baseUrl.'/images/icon-map-popup.png"> '.$dt['address'].', '.(isset($arr_district[$dt['district']])?$arr_district[$dt['district']]:'').'</p>';
 	                     if($dt['phone'])
 	                     $html_map .= '<p class="phone"><img src="'.Yii::app()->baseUrl.'/images/icon-phone-popup.png"> '.$dt['phone'].'</p>';
-	                     $html_map .=' <a href="https://www.google.com/maps/place/'.urlencode($dt['address'].', '.(isset($arr_district[$dt['district']])?$arr_district[$dt['district']]:'').', '.$dt['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
+	                     $html_map .=' <a href="https://www.google.com/maps/place/'.urlencode($dt['address'].', '.(isset($arr_district[$dt['district']])?str_replace("Q.","Quận ", $arr_district[$dt['district']]):'').', '.$dt['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
 	                     $html_map .= '</div>';
 	                     }
 	                      $html_map .= '
@@ -131,7 +132,7 @@
 	                     </div>
 	                      </div>';
 	                     }else{
-	                      $linkmap = '<a href="https://www.google.com/maps/place/'.urlencode($district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').', '.$district[0]['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
+	                      $linkmap = '<a href="https://www.google.com/maps/place/'.urlencode($district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?str_replace("Q.","Quận ", $arr_district[$dt[0]['district']]):'').', '.$district[0]['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
 	                     }
 	                     echo $linkmap;
 	                     ?>
@@ -147,7 +148,7 @@
             <?php
                if($gallery)
                foreach($gallery->getData() as $gl){
-                echo '<div class="swiper-slide"><img src="'.Yii::app()->baseUrl.'/uploads/gallery/'.$gl['name'].'" class="img-responsive" /></div>';
+                echo '<div class="swiper-slide" data-src="'.Yii::app()->baseUrl.'/uploads/gallery/'.$gl['name'].'"><img src="'.Yii::app()->baseUrl.'/uploads/gallery/'.$gl['name'].'" class="img-responsive" /></div>';
                }?>
          </div>
       </div>
@@ -277,8 +278,11 @@
 </div>
 <?php echo $html_map;?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/swiper-bundle.min.js', CClientScript::POS_END);?>
+<?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/lightgallery.min.js', CClientScript::POS_END);?>
 <?php Yii::app()->clientScript->registerScript('storeSlide', '
-
+$(document).ready(function(){
+            $("#lightgallery").lightGallery();
+        });
 function loadStore(){
 	$(".store").find(".item").each(function(i, j){
 		$(j).click(function(){

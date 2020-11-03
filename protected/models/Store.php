@@ -92,6 +92,7 @@ class Store extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'pagination' => false
 		));
 	}
 
@@ -121,7 +122,7 @@ class Store extends CActiveRecord
 		$criteria=new CDbCriteria;
 		$data = new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'pagination' => array('pageSize' => false)
+			'pagination' => false
 		));
 		$arrData = array();
 		foreach($data->getData() as $dt){

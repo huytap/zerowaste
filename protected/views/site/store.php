@@ -103,7 +103,7 @@
       }
       ?>
     </div>
-        <?php if(count($model->getData())>12){?>
+        <?php if(count($model->getData())>=12){?>
             <div class="text-center"><a class="btncontact" href="javascript:void(0);" id="btnLoadmore">XEM THÊM <img src="images/arrow-down2.png"></a></div>
           <?php }?>
   </div>
@@ -228,7 +228,7 @@ $("#typeStore").keyup(function(){
       $("#btnLoadmore").parent().hide();
       if(data.length){
         $("#store-items").html(data);
-        if($(window).with()>768){
+        if($(window).width()>768){
           loadStore();
         }else{
           loadStoreM();
@@ -250,7 +250,7 @@ function changeData(){
          $("#btnLoadmore").parent().hide();
          if(data.length){
            $("#store-items").html(data);
-           if($(window).with()>768){
+           if($(window).width()>768){
              loadStore();
            }else{
              loadStoreM();
