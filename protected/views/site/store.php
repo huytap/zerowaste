@@ -65,18 +65,18 @@
      }
         ?>
         <?php $rand_keys = array_rand($background, 1);?>
-        <div class="item col-md-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
+        <div class="item col-md-4 col-sm-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
           <div data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>" class="subitem">
       		  <div class="row item-title active" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
-      			  <div class="col-xs-4 hidden-lg hidden-md"><img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>"></div>
-      			  <div class="col-xs-8 col-lg-12">
+      			  <div class="col-xs-4 hidden-lg hidden-md hidden-sm"><img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>"></div>
+      			  <div class="col-xs-8 col-sm-12 col-lg-12">
       	              <h3><?php echo $data['name'];?></h3>
       	              <span><?php echo $district[0]['address'].', '. (isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
       	            </div>
       		  </div>
                   <div class="photo">
                     <img class="img-responsive hidden-xs" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
-                    <div class="item-content" style="background:#<?php echo $background[$rand_keys]['content'];?>">
+                    <div class="item-content hidden-sm" style="background:#<?php echo $background[$rand_keys]['content'];?>">
                       <?php
                       $category = explode(',', $data['store_category_id']);
                       if(count($category)){
@@ -210,7 +210,7 @@ function loadStore(){
     });
   })
 }
-if($(window).width()>768){
+if($(window).width()>575){
 	loadStore();
 }else{
 	loadStoreM()
@@ -228,7 +228,7 @@ $("#typeStore").keyup(function(){
       $("#btnLoadmore").parent().hide();
       if(data.length){
         $("#store-items").html(data);
-        if($(window).width()>768){
+        if($(window).width()>575){
           loadStore();
         }else{
           loadStoreM();
@@ -250,7 +250,7 @@ function changeData(){
          $("#btnLoadmore").parent().hide();
          if(data.length){
            $("#store-items").html(data);
-           if($(window).width()>768){
+           if($(window).width()>575){
              loadStore();
            }else{
              loadStoreM();
@@ -295,7 +295,7 @@ for (i = 0; i < l; i++) {
           }
         }
         h.click();
-	   if($(window).width()>768){
+	   if($(window).width()>575){
 	   	s.onchange = changeData()
    	   }
     });

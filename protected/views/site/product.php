@@ -15,7 +15,7 @@ $background = array(
     <?php $this->widget('MenuWidget');?>
     <div class="products banner">
       <img src="<?php echo Yii::app()->baseUrl?>/images/product_banner.png?v=01" class="hidden-xs img-responsive">
-      <img src="<?php echo Yii::app()->baseUrl?>/images/product-banner-m.png?v=01" class="hidden-lg hidden-md img-responsive">
+      <img src="<?php echo Yii::app()->baseUrl?>/images/product-banner-m.png?v=01" class="hidden-lg hidden-md hidden-sm img-responsive">
       <div class="banner-text">
         <h1>SƯU TẬP<br/><span>SẢN PHẨM</span></h1>
         <p>Bộ sưu tập sản phẩm zero-waste<br/>phong phú với hơn 20 sản phẩm.</p>

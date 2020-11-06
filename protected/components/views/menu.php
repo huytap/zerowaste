@@ -2,8 +2,8 @@
 <a href="<?php echo Yii::app()->baseUrl;?>/" class="logo"><img src="<?php echo Yii::app()->baseUrl;?>/images/logo.png" width="50"></a>
 <span class="menuicon pull-right"><img src="<?php echo Yii::app()->baseUrl?>/images/menu-icon.png" /></span>
 <div class="menu-main pull-right">
-  <a class="logo-m hidden-lg hidden-md" href="<?php echo Yii::app()->baseUrl;?>/" class="logo"><img src="<?php echo Yii::app()->baseUrl;?>/images/logo.png" width="67"></a>
-  <a href="javascript:void(0)" class="menuclose pull-right hidden-lg hidden-md"><img src="<?php echo Yii::app()->baseUrl?>/images/menu-close.png"/></a>
+  <a class="logo-m hidden-lg hidden-md hidden-sm" href="<?php echo Yii::app()->baseUrl;?>/" class="logo"><img src="<?php echo Yii::app()->baseUrl;?>/images/logo.png" width="67"></a>
+  <a href="javascript:void(0)" class="menuclose pull-right hidden-lg hidden-md hidden-sm"><img src="<?php echo Yii::app()->baseUrl?>/images/menu-close.png"/></a>
   <ul class="main-menu">
     <li><a href="<?php echo Yii::app()->baseUrl;?>/store.html"><span>Địa điểm</span></a></li>
     <li><a href="<?php echo Yii::app()->baseUrl;?>/products.html"><span>Vật dụng</span></a></li>

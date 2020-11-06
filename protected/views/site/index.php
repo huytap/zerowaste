@@ -9,7 +9,10 @@ $map = Yii::app()->params['district'];
 		<div class="clip hidden-xs hidden-sm">
 			<img src="images/slide1.jpg" class="img-responsive"/>
 		</div>
-		<div class="clip hidden-lg hidden-md">
+		<div class="clip hidden-xs hidden-lg hidden-md">
+			<img src="images/slide-ipad.png" class="img-responsive"/>
+		</div>
+		<div class="clip hidden-lg hidden-md hidden-sm">
 			<img src="images/slide-m1.png?v=1" class="img-responsive"/>
 		</div>
 	</div>
@@ -19,10 +22,15 @@ $map = Yii::app()->params['district'];
 			echo Settings::model()->getSetting('zw_intro');?>
 		</div>
 		<div class="btn-cta hidden-xs"><img src="<?php echo Yii::app()->baseUrl?>/images/btn-cta.png" ></div>
-		<div class="games text-right hidden-sm hidden-xs">
+		<div class="games text-right hidden-xs">
 			<img src="<?php echo Yii::app()->baseUrl?>/images/tree.png" />
 		</div>
-		<div class="map row hidden-sm hidden-xs">
+		<div class="row hidden-lg hidden-md hidden-xs">
+			<div class="col-sm-12">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/bottom-shadow-ipad.png" class="mg-responsive">
+			</div>
+		</div>
+		<div class="map row hidden-xs">
 			<div class="col-md-5" style="height:100%;">
 				<div class="map-left">
 					<div class="text">
@@ -683,7 +691,7 @@ $map = Yii::app()->params['district'];
 		<img src="<?php echo Yii::app()->baseUrl?>/images/cta-m.png"/>
 		<img src="<?php echo Yii::app()->baseUrl?>/images/tree-m.png" class="tree-m"/>
 	</div>
-	<div class="map-m hidden-lg hidden-md">
+	<div class="map-m hidden-lg hidden-md hidden-sm">
 		<div class="map-intro">
 			Dò tìm<br/>
 			khám phá
