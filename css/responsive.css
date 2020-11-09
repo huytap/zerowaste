@@ -15,6 +15,24 @@
 	}
 }
 @media (max-width: 768px){
+	.about .ip p{
+		text-align: right;
+	}
+	.about-maybay{
+		position: relative;
+		top: -130px;
+		left: -15px;
+	}
+	.about-icon {
+	    float: none;
+	    margin-top: 153px;
+	    position: absolute;
+	    top: 270px;
+	    left: 200px;
+	}
+	.ipad{
+		padding-top: 30px!important;
+	}
 	.btnXemThem{
 		text-align: right;
 	    bottom: 0;
@@ -576,7 +594,7 @@ a.viewmore-store{
     width: 95.5%;
 }
 .about:after{
-  background: #ffbdc5;
+  background: transparent;
   bottom:-420px;
 }
 .event-item .popup{
@@ -903,6 +921,12 @@ a.viewmore-store{
 	}
 	.btnXemThem{
 		position: absolute;
+	}
+	.about:after{
+	  background: #ffbdc5;
+	}
+	.header-top {
+	    height: 52px;
 	}
 }
 @media(max-width:375px){
