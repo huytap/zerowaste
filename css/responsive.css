@@ -13,8 +13,83 @@
 		padding-left: 20px;
 		text-align: left;
 	}
+	.home-content{
+		width: 845px;
+	}
+}
+@media (min-width: 993px) and (max-width: 1024px) {
+	h1 {
+	    font-size: 45px;
+	}
+	.banner-text {
+	    top: 70px;
+	    left: 27%;
+	}
+	.products.banner img{
+		object-fit: cover;
+    		height: 500px;
+	}
+	.map.row{
+		padding-left: 5%;
+	}
+	.line1,.line2{
+		font-size: 60px;
+	}
+	.games{
+		display: none;
+	}
+	.section:before{
+	  content:"";
+	  background: url(../images/dua-ngua.png?v=01) no-repeat;
+	  width: 260px;
+	  height: 374px;
+	  position: absolute;
+	  top: 325px;
+	  left: -5px;
+	  z-index: 999;
+	  background-size: 100%;
+	}
+	.map.row{
+		margin-top: 90px;
+		height: 870px;
+	}
+	.logo{
+		top: -33px;
+	}
+	.main-menu li a{
+		margin: 0 5px;
+	}
+	.about-maybay{
+		top: -175px;
+	}
+	.about-icon {
+	    margin-top: 320px;
+	}
+	.about-content .ipad{
+		padding-top: 80px!important;
+	}
+	.about p{
+		margin-bottom: 15px;
+	}
+	.about:after{
+		bottom: -320px;
+	}
+	about-zwww{
+		position: relative;
+		top: 60px;
+	}
+	.events h4 a{
+		font-size: 19px;
+		line-height: 1.4;
+	}
 }
 @media (max-width: 768px){
+	#viewmap .modal-dialog{
+		width: 700px;
+	}
+	.footer .footer-top, .footer .footer-bottom{
+		font-size: 36px;
+	}
 	.about .ip p{
 		text-align: right;
 	}
@@ -72,6 +147,7 @@
 	}
 	.logo{
 		left: 40px;
+		top:-29px
 	}
   .logo-m{
     position: relative;
@@ -80,7 +156,7 @@
   }
   .header-top{
   	margin: 0 5%;
-	height: 37px;
+	height: 43px;
   }
   .main-menu li a{
   	font-size: 14px;
@@ -88,7 +164,7 @@
 	padding: 3px 25px;
   }
   .logo img{
-	  width: 39px;
+	  width: 44px;
   }
   .home-content {
     padding: 50px 30px 45px;
@@ -304,15 +380,23 @@
   }
   .social img{
 	 width: auto;
+	 display: inline-block;
+	margin: 0 auto;
+	text-align: center;
+	padding: 0;
   }
   .social li{
 	  text-align: center;
-	  background: #0780c2;
-	border: 2px solid #000;
+	  background: transparent;
+	border: 0;
 	border-radius: 50%;
 	width: 50px;
 	height: 50px;
 	line-height: 45px;
+	margin-right: 15px;
+  }
+  .social{
+	  padding-left: 5px;
   }
   /*.store.row{
 	  margin: 0;
@@ -433,12 +517,11 @@ a.viewmore-store{
     /*top: -70px;*/
   }
   .banner-text{
-    left: 40px;
-    right: 40px;
-    top: 90px;
+    left: 28%;
+    top: 110px;
   }
   .banner-text h1{
-    font-size: 48px;
+    font-size: 55px;
     line-height: 1.1;
   }
   .banner-text h1 span{
@@ -448,6 +531,7 @@ a.viewmore-store{
   .banner-text p{
     text-align: left;
     font-size: 16px;
+    padding-left: 30px;
   }
   .product-content .filter-box{
     margin-top: 150px;
@@ -474,6 +558,7 @@ a.viewmore-store{
     background: rgb(204, 229, 236);
     padding-bottom: 50px;
   }
+
   .product-detail .container{
 	  padding: 0;
   }
@@ -537,9 +622,7 @@ a.viewmore-store{
   .form-intro{
     display: block;
   }
-  .form .radio, .group-intro,.form .left{
-    width: auto;
-  }
+
   .form{
     padding-bottom: 20px;
   }
@@ -575,14 +658,11 @@ a.viewmore-store{
     padding: 50px 30px;
 }
 .form .radio label:first-child {
-    padding-right: 0;
+    padding-right: 30px;
     padding-bottom: 15px;
 }
 .group-intro ul li{
 	border:0;
-}
-.group-intro ul li img{
-	width: 47px;
 }
 .form ul{
 	width: 100%;
@@ -604,6 +684,7 @@ a.viewmore-store{
 }
 .headline h3{
   display: block;
+  font-size: 18px;
 }
 .events h4 a{
 	font-size: 18px;
@@ -712,9 +793,9 @@ a.viewmore-store{
 }
 .footer {
     background: url(../images/footer-ipad.png?v=001) no-repeat top center;
-    background-size: cover;
-    padding-top: 260px;
-    padding-bottom: 150px;
+    background-size: 100%;
+    padding-top: 215px;
+    padding-bottom: 85px;
     color: #fff;
     text-align: center;
 }
@@ -728,9 +809,30 @@ a.viewmore-store{
 }
 .store .item-title h3{
 	margin-bottom: 0;
+	font-size: 15px;
+}
+.store .item-title span{
+	font-size: 12px;
 }
 }
 @media(max-width: 575px){
+	.event-item .event-content{
+		padding-bottom: 20px;
+	}
+	.social li{
+		background: transparent;
+		border:0;
+		width: auto;
+		height: auto;
+		border-radius: inherit;
+	}
+	.social li img{
+		padding:0;
+	}
+	.store .item-title .col-sm-12,
+	.about .ip p{
+		text-align: left;
+	}
 	.store .item .subitem .photo{
    	  display: none;
    	  opacity: 1;
@@ -739,7 +841,15 @@ a.viewmore-store{
      }
      .store .item-title{
    	  padding: 15px 0;
+	  border-radius: 15px
      }
+	.store .active .item-title{
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+	}
+	.store .item .subitem .photo.active{
+		display: block;
+	}
      .store .item {
        padding-bottom: 30px;
    }
@@ -921,6 +1031,7 @@ a.viewmore-store{
 	}
 	.btnXemThem{
 		position: absolute;
+		bottom: 35px;
 	}
 	.about:after{
 	  background: #ffbdc5;
@@ -928,6 +1039,33 @@ a.viewmore-store{
 	.header-top {
 	    height: 52px;
 	}
+	.eco-items .row.list{
+		margin: 0 -15px;
+	}
+	.group-intro ul li:hover, .group-intro ul li.active{
+   	  background: transparent;
+     }
+     .group-intro ul li span{
+   	  margin-bottom: 10px;
+   	  display: block;
+   	  padding: 15px 10px 5px;
+     }
+     .group-intro ul li.active span{
+       background: #4bbaa2;
+       border-radius: 15px;
+     }
+     .group-intro ul li:first-child img{
+   	  width: 45px;
+     }
+     .group-intro ul li:nth-child(2) img{
+   	  width: 36px;
+     }
+     .group-intro ul li:last-child img{
+   	  width: 50px;
+     }
+	.form .radio, .group-intro,.form .left{
+       width: 100%;
+     }
 }
 @media(max-width:375px){
 	.home-content{

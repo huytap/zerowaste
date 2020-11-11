@@ -25,10 +25,8 @@ $map = Yii::app()->params['district'];
 		<div class="games text-right hidden-xs">
 			<img src="<?php echo Yii::app()->baseUrl?>/images/tree.png" />
 		</div>
-		<div class="row hidden-lg hidden-md hidden-xs">
-			<div class="col-sm-12">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/bottom-shadow-ipad.png" class="mg-responsive">
-			</div>
+		<div class="hidden-lg hidden-md hidden-xs">
+			<img src="<?php echo Yii::app()->baseUrl?>/images/bottom-shadow-ipad.png" class="mg-responsive">
 		</div>
 		<div class="map row hidden-xs">
 			<div class="col-md-5" style="height:100%;">
@@ -764,6 +762,7 @@ $map = Yii::app()->params['district'];
 		    data:{dist:dis},
 		    dataType: 'json',
 		    success:function(data){
+			    console.log(data.district)
 			    dis_new = dis;
 			    var html = '';
 			    html += '<div class=\"box-pp\"><img class=\"img-responsive\" src=\"".Yii::app()->baseUrl."\/images/'+dis+'.svg\"></div>';

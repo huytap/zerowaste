@@ -42,15 +42,15 @@
                 <div class="group-intro">
                   <ul id="introcate">
                     <li data-toggle="tab" data-id="shop" data-toggle="tab" data-target="#cuahang">
-                      <img src="<?php echo Yii::app()->baseUrl?>/images/icon-shop.png">
+                      <span><img src="<?php echo Yii::app()->baseUrl?>/images/icon-shop.png"></span>
                       Cửa hàng
                     </li>
                     <li data-toggle="tab" data-id="product" data-target="#sanpham">
-                      <img src="<?php echo Yii::app()->baseUrl?>/images/icon-product.png">
+                      <span><img src="<?php echo Yii::app()->baseUrl?>/images/icon-product.png"></span>
                       Sản phẩm
                     </li>
                     <li data-toggle="tab" data-id="event" data-target="#tintuc">
-                      <img src="<?php echo Yii::app()->baseUrl?>/images/icon-event.png">
+                      <span><img src="<?php echo Yii::app()->baseUrl?>/images/icon-event.png"></span>
                       Sự kiện
                     </li>
                   </ul>
@@ -191,7 +191,7 @@
         </div>
         <div class="popup-footer">
           <!--img src="<?php echo Yii::app()->baseUrl?>/images/form-footer-bg.png" class="img-responsive hidden-xs"-->
-          <img src="<?php echo Yii::app()->baseUrl?>/images/form-footer-bg-m.png" class="img-responsive hidden-lg hidden-md">
+          <img src="<?php echo Yii::app()->baseUrl?>/images/form-footer-bg-m.png" class="img-responsive hidden-lg hidden-md hidden-sm">
 	</div>
       </div>
     </div>

@@ -59,22 +59,22 @@
 	      <div class="col-md-7 col-sm-6">
 	         <ul class="social hidden-xs hidden-sm">
 	            <?php if($store['website']){?>
-	            <li><a href="<?php echo $store['website'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-website.png" /></a></li>
+	            <li><a href="<?php echo $store['website'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-website.png" class="img-responsive"/></a></li>
 	            <?php }?>
 	            <?php if($store['facebook']){?>
-	            <li><a href="<?php echo $store['facebook'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-facebook.png" /></a></li>
+	            <li><a href="<?php echo $store['facebook'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-facebook.png" class="img-responsive"/></a></li>
 	            <?php }?>
 	            <?php if($store['instagram']){?>
-	            <li><a href="<?php echo $store['instagram'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-instagram.png" /></a></li>
+	            <li><a href="<?php echo $store['instagram'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-instagram.png" class="img-responsive"/></a></li>
 	            <?php }?>
 	            <?php if($store['youtube']){?>
-	            <li><a href="<?php echo $store['youtube'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_youtube.png" /></a></li>
+	            <li><a href="<?php echo $store['youtube'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_youtube.png" class="img-responsive"/></a></li>
 	            <?php }?>
 	            <?php if($store['shopee']){?>
-	            <li><a href="<?php echo $store['shopee'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_shopee.png" /></a></li>
+	            <li><a href="<?php echo $store['shopee'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_shopee.png" class="img-responsive"/></a></li>
 	            <?php }?>
 	            <?php if($store['lazada']){?>
-	            <li><a href="<?php echo $store['lazada'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_lazada.png" /></a></li>
+	            <li><a href="<?php echo $store['lazada'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_lazada.png" class="img-responsive"/></a></li>
 	            <?php }?>
 	         </ul>
 	         <div class="info">
@@ -90,22 +90,22 @@
 	               </ul>
 	               <ul class="social hidden-lg hidden-md hidden-sm">
 	                  <?php if($store['website']){?>
-	                  <li><a href="<?php echo $store['website'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-website.png" /></a></li>
+	                  <li><a href="<?php echo $store['website'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-website.png" class="img-responsive"/></a></li>
 	                  <?php }?>
 	                  <?php if($store['facebook']){?>
-	                  <li><a href="<?php echo $store['facebook'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-facebook.png" /></a></li>
+	                  <li><a href="<?php echo $store['facebook'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-facebook.png" class="img-responsive"/></a></li>
 	                  <?php }?>
 	                  <?php if($store['instagram']){?>
-	                  <li><a href="<?php echo $store['instagram'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-instagram.png" /></a></li>
+	                  <li><a href="<?php echo $store['instagram'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-instagram.png" class="img-responsive"/></a></li>
 	                  <?php }?>
 	                  <?php if($store['youtube']){?>
-	                  <li><a href="<?php echo $store['youtube'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_youtube.png" /></a></li>
+	                  <li><a href="<?php echo $store['youtube'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_youtube.png" class="img-responsive"/></a></li>
 	                  <?php }?>
 	                  <?php if($store['shopee']){?>
-	                  <li><a href="<?php echo $store['shopee'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_shopee.png" /></a></li>
+	                  <li><a href="<?php echo $store['shopee'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_shopee.png" class="img-responsive"/></a></li>
 	                  <?php }?>
 	                  <?php if($store['lazada']){?>
-	                  <li><a href="<?php echo $store['lazada'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_lazada.png" /></a></li>
+	                  <li><a href="<?php echo $store['lazada'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_lazada.png" class="img-responsive"/></a></li>
 	                  <?php }?>
 	               </ul>
 	               <div class="moreinfo hidden-xs hidden-sm">
@@ -147,7 +147,7 @@
    </div>
    <div class="gallery">
       <div class="swiper-container" id="gallery">
-         <div class="swiper-wrapper">
+         <div class="swiper-wrapper lightgallery">
             <?php
                if($gallery)
                foreach($gallery->getData() as $gl){
@@ -162,22 +162,22 @@
           ?>
 		<ul class="social hidden-lg hidden-md hidden-xs">
 		   <?php if($store['website']){?>
-		   <li><a href="<?php echo $store['website'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-website.png" /></a></li>
+		   <li><a href="<?php echo $store['website'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-website-ipad.png" class="img-responsive"/></a></li>
 		   <?php }?>
 		   <?php if($store['facebook']){?>
-		   <li><a href="<?php echo $store['facebook'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-fb-ipad.png" /></a></li>
+		   <li><a href="<?php echo $store['facebook'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-fb-ipad.png" class="img-responsive"/></a></li>
 		   <?php }?>
 		   <?php if($store['instagram']){?>
-		   <li><a href="<?php echo $store['instagram'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-ins-ipad.png" /></a></li>
+		   <li><a href="<?php echo $store['instagram'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-ins-ipad.png" class="img-responsive"/></a></li>
 		   <?php }?>
 		   <?php if($store['youtube']){?>
-		   <li><a href="<?php echo $store['youtube'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_youtube.png" /></a></li>
+		   <li><a href="<?php echo $store['youtube'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_youtube-ipad.png" class="img-responsive"/></a></li>
 		   <?php }?>
 		   <?php if($store['shopee']){?>
-		   <li><a href="<?php echo $store['shopee'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_shopee.png" /></a></li>
+		   <li><a href="<?php echo $store['shopee'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_shopee-ipad.png" class="img-responsive"/></a></li>
 		   <?php }?>
 		   <?php if($store['lazada']){?>
-		   <li><a href="<?php echo $store['lazada'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_lazada.png" /></a></li>
+		   <li><a href="<?php echo $store['lazada'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_lazada-ipad.png" class="img-responsive"/></a></li>
 		   <?php }?>
 		</ul>
    </div>
@@ -304,7 +304,7 @@
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/lightgallery.min.js', CClientScript::POS_END);?>
 <?php Yii::app()->clientScript->registerScript('storeSlide', '
 $(document).ready(function(){
-            $("#lightgallery").lightGallery();
+            $(".lightgallery").lightGallery();
         });
 function loadStore(){
 	$(".store").find(".item").each(function(i, j){
@@ -349,9 +349,11 @@ if($(window).width()<=575){
 			},
 		});
 	}, 200);
-}else if($(window).width()>=1200){
-	let wi = ($(window).width() - 1140)/2;
-	$(".gallery").css("margin-left", wi);
+}else if($(window).width()>=1024){
+	if($(window).width()>=1200){
+		let wi = ($(window).width() - 1140)/2;
+		$(".gallery").css("margin-left", wi);
+	}
 		var swiper = new Swiper("#gallery", {
 		slidesPerView: 6,
 		spaceBetween: 25,

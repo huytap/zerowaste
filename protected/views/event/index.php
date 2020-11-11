@@ -84,7 +84,7 @@ $background = array(
 
 Yii::app()->clientScript->registerScript('loadNews', '
 function loadNews(){
-  if($(window).width()>768){
+  if($(window).width()>1024){
   	$(".events").find(".event-item").each(function(i, j){
   	  $(j).click(function(){
   	    let id = $(this).attr("data-id");
@@ -113,7 +113,7 @@ function loadNews(){
   	})
   }else{
   	$(".events").find(".event-item").each(function(i, j){
-  	  $(j).find(".viewdetail").click(function(){
+  	  $(j).find(".viewdetail,a").click(function(){
   	    let id = $(j).attr("data-id");
   	    $.ajax({
   	      url: "'.Yii::app()->baseUrl.'/ajax/news",

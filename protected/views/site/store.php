@@ -295,7 +295,7 @@ for (i = 0; i < l; i++) {
           }
         }
         h.click();
-	   if($(window).width()>575){
+	   if($(window).width()>768){
 	   	s.onchange = changeData()
    	   }
     });
