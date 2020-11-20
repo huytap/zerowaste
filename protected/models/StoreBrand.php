@@ -125,7 +125,7 @@ class StoreBrand extends CActiveRecord
 	public function getTotalByDist($dist){
 		$criteria = new CDbCriteria;
 		$criteria->compare('district', $dist, false);
-		$data = StoreBrand::model()->findAll($criteria);
-		return count($data);
+		$data = StoreBrand::model()->count($criteria);
+		return $data;
 	}
 }

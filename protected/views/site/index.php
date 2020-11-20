@@ -2,18 +2,57 @@
 $map = Yii::app()->params['district'];
 
 ?>
+<style>
+video{
+	width: 100%;
+  height: auto;
+}
 
+</style>
 <div class="wrapper home">
 	<div class="header">
 	     <?php $this->widget('MenuWidget');?>
-		<div class="clip hidden-xs hidden-sm">
-			<img src="images/slide1.jpg" class="img-responsive"/>
-		</div>
-		<div class="clip hidden-xs hidden-lg hidden-md">
-			<img src="images/slide-ipad.png" class="img-responsive"/>
-		</div>
-		<div class="clip hidden-lg hidden-md hidden-sm">
-			<img src="images/slide-m1.png?v=1" class="img-responsive"/>
+		<div class="slide">
+			<div class="slide-item it1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slide1.jpg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img4.png" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img5.png" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img6.png" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img7.png" class="img-responsive x2">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img8.png" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img10.png" class="img-responsive x2">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img11.png" class="img-responsive x1">
+				<!--img src="<?php echo Yii::app()->baseUrl?>/images/slide/img13.png" class="img-responsive"-->
+			</div>
+			<div class="slide-item it2">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slide2.jpg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img14.png" class="img-responsive x2">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img15.png" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img16.png" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img17.png" class="img-responsive x4">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img18.png" class="img-responsive x5">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img19.png" class="img-responsive x5">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img6.png" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img11.png" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img20.png" class="img-responsive x2">
+			</div>
+			<div class="slide-item it3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slide3.jpg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img20.png" class="img-responsive x2">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img21.png" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img22.png" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img23.png" class="img-responsive x5">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img24.png" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img25.png" class="img-responsive x3">
+				<!--img src="<?php echo Yii::app()->baseUrl?>/images/slide/img26.png" class="img-responsive x5"-->
+			</div>
+			<div class="slide-item it4">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slide4.jpg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img27.png" class="img-responsive x5">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img28.png" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img30.png" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img31.png" class="img-responsive x1">
+			</div>
 		</div>
 	</div>
 	<div class="section">
@@ -743,6 +782,7 @@ $map = Yii::app()->params['district'];
 			maxSlides:3,
 		});
   });
+  $('.slide').bxSlider();
   //map hover
   $('.map-right').find('g[data-dist]').click(function() {
 	var dis = $(this).attr('data-dist');
@@ -762,7 +802,6 @@ $map = Yii::app()->params['district'];
 		    data:{dist:dis},
 		    dataType: 'json',
 		    success:function(data){
-			    console.log(data.district)
 			    dis_new = dis;
 			    var html = '';
 			    html += '<div class=\"box-pp\"><img class=\"img-responsive\" src=\"".Yii::app()->baseUrl."\/images/'+dis+'.svg\"></div>';
@@ -773,5 +812,5 @@ $map = Yii::app()->params['district'];
 		    }
 	    })
     }
-  })
+});
 ", CClientScript::POS_END);?>

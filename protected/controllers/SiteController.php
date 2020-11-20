@@ -29,6 +29,7 @@ class SiteController extends Controller{
 			if(isset($_POST['page'])){
 				$this->layout = false;
 				$criteria = new CDbCriteria;
+				//$criteria->compare('')
 				$criteria->limit = 12;
 				$criteria->offset = $_POST['page']*$criteria->limit - $criteria->limit;
 			     $model = Store::model()->findAll($criteria);
