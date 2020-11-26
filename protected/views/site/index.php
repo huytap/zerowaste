@@ -12,7 +12,7 @@ video{
 <div class="wrapper home">
 	<div class="header">
 	     <?php $this->widget('MenuWidget');?>
-		<div class="slide">
+		<div class="slide hidden-xs">
 			<div class="slide-item it1">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slide1.jpg" class="img-responsive">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img4.png" class="img-responsive x3">
@@ -52,6 +52,37 @@ video{
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img28.png" class="img-responsive x3">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img30.png" class="img-responsive x3">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img31.png" class="img-responsive x1">
+			</div>
+		</div>
+		<div class="slidem hidden-lg hidden-md hidden-sm">
+			<div class="slide-item it1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_01.jpg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m2.png" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m1.png" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img6.png" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img7.png" class="img-responsive x3">
+			</div>
+			<div class="slide-item it2">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_02.jpg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m3.png" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img11.png" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img20.png" class="img-responsive x2">
+			</div>
+			<div class="slide-item it3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_03.jpg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m4.png" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img18.png" class="img-responsive x5">
+			</div>
+			<div class="slide-item it4">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_04.jpg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m5.png" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m6.png" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img20.png" class="img-responsive x2">
+			</div>
+			<div class="slide-item it5">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_05.jpg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m7.png" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m8.png" class="img-responsive x3">
 			</div>
 		</div>
 	</div>
@@ -782,7 +813,13 @@ video{
 			maxSlides:3,
 		});
   });
-  $('.slide').bxSlider();
+  if($(window).width()>=768){
+	  $('.slide').bxSlider();
+  }else{
+	   $('.slidem').bxSlider({
+		   pager: false
+	   });
+  }
   //map hover
   $('.map-right').find('g[data-dist]').click(function() {
 	var dis = $(this).attr('data-dist');

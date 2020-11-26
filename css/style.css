@@ -109,7 +109,7 @@ body{
 }
 .slide-item.it1 img:nth-child(5){
 	top: 38%;
-     right: 43%;
+     right: 92%;
 	z-index: 1;
 }
 .slide-item.it1 img:nth-child(6){
@@ -118,7 +118,7 @@ body{
 	z-index: 2;
 }
 .slide-item.it1 img:nth-child(7){
-	right: 22%;
+	right: 4%;
 	top: 15%;
 	z-index: 3;
 }
