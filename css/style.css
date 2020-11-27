@@ -177,7 +177,7 @@ body{
 .slide-item.it3 img:nth-child(8){
 	right: 10%;
 	top: 110px;
-	z-index: 2;
+	z-index: 1;
   width: 103px;
 }
 .slide-item.it3 img:nth-child(9){

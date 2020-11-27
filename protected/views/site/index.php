@@ -54,32 +54,35 @@ video{
 		<div class="slidem hidden-lg hidden-md hidden-sm">
 			<div class="slide-item it1">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_01.jpg" class="img-responsive">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m2.png" class="img-responsive x3">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m1.png" class="img-responsive">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img6.png" class="img-responsive x1">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img7.png" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_00.svg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m_01.svg" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m_02.svg" class="img-responsive x1">
 			</div>
 			<div class="slide-item it2">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_02.jpg" class="img-responsive">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m3.png" class="img-responsive x3">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img11.png" class="img-responsive x1">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img20.png" class="img-responsive balloon">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_03.svg" class="img-responsive balloon">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_07.svg" class="img-responsive balloon">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_08.svg" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m_03.svg" class="img-responsive x3">
 			</div>
 			<div class="slide-item it3">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_03.jpg" class="img-responsive">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m4.png" class="img-responsive x3">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img18.png" class="img-responsive x5">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_04.svg" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_05.svg" class="img-responsive balloon">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m_04.svg" class="img-responsive x3">
 			</div>
 			<div class="slide-item it4">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_04.jpg" class="img-responsive">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m5.png" class="img-responsive x3">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m6.png" class="img-responsive x3">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img20.png" class="img-responsive balloon">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_18.svg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_19.svg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m_05.svg" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m_06.svg" class="img-responsive x3">
 			</div>
 			<div class="slide-item it5">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_05.jpg" class="img-responsive">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m7.png" class="img-responsive x3">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m8.png" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_20.svg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m_07.svg" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m_08.svg" class="img-responsive x3">
 			</div>
 		</div>
 	</div>
@@ -811,10 +814,19 @@ video{
 		});
   });
   if($(window).width()>=768){
-	  $('.slide').bxSlider();
+	  $('.slide').bxSlider({
+			//auto: true,
+			//pause: 4000,
+			keyboardEnabled: true,
+			speed: 1000
+		});
   }else{
 	   $('.slidem').bxSlider({
-		   pager: false
+ 			auto: true,
+ 			pause: 5000,
+ 			keyboardEnabled: true,
+ 			speed: 1000,
+		  pager: false
 	   });
   }
   //map hover
