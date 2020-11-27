@@ -1700,6 +1700,7 @@ h1 span{
   border:1px solid #b4b4b4;
   border-radius: 20px;
   cursor: pointer;
+  margin-bottom: 30px;
 }
 .event-item .col-md-12{
 	margin: 0;
@@ -2168,14 +2169,13 @@ input[type="radio"]:checked:before {
   height: 120px;
   bottom: 0;
   padding:15px 15px 10px;
-  border-bottom-left-radius: 15px;
+  /*border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#000000+19,000000+100&0+39,0.7+100 */
-  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 19%, rgba(0,0,0,0) 32%, rgba(0,0,0,0.7) 100%); /* FF3.6-15 */
-  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 19%,rgba(0,0,0,0) 32%,rgba(0,0,0,0.7) 100%); /* Chrome10-25,Safari5.1-6 */
-  background: linear-gradient(to bottom,  rgba(0,0,0,0) 19%,rgba(0,0,0,0) 32%,rgba(0,0,0,0.7) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#b3000000',GradientType=0 ); /* IE6-9 */
-
+  background: -moz-linear-gradient(top,  rgba(0,0,0,0) 19%, rgba(0,0,0,0) 32%, rgba(0,0,0,0.7) 100%);
+  background: -webkit-linear-gradient(top,  rgba(0,0,0,0) 19%,rgba(0,0,0,0) 32%,rgba(0,0,0,0.7) 100%);
+  background: linear-gradient(to bottom,  rgba(0,0,0,0) 19%,rgba(0,0,0,0) 32%,rgba(0,0,0,0.7) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#b3000000',GradientType=0 );
+  */
 }
 .footer-bottom h2{
 	font-family: 'Comfortaa';

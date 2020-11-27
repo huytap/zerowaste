@@ -420,8 +420,8 @@
 	}
 	.btnXemThem{
 		text-align: right;
-	    bottom: 0;
-	    position: relative;
+	    bottom: -65%;
+	    position: absolute;
 	    right: 15px;
 	}
 	.row.list .col-md-4{

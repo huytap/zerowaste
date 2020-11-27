@@ -128,6 +128,7 @@ class News extends CActiveRecord
 		$criteria->compare('news_category_id', $category, false);
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'sort' => array('displayOrder' => 'date desc'),
 			'pagination' => array('pageSize' => false)
 		));
 	}
