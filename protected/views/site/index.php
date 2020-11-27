@@ -14,44 +14,41 @@ video{
 	     <?php $this->widget('MenuWidget');?>
 		<div class="slide hidden-xs">
 			<div class="slide-item it1">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slide1.jpg" class="img-responsive">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img4.png" class="img-responsive x3">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img5.png" class="img-responsive">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img6.png" class="img-responsive x1">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img7.png" class="img-responsive x2">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img8.png" class="img-responsive x3">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img10.png" class="img-responsive x2">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img11.png" class="img-responsive x1">
-				<!--img src="<?php echo Yii::app()->baseUrl?>/images/slide/img13.png" class="img-responsive"-->
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_desk_01.jpg?v=01" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_00.svg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_01.svg" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_02.svg" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_03.svg" class="img-responsive balloon">
 			</div>
 			<div class="slide-item it2">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slide2.jpg" class="img-responsive">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img14.png" class="img-responsive x2">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img15.png" class="img-responsive x3">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img16.png" class="img-responsive">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img17.png" class="img-responsive x4">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img18.png" class="img-responsive x5">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img19.png" class="img-responsive x5">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img6.png" class="img-responsive x1">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img11.png" class="img-responsive x1">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img20.png" class="img-responsive x2">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_desk_02.jpg?v=01" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_04.svg" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_05.svg" class="img-responsive balloon">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_06.svg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_07.svg" class="img-responsive balloon">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_08.svg" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_09.svg" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_10.svg?v=1" class="img-responsive x4">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_11.svg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_12.svg" class="img-responsive x1">
 			</div>
 			<div class="slide-item it3">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slide3.jpg" class="img-responsive">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img20.png" class="img-responsive x2">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img21.png" class="img-responsive x1">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img22.png" class="img-responsive x1">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img23.png" class="img-responsive x5">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img24.png" class="img-responsive x3">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img25.png" class="img-responsive x3">
-				<!--img src="<?php echo Yii::app()->baseUrl?>/images/slide/img26.png" class="img-responsive x5"-->
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_desk_03.jpg?v=01" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_13.svg" class="img-responsive balloon">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_14.svg" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_15.svg" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_16.svg" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_17.svg" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_18.svg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_04.svg" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_19.svg" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_20.svg" class="img-responsive">
 			</div>
 			<div class="slide-item it4">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slide4.jpg" class="img-responsive">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img27.png" class="img-responsive x5">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img28.png" class="img-responsive x3">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img30.png" class="img-responsive x3">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img31.png" class="img-responsive x1">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_desk_04.jpg?v=01" class="img-responsive">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_21.svg" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_22.svg" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_23.svg" class="img-responsive x1">
 			</div>
 		</div>
 		<div class="slidem hidden-lg hidden-md hidden-sm">
@@ -66,7 +63,7 @@ video{
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_02.jpg" class="img-responsive">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m3.png" class="img-responsive x3">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img11.png" class="img-responsive x1">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img20.png" class="img-responsive x2">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img20.png" class="img-responsive balloon">
 			</div>
 			<div class="slide-item it3">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_03.jpg" class="img-responsive">
@@ -77,7 +74,7 @@ video{
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_04.jpg" class="img-responsive">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m5.png" class="img-responsive x3">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m6.png" class="img-responsive x3">
-				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img20.png" class="img-responsive x2">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img20.png" class="img-responsive balloon">
 			</div>
 			<div class="slide-item it5">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_05.jpg" class="img-responsive">
@@ -463,7 +460,7 @@ video{
 					      <path class="cls-9" d="M700.12,609.05c.17,1.83.34,3.67.5,5.5" transform="translate(-1.62 -0.21)"/>
 					      <g class="cls-6">
 					        <g class="cls-10">
-					          <line class="cls-8" x1="394.16" y1="579.23" x2="394.16" y2="585.73"/>
+					          <line class="cls-8" x1="394.16" y1="579.23" balloon="394.16" y2="585.73"/>
 					        </g>
 					      </g>
 					      <g class="cls-6">
@@ -473,12 +470,12 @@ video{
 					      </g>
 					      <g class="cls-6">
 					        <g class="cls-12">
-					          <line class="cls-8" x1="407.16" y1="577.23" x2="407.16" y2="585.73"/>
+					          <line class="cls-8" x1="407.16" y1="577.23" balloon="407.16" y2="585.73"/>
 					        </g>
 					      </g>
 					      <g class="cls-6">
 					        <g class="cls-13">
-					          <line class="cls-8" x1="551.65" y1="565.38" x2="551.65" y2="571.88"/>
+					          <line class="cls-8" x1="551.65" y1="565.38" balloon="551.65" y2="571.88"/>
 					        </g>
 					      </g>
 					      <g class="cls-6">
@@ -488,7 +485,7 @@ video{
 					      </g>
 					      <g class="cls-6">
 					        <g class="cls-15">
-					          <line class="cls-8" x1="564.65" y1="563.38" x2="564.65" y2="571.88"/>
+					          <line class="cls-8" x1="564.65" y1="563.38" balloon="564.65" y2="571.88"/>
 					        </g>
 					      </g>
 					      <g class="cls-6">
@@ -500,7 +497,7 @@ video{
 					      </g>
 					      <g class="cls-6">
 					        <g class="cls-17">
-					          <line class="cls-8" x1="353.69" y1="470.15" x2="353.69" y2="476.15"/>
+					          <line class="cls-8" x1="353.69" y1="470.15" balloon="353.69" y2="476.15"/>
 					          <path class="cls-8" d="M361.25,470.85l-1.05,5" transform="translate(-1.62 -0.21)"/>
 					          <path class="cls-8" d="M366.48,471.91c-.38,1.49-.77,3-1.15,4.46" transform="translate(-1.62 -0.21)"/>
 					        </g>
@@ -508,8 +505,8 @@ video{
 					      <g class="cls-6">
 					        <g class="cls-18">
 					          <path class="cls-8" d="M242.53,683.59q.41,3,.8,6" transform="translate(-1.62 -0.21)"/>
-					          <line class="cls-8" x1="247.88" y1="682.88" x2="247.88" y2="688.38"/>
-					          <line class="cls-8" x1="253.38" y1="683.88" x2="253.38" y2="687.88"/>
+					          <line class="cls-8" x1="247.88" y1="682.88" balloon="247.88" y2="688.38"/>
+					          <line class="cls-8" x1="253.38" y1="683.88" balloon="253.38" y2="687.88"/>
 					        </g>
 					      </g>
 					      <g class="cls-6">
@@ -519,34 +516,34 @@ video{
 					          <path class="cls-8" d="M360.89,370a18.91,18.91,0,0,1,3,6" transform="translate(-1.62 -0.21)"/>
 					        </g>
 					      </g>
-					      <line class="cls-9" x1="440.41" y1="139.76" x2="440.41" y2="145.76"/>
-					      <line class="cls-9" x1="445.41" y1="138.26" x2="445.41" y2="145.76"/>
+					      <line class="cls-9" x1="440.41" y1="139.76" balloon="440.41" y2="145.76"/>
+					      <line class="cls-9" x1="445.41" y1="138.26" balloon="445.41" y2="145.76"/>
 					      <path class="cls-9" d="M453.51,139.47a9,9,0,0,1-.46,4.51" transform="translate(-1.62 -0.21)"/>
 					      <g class="cls-6">
 					        <g class="cls-20">
-					          <line class="cls-8" x1="564.92" y1="425.94" x2="564.92" y2="431.94"/>
-					          <line class="cls-8" x1="569.92" y1="424.44" x2="569.92" y2="431.94"/>
+					          <line class="cls-8" x1="564.92" y1="425.94" balloon="564.92" y2="431.94"/>
+					          <line class="cls-8" x1="569.92" y1="424.44" balloon="569.92" y2="431.94"/>
 					          <path class="cls-8" d="M578,425.65a9.11,9.11,0,0,1-.46,4.51" transform="translate(-1.62 -0.21)"/>
 					        </g>
 					      </g>
 					      <path class="cls-5" d="M665.78,225.27a12.43,12.43,0,0,1,.5,4.5" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-5" d="M673.74,222.27a25.29,25.29,0,0,1-.32,7.52" transform="translate(-1.62 -0.21)"/>
-					      <line class="cls-5" x1="676.66" y1="223.56" x2="676.66" y2="229.56"/>
+					      <line class="cls-5" x1="676.66" y1="223.56" balloon="676.66" y2="229.56"/>
 					      <g class="cls-6">
 					        <g class="cls-21">
-					          <line class="cls-8" x1="414.94" y1="646.93" x2="414.94" y2="648.93"/>
+					          <line class="cls-8" x1="414.94" y1="646.93" balloon="414.94" y2="648.93"/>
 					          <path class="cls-8" d="M425.07,642.14a37.32,37.32,0,0,1-2.95,11" transform="translate(-1.62 -0.21)"/>
 					          <path class="cls-8" d="M428.06,648.14a18.58,18.58,0,0,1-2,7.51" transform="translate(-1.62 -0.21)"/>
 					        </g>
 					      </g>
 					      <g class="cls-6">
 					        <g class="cls-22">
-					          <line class="cls-8" x1="532.22" y1="536.82" x2="532.22" y2="538.82"/>
+					          <line class="cls-8" x1="532.22" y1="536.82" balloon="532.22" y2="538.82"/>
 					          <path class="cls-8" d="M542.36,532a37.71,37.71,0,0,1-3,11" transform="translate(-1.62 -0.21)"/>
 					          <path class="cls-8" d="M545.35,538a18.74,18.74,0,0,1-2,7.52" transform="translate(-1.62 -0.21)"/>
 					        </g>
 					      </g>
-					      <line class="cls-5" x1="581.39" y1="860.18" x2="581.39" y2="862.18"/>
+					      <line class="cls-5" x1="581.39" y1="860.18" balloon="581.39" y2="862.18"/>
 					      <path class="cls-5" d="M591.52,855.39a37.39,37.39,0,0,1-2.95,11" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-5" d="M594.51,861.39a18.57,18.57,0,0,1-2,7.52" transform="translate(-1.62 -0.21)"/>
 					      <g class="cls-6">
@@ -639,19 +636,19 @@ video{
 					          <path class="cls-8" d="M318.59,577.23l-2.94,16.51" transform="translate(-1.62 -0.21)"/>
 					        </g>
 					      </g>
-					      <line class="cls-5" x1="872.45" y1="773.45" x2="872.45" y2="778.45"/>
+					      <line class="cls-5" x1="872.45" y1="773.45" balloon="872.45" y2="778.45"/>
 					      <path class="cls-5" d="M879,769.17q.63,5.75,1.25,11.48" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-5" d="M886.06,772.66c-.17,1.83-.34,3.67-.5,5.5" transform="translate(-1.62 -0.21)"/>
 					      <g class="cls-6">
 					        <g class="cls-35">
-					          <line class="cls-8" x1="297.8" y1="772.95" x2="297.8" y2="777.95"/>
+					          <line class="cls-8" x1="297.8" y1="772.95" balloon="297.8" y2="777.95"/>
 					          <path class="cls-8" d="M304.31,768.68q.62,5.73,1.24,11.47" transform="translate(-1.62 -0.21)"/>
 					          <path class="cls-8" d="M311.4,772.16c-.16,1.83-.33,3.67-.5,5.5" transform="translate(-1.62 -0.21)"/>
 					        </g>
 					      </g>
 					      <g class="cls-6">
 					        <g class="cls-36">
-					          <line class="cls-8" x1="429.82" y1="699.38" x2="429.82" y2="704.38"/>
+					          <line class="cls-8" x1="429.82" y1="699.38" balloon="429.82" y2="704.38"/>
 					          <path class="cls-8" d="M436.33,695.1q.62,5.74,1.24,11.48" transform="translate(-1.62 -0.21)"/>
 					          <path class="cls-8" d="M443.42,698.59c-.17,1.83-.33,3.67-.5,5.5" transform="translate(-1.62 -0.21)"/>
 					        </g>
@@ -659,10 +656,10 @@ video{
 					      <path class="cls-9" d="M677.42,838.59a15,15,0,0,0-1.76,4.95" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-9" d="M684.92,834.08l-2.88,12" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-9" d="M689.89,842.08l-1.5,5.5" transform="translate(-1.62 -0.21)"/>
-					      <line class="cls-9" x1="296.9" y1="193.61" x2="296.9" y2="199.61"/>
-					      <line class="cls-9" x1="301.9" y1="192.11" x2="301.9" y2="199.61"/>
+					      <line class="cls-9" x1="296.9" y1="193.61" balloon="296.9" y2="199.61"/>
+					      <line class="cls-9" x1="301.9" y1="192.11" balloon="301.9" y2="199.61"/>
 					      <path class="cls-9" d="M310,193.32a9.11,9.11,0,0,1-.46,4.51" transform="translate(-1.62 -0.21)"/>
-					      <line class="cls-9" x1="750.45" y1="319.93" x2="750.45" y2="321.93"/>
+					      <line class="cls-9" x1="750.45" y1="319.93" balloon="750.45" y2="321.93"/>
 					      <path class="cls-9" d="M760.58,315.15a37.32,37.32,0,0,1-3,11" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-9" d="M763.58,321.14a18.74,18.74,0,0,1-2,7.52" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-9" d="M860.61,354.54a14.82,14.82,0,0,0,.43,6" transform="translate(-1.62 -0.21)"/>
@@ -714,8 +711,8 @@ video{
 					      <path class="cls-8" d="M955,522a24.46,24.46,0,0,1-7.17.59,8.25,8.25,0,0,1-6.1-3.4,12.23,12.23,0,0,1-1.37-3.75l-2.25-9.24a1.46,1.46,0,0,1,0-1c.42-.86,1.71-.2,2.34.51l4.5,5.09a2.77,2.77,0,0,0,2,1.22c1.09-.07,1.65-1.32,1.88-2.39a21.58,21.58,0,0,0,.49-4.16,13.06,13.06,0,0,1,.46-4.59c.56-1.44,2.12-2.65,3.6-2.2,3.24,1,1,6.87,3.65,8.95l6.72-10.46a63.63,63.63,0,0,1,2.44,12.07l5.36-5.92c1-1.09,2.6-2.27,3.76-1.36s.53,2.59-.12,3.81l-2.76,5.12a2.07,2.07,0,0,0-.35,1.58c.33,1,1.75.87,2.69.46s2.14-.89,2.9-.19a19.78,19.78,0,0,1-21.91,10.18" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-5" d="M887.53,164a12.88,12.88,0,0,1,.5,4.5" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-5" d="M895.48,161a25.28,25.28,0,0,1-.31,7.52" transform="translate(-1.62 -0.21)"/>
-					      <line class="cls-5" x1="898.41" y1="162.28" x2="898.41" y2="168.28"/>
-					      <line class="cls-9" x1="1060.63" y1="528.67" x2="1060.63" y2="530.67"/>
+					      <line class="cls-5" x1="898.41" y1="162.28" balloon="898.41" y2="168.28"/>
+					      <line class="cls-9" x1="1060.63" y1="528.67" balloon="1060.63" y2="530.67"/>
 					      <path class="cls-9" d="M1070.76,523.88a37.24,37.24,0,0,1-3,11" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-9" d="M1073.76,529.88a18.78,18.78,0,0,1-2,7.52" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-9" d="M581.74,6.22a14.82,14.82,0,0,0,.43,6" transform="translate(-1.62 -0.21)"/>
