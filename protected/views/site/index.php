@@ -70,6 +70,8 @@ video{
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_04.svg" class="img-responsive x1">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_05.svg" class="img-responsive balloon">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/m_04.svg" class="img-responsive x3">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_10.svg?v=1" class="img-responsive x4">
+				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/img_11.svg" class="img-responsive">
 			</div>
 			<div class="slide-item it4">
 				<img src="<?php echo Yii::app()->baseUrl?>/images/slide/slider_mobi_04.jpg" class="img-responsive">
@@ -96,9 +98,9 @@ video{
 			<img src="<?php echo Yii::app()->baseUrl?>/images/tree.png" />
 		</div>
 		<div class="hidden-lg hidden-md hidden-xs">
-			<img src="<?php echo Yii::app()->baseUrl?>/images/bottom-shadow-ipad.png" class="mg-responsive">
+			<img src="<?php echo Yii::app()->baseUrl?>/images/bottom-shadow-ipad.png" class="mg-responsive" width="100%">
 		</div>
-		<div class="map row hidden-xs">
+		<div class="map row hidden-sm hidden-xs">
 			<div class="col-md-5" style="height:100%;">
 				<div class="map-left">
 					<div class="text">
@@ -461,34 +463,15 @@ video{
 					      <path class="cls-9" d="M689.75,611.53c.43,1.52.87,3,1.3,4.56" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-9" d="M692.73,608.52a10.72,10.72,0,0,1,2,6.52" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-9" d="M700.12,609.05c.17,1.83.34,3.67.5,5.5" transform="translate(-1.62 -0.21)"/>
-					      <g class="cls-6">
-					        <g class="cls-10">
-					          <line class="cls-8" x1="394.16" y1="579.23" balloon="394.16" y2="585.73"/>
-					        </g>
-					      </g>
+
 					      <g class="cls-6">
 					        <g class="cls-11">
 					          <path class="cls-8" d="M402.36,575.45A32.07,32.07,0,0,0,403,587" transform="translate(-1.62 -0.21)"/>
 					        </g>
 					      </g>
 					      <g class="cls-6">
-					        <g class="cls-12">
-					          <line class="cls-8" x1="407.16" y1="577.23" balloon="407.16" y2="585.73"/>
-					        </g>
-					      </g>
-					      <g class="cls-6">
-					        <g class="cls-13">
-					          <line class="cls-8" x1="551.65" y1="565.38" balloon="551.65" y2="571.88"/>
-					        </g>
-					      </g>
-					      <g class="cls-6">
 					        <g class="cls-14">
 					          <path class="cls-8" d="M559.84,561.6a32.3,32.3,0,0,0,.68,11.55" transform="translate(-1.62 -0.21)"/>
-					        </g>
-					      </g>
-					      <g class="cls-6">
-					        <g class="cls-15">
-					          <line class="cls-8" x1="564.65" y1="563.38" balloon="564.65" y2="571.88"/>
 					        </g>
 					      </g>
 					      <g class="cls-6">
@@ -506,47 +489,26 @@ video{
 					        </g>
 					      </g>
 					      <g class="cls-6">
-					        <g class="cls-18">
-					          <path class="cls-8" d="M242.53,683.59q.41,3,.8,6" transform="translate(-1.62 -0.21)"/>
-					          <line class="cls-8" x1="247.88" y1="682.88" balloon="247.88" y2="688.38"/>
-					          <line class="cls-8" x1="253.38" y1="683.88" balloon="253.38" y2="687.88"/>
-					        </g>
-					      </g>
-					      <g class="cls-6">
 					        <g class="cls-19">
 					          <path class="cls-8" d="M349.25,374.11a19.09,19.09,0,0,1,3.92,5.73" transform="translate(-1.62 -0.21)"/>
 					          <path class="cls-8" d="M351.85,368a34.81,34.81,0,0,1,6.9,10.3" transform="translate(-1.62 -0.21)"/>
 					          <path class="cls-8" d="M360.89,370a18.91,18.91,0,0,1,3,6" transform="translate(-1.62 -0.21)"/>
 					        </g>
 					      </g>
-					      <line class="cls-9" x1="440.41" y1="139.76" balloon="440.41" y2="145.76"/>
-					      <line class="cls-9" x1="445.41" y1="138.26" balloon="445.41" y2="145.76"/>
-					      <path class="cls-9" d="M453.51,139.47a9,9,0,0,1-.46,4.51" transform="translate(-1.62 -0.21)"/>
-					      <g class="cls-6">
-					        <g class="cls-20">
-					          <line class="cls-8" x1="564.92" y1="425.94" balloon="564.92" y2="431.94"/>
-					          <line class="cls-8" x1="569.92" y1="424.44" balloon="569.92" y2="431.94"/>
-					          <path class="cls-8" d="M578,425.65a9.11,9.11,0,0,1-.46,4.51" transform="translate(-1.62 -0.21)"/>
-					        </g>
-					      </g>
 					      <path class="cls-5" d="M665.78,225.27a12.43,12.43,0,0,1,.5,4.5" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-5" d="M673.74,222.27a25.29,25.29,0,0,1-.32,7.52" transform="translate(-1.62 -0.21)"/>
-					      <line class="cls-5" x1="676.66" y1="223.56" balloon="676.66" y2="229.56"/>
 					      <g class="cls-6">
 					        <g class="cls-21">
-					          <line class="cls-8" x1="414.94" y1="646.93" balloon="414.94" y2="648.93"/>
 					          <path class="cls-8" d="M425.07,642.14a37.32,37.32,0,0,1-2.95,11" transform="translate(-1.62 -0.21)"/>
 					          <path class="cls-8" d="M428.06,648.14a18.58,18.58,0,0,1-2,7.51" transform="translate(-1.62 -0.21)"/>
 					        </g>
 					      </g>
 					      <g class="cls-6">
 					        <g class="cls-22">
-					          <line class="cls-8" x1="532.22" y1="536.82" balloon="532.22" y2="538.82"/>
 					          <path class="cls-8" d="M542.36,532a37.71,37.71,0,0,1-3,11" transform="translate(-1.62 -0.21)"/>
 					          <path class="cls-8" d="M545.35,538a18.74,18.74,0,0,1-2,7.52" transform="translate(-1.62 -0.21)"/>
 					        </g>
 					      </g>
-					      <line class="cls-5" x1="581.39" y1="860.18" balloon="581.39" y2="862.18"/>
 					      <path class="cls-5" d="M591.52,855.39a37.39,37.39,0,0,1-2.95,11" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-5" d="M594.51,861.39a18.57,18.57,0,0,1-2,7.52" transform="translate(-1.62 -0.21)"/>
 					      <g class="cls-6">
@@ -639,19 +601,16 @@ video{
 					          <path class="cls-8" d="M318.59,577.23l-2.94,16.51" transform="translate(-1.62 -0.21)"/>
 					        </g>
 					      </g>
-					      <line class="cls-5" x1="872.45" y1="773.45" balloon="872.45" y2="778.45"/>
 					      <path class="cls-5" d="M879,769.17q.63,5.75,1.25,11.48" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-5" d="M886.06,772.66c-.17,1.83-.34,3.67-.5,5.5" transform="translate(-1.62 -0.21)"/>
 					      <g class="cls-6">
 					        <g class="cls-35">
-					          <line class="cls-8" x1="297.8" y1="772.95" balloon="297.8" y2="777.95"/>
 					          <path class="cls-8" d="M304.31,768.68q.62,5.73,1.24,11.47" transform="translate(-1.62 -0.21)"/>
 					          <path class="cls-8" d="M311.4,772.16c-.16,1.83-.33,3.67-.5,5.5" transform="translate(-1.62 -0.21)"/>
 					        </g>
 					      </g>
 					      <g class="cls-6">
 					        <g class="cls-36">
-					          <line class="cls-8" x1="429.82" y1="699.38" balloon="429.82" y2="704.38"/>
 					          <path class="cls-8" d="M436.33,695.1q.62,5.74,1.24,11.48" transform="translate(-1.62 -0.21)"/>
 					          <path class="cls-8" d="M443.42,698.59c-.17,1.83-.33,3.67-.5,5.5" transform="translate(-1.62 -0.21)"/>
 					        </g>
@@ -659,10 +618,6 @@ video{
 					      <path class="cls-9" d="M677.42,838.59a15,15,0,0,0-1.76,4.95" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-9" d="M684.92,834.08l-2.88,12" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-9" d="M689.89,842.08l-1.5,5.5" transform="translate(-1.62 -0.21)"/>
-					      <line class="cls-9" x1="296.9" y1="193.61" balloon="296.9" y2="199.61"/>
-					      <line class="cls-9" x1="301.9" y1="192.11" balloon="301.9" y2="199.61"/>
-					      <path class="cls-9" d="M310,193.32a9.11,9.11,0,0,1-.46,4.51" transform="translate(-1.62 -0.21)"/>
-					      <line class="cls-9" x1="750.45" y1="319.93" balloon="750.45" y2="321.93"/>
 					      <path class="cls-9" d="M760.58,315.15a37.32,37.32,0,0,1-3,11" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-9" d="M763.58,321.14a18.74,18.74,0,0,1-2,7.52" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-9" d="M860.61,354.54a14.82,14.82,0,0,0,.43,6" transform="translate(-1.62 -0.21)"/>
@@ -714,8 +669,6 @@ video{
 					      <path class="cls-8" d="M955,522a24.46,24.46,0,0,1-7.17.59,8.25,8.25,0,0,1-6.1-3.4,12.23,12.23,0,0,1-1.37-3.75l-2.25-9.24a1.46,1.46,0,0,1,0-1c.42-.86,1.71-.2,2.34.51l4.5,5.09a2.77,2.77,0,0,0,2,1.22c1.09-.07,1.65-1.32,1.88-2.39a21.58,21.58,0,0,0,.49-4.16,13.06,13.06,0,0,1,.46-4.59c.56-1.44,2.12-2.65,3.6-2.2,3.24,1,1,6.87,3.65,8.95l6.72-10.46a63.63,63.63,0,0,1,2.44,12.07l5.36-5.92c1-1.09,2.6-2.27,3.76-1.36s.53,2.59-.12,3.81l-2.76,5.12a2.07,2.07,0,0,0-.35,1.58c.33,1,1.75.87,2.69.46s2.14-.89,2.9-.19a19.78,19.78,0,0,1-21.91,10.18" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-5" d="M887.53,164a12.88,12.88,0,0,1,.5,4.5" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-5" d="M895.48,161a25.28,25.28,0,0,1-.31,7.52" transform="translate(-1.62 -0.21)"/>
-					      <line class="cls-5" x1="898.41" y1="162.28" balloon="898.41" y2="168.28"/>
-					      <line class="cls-9" x1="1060.63" y1="528.67" balloon="1060.63" y2="530.67"/>
 					      <path class="cls-9" d="M1070.76,523.88a37.24,37.24,0,0,1-3,11" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-9" d="M1073.76,529.88a18.78,18.78,0,0,1-2,7.52" transform="translate(-1.62 -0.21)"/>
 					      <path class="cls-9" d="M581.74,6.22a14.82,14.82,0,0,0,.43,6" transform="translate(-1.62 -0.21)"/>
@@ -759,7 +712,7 @@ video{
 		<img src="<?php echo Yii::app()->baseUrl?>/images/cta-m.png"/>
 		<img src="<?php echo Yii::app()->baseUrl?>/images/tree-m.png" class="tree-m"/>
 	</div>
-	<div class="map-m hidden-lg hidden-md hidden-sm">
+	<div class="map-m hidden-lg hidden-md">
 		<div class="map-intro">
 			Dò tìm<br/>
 			khám phá
@@ -770,6 +723,7 @@ video{
 				<?php
 				foreach($map as $k => $m){
 					$getDist = StoreBrand::model()->getTotalByDist($k);?>
+					<?php if($getDist>0){?>
 					<a href="<?php echo Yii::app()->baseUrl?>/store.html?tag=<?php echo $k?>" class="map-item">
 						<img src="<?php echo Yii::app()->baseUrl?>/images/m<?php echo $k;?>.svg" class="img-responsive" />
 						<div class="map-title">
@@ -777,6 +731,8 @@ video{
 							<p><?php echo $getDist;?> cửa hàng</p>
 						</div>
 					</a>
+
+				<?php }?>
 				<?php }?>
 			</div>
 		</div>
@@ -807,13 +763,18 @@ video{
 
 <?php Yii::app()->clientScript->registerScript('SlideMap',"
   $(document).ready(function(){
-    $('.bxslider').bxSlider({
-			controls: false,
-			minSlides:3,
-			maxSlides:3,
-		});
+		//alert($(window).width());
+
   });
   if($(window).width()>=768){
+		$('.bxslider').bxSlider({
+			controls: false,
+			slideWidth: 300,
+			minSlides:3,
+			maxSlides:3,
+			slideMargin: 15,
+			responsive: true
+		});
 	  $('.slide').bxSlider({
 			//auto: true,
 			//pause: 4000,
@@ -821,8 +782,16 @@ video{
 			speed: 1000
 		});
   }else{
+		$('.bxslider').bxSlider({
+			controls: false,
+			slideWidth: 300,
+			minSlides:1,
+			maxSlides:2,
+			slideMargin: 15,
+			responsive: true
+		});
 	   $('.slidem').bxSlider({
- 			auto: true,
+ 			//auto: true,
  			pause: 5000,
  			keyboardEnabled: true,
  			speed: 1000,
@@ -836,6 +805,8 @@ video{
   });
   var dis_new = 0;
   $('.map-right').find('g[data-dist]').hover(function() {
+		$('#map2').html('');
+		$('#map2').hide()
     var offset = $(this).offset();
     var dis = $(this).attr('data-dist');
     var top = offset.top + $(this).height()-150;
@@ -848,13 +819,15 @@ video{
 		    data:{dist:dis},
 		    dataType: 'json',
 		    success:function(data){
-			    dis_new = dis;
-			    var html = '';
-			    html += '<div class=\"box-pp\"><img class=\"img-responsive\" src=\"".Yii::app()->baseUrl."\/images/'+dis+'.svg\"></div>';
-	    		    html += '<div class=\"box-pr\"><div><h3 class=\"box-title\">'+ data.district+'</h3>';
-			    html +='<p>'+data.total+' cửa hàng</p></div></div>';
-			    $('#map2').html(html);
-			    $('#map2').css('display', 'flex');
+					//if(data.total > 0){
+				    dis_new = dis;
+				    var html = '';
+				    html += '<div class=\"box-pp\"><img class=\"img-responsive\" src=\"".Yii::app()->baseUrl."\/images/'+dis+'.svg\"></div>';
+		    		    html += '<div class=\"box-pr\"><div><h3 class=\"box-title\">'+ data.district+'</h3>';
+				    html +='<p>'+data.total+' cửa hàng</p></div></div>';
+				    $('#map2').html(html);
+				    $('#map2').css('display', 'flex');
+
 		    }
 	    })
     }

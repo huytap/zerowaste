@@ -119,7 +119,7 @@ class StoreBrand extends CActiveRecord
 	}
 
 	public function getTotalStore(){
-		return Store::model()->count();
+		return StoreBrand::model()->count();
 	}
 
 	public function getTotalByDist($dist){

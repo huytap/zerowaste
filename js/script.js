@@ -3,14 +3,14 @@ $(document).ready(function(){
 	$(window).scroll(function(event){
 	    var st = $(this).scrollTop();
 	    if (st > lastScroll){
-		 $('.header-top').addClass('nav-up');
-		 $('.header-top').removeClass('nav-down');
+			 	$('.header-top').addClass('nav-up');
+			 	$('.header-top').removeClass('nav-down');
 	    }
 	    else {
-		 $('.header-top').removeClass('nav-up');
-		 $('.header-top').addClass('nav-down');
+			 $('.header-top').removeClass('nav-up');
+			 $('.header-top').addClass('nav-down');
 	    }
-	    lastScroll = st;
+	    lastScroll = st<0?0:st;
     });
   /*filter box*/
   if($('.box-category').length){
