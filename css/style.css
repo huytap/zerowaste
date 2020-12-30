@@ -905,6 +905,9 @@ ul li{
 .modal-header{
   border:0;
 }
+#popup .modal-header{
+  background: #f2fdff;
+}
 .menu a{
   font-size: 40px;
   font-family: 'Bungee';
@@ -934,9 +937,10 @@ ul li{
    height: 100%;
    float: right;
 }
+/*
 .banner.hidden-xs{
 	padding-top: 105px;
-}
+}*/
 #popupsuccess .modal-dialog{
 	width: 30%;
 }
@@ -1272,8 +1276,37 @@ h1 span{
 }
 #viewmap .modal-body{
 	padding: 50px 100px;
-	overflow-y: scroll;
-	height: calc(100% - 100px);
+	overflow-y: auto;
+	max-height: calc(100% - 50px);
+	vertical-align: top;
+}
+#viewmap .modal-header {
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    position: absolute;
+    right: 15px;
+    width: 90%;
+    z-index: 999999;
+    background: #f1f0f0;
+    padding: 0;
+    height: 50px;
+}
+#viewmap .modal-body::-webkit-scrollbar-track {
+  border: 0;
+  padding: 10px 150px;
+  background-color: #f1f0f0;
+  border-radius: 10px;
+  margin-top: 50px;
+}
+
+#viewmap .modal-body::-webkit-scrollbar {
+  width: 10px;
+}
+
+#viewmap .modal-body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: rgb(252,234,187);
 }
 #viewmap .map-row{
 	padding-bottom: 50px;
@@ -1670,6 +1703,7 @@ h1 span{
   font-size: 40px;
   color:#01ac83;
   margin-bottom: 60px;
+  margin-top: 0;
   position: relative;
   display: inline-block;
 }
@@ -1807,17 +1841,17 @@ h1 span{
   font-size: 18px;
   color:#000;
 }
-.eco-items a{
+.eco-items .list a{
   color:#fff;
   font-family: 'Bungee';
   position: relative;
   display: block;
 
 }
-.eco-items a img{
+.eco-items .list a img{
   border-radius: 15px;
 }
-.eco.eco-items a{
+.eco.eco-items .list a{
   color:#fff;
 }
 .eco-items .col-md-3{
@@ -1900,7 +1934,7 @@ a:hover{
 	z-index: 99992
 }
 #popup .modal-body{
-	background: url(../images/form-footer-bg.png) no-repeat bottom;
+	background: url(../images/form-footer-bg.png) no-repeat bottom #f2fdff;
 	z-index: 1
 }
 #popup .modal-dialog {
@@ -1948,7 +1982,7 @@ a:hover{
   padding-bottom: 40px;
 }
 .form .left{
-  width: 120px;
+  width: 130px;
   font-weight: 700;
 }
 .form .field:focus{
@@ -2106,6 +2140,7 @@ input[type="radio"]:checked:before {
   border:0;
   border-bottom: 1px solid #000;
   padding: 5px 0;
+  background: transparent;
 }
 .step2 textarea{
   height: 125px;
@@ -2178,7 +2213,11 @@ input[type="radio"]:checked:before {
 .eco-items a:hover span{
   color:#fff;
 }
-.eco-items a:hover{
+a.viewmore{
+  display: block;
+  padding-top: 10px;
+}
+.eco-items .list a:hover{
   box-shadow: 9px 8px 5px 0px rgba(0, 0, 0, 0.17);
   border-radius: 15px;
 }

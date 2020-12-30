@@ -1,25 +1,23 @@
 <?php
 
 /**
- * This is the model class for table "store_brands".
+ * This is the model class for table "seo".
  *
- * The followings are the available columns in table 'store_brands':
+ * The followings are the available columns in table 'seo':
  * @property integer $id
- * @property integer $store_id
- * @property string $address
- * @property string $ward
- * @property string $district
- * @property string $phone
- * @property integer $status
+ * @property string $page
+ * @property string $meta_title
+ * @property string $meta_description
+ * @property string $thumnail_url
  */
-class StoreBrand extends CActiveRecord
+class Seo extends CActiveRecord
 {
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'store_brands';
+		return 'seo';
 	}
 
 	/**
@@ -30,15 +28,12 @@ class StoreBrand extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('store_id, address, status', 'required'),
-			array('store_id, status', 'numerical', 'integerOnly'=>true),
-			array('address,city', 'length', 'max'=>255),
-			array('ward, district, phone', 'length', 'max'=>32),
-			array('address_photo', 'length', 'max' => 128),
-			array('lat, lng', 'length', 'max'=>10),
+			array('page, meta_title, meta_description, thumnail_url', 'required'),
+			array('page, meta_title, meta_description', 'length', 'max'=>128),
+			array('thumnail_url', 'length', 'max'=>512),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, store_id, address, ward, district, phone, status', 'safe', 'on'=>'search'),
+			array('id, page, meta_title, meta_description, thumnail_url', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -50,7 +45,6 @@ class StoreBrand extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'store' => array(self::BELONGS_TO, 'Store', 'store_id')
 		);
 	}
 
@@ -61,12 +55,10 @@ class StoreBrand extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'store_id' => 'Store',
-			'address' => 'Address',
-			'ward' => 'Ward',
-			'district' => 'District',
-			'phone' => 'Phone',
-			'status' => 'Status',
+			'page' => 'Page',
+			'meta_title' => 'Meta Title',
+			'meta_description' => 'Meta Description',
+			'thumnail_url' => 'Thumnail Url',
 		);
 	}
 
@@ -89,16 +81,13 @@ class StoreBrand extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('store_id',$this->store_id);
-		$criteria->compare('address',$this->address,true);
-		$criteria->compare('ward',$this->ward,true);
-		$criteria->compare('district',$this->district,true);
-		$criteria->compare('phone',$this->phone,true);
-		$criteria->compare('status',$this->status);
+		$criteria->compare('page',$this->page,true);
+		$criteria->compare('meta_title',$this->meta_title,true);
+		$criteria->compare('meta_description',$this->meta_description,true);
+		$criteria->compare('thumnail_url',$this->thumnail_url,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'pagination' => false
 		));
 	}
 
@@ -106,35 +95,16 @@ class StoreBrand extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return StoreBrand the static model class
+	 * @return Seo the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
 	}
 
-	public function getDistrict($id){
+	public function getByPage($page){
 		$criteria = new CDbCriteria;
-		$criteria->compare('store_id', $id, false);
-		return StoreBrand::model()->findAll($criteria);
-	}
-
-	public function getTotalStore(){
-		return StoreBrand::model()->count();
-	}
-
-	public function getTotalByDist($dist){
-		$criteria = new CDbCriteria;
-		$criteria->compare('district', $dist, false);
-		$data = StoreBrand::model()->count($criteria);
-		return $data;
-	}
-
-	public function getList(){
-		$criteria = new CDbCriteria;
-		//$criteria->compare('store_id', $id, false);
-		return new CActiveDataProvider($this, array(
-			'criteria' => $criteria
-		));
+		$criteria->compare('page', $page, false);
+		return Seo::model()->find($criteria);
 	}
 }

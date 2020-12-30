@@ -10,8 +10,8 @@ class EventController extends Controller{
         $this->render('news', compact(array('model')));
       }
     }else{
-      $model = News::model()->getList(1);
-      $eco = News::model()->getList(2);
+      $model = News::model()->getList(1,6);
+      $eco = News::model()->getList(2,8);
       $this->render('index', compact(array('model', 'eco')));
     }
   }

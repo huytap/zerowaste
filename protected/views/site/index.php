@@ -737,7 +737,6 @@ video{
 			</div>
 		</div>
 	</div>
-
 </div>
 <div id="store" class="modal fade store-modal" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -763,8 +762,7 @@ video{
 
 <?php Yii::app()->clientScript->registerScript('SlideMap',"
   $(document).ready(function(){
-		//alert($(window).width());
-
+	  //alert($(window).width());
   });
   if($(window).width()>=768){
 		$('.bxslider').bxSlider({

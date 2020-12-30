@@ -47,6 +47,18 @@ $form = $this->beginWidget('CActiveForm', array(
      </div>
   </div>
   <div class="row">
+     <div class="col-sm-3 form-group">
+	    <?php echo $form->label($model, 'lat');?>
+	    <?php echo $form->textField($model, 'lat', array('class' => 'form-control input-sm', 'placeholder' => 'Lat'));?>
+	    <?php echo $form->error($model, 'lat'); ?>
+     </div>
+	<div class="col-sm-3 form-group">
+	    <?php echo $form->label($model, 'lng');?>
+	    <?php echo $form->textField($model, 'lng', array('class' => 'form-control input-sm', 'placeholder' => 'Lng'));?>
+	    <?php echo $form->error($model, 'lng'); ?>
+     </div>
+</div>
+  <div class="row">
        <div class="col-sm-3 form-group">
            <?php echo $form->label($model, 'address_photo');?>
            <?php echo $form->fileField($model, "address_photo"); ?>

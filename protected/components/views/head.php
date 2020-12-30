@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Zero Waste Wonderland</title>
+	<?php
+	function limitParagraphs($sHTML, $iLimit){
+	    if(1 === preg_match('~(<p>.+?</p>){' . (int)$iLimit . '}~i', $sHTML, $aMatches)){
+	        return $aMatches[0];
+	    }
+	    return strip_tags($sHTML);
+	}
+	$page = isset($_GET['page']) ? $_GET['page'] : '';
+	if(isset($_GET['slug'])){
+		if($page == 'store'){
+			$store = Store::model()->findByPk($_GET['storeid']);
+			$des = $store['description'];
+			?>
+			<title><?php echo $store['name'];?> - Zero Waste Wonderland</title>
+			<meta property="og:image" itemprop="thumbnailUrl" content="<?php echo Yii::app()->params['link']?>/uploads/<?php if($store['large_photo']) echo $store['large_photo'];else echo $store['photo'];?>" />
+			<meta name="description" content="<?php echo limitParagraphs($des, 128);?>">
+			<?php
+		}elseif($page == 'events'){
+			$model = News::model()->findByPk($_GET['eventid']);
+			$des = $model['short_description'];
+			?>
+			<title><?php echo $model['name'];?> - Zero Waste Wonderland</title>
+			<meta property="og:image" itemprop="thumbnailUrl" content="<?php echo Yii::app()->params['link']?>/uploads/<?php echo $model['large_photo'];?>" />
+			<meta name="description" content="<?php echo $des;?>">
+			<?php
+		}
+	}else{
+		$seo = Seo::model()->getByPage($page);
+		if($seo){
+			?>
+			<title><?php echo $seo['meta_title'];?> - Zero Waste Wonderland</title>
+			<meta property="og:image" itemprop="thumbnailUrl" content="<?php echo Yii::app()->params['link']?>/uploads/<?php echo $seo['thumnail_url'];?>" />
+			<meta name="description" content="">
+		<?php
+		}else{
+		?>
+			<title>Zero Waste Wonderland</title>
+			<meta property="og:image" itemprop="thumbnailUrl" content="<?php echo Yii::app()->params['link']?>/images/ZWW_FBCover.jpg" />
+		<?php }
+	}?>
+	<meta name="keywords" content=""/>
+	<meta name="news_keywords" content=""/>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<meta name="robots" content="index, follow">
+
 		<link rel="apple-touch-icon" sizes="57x57" href="<?php echo Yii::app()->baseUrl?>/images/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="<?php echo Yii::app()->baseUrl?>/images/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="<?php echo Yii::app()->baseUrl?>/images/apple-icon-72x72.png">
@@ -26,5 +68,13 @@
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl?>/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl?>/css/style.css?v=<?php echo time(); ?>">
 	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->baseUrl?>/css/responsive.css?v=<?php echo time(); ?>">
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-T4N1XJGH2T"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-T4N1XJGH2T');
+</script>
 </head>
 <body>

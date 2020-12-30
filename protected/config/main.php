@@ -79,6 +79,7 @@ return array(
 	// using Yii::app()->params['paramName']
 	'params'=>array(
 		// this is used in contact page
+		'link' => 'http://localhost/zerowaste',
 		'adminEmail'=>'webmaster@example.com',
 		'district' => require_once('confgs/district.php')
 	),

@@ -117,6 +117,17 @@
                         <span class="menu-hover"></span>
                     </a>
                 </li>
+			 <li>
+                    <a href="<?php echo Yii::app()->createUrl('admin/contact/admin');?>">
+                        <span class="menu-icon">
+                            <i class="fa fa-th-large"></i>
+                        </span>
+                        <span class="text">
+                            Liên hệ
+                        </span>
+                        <span class="menu-hover"></span>
+                    </a>
+                </li>
                 <li>
                     <a href="<?php echo Yii::app()->createUrl('admin/slideshow/admin');?>">
                         <span class="menu-icon">
@@ -124,6 +135,17 @@
                         </span>
                         <span class="text">
                             Sliders
+                        </span>
+                        <span class="menu-hover"></span>
+                    </a>
+                </li>
+			 <li>
+                    <a href="<?php echo Yii::app()->createUrl('admin/seo/admin');?>">
+                        <span class="menu-icon">
+                            <i class="fa fa-th-large"></i>
+                        </span>
+                        <span class="text">
+                            SEO
                         </span>
                         <span class="menu-hover"></span>
                     </a>

@@ -48,6 +48,14 @@ class StoreController extends AdminController{
                 $model['photo'] = $cover_photo;
                 $file->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo");
             }
+
+		  $file2 = CUploadedFile::getInstance($model, 'large_photo');
+            if ($file2 !== null) {
+                $ran = rand(0, 999999999);
+                $cover_photo2 = date("Y-m-d-H-i-s") . '-'.ExtraHelper::changeTitle(str_replace(array('.gif','.jpg','.png'),'',$file2->name)).".jpg";
+                $model['large_photo'] = $cover_photo2;
+                $file2->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo2");
+            }
 		  if($model['store_category_id'] !== ''){
 			 $model->store_category_id = implode(',', $model['store_category_id']);
 		  }
@@ -66,9 +74,11 @@ class StoreController extends AdminController{
     public function actionUpdate($id){
         $model = $this->loadModel($id);
         $old_photo = $model['photo'];
+	   $old_photo2 = $model['large_photo'];
         if(isset($_POST['Store'])){
             $model->attributes = $_POST['Store'];
             $file = CUploadedFile::getInstance($model, 'photo');
+		  $file2 = CUploadedFile::getInstance($model, 'large_photo');
             if($file !== null){
                 $ran = rand(0, 999999999);
                 $cover_photo = date("Y-m-d-H-i-s") . '-'.ExtraHelper::changeTitle(str_replace(array('.gif','.jpg','.png'),'',$file->name)).".jpg";
@@ -79,6 +89,18 @@ class StoreController extends AdminController{
                 }
             }else{
                 $model->photo = $old_photo;
+            }
+
+		  if($file2 !== null){
+                $ran = rand(0, 999999999);
+                $cover_photo2 = date("Y-m-d-H-i-s") . '-'.ExtraHelper::changeTitle(str_replace(array('.gif','.jpg','.png'),'',$file2->name)).".jpg";
+                $model['large_photo'] = $cover_photo2;
+                $file2->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo2");
+                if($old_photo2 && file_exists(Yii::app()->basePath . "/../uploads/$old_photo2")){
+                    unlink(Yii::app()->basePath . "/../uploads/$old_photo2");
+                }
+            }else{
+                $model->large_photo = $old_photo2;
             }
 		  if($model['store_category_id'] !== ''){
 			 $model->store_category_id = implode(',', $model['store_category_id']);
@@ -97,9 +119,13 @@ class StoreController extends AdminController{
     public function actionDelete($id){
         $model = $this->loadModel($id);
 	   $old_photo = $model['photo'];
+	   $old_photo2 = $model['large_photo'];
         if($model->delete()){
 		   if($old_photo && file_exists(Yii::app()->basePath . "/../uploads/$old_photo")){
-			  unlink(Yii::app()->basePath . "/../uploads/$old_photo");
+			 unlink(Yii::app()->basePath . "/../uploads/$old_photo");
+	  	   }
+		   if($old_photo2 && file_exists(Yii::app()->basePath . "/../uploads/$old_photo2")){
+			  unlink(Yii::app()->basePath . "/../uploads/$old_photo2");
 		   }
             echo json_encode(1);
         }

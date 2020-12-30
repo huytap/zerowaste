@@ -31,7 +31,7 @@ class Store extends CActiveRecord
 		return array(
 			array('name, description, photo, store_category_id', 'required'),
 			array('name, website, facebook, instagram, youtube, lazada, shopee', 'length', 'max'=>255),
-			array('photo, email', 'length', 'max' => 128),
+			array('photo, large_photo, email', 'length', 'max' => 128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, description, website, facebook, instagram', 'safe', 'on'=>'search'),
@@ -110,7 +110,7 @@ class Store extends CActiveRecord
 	public function getList(){
 		$criteria=new CDbCriteria;
 		if(isset($_GET['filter'])){
-			$criteria->addInCondition('id', array($_GET['filter']));
+			$criteria->addInCondition('id', explode(',',$_GET['filter']), 'OR');
 		}
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

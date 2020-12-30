@@ -37,7 +37,7 @@ class News extends CActiveRecord
 			array('news_category_id, name, photo, short_description, description', 'required'),
 			array('news_category_id, status', 'numerical', 'integerOnly'=>true),
 			array('name, link, short_description, address', 'length', 'max'=>255),
-			array('description', 'safe'),
+			array('description, added_date', 'safe'),
 			array('photo, date, large_photo', 'length', 'max'=>128),
 			array('organiser', 'length', 'max'=>64),
 			// The following rule is used by search().
@@ -109,6 +109,7 @@ class News extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'pagination' => array('pageSize' => 100)
 		));
 	}
 
@@ -123,23 +124,34 @@ class News extends CActiveRecord
 		return parent::model($className);
 	}
 
-	public function getList($category){
+	public function getList($category, $limit=0){
 		$criteria=new CDbCriteria;
 		$criteria->compare('news_category_id', $category, false);
+		if($limit>0)
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'sort' => array('defaultOrder' => 'date desc'),
-			'pagination' => array('pageSize' => false)
+			'sort' => array('defaultOrder' => 'added_date desc'),
+			'pagination' => array('pageSize' => $limit)
+		));
+		else
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'sort' => array('defaultOrder' => 'added_date desc'),
+			'pagination' => false
 		));
 	}
 
 	public function getNewsRelated($category, $id){
 		$criteria=new CDbCriteria;
 		$criteria->compare('news_category_id', $category, false);
-		$criteria->addCondition('id>'.$id);
+		$criteria->addCondition('id>'.$id .' OR id < '.$id);
+		$limit = 4;
+		if($category == 1){
+			$limit = 3;
+		}
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'pagination' => array('pageSize' => 3)
+			'pagination' => array('pageSize' => $limit)
 		));
 	}
 }

@@ -70,6 +70,21 @@ $form = $this->beginWidget('CActiveForm', array(
        ?>
   </div>
   <div class="row">
+       <div class="col-sm-3 form-group">
+           <?php echo $form->label($model, 'large_photo');?>
+           <?php echo $form->fileField($model, "large_photo"); ?>
+           <?php echo $form->error($model, 'large_photo'); ?>
+       </div>
+       <?php
+       if($model->large_photo){?>
+           <div class="col-sm-3 form-group">
+               <?php echo '<img src="'.Yii::app()->baseUrl.'/uploads/'.$model->large_photo.'" width="200">';?>
+           </div>
+       <?php
+       }
+       ?>
+  </div>
+  <div class="row">
 	  <div class="col-sm-12"><h3>Ngành hàng</h3></div>
 	  <?php
 	  $stores = StoreCategory::model()->getList2();

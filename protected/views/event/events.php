@@ -1,7 +1,13 @@
 <?php
 $background = array(
   array('title' => '594dd0', 'content' => 'd8ebe7'),
-  array('title' => '594dd0', 'content' => 'fef3d5')
+  array('title' => '594dd0', 'content' => 'fef3d5'),
+  array('title' => 'fd949e', 'content' => 'ffdfdf'),
+  array('title' => 'fab537', 'content' => 'fff3d6'),
+  array('title' => 'f68440', 'content' => 'ffe6d9'),
+  array('title' => '4dd0b4', 'content' => 'd9ebe7'),
+  array('title' => 'cd9fea', 'content' => 'e4d9eb'),
+  array('title' => '7dcee5', 'content' => 'd9e7eb')
 );
 ?>
 <style>

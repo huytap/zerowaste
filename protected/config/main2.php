@@ -91,6 +91,7 @@ return array(
 		'all_roles' => require_once('confgs/roles.php'),
 		'category' => require_once('confgs/category.php'),
 		'slide_type' => require_once('confgs/slide_type.php'),
-		'district' => require_once('confgs/district.php')
+		'district' => require_once('confgs/district.php'),
+		'page' => require_once('confgs/page.php')
 	),
 );

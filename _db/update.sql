@@ -20,3 +20,6 @@ ALTER TABLE `store_brands` ADD `address_photo` VARCHAR(128) NOT NULL AFTER `phon
 ALTER TABLE `galleries` CHANGE `roomtype_id` `product_id` INT(11) NOT NULL;
 /*2-10*/
 ALTER TABLE `news` ADD `large_photo` VARCHAR(128) NOT NULL AFTER `photo`;
+/*18/12/2020*/
+ALTER TABLE `store_brands` ADD `lat` DECIMAL NOT NULL AFTER `address_photo`, ADD `lng` DECIMAL NOT NULL AFTER `lat`;
+ALTER TABLE `news` ADD `added_date` DATETIME NOT NULL AFTER `status`;

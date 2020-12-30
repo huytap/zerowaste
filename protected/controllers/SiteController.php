@@ -32,7 +32,10 @@ class SiteController extends Controller{
 				//$criteria->compare('')
 				$criteria->limit = 12;
 				$criteria->offset = $_POST['page']*$criteria->limit - $criteria->limit;
-			     $model = Store::model()->findAll($criteria);
+				if(isset($_POST['cate']) && $_POST['cate'] !== "0"){
+					$criteria->addInCondition('id', explode(',',$_POST['cate']), 'OR');
+				}
+			  $model = Store::model()->findAll($criteria);
 				$this->render('loadstore', compact('model'));
 				Yii::app()->end();
 			}

@@ -10,6 +10,8 @@ return array(
 	'productgallery' => array('admin', 'create', 'upload', 'update_order', 'deleteItem', 'view', 'update', 'delete'),
 	'gallerycategories' => array('admin','create','update', 'delete'),
 	'slideshow' => array('admin', 'create', 'delete', 'update', 'updateItem', 'view', 'upload','deleteItem'),
+	'seo' => array('admin','create','update', 'delete'),
+	'contact' => array('admin', 'create', 'update', 'delete'),
 	'settings' => array('admin','create','update', 'delete'),
 	'user' => array('admin', 'create', 'update', 'delete'),
 	'roles' => array('admin', 'create', 'update', 'delete'),

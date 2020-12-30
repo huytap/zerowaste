@@ -371,16 +371,24 @@ $("#inputsearch").click(function(){
 	$(this).parent().hide();
 });
 function loadStoreM(){
+	var storeid = 0;
+
 	$(".store").find(".item").each(function(i, j){
 	  	$(j).find(".item-title").click(function(){
 			$(".store").find(".item").find(".photo").removeClass("active");
 			$(".store").find(".item").find(".subitem").removeClass("active");
-			$(".store").find(".item").find(".item-title").addClass("active");
+			//$(".store").find(".item").find(".item-title").addClass("active");
 			$(this).removeClass("active");
-			$(j).find(".subitem").addClass("active");
-			$(j).find(".photo").addClass("active");
+			if(storeid == $(j).attr("data-id")){
+				$(j).find(".subitem").removeClass("active");
+				$(j).find(".photo").removeClass("active");
+				storeid = 0;
+			}else{
+				storeid = $(j).attr("data-id");
+				$(j).find(".subitem").addClass("active");
+				$(j).find(".photo").addClass("active");
+			}
 		});
-
 	});
   $(".viewdetail").click(function(){
       let id = $(this).parent().parent().attr("data-id");
