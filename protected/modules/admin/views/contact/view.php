@@ -68,6 +68,10 @@ $invite = array('shop' => 'Cửa hàng', 'product'=>'Sản phẩm', 'event' => '
             <td>Giới thiệu cửa hàng</td>
             <td><?php echo $model->shop_intro;?></td>
           </tr>
+		<tr>
+            <td>Ngày gửi</td>
+            <td><?php echo $model->added_date;?></td>
+          </tr>
         </table>
     </div>
 </div>

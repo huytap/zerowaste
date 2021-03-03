@@ -48,7 +48,7 @@ $category = explode(',', $store['store_category_id']);
 			    $ct_html = '';
 			    foreach($category as $ct){
 				    $ic = StoreCategory::model()->findByPk($ct);
-				   $ct_html .= '<li><img src="'.Yii::app()->baseUrl.'/uploads/'.$ic['icon'].'" class="img-responsive"></li>';
+				   $ct_html .= '<li><img title="'.$ic['name'].'" src="'.Yii::app()->baseUrl.'/uploads/'.$ic['icon'].'" class="img-responsive"></li>';
 			    }
 			    echo $ct_html;
 			    ?>
@@ -81,7 +81,7 @@ $category = explode(',', $store['store_category_id']);
               <div class="info">
                 <div class="">
                   <h3><?php echo $store['name'];?></h3>
-                  <p class="address"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-map.png" class="hidden-xs"> <?php echo $district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').', '.$district[0]['city'];?></p>
+                  <p class="address"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-map.png" class="hidden-xs"> <?php echo $district[0]['address'].', P. '. str_replace('P.','', $district[0]['ward']).', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').', '.$district[0]['city'];?></p>
                   <ul class="category hidden-lg hidden-md hidden-sm">
                     <?php echo $ct_html;?>
                   </ul>
@@ -124,7 +124,7 @@ $category = explode(',', $store['store_category_id']);
 							 $html_map .= '<p class="address"><img src="'.Yii::app()->baseUrl.'/images/icon-map-popup.png"> '.$dt['address'].', '.(isset($arr_district[$dt['district']])?$arr_district[$dt['district']]:'').'</p>';
 							 if($dt['phone'])
 							 	$html_map .= '<p class="phone"><img src="'.Yii::app()->baseUrl.'/images/icon-phone-popup.png"> '.$dt['phone'].'</p>';
-							 $html_map .=' <a href="https://www.google.com/maps/place/'.urlencode($dt['address'].', '.(isset($arr_district[$dt['district']])?str_replace("Q.","Quận ", $arr_district[$dt['district']]):'').', '.$dt['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
+							 $html_map .=' <a href="https://www.google.com/maps/place/'.urlencode($dt['address'].', Phường '. str_replace('P.','', $dt['ward']).', '.(isset($arr_district[$dt['district']])?str_replace("Q.","Quận ", $arr_district[$dt['district']]):'').', '.$dt['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
 							 $html_map .= '</div>';
 						 }
 				     $html_map .= '
@@ -133,7 +133,7 @@ $category = explode(',', $store['store_category_id']);
 					  </div>
 					</div>';
 				}else{
-					$linkmap = '<a href="https://www.google.com/maps/place/'.urlencode($district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?str_replace("Q.","Quận ", $arr_district[$dt[0]['district']]):'').', '.$district[0]['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
+					$linkmap = '<a href="https://www.google.com/maps/place/'.urlencode($district[0]['address'].', Phường '. str_replace('P.','', $district[0]['ward']).', '.(isset($arr_district[$district[0]['district']])?(', '.str_replace("Q.","Quận ", $arr_district[$district[0]['district']])):'').', '.$district[0]['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
 				}
 				echo $linkmap;
 				 ?>
@@ -217,7 +217,7 @@ $category = explode(',', $store['store_category_id']);
 			                        <?php
 			                        foreach ($category as $key => $value) {
 			                          $cate = StoreCategory::model()->getById($value);
-			                          echo '<li><img src="'. Yii::app()->baseUrl.'/uploads/'. $cate['icon'].'" class="img-responsive"> '.$cate['name'].'</li>';
+			                          echo '<li><img width="22" src="'. Yii::app()->baseUrl.'/uploads/'. $cate['icon'].'" class="img-responsive"> '.$cate['name'].'</li>';
 			                        }?>
 
 			                      </ul>
@@ -271,7 +271,7 @@ $category = explode(',', $store['store_category_id']);
                            <?php
                            foreach ($category as $key => $value) {
                              $cate = StoreCategory::model()->getById($value);
-                             echo '<li><img src="'. Yii::app()->baseUrl.'/uploads/'. $cate['icon'].'" class="img-responsive"> '.$cate['name'].'</li>';
+                             echo '<li><img width="22" src="'. Yii::app()->baseUrl.'/uploads/'. $cate['icon'].'" class="img-responsive"> '.$cate['name'].'</li>';
                            }?>
 
                          </ul>

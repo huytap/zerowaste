@@ -11,7 +11,7 @@ return array(
 	'gallerycategories' => array('admin','create','update', 'delete'),
 	'slideshow' => array('admin', 'create', 'delete', 'update', 'updateItem', 'view', 'upload','deleteItem'),
 	'seo' => array('admin','create','update', 'delete'),
-	'contact' => array('admin', 'create', 'update', 'delete'),
+	'contact' => array('admin', 'view', 'delete'),
 	'settings' => array('admin','create','update', 'delete'),
 	'user' => array('admin', 'create', 'update', 'delete'),
 	'roles' => array('admin', 'create', 'update', 'delete'),
