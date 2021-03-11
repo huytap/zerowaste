@@ -25,10 +25,15 @@ $background = array(
       </div>
    </div>
    <div class="container events">
-      <h3>
-         eco events <a href="<?php echo Yii::app()->baseUrl?>/events.html?tag=events" class="viewmore-store hidden-lg hidden-md hidden-sm"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="20"/></a>
-      </h3>
-      <div class="row list">
+      <div class="row">
+		 <div class="col-md-6">
+			 <h3>
+	         		eco events <a href="<?php echo Yii::app()->baseUrl?>/events.html?tag=events" class="viewmore-store hidden-lg hidden-md hidden-sm"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="20"/></a>
+		    </h3>
+	    </div>
+		 <div class="col-md-6 text-right hidden-xs"><a style="display: inline-block;padding-top: 11px;" href="<?php echo Yii::app()->baseUrl?>/events.html?tag=events">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right.png"></a></div>
+	 </div>
+	 <div class="row list">
          <?php
             foreach($model->getData() as $dt){
               $rand_keys = array_rand($background, 1); ?>
@@ -56,9 +61,14 @@ $background = array(
          <?php }?>
       </div>
       <div class="eco-items">
-         <h3>
-            eco news <a href="<?php echo Yii::app()->baseUrl?>/events.html?tag=news" class="viewmore-store hidden-lg hidden-md hidden-sm"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="20"/></a>
-         </h3>
+		 <div class="row">
+			 <div class="col-md-6">
+				 <h3>
+		         		eco news <a href="<?php echo Yii::app()->baseUrl?>/events.html?tag=news" class="viewmore-store hidden-lg hidden-md hidden-sm"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="20"/></a>
+			    </h3>
+		    </div>
+			 <div class="col-md-6 text-right hidden-xs"><a style="display: inline-block;padding-top: 11px;" href="<?php echo Yii::app()->baseUrl?>/events.html?tag=news">Xem thêm <img src="<?php echo Yii::app()->baseUrl?>/images/icon-arrow-right.png"></a></div>
+		 </div>
          <div class="row list">
             <?php
                foreach($eco->getData() as $dt){?>
