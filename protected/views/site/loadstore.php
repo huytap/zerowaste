@@ -29,8 +29,8 @@ $district = array(
 			   <span><?php echo $district[0]['address'].', '. (isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
 			 </div>
 		 </div>
-		  <div class="photo">
-		    <img class="img-responsive hidden-xs" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
+		  <div class="photo" style="background:url(<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>) no-repeat center center;">
+		    <!--img class="img-responsive hidden-xs" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>"-->
 		    <div class="item-content hidden-sm" style="background:#<?php echo $background[$rand_keys]['content'];?>">
 			 <?php
 			 $category = explode(',', $data['store_category_id']);

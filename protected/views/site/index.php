@@ -774,8 +774,8 @@ video{
 			responsive: true
 		});
 	  $('.slide').bxSlider({
-			//auto: true,
-			//pause: 4000,
+			auto: true,
+			pause: 4000,
 			keyboardEnabled: true,
 			speed: 1000
 		});
@@ -789,8 +789,8 @@ video{
 			responsive: true
 		});
 	   $('.slidem').bxSlider({
- 			//auto: true,
- 			pause: 5000,
+ 			auto: true,
+ 			pause: 4000,
  			keyboardEnabled: true,
  			speed: 1000,
 		  pager: false

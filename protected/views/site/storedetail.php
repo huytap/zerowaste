@@ -41,49 +41,90 @@
 <div class="top-info" style="background:#<?php echo $_GET['bg'];?>;">
    <div class="container">
 	   <div class="row">
-	      <div class="col-md-1 hidden-sm hidden-xs">
-	         <ul class="category">
+		   <div class="col-xs-12 hidden-lg hidden-md hidden-sm">
+			   <ul class="category-m">
+    	            <?php
+    	               $ct_html = '';
+    	               foreach($category as $ct){
+    	                $ic = StoreCategory::model()->findByPk($ct);
+    	               $ct_html .= '<li><img title="'.$ic['name'].'" src="'.Yii::app()->baseUrl.'/uploads/'.$ic['icon'].'" class="img-responsive" width="60"></li>';
+    	               }
+    	               echo $ct_html;
+    	               ?>
+			</ul>
+			<div class="info">
+				<h3><?php echo $store['name'];?></h3>
+				<p class="address"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-map.png" class="hidden-xs"> <?php echo $district[0]['address'].', P. '. str_replace('P.','', $district[0]['ward']).', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').', '.$district[0]['city'];?></p>
+			</div>
+		</div>
+	      <div class="col-md-5 col-sm-6">
+	         <img src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $store['photo'];?>" class="img-responsive">
+	      </div>
+	      <div class="col-md-7 col-sm-6">
+	         <ul class="category hidden-xs">
 	            <?php
 	               $ct_html = '';
 	               foreach($category as $ct){
 	                $ic = StoreCategory::model()->findByPk($ct);
-	               $ct_html .= '<li><img title="'.$ic['name'].'" src="'.Yii::app()->baseUrl.'/uploads/'.$ic['icon'].'" class="img-responsive"></li>';
+	               $ct_html .= '<li><img title="'.$ic['name'].'" src="'.Yii::app()->baseUrl.'/uploads/'.$ic['icon'].'" class="img-responsive" width="60"></li>';
 	               }
 	               echo $ct_html;
 	               ?>
-	         </ul>
-	      </div>
-	      <div class="col-md-4 col-sm-6">
-	         <img src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $store['photo'];?>" class="img-responsive">
-	      </div>
-	      <div class="col-md-7 col-sm-6">
-	         <ul class="social hidden-xs hidden-sm">
-	            <?php if($store['website']){?>
-	            <li><a href="<?php echo $store['website'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-website.png" class="img-responsive"/></a></li>
-	            <?php }?>
-	            <?php if($store['facebook']){?>
-	            <li><a href="<?php echo $store['facebook'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-facebook.png" class="img-responsive"/></a></li>
-	            <?php }?>
-	            <?php if($store['instagram']){?>
-	            <li><a href="<?php echo $store['instagram'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-instagram.png" class="img-responsive"/></a></li>
-	            <?php }?>
-	            <?php if($store['youtube']){?>
-	            <li><a href="<?php echo $store['youtube'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_youtube.png" class="img-responsive"/></a></li>
-	            <?php }?>
-	            <?php if($store['shopee']){?>
-	            <li><a href="<?php echo $store['shopee'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_shopee.png" class="img-responsive"/></a></li>
-	            <?php }?>
-	            <?php if($store['lazada']){?>
-	            <li><a href="<?php echo $store['lazada'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_lazada.png" class="img-responsive"/></a></li>
-	            <?php }?>
+				<?php
+   				$html_map = '';
+   				$linkmap = '';
+   				if(count($district)>1){
+   					 $linkmap = '<a href="#viewmap" data-toggle="modal" class="btncontact viewmap">xem bản đồ</a>';
+   					 $html_map = '<div id="viewmap" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
+   					<div class="modal-dialog" role="document">
+   					 <div class="modal-content">
+   					<div class="modal-header">
+   					 <button type="button" class="btnCloseMap close" data-dismiss="modal" aria-label="Close"><span><img src="'.Yii::app()->baseUrl.'/images/btn_Close.png"></span></button>
+   					</div>
+   					<div class="modal-body" id="store-content-detail">';
+   					foreach($district as $dt){
+   					$html_map .= '<div class="map-row">';
+   					$html_map .= '<p class="address"><img src="'.Yii::app()->baseUrl.'/images/icon-map-popup.png"> '.$dt['address'].', '.(isset($arr_district[$dt['district']])?$arr_district[$dt['district']]:'').'</p>';
+   					if($dt['phone'])
+   						$html_map .= '<p class="phone"><img src="'.Yii::app()->baseUrl.'/images/icon-phone-popup.png"> '.$dt['phone'].'</p>';
+   						$html_map .=' <a href="https://www.google.com/maps/place/'.urlencode($dt['address'].', Phường '. str_replace('P.','', $dt['ward']).', '.(isset($arr_district[$dt['district']])?str_replace("Q.","Quận ", $arr_district[$dt['district']]):'').', '.$dt['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
+   						$html_map .= '</div>';
+   					}
+   					$html_map .= '
+   					</div>
+   					 </div>
+   					</div>
+   					 </div>';
+   				}else{
+   				 	$linkmap = '<a href="https://www.google.com/maps/place/'.urlencode($district[0]['address'].', Phường '. str_replace('P.','', $district[0]['ward']).', '.(isset($arr_district[$district[0]['district']])?(', '.str_replace("Q.","Quận ", $arr_district[$district[0]['district']])):'').', '.$district[0]['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
+   				}
+   				echo '<li>'.$linkmap.'</li>';
+   				?>
 	         </ul>
 	         <div class="info">
 	            <div class="">
-	               <h3><?php echo $store['name'];?></h3>
-	               <p class="address"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-map.png" class="hidden-xs"> <?php echo $district[0]['address'].', P. '. str_replace('P.','', $district[0]['ward']).', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').', '.$district[0]['city'];?></p>
-	               <ul class="category hidden-lg hidden-md hidden-sm">
-	                  <?php echo $ct_html;?>
-	               </ul>
+	               <h3 class="hidden-xs"><?php echo $store['name'];?></h3>
+	               <p class="address hidden-xs"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-map.png" class="hidden-xs"> <?php echo $district[0]['address'].', P. '. str_replace('P.','', $district[0]['ward']).', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'').', '.$district[0]['city'];?></p>
+				<ul class="social hidden-xs hidden-sm">
+	 	            <?php if($store['website']){?>
+	 	            <li><a href="<?php echo $store['website'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-website.png" class="img-responsive"/></a></li>
+	 	            <?php }?>
+	 	            <?php if($store['facebook']){?>
+	 	            <li><a href="<?php echo $store['facebook'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-facebook.png" class="img-responsive"/></a></li>
+	 	            <?php }?>
+	 	            <?php if($store['instagram']){?>
+	 	            <li><a href="<?php echo $store['instagram'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon-instagram.png" class="img-responsive"/></a></li>
+	 	            <?php }?>
+	 	            <?php if($store['youtube']){?>
+	 	            <li><a href="<?php echo $store['youtube'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_youtube.png" class="img-responsive"/></a></li>
+	 	            <?php }?>
+	 	            <?php if($store['shopee']){?>
+	 	            <li><a href="<?php echo $store['shopee'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_shopee.png" class="img-responsive"/></a></li>
+	 	            <?php }?>
+	 	            <?php if($store['lazada']){?>
+	 	            <li><a href="<?php echo $store['lazada'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_lazada.png" class="img-responsive"/></a></li>
+	 	            <?php }?>
+	 	         </ul>
 	               <?php echo $store['description'];?>
 				<ul class="category hidden-lg hidden-md hidden-xs">
 	                  <?php echo $ct_html;?>
@@ -108,38 +149,6 @@
 	                  <li><a href="<?php echo $store['lazada'];?>" target="_blank"><img src="<?php echo Yii::app()->baseUrl?>/images/icon_lazada.png" class="img-responsive"/></a></li>
 	                  <?php }?>
 	               </ul>
-	               <div class="moreinfo hidden-xs hidden-sm">
-	                  <?php
-	                     $html_map = '';
-	                     $linkmap = '';
-	                     if(count($district)>1){
-	                      $linkmap = '<a href="#viewmap" data-toggle="modal" class="btncontact viewmap">xem bản đồ</a>';
-	                      $html_map = '<div id="viewmap" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
-	                     <div class="modal-dialog" role="document">
-	                      <div class="modal-content">
-	                     <div class="modal-header">
-	                      <button type="button" class="btnCloseMap close" data-dismiss="modal" aria-label="Close"><span><img src="'.Yii::app()->baseUrl.'/images/btn_Close.png"></span></button>
-	                     </div>
-	                     <div class="modal-body" id="store-content-detail">';
-	                     foreach($district as $dt){
-	                     $html_map .= '<div class="map-row">';
-	                     $html_map .= '<p class="address"><img src="'.Yii::app()->baseUrl.'/images/icon-map-popup.png"> '.$dt['address'].', '.(isset($arr_district[$dt['district']])?$arr_district[$dt['district']]:'').'</p>';
-	                     if($dt['phone'])
-	                     $html_map .= '<p class="phone"><img src="'.Yii::app()->baseUrl.'/images/icon-phone-popup.png"> '.$dt['phone'].'</p>';
-	                     $html_map .=' <a href="https://www.google.com/maps/place/'.urlencode($dt['address'].', Phường '. str_replace('P.','', $dt['ward']).', '.(isset($arr_district[$dt['district']])?str_replace("Q.","Quận ", $arr_district[$dt['district']]):'').', '.$dt['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
-	                     $html_map .= '</div>';
-	                     }
-	                      $html_map .= '
-	                     </div>
-	                      </div>
-	                     </div>
-	                      </div>';
-	                     }else{
-	                      $linkmap = '<a href="https://www.google.com/maps/place/'.urlencode($district[0]['address'].', Phường '. str_replace('P.','', $district[0]['ward']).', '.(isset($arr_district[$district[0]['district']])?(', '.str_replace("Q.","Quận ", $arr_district[$district[0]['district']])):'').', '.$district[0]['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
-	                     }
-	                     echo $linkmap;
-	                     ?>
-	               </div>
 	            </div>
 	         </div>
 	      </div>
@@ -207,8 +216,8 @@
                      <h3><?php echo $data['name'];?></h3>
                      <span><?php echo $district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
                   </div>
-                  <div class="photo">
-                     <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
+                  <div class="photo" style="background:url(<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>) no-repeat center center;background-size: 100%;">
+                     <!--img class="img-responsive" src="<?php //echo Yii::app()->baseUrl?>/uploads/<?php //echo $data['photo'];?>"-->
                      <div class="item-content" style="background:#<?php echo $background[$rand_keys]['content'];shuffle($background);?>">
                         <?php
                            $category = explode(',', $data['store_category_id']);
@@ -259,8 +268,8 @@
                      <h3><?php echo $data['name'];?></h3>
                      <span><?php echo $district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
                   </div>
-                  <div class="photo">
-                     <img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>">
+                  <div class="photo" style="background:url(<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>) no-repeat center center;background-size: 100%;">
+                     <!--img class="img-responsive" src="<?php //echo Yii::app()->baseUrl?>/uploads/<?php //echo $data['photo'];?>"-->
                      <div class="item-content" style="background:#<?php echo $background[$rand_keys]['content'];shuffle($background);?>">
                         <?php
                            $category = explode(',', $data['store_category_id']);
