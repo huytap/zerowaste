@@ -23,3 +23,5 @@ ALTER TABLE `news` ADD `large_photo` VARCHAR(128) NOT NULL AFTER `photo`;
 /*18/12/2020*/
 ALTER TABLE `store_brands` ADD `lat` DECIMAL NOT NULL AFTER `address_photo`, ADD `lng` DECIMAL NOT NULL AFTER `lat`;
 ALTER TABLE `news` ADD `added_date` DATETIME NOT NULL AFTER `status`;
+/*30/3/2021*/
+ALTER TABLE `stores` ADD `logo` VARCHAR(128) NOT NULL AFTER `description`;

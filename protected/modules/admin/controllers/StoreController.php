@@ -41,6 +41,15 @@ class StoreController extends AdminController{
         $model = new Store;
         if(isset($_POST['Store'])){
             $model->attributes = $_POST['Store'];
+
+		  $logo = CUploadedFile::getInstance($model, 'logo');
+            if ($logo !== null) {
+                $ran = rand(0, 999999999);
+                $cover_logo = date("Y-m-d-H-i-s") . '-'.ExtraHelper::changeTitle(str_replace(array('.gif','.jpg','.png'),'',$logo->name)).".jpg";
+                $model['logo'] = $cover_logo;
+                $logo->saveAs(Yii::app()->basePath . "/../uploads/$cover_logo");
+            }
+
             $file = CUploadedFile::getInstance($model, 'photo');
             if ($file !== null) {
                 $ran = rand(0, 999999999);
@@ -75,8 +84,22 @@ class StoreController extends AdminController{
         $model = $this->loadModel($id);
         $old_photo = $model['photo'];
 	   $old_photo2 = $model['large_photo'];
+	   $old_logo = $model['logo'];
         if(isset($_POST['Store'])){
             $model->attributes = $_POST['Store'];
+		  $logo = CUploadedFile::getInstance($model, 'logo');
+            if ($logo !== null) {
+                $ran = rand(0, 999999999);
+                $cover_logo = date("Y-m-d-H-i-s") . '-'.ExtraHelper::changeTitle(str_replace(array('.gif','.jpg','.png'),'',$logo->name)).".jpg";
+                $model['logo'] = $cover_logo;
+                $logo->saveAs(Yii::app()->basePath . "/../uploads/$cover_logo");
+			 if($old_logo && file_exists(Yii::app()->basePath . "/../uploads/$old_logo")){
+                    unlink(Yii::app()->basePath . "/../uploads/$old_logo");
+                }
+		 }else{
+			 $model['logo'] = $old_logo;
+		 }
+
             $file = CUploadedFile::getInstance($model, 'photo');
 		  $file2 = CUploadedFile::getInstance($model, 'large_photo');
             if($file !== null){
@@ -120,12 +143,16 @@ class StoreController extends AdminController{
         $model = $this->loadModel($id);
 	   $old_photo = $model['photo'];
 	   $old_photo2 = $model['large_photo'];
+	   $old_logo = $model['logo'];
         if($model->delete()){
 		   if($old_photo && file_exists(Yii::app()->basePath . "/../uploads/$old_photo")){
 			 unlink(Yii::app()->basePath . "/../uploads/$old_photo");
 	  	   }
 		   if($old_photo2 && file_exists(Yii::app()->basePath . "/../uploads/$old_photo2")){
 			  unlink(Yii::app()->basePath . "/../uploads/$old_photo2");
+		   }
+		   if($old_logo && file_exists(Yii::app()->basePath . "/../uploads/$old_logo")){
+			  unlink(Yii::app()->basePath . "/../uploads/$old_logo");
 		   }
             echo json_encode(1);
         }

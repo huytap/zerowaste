@@ -30,7 +30,7 @@ class Store extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('name, description, photo, store_category_id', 'required'),
-			array('name, website, facebook, instagram, youtube, lazada, shopee', 'length', 'max'=>255),
+			array('name, logo, website, facebook, instagram, youtube, lazada, shopee', 'length', 'max'=>255),
 			array('photo, large_photo, email', 'length', 'max' => 128),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.

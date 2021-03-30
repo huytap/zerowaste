@@ -217,7 +217,7 @@ $category = explode(',', $store['store_category_id']);
 				 <h3><?php echo $data['name'];?></h3>
 				 <span><?php echo $district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
 			   </div>
-			   <div class="photo" style="background:url(<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>) no-repeat center center;background-size: 100%;">
+			   <div class="photo" style="background:url(<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>) no-repeat center center;background-size: cover;">
 				 <!--img class="img-responsive" src="<?php //echo Yii::app()->baseUrl?>/uploads/<?php //echo $data['photo'];?>"-->
 				 <div class="item-content" style="background:#<?php echo $background[$rand_keys]['content'];shuffle($background);?>">
 				    <?php
@@ -269,7 +269,7 @@ $category = explode(',', $store['store_category_id']);
 				 <h3><?php echo $data['name'];?></h3>
 				 <span><?php echo $district[0]['address'].', '.(isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
 			   </div>
-			   <div class="photo" style="background:url(<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>) no-repeat center center;background-size: 100%;">
+			   <div class="photo" style="background:url(<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>) no-repeat center center;background-size: cover;">
 				 <!--img class="img-responsive" src="<?php //echo Yii::app()->baseUrl?>/uploads/<?php //echo $data['photo'];?>"-->
 				 <div class="item-content" style="background:#<?php echo $background[$rand_keys]['content'];shuffle($background);?>">
 				    <?php
@@ -303,9 +303,9 @@ $category = explode(',', $store['store_category_id']);
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/lightgallery.min.js', CClientScript::POS_END);?>
 
 
-<?php Yii::app()->clientScript->registerScript('storeSlide', '
+<?php Yii::app()->clientScript->registerScript('storeSlide2', '
 	$(document).ready(function(){
-            $("#lightgallery").lightGallery();
+            $(".lightgallery").lightGallery();
 		  $(".btnCloseMap").click(function(){
   			$("#viewmap").modal("hide");
   			$("#viewmap").on("hidden.bs.modal", function () {
@@ -331,7 +331,7 @@ if($(window).width()<=575){
 		$(".gallery").css("margin-left", wi);
 	}
 	  setTimeout(function(){
-		  var swiper = new Swiper("#gallery", {
+	   var swiper = new Swiper("#gallery", {
 	    slidesPerView: 6,
 	    spaceBetween: 25,
 	    centeredSlides: false,

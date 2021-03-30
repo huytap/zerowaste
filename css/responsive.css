@@ -1161,6 +1161,12 @@ a.viewmore-store{
 }
 }
 @media(max-width: 767px){
+	#store-content-detail .top-info{
+		padding-top: 20px;
+	}
+	.category-m img{
+		width: 40px!important;
+	}
 	.store .item-title h3{
 		font-size: 16px;
 	}
@@ -1283,9 +1289,10 @@ a.viewmore-store{
 	}
 	.social li img{
 		padding:0;
+		width: 60px;
 	}
 	.store .item-title .col-sm-12{
-		text-align: center;
+		text-align: left;
 	}
 	.about .ip p{
 		text-align: left;
@@ -1293,13 +1300,13 @@ a.viewmore-store{
 	.store .item .subitem .photo{
    	  display: none;
    	  opacity: 1;
-   	  min-height: 280px;
+   	  min-height: 380px;
    	  padding: 0;
      }
      .store .item-title{
    	  padding: 15px 0;
-	  border-top-left-radius: 15px;
-	  border-top-right-radius: 15px;
+	  border-top-left-radius: 10px;
+	  border-top-right-radius: 10px;
      }
 	.store .active .item-title{
 		border-bottom-left-radius: 0;

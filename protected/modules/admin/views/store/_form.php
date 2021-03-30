@@ -56,6 +56,21 @@ $form = $this->beginWidget('CActiveForm', array(
   </div>
   <div class="row">
        <div class="col-sm-3 form-group">
+           <?php echo $form->label($model, 'logo');?>
+           <?php echo $form->fileField($model, "logo"); ?>
+           <?php echo $form->error($model, 'logo'); ?>
+       </div>
+       <?php
+       if($model->logo){?>
+           <div class="col-sm-3 form-group">
+               <?php echo '<img src="'.Yii::app()->baseUrl.'/uploads/'.$model->logo.'" width="100">';?>
+           </div>
+       <?php
+       }
+       ?>
+  </div>
+  <div class="row">
+       <div class="col-sm-3 form-group">
            <?php echo $form->label($model, 'photo');?>
            <?php echo $form->fileField($model, "photo"); ?>
            <?php echo $form->error($model, 'photo'); ?>
