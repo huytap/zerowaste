@@ -134,7 +134,7 @@ class Store extends CActiveRecord
 
 	public function getListSearch($cate, $where, $text_search){
 		$criteria=new CDbCriteria;
-		$criteria->select = 'distinct t.name, t.photo, t.description, t.store_category_id, t.id';
+		$criteria->select = 'distinct t.name, t.photo, t.logo, t.description, t.store_category_id, t.id';
 		if($text_search){
 			$criteria->addCondition('name like "%'.$text_search.'%"');
 		}elseif($where || $cate){

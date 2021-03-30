@@ -742,8 +742,12 @@
   }*/
   .store .item .subitem.active{
     border: 2px solid #000;
-    border-radius: 15px;
+    border-radius: 10px;
     box-shadow: 9px 8px 5px 0px rgba(0, 0, 0, 0.17);
+  }
+  .item-content{
+	  border-bottom-left-radius: 10px;
+	  border-bottom-right-radius: 10px;
   }
   .store .subitem.active .item-content{
     opacity: 1;
@@ -812,8 +816,9 @@ a.viewmore-store{
 }
 .item-content{
 	position: relative;
-	height: auto;
-	padding: 20px;
+	height: calc(100% - 164px);
+	top: 0;
+	padding:10px 20px;
 }
 .store ul {
     padding-bottom: 15px;
@@ -1300,13 +1305,12 @@ a.viewmore-store{
 	.store .item .subitem .photo{
    	  display: none;
    	  opacity: 1;
-   	  min-height: 380px;
+   	  /*min-height: 430px;*/
    	  padding: 0;
      }
      .store .item-title{
    	  padding: 15px 0;
-	  border-top-left-radius: 10px;
-	  border-top-right-radius: 10px;
+	  border-radius: 10px;
      }
 	.store .active .item-title{
 		border-bottom-left-radius: 0;
@@ -1447,9 +1451,9 @@ a.viewmore-store{
 	.store .item-title h3{
 		margin-top: 10px;
 	}
-	.store .item-title.active{
-   	  border-radius: 15px;
-     }
+	/*.store .item-title.active{
+   	  border-radius: 10px;
+     }*/
      .store .item-title span{
    	  font-size: 14px;
      }
