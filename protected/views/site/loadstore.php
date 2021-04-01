@@ -23,8 +23,8 @@ $district = array(
   <div class="item col-md-4 col-sm-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
     <div data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>" class="subitem">
 		 <div class="row item-title active" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
-			 <!--div class="col-xs-4 hidden-lg hidden-md hidden-sm"><img class="img-responsive" src="<?php //echo Yii::app()->baseUrl?>/uploads/<?php //echo $data['photo'];?>"></div-->
-			 <div class="col-xs-12 col-sm-12 col-lg-12">
+			 <div class="col-xs-4 hidden-lg hidden-md hidden-sm"><img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['logo'];?>"></div>
+			 <div class="col-xs-8 col-sm-12 col-lg-12">
 			   <h3><?php echo $data['name'];?></h3>
 			   <span><?php echo $district[0]['address'].', '. (isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
 			 </div>

@@ -903,7 +903,7 @@ a.viewmore-store{
     display: block;
     text-align: center;
     background: rgb(204, 229, 236);
-    padding-bottom: 50px;
+     padding:50px 30px 50px!important
   }
 
   .product-detail .container{
@@ -1042,9 +1042,12 @@ a.viewmore-store{
   line-height: 1.5;
 }
 .event-content p{
-	font-size: 14px;
+	font-size: 15px;
 	margin-bottom: 0;
   line-height: 1.5
+}
+.detail-text p{
+	font-size: 15px;
 }
 .event-content p a{
   word-break: break-all;
@@ -1312,6 +1315,16 @@ a.viewmore-store{
    	  padding: 15px 0;
 	  border-radius: 10px;
      }
+	.store .item-title .col-xs-4 img{
+		border-radius: 10px;
+	}
+	.store .swiper-slide .item-title{
+		border-bottom-right-radius: 0;
+		border-bottom-left-radius: 0;
+	}
+	.store .swiper-slide.item .subitem .photo{
+		min-height: 380px;
+	}
 	.store .active .item-title{
 		border-bottom-left-radius: 0;
 		border-bottom-right-radius: 0;
@@ -1472,14 +1485,14 @@ a.viewmore-store{
 	.moreinfo{
 		text-align: center;
 	}
-	.eco-items .row a{
+	.eco-items .row.list a{
 		display: flex;
 		align-items: center;
 		background: #d8ebe7;
 		padding: 5px 15px;
 	  border-radius: 15px;
 	}
-	.eco-items .row a img{
+	.eco-items .row.list a img{
 		width: 30%;
 		display: inline-block;
 		border-radius: 15px;
@@ -1490,7 +1503,7 @@ a.viewmore-store{
 	    display: inline-block;
 	    margin-left: 2%;
 	    color: #000;
-	    font-size: 16px;
+	    font-size: 15px;
 	    border-radius: 0;
 	    background: transparent;
 	    padding: 10px;
