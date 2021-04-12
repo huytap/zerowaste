@@ -86,7 +86,7 @@
                           <?php
                           foreach ($category as $key => $value) {
                             $cate = StoreCategory::model()->getById($value);
-                            echo '<li><img src="'. Yii::app()->baseUrl.'/uploads/'. $cate['icon'].'" class="img-responsive" width="50"> '.$cate['name'].'</li>';
+                            echo '<li><img src="'. Yii::app()->baseUrl.'/uploads/'. $cate['icon'].'" class="img-responsive" width="22"> '.$cate['name'].'</li>';
                           }?>
 
                         </ul>
@@ -137,7 +137,7 @@ Yii::app()->clientScript->registerScript('loadStore', '
       $("#btnLoadmore").click(function(){
           // Element append nội dung
           $element = $("#store-items");
-          // ELement hiển thị chữ loadding
+          // ELement hiển thị chữ loading
           $button = $(this);
           // Nếu đang gửi ajax thì ngưng
           if (is_busy == true) {
@@ -146,12 +146,13 @@ Yii::app()->clientScript->registerScript('loadStore', '
           // Tăng số trang lên 1
           page++;
           // Hiển thị loadding ...
-          $button.html("LOADDING...");
+          $button.html("LOADING...");
           // Gửi Ajax
           $.ajax({
               type: "post",
               dataType: "html",
-              url: "'.Yii::app()->baseUrl.'/store.html",
+              //url: "'.Yii::app()->baseUrl.'/store.html",
+		    url: window.location.href,
               data: {page: page},
               success: function(result){
                   var html = "";
@@ -220,9 +221,16 @@ if($(window).width()>575){
 
 $("#typeStore").keyup(function(){
   let text_search = $(this).val();
+  let cl = window.location.href;
+  let l = cl.split("?");
+  if($.isArray(undefined)){
+	  l=l[1].replace("=","_")
+  }else{
+	  l=""
+  }
   $.ajax({
     url:"'.Yii::app()->baseUrl.'/ajax/searchstore",
-    data:{text_search: text_search},
+    data:{text_search: text_search, filter:l},
     type: "post",
     dataType: "html",
     success: function(data){
@@ -242,9 +250,16 @@ $("#typeStore").keyup(function(){
 function changeData(){
 	let cate = $("#storecate").val();
      let where = $("#where").val();
+	let cl = window.location.href;
+     let l = cl.split("?");
+     if(l.indexOf() == -1){
+   	  l=l[1].replace("=","_")
+     }else{
+   	  l=""
+     }
      $.ajax({
        url:"'.Yii::app()->baseUrl.'/ajax/searchstore",
-       data:{cate:cate, where:where},
+       data:{cate:cate, where:where, filter:l},
        type: "post",
        dataType: "html",
        success: function(data){

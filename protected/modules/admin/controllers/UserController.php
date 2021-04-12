@@ -10,7 +10,7 @@ class UserController extends AdminController{
 	}
 
 	public function accessRules(){
-		return array(			
+		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
 				'actions' => RoleHelper::GetRole(),
 				'users' => array('@'),
@@ -46,7 +46,7 @@ class UserController extends AdminController{
 	public function actionCreate(){
 		$model= new Users('create');
 		if(isset($_REQUEST['Users'])){
-			$model->attributes=$_POST['Users'];			
+			$model->attributes=$_POST['Users'];
 			$model->is_admin=1;
 			ExtraHelper::update_tracking_data($model, 'create');
 			if(!empty($model->password)){
@@ -61,10 +61,10 @@ class UserController extends AdminController{
 			if($model->save()){
 				$this->redirect(Yii::app()->createUrl('admin/user/admin'));
 			}
-		}	
+		}
 		$this->render('create',compact('model'));
 	}
-	
+
 	public function actionUpdate($id){
 		$model = $this->loadModel($id);
 		$model->scenario= 'update';
@@ -90,7 +90,7 @@ class UserController extends AdminController{
 		$this->render('update', compact('model'));
 	}
 
-	
+
 	public function actionDelete($id)
 	{
 		if($this->loadModel($id)->delete()){
@@ -113,7 +113,7 @@ class UserController extends AdminController{
             $this->renderPartial('_grid', compact(array('model')));
             Yii::app()->end();
         }
-		$this->render('admin', compact('model'));	
+		$this->render('admin', compact('model'));
 	}
 
 	public function loadModel($id)

@@ -41,7 +41,7 @@ $district = array(
 				<?php
 				foreach ($category as $key => $value) {
 				  $cate = StoreCategory::model()->getById($value);
-				  echo '<li><img src="'. Yii::app()->baseUrl.'/uploads/'. $cate['icon'].'" class="img-responsive" width="50"> '.$cate['name'].'</li>';
+				  echo '<li><img src="'. Yii::app()->baseUrl.'/uploads/'. $cate['icon'].'" class="img-responsive" width="22"> '.$cate['name'].'</li>';
 				}?>
 
 			   </ul>

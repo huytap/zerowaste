@@ -31,6 +31,9 @@ class SiteController extends Controller{
 				$criteria = new CDbCriteria;
 				//$criteria->compare('')
 				$criteria->limit = 12;
+				if(isset($_GET['filter'])){
+					$criteria->addInCondition('id', explode(',',$_GET['filter']), 'OR');
+				}
 				$criteria->offset = $_POST['page']*$criteria->limit - $criteria->limit;
 				if(isset($_POST['cate']) && $_POST['cate'] !== "0"){
 					$criteria->addInCondition('id', explode(',',$_POST['cate']), 'OR');
@@ -83,8 +86,7 @@ class SiteController extends Controller{
 	/**
 	 * Displays the contact page
 	 */
-	public function actionContact()
-	{
+	public function actionContact(){
 		$model=new ContactForm;
 		if(isset($_POST['ContactForm']))
 		{
@@ -120,6 +122,24 @@ class SiteController extends Controller{
 				$this->redirect(Yii::app()->user->returnUrl);
 		}
 		$this->render('login',array('model'=>$model));
+	}
+
+	public function actionRegister(){
+		$model= new Users('register');
+		if(isset($_REQUEST['Users'])){
+			$model->attributes=$_POST['Users'];
+			$model->is_admin=0;
+			ExtraHelper::update_tracking_data($model, 'create');
+			if(!empty($model->password)){
+				$model->password = sha1(md5($model->password));
+			}
+			$model->roles="user";
+			$model->validate();
+			if($model->save()){
+				$this->redirect(Yii::app()->createUrl('site/login'));
+			}
+		}
+		$this->render('register',compact('model'));
 	}
 
 	public function actionLogout(){
