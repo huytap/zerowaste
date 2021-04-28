@@ -62,13 +62,18 @@
             <!--div class="bg-hide"></div-->
             <div class="step">2/2</div>
             <div class="box-form tab-pane active" id="cuahang">
+
               <div class="form" id="cuahang">
                 <label class="left">Ngành hàng</label>
-                <select class="category nganhhang">
-				 <?php foreach(StoreCategory::model()->getList2() as $key => $value){
-   	               echo '<option value="'.$key.'">'.$value.'</option>';
-   	             }?>
-                </select>
+			 <!--category nganhhang-->
+			 <div class="custom-select field">
+				  <select>
+					  <option value="">Chọn loại</option>
+				    <?php foreach(StoreCategory::model()->getList2() as $key => $value){
+				    echo '<option value="'.$key.'">'.$value.'</option>';
+				  }?>
+				  </select>
+			  </div>
               </div>
               <div class="form">
                 <label class="left">Tên cửa hàng</label>
@@ -106,12 +111,18 @@
 		  <div class="box-form tab-pane" id="sanpham">
               <div class="form">
                 <label class="left">Loại sản phẩm</label>
-                <select class="category nganhhang">
-				 <?php foreach(StoreCategory::model()->getList2() as $key => $value){
-	   	               echo '<option value="'.$key.'">'.$value.'</option>';
-	   	             }?>
+			 <div class="custom-select field">
+				  <select>
+					  <option value="">Chọn loại</option>
+				    <?php foreach(StoreCategory::model()->getList2() as $key => $value){
+				    echo '<option value="'.$key.'">'.$value.'</option>';
+				  }?>
+				  </select>
+			  </div>
+                <!--select class="category nganhhang">
 
-                </select>
+
+                </select-->
               </div>
               <div class="form">
                 <label class="left">Tên sản phẩm</label>
@@ -149,10 +160,17 @@
 		  <div class="box-form tab-pane" id="tintuc">
               <div class="form">
                 <label class="left">Loại sự kiện</label>
-                <select class="category nganhhang">
+			 <div class="custom-select field">
+				  <select>
+					  <option value="">Chọn loại</option>
+					  <option value="Tin tức">Tin tức</option>
+                           <option value="Sự kiện">Sự kiện</option>
+				  </select>
+			  </div>
+                <!--select class="category nganhhang">
 				 <option value="Thực phẩm">Tin tức</option>
                      <option value="Thời trang">Sự kiện</option>
-                </select>
+                </select-->
               </div>
               <div class="form">
                 <label class="left">Tên sự kiện</label>
@@ -281,4 +299,5 @@ $("#introcate").find("li").each(function(i, j){
     $(this).addClass("active");
   });
 });
+
 ', CClientScript::POS_END);?>

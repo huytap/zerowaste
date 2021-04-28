@@ -4,7 +4,7 @@
 
 	<!-- start: Meta -->
 	<meta charset="utf-8">
-	<title>Hotel Administrator</title>
+	<title>Administrator</title>
 	<!-- Bootstrap core CSS -->
     <link href="<?php echo Yii::app()->theme->baseUrl?>/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 	<link href="<?php echo Yii::app()->theme->baseUrl?>/css/datepicker.css" rel="stylesheet"/>

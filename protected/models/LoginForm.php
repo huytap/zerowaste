@@ -22,7 +22,7 @@ class LoginForm extends CFormModel
 	{
 		return array(
 			// username and password are required
-			array('username, password', 'required'),
+			array('username, password', 'required', 'message' => 'Vui lòng nhập {attribute}'),
 			// rememberMe needs to be a boolean
 			array('rememberMe', 'boolean'),
 			// password needs to be authenticated
@@ -36,6 +36,8 @@ class LoginForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
+			'username' => 'Tên đăng nhập',
+			'password' => 'Mật khẩu',
 			'rememberMe'=>'Remember me next time',
 		);
 	}

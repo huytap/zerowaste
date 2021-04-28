@@ -62,6 +62,17 @@ class SiteController extends Controller{
 		$this->render('product', compact(array('model')));
 	}
 
+	public function actionProductdetail($pslug){
+		$model = Category::model()->getDetail($pslug);
+		$gallery = Gallery::model()->getListByProduct($model['id']);
+		$comments = Comment::model()->getListByProduct($model['id']);
+		if(Yii::app()->request->isAjaxRequest && isset($_GET['ajax'])){
+			$this->renderPartial('_item_comment', compact('comments'));
+			Yii::app()->end();
+		}
+		$this->render('productdetail', compact(array('model', 'gallery', 'comments')));
+	}
+
 	public function actionEvent($page){
 		$this->render('pages/event');
 	}
@@ -109,6 +120,9 @@ class SiteController extends Controller{
 	}
 
 	public function actionLogin(){
+		if(Yii::app()->user->id>0){
+			$this->redirect(Yii::app()->baseUrl.'/');
+		}
 		$model=new LoginForm;
 
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form'){
@@ -125,6 +139,9 @@ class SiteController extends Controller{
 	}
 
 	public function actionRegister(){
+		if(Yii::app()->user->id>0){
+			$this->redirect(Yii::app()->baseUrl.'/');
+		}
 		$model= new Users('register');
 		if(isset($_REQUEST['Users'])){
 			$model->attributes=$_POST['Users'];

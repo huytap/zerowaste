@@ -140,6 +140,28 @@
                     </a>
                 </li>
 			 <li>
+                    <a href="<?php echo Yii::app()->createUrl('admin/comment/admin');?>">
+                        <span class="menu-icon">
+                            <i class="fa fa-th-large"></i>
+                        </span>
+                        <span class="text">
+                            Comments
+                        </span>
+                        <span class="menu-hover"></span>
+                    </a>
+                </li>
+			 <li>
+                    <a href="<?php echo Yii::app()->createUrl('admin/commenttag/admin');?>">
+                        <span class="menu-icon">
+                            <i class="fa fa-th-large"></i>
+                        </span>
+                        <span class="text">
+                            Comment Tags
+                        </span>
+                        <span class="menu-hover"></span>
+                    </a>
+                </li>
+			 <li>
                     <a href="<?php echo Yii::app()->createUrl('admin/seo/admin');?>">
                         <span class="menu-icon">
                             <i class="fa fa-th-large"></i>

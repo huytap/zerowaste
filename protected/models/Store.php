@@ -192,4 +192,21 @@ class Store extends CActiveRecord
 		$model = Store::model()->findByPk($id);
 		return $model;
 	}
+
+	public function getByCategory($store_id){
+		$criteria=new CDbCriteria;
+		$criteria->addInCondition('id', explode(',', $store_id));
+		$data = new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => false
+		));
+		$arrData = array();
+		//echo"<pre>";print_r($data->getData());die;
+		if($data && count($data->getData())){
+			foreach($data->getData() as $dt){
+				$arrData[$dt['id']] = $dt['name'];
+			}
+		}
+		return $arrData;
+	}
 }

@@ -1,6 +1,36 @@
 <?php
 
 class ExtraHelper{
+	public function round_up($int, $n) {
+		$whole = floor($int);
+		$fraction = $int - $whole;
+		if($fraction >0 && $fraction <= 0.5){
+		    	return $whole+0.5;
+		}else if($fraction>0.5 && $fraction<1){
+			return $whole+1;
+		}else{
+			return $whole;
+		}
+	}
+
+	public function showStarList($star_number){
+		//full star
+		for($i=0;$i<floor($star_number);$i++){
+			echo '<li><img src="'.Yii::app()->baseUrl.'/images/icn_rate.svg" width="22"/></li>';
+		}
+		//hafl star
+		$k=0;
+		if($star_number - floor($star_number)>0 && $star_number - floor($star_number) <= 0.5){
+			$k=1;
+			echo '<li><img src="'.Yii::app()->baseUrl.'/images/icn_rate-1.svg" width="22"/></li>';
+		}
+		//empty star
+		$mod = 5-floor($star_number)-$k;
+		if($mod){
+			for($j=0;$j<$mod;$j++)
+			echo '<li><img src="'. Yii::app()->baseUrl.'/images/icn_rate-2.svg" width="22"/></li>';
+		}
+	}
 	public static function changeTitle($str){
 	        $unicode = array(
 	          'a'=>'á|à|à|ả|ã|ạ|ă|ắ|ằ|ẳ|ẵ|ặ|â|ấ|ầ|ẩ|ẫ|ậ|ạ|á|ả|ã',

@@ -61,29 +61,55 @@ $form = $this->beginWidget('CActiveForm', array(
        }
        ?>
   </div>
+  <h3>Custom field</h3>
+  <?php
+  $cf1 = Settings::model()->getSetting('custom_field_1');
+  $cf1 = str_replace(array('<p>','</p>'), '', $cf1);
+  for($i=0;$i<$cf1;$i++){
+	  ?>
+	  <div class="row">
+   	    <div class="col-sm-3">
+   	        <div class="form-group">
+   	            <label>Title</label>
+   	            <?php echo CHtml::textField('CustomField[title_'.$i.']', $model['field_custom_1']['title_'.$i], array('class'=>'form-control')); ?>
+   	        </div>
+   	    </div>
+          <div class="col-sm-3 form-group">
+              <label>Description</label>
+              <?php echo CHtml::textArea('CustomField[description_'.$i.']', $model['field_custom_1']['description_'.$i], array('class' => 'form-control'));?>
+          </div>
+      </div>
+	  <?php
+  }
+  ?>
   <div class="row">
 	  <div class="col-md-9 form-group">
 		 <?php echo $form->label($model, 'description');?>
 		 <?php echo $form->error($model, 'description'); ?>
-     <?php echo $form->textArea($model, 'description');?>
-		 <?php
-			/*$this->widget('ext.editMe.widgets.ExtEditMe', array(
-			    'id' => 'description_',
-			    'height' => '250px',
-			    'width' => '100%',
-			    'model' => $model,
-			    'attribute' => "description",
-			    'toolbar' => Yii::app()->params['ckeditor'],
-			    'filebrowserBrowseUrl' => Yii::app()->baseUrl . '/ckfinder/ckfinder.html',
-			    'filebrowserImageBrowseUrl' => Yii::app()->baseUrl . '/ckfinder/ckfinder.html?type=Images',
-			    'filebrowserFlashBrowseUrl' => Yii::app()->baseUrl . '/ckfinder/ckfinder.html?type=Flash',
-			    'filebrowserUploadUrl' => Yii::app()->baseUrl . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
-			    'filebrowserImageUploadUrl' => Yii::app()->baseUrl . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
-			    'filebrowserFlashUploadUrl' => Yii::app()->baseUrl . '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
-			));*/
-			?>
+     	<?php echo $form->textArea($model, 'description');?>
 	  </div>
    </div>
+   <h3>Custom field 2</h3>
+   <?php
+   $cf2 = Settings::model()->getSetting('custom_field_2');
+   $cf2 = str_replace(array('<p>','</p>'), '', $cf2);
+   for($i=0;$i<$cf2;$i++){
+ 	  ?>
+ 	  <div class="row">
+    	    <div class="col-sm-3">
+    	        <div class="form-group">
+    	            <label>Title</label>
+    	            <?php echo CHtml::textField('CustomField2[title_'.$i.']', $model['field_custom_2']['title_'.$i], array('class'=>'form-control')); ?>
+    	        </div>
+    	    </div>
+           <div class="col-sm-3 form-group">
+               <label>Description</label>
+               <?php echo CHtml::textArea('CustomField2[description_'.$i.']', $model['field_custom_2']['description_'.$i], array('class' => 'form-control'));?>
+           </div>
+       </div>
+ 	  <?php
+   }
+   ?>
    <div class="row">
  	  <div class="col-sm-3">
  		 <div class="form-group">

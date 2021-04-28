@@ -25,3 +25,6 @@ ALTER TABLE `store_brands` ADD `lat` DECIMAL NOT NULL AFTER `address_photo`, ADD
 ALTER TABLE `news` ADD `added_date` DATETIME NOT NULL AFTER `status`;
 /*30/3/2021*/
 ALTER TABLE `stores` ADD `logo` VARCHAR(128) NOT NULL AFTER `description`;
+/*16/04/2021*/
+ALTER TABLE `categories` ADD `field_custom_1` TEXT NOT NULL AFTER `store_id`, ADD `field_custom_2` TEXT NOT NULL AFTER `field_custom_1`;
+ALTER TABLE `categories` ADD `slug` VARCHAR(128) NOT NULL AFTER `name`;

@@ -2,6 +2,63 @@
 class AjaxController extends Controller{
   public $layout = false;
 
+	public function actionLikecmt(){
+		if(isset($_POST['lk'])){
+			$data = Comment::model()->findByPk($_POST['lk']);
+			if($data){
+				$user_id = Yii::app()->user->id?Yii::app()->user->id:1;
+				$checkLike = CommentLikes::model()->checkLikeByCMT($_POST['lk'], $user_id);
+				if(!$checkLike){
+					$model = new CommentLikes;
+					$model->user_id= $user_id;
+					$model->likes = 1;
+					$model->comment_id = $_POST['lk'];
+					if($model->save()){
+						echo json_encode(1); //like
+					}else{
+						echo json_encode(-1);//error
+					}
+				}else{
+					$checkLike->likes = !$checkLike->likes;
+					if($checkLike->update()){
+						echo json_encode(2);//like or unlike
+					}
+				}
+			}else{
+				echo json_encode(0);// error not data
+			}
+		}else {
+			echo json_encode(-2);//error empty comment id
+		}
+	}
+	public function actionComment(){
+		if($_POST['Comment']){
+			$flag = 0;
+			$model = new Comment;
+			$model->attributes = $_POST['Comment'];
+			$model->date = date('Y-m-d H:m:i');
+			//$model->user_id = Yii::app()->user->id;
+			$model->user_id = 1;
+			if(!is_dir(Yii::app()->basePath . '/../uploads/comment')){
+	   			mkdir(Yii::app()->basePath . '/../uploads/comment');
+	   		}
+			//echo"<pre>";print_r($model);
+			if($model->save()){
+				$flag = 1;
+				$image = CUploadedFile::getInstancesByName('items');
+	               if (isset($image) && count($image) >=1) {
+	                   foreach ($image as $key => $value) {
+	                       $item = new CommentImage();
+	                       $item->comment_id = $model->id;
+	                       $item->name = date("Y-m-d-H-i-s") . '-' . str_replace(' ', '-', $value->name);
+	                       $item->save();
+	                       $value->saveAs(Yii::app()->basePath . "/../uploads/comment/$item->name");
+	                   }
+	               }
+			}
+			echo json_encode($flag);
+		}
+	}
   public function actionGetlocation(){
 	  if(!empty($_POST['latitude']) && !empty($_POST['longitude'])){
 		//Send request and receive json data by latitude and longitude

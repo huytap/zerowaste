@@ -12,6 +12,8 @@ return array(
 	'slideshow' => array('admin', 'create', 'delete', 'update', 'updateItem', 'view', 'upload','deleteItem'),
 	'seo' => array('admin','create','update', 'delete'),
 	'contact' => array('admin', 'view', 'delete'),
+	'commenttag' => array('admin','create','update', 'delete'),
+	'comment' => array('admin', 'delete'),
 	'settings' => array('admin','create','update', 'delete'),
 	'user' => array('admin', 'create', 'update', 'delete'),
 	'roles' => array('admin', 'create', 'update', 'delete'),

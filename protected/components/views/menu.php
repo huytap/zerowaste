@@ -9,6 +9,19 @@
     <li><a href="<?php echo Yii::app()->baseUrl;?>/products.html"><span>Vật dụng</span></a></li>
     <li><a href="<?php echo Yii::app()->baseUrl;?>/events.html"><span>Thông tin</span></a></li>
     <li><a href="<?php echo Yii::app()->baseUrl;?>/about.html"><span>Giới thiệu</span></a></li>
+    <?php
+    if(Yii::app()->user->id>0){
+	    	echo '<li class="user">';
+			echo '<a href="javascript:void(0);" class=""><img src="'.Yii::app()->baseUrl.'/images/cta_sign-up.svg" width="30"></a>';
+			?>
+			<ul class="submenu">
+				<li><a href="<?php echo Yii::app()->baseUrl?>/site/logout">Thoát</a></li>
+			</ul>
+			<?php
+		echo '</li>';
+    }else{
+    		echo '<li><a href="'.Yii::app()->baseUrl.'/site/login">Đăng kí/Đăng nhập</a></li>';
+	}?>
   </ul>
 </div>
 </div>
