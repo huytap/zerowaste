@@ -71,12 +71,12 @@ $form = $this->beginWidget('CActiveForm', array(
    	    <div class="col-sm-3">
    	        <div class="form-group">
    	            <label>Title</label>
-   	            <?php echo CHtml::textField('CustomField[title_'.$i.']', $model['field_custom_1']['title_'.$i], array('class'=>'form-control')); ?>
+   	            <?php echo CHtml::textField('CustomField[title_'.$i.']', isset($model['field_custom_1']['title_'.$i])?$model['field_custom_1']['title_'.$i]:'', array('class'=>'form-control')); ?>
    	        </div>
    	    </div>
           <div class="col-sm-3 form-group">
               <label>Description</label>
-              <?php echo CHtml::textArea('CustomField[description_'.$i.']', $model['field_custom_1']['description_'.$i], array('class' => 'form-control'));?>
+              <?php echo CHtml::textArea('CustomField[description_'.$i.']', isset($model['field_custom_1']['description_'.$i])?$model['field_custom_1']['description_'.$i]:'', array('class' => 'form-control'));?>
           </div>
       </div>
 	  <?php
@@ -99,12 +99,12 @@ $form = $this->beginWidget('CActiveForm', array(
     	    <div class="col-sm-3">
     	        <div class="form-group">
     	            <label>Title</label>
-    	            <?php echo CHtml::textField('CustomField2[title_'.$i.']', $model['field_custom_2']['title_'.$i], array('class'=>'form-control')); ?>
+    	            <?php echo CHtml::textField('CustomField2[title_'.$i.']', isset($model['field_custom_2']['title_'.$i])?$model['field_custom_2']['title_'.$i]:'', array('class'=>'form-control')); ?>
     	        </div>
     	    </div>
            <div class="col-sm-3 form-group">
                <label>Description</label>
-               <?php echo CHtml::textArea('CustomField2[description_'.$i.']', $model['field_custom_2']['description_'.$i], array('class' => 'form-control'));?>
+               <?php echo CHtml::textArea('CustomField2[description_'.$i.']', isset($model['field_custom_2']['description_'.$i])?$model['field_custom_2']['description_'.$i]:'', array('class' => 'form-control'));?>
            </div>
        </div>
  	  <?php

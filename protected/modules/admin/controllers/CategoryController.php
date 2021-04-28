@@ -49,6 +49,15 @@ class CategoryController extends AdminController
                    $model['photo'] = $cover_photo;
                    $file->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo");
                }
+
+			if(isset($_POST['CustomField'])){
+				$model['field_custom_1'] = json_encode($_POST['CustomField']);
+			}
+
+			if(isset($_POST['CustomField2'])){
+				$model['field_custom_2'] = json_encode($_POST['CustomField2']);
+			}
+
 			if($model->save()){
                 $this->redirect(Yii::app()->createUrl('admin/category/admin'));
                }
@@ -56,6 +65,15 @@ class CategoryController extends AdminController
 		if($model){
 		    $model->store_id = explode(',',$model->store_id);
 		}
+
+		if($model['field_custom_1']){
+			$model['field_custom_1'] = json_decode($model['field_custom_1'], true);
+		}
+
+		if($model['field_custom_2']){
+			$model['field_custom_2'] = json_decode($model['field_custom_2'], true);
+		}
+		
 		$this->render('create',array(
 			'model'=>$model,
 		));
