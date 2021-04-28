@@ -158,7 +158,7 @@
 	     					    <li>
 	     						    <span class="star-number"><?php echo $i;?></span> <img src="<?php echo Yii::app()->baseUrl?>/images/icn_rate.svg" width="22"/>
 	     						    <span class="progress">
-	     							    <span class="progress-bar" role="progressbar" aria-valuenow="<?php echo round($arr_star[$i]/$total_comment,1);?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo round($arr_star[$i]/$total_comment*100,1);?>%"></span>
+	     							    <span class="progress-bar" role="progressbar" aria-valuenow="<?php echo round($arr_star[$i]/($total_comment>0?$total_comment:1),1);?>" aria-valuemin="0" aria-valuemax="100" style="width:<?php echo round($arr_star[$i]/($total_comment>0?$total_comment:1)*100,1);?>%"></span>
 	     						    </span>
 								    <?php echo round($arr_star[$i],1);?>
 	     					    </li>
@@ -192,42 +192,43 @@
      	    </div>
 		</div>
     </div>
+	<?php if($comments && count($comments->getData())){?>
+	    <div class="box-comment" id="box-comment">
+		    <div class="container">
+			    <div class="row">
+				    <div class="col-sm-4 col-xs-12">&nbsp;</div>
+				    <div class="col-md-8 col-xs-12">
+					    <h3 class="title-box">Nhận xét</h3>
+					    <?php
+					    $this->widget('zii.widgets.CListView', array(
+						    'id' => 'listcomment',
+						    'dataProvider'=> $comments,
+						    'itemView'=>'_item_comment',
+						    'ajaxUpdate'=>false,
+						    'ajaxUpdate'=> 'listcomment',
+						    'ajaxVar' => 'id',
+						    //'ajaxUrl'=>array($this->getRoute()),
+						    'enablePagination'=>true,
+						    'template' => '{items}{pager}',
 
-    <div class="box-comment" id="box-comment">
-	    <div class="container">
-		    <div class="row">
-			    <div class="col-sm-4 col-xs-12">&nbsp;</div>
-			    <div class="col-md-8 col-xs-12">
-				    <h3 class="title-box">Nhận xét</h3>
-				    <?php
-				    $this->widget('zii.widgets.CListView', array(
-					    'id' => 'listcomment',
-					    'dataProvider'=> $comments,
-					    'itemView'=>'_item_comment',
-					    'ajaxUpdate'=>false,
-					    'ajaxUpdate'=> 'listcomment',
-					    'ajaxVar' => 'id',
-					    //'ajaxUrl'=>array($this->getRoute()),
-					    'enablePagination'=>true,
-					    'template' => '{items}{pager}',
+						    'pager' => array(
+							    'id' => 'pager',
+							    //'listViewId' => 'listcomment',
+							    //'class' => 'ext.infiniteScroll.IasPager',
+							    'header' => '',
+							    'nextPageLabel' => '<img src="'.Yii::app()->baseUrl.'/images/btn_pagination@2x.png" width="36">',
+							    'prevPageLabel' => '<img src="'.Yii::app()->baseUrl.'/images/btn_pagination_left.png" width="36">'
+						    ),
+						));
+					    //foreach($comments->getData() as $cmt){
 
-					    'pager' => array(
-						    'id' => 'pager',
-						    //'listViewId' => 'listcomment',
-						    //'class' => 'ext.infiniteScroll.IasPager',
-						    'header' => '',
-						    'nextPageLabel' => '<img src="'.Yii::app()->baseUrl.'/images/btn_pagination@2x.png" width="36">',
-						    'prevPageLabel' => '<img src="'.Yii::app()->baseUrl.'/images/btn_pagination_left.png" width="36">'
-					    ),
-					));
-				    //foreach($comments->getData() as $cmt){
+					     //}?>
 
-				     //}?>
-
+				    </div>
 			    </div>
-		    </div>
-	    	</div>
-    </div>
+		    	</div>
+	    </div>
+	<?php }?>
   </div>
 </div>
 <div id="popupCmt" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
@@ -330,6 +331,10 @@
 	  </div>
 	 </div>
 </div>
+<?php if($comments && count($comments->getData()) == 0){
+	Yii::app()->clientScript->registerScriptFile('https://code.jquery.com/jquery-2.2.0.min.js', CClientScript::POS_HEAD);
+}
+	?>
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/swiper-bundle.min.css');?>
 <?php Yii::app()->clientScript->registerCss('cssStore', '
   .swiper-container {

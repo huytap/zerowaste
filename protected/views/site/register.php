@@ -58,7 +58,7 @@ $this->pageTitle=Yii::app()->name . ' - Đăng ký';
 		        </div>
 			   <div class="form-group">
 				  <?php echo $form->label($model, 'password');?>
- 		            <?php echo $form->textField($model, 'password', array('class' => 'form-control input-sm', 'placeholder' => 'Mật khẩu'));?>
+ 		            <?php echo $form->passwordField($model, 'password', array('class' => 'form-control input-sm', 'placeholder' => 'Mật khẩu'));?>
  		            <?php echo $form->error($model, 'password'); ?>
 		        </div>
 		        <div class="form-group">

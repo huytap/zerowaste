@@ -39,6 +39,7 @@ class Users extends CActiveRecord
 			array('username, password, fullname', 'required', 'on'=>'register', 'message' => 'Vui lòng nhập {attribute}'),
 			//array('password, cellphone, gender, hotel_id, is_admin, roles, remarks, status', 'on' => 'create, update'),
 			array('old_password, new_password, confirm_new_password', 'required', 'on'=>'change'),
+			array('username', 'validateUsername'),
 			array('confirm_new_password', 'compare', 'compareAttribute'=>'new_password', 'message' => 'Confirm new password not true', 'on'=>'change'),
 			array('old_password', 'equalPasswords', 'on'=>'change'),
 			array('password', 'required', 'on'=>'create'),
@@ -53,6 +54,15 @@ class Users extends CActiveRecord
 			// @todo Please remove those attributes that should not be searched.
 			array('id, username, password, status, added_date, updated_date, updated_by, last_login_date, roles, fullname, cellphone, email, remarks, is_admin', 'safe', 'on'=>'search'),
 		);
+	}
+
+	public function validateUsername($attribute, $params){
+		$criteria = new CDbCriteria;
+		$criteria->compare('username', $this->username, false);
+		$user = Users::model()->find($criteria);
+ 	    if ($user){
+ 	        $this->addError($attribute, 'Tên đăng nhập đã tồn tại');
+ 	    }
 	}
 
 	public function equalPasswords($attribute, $params){
