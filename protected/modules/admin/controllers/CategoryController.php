@@ -50,6 +50,15 @@ class CategoryController extends AdminController
                    $file->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo");
                }
 
+
+			$file2 = CUploadedFile::getInstance($model, 'avatar');
+               if ($file2 !== null) {
+                   $ran = rand(0, 999999999);
+                   $cover_photo2 = date("Y-m-d-H-i-s") . '-'.$file2->name;
+                   $model['avatar'] = $cover_photo2;
+                   $file2->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo2");
+               }
+
 			if(isset($_POST['CustomField'])){
 				$model['field_custom_1'] = json_encode($_POST['CustomField']);
 			}
@@ -73,7 +82,7 @@ class CategoryController extends AdminController
 		if($model['field_custom_2']){
 			$model['field_custom_2'] = json_decode($model['field_custom_2'], true);
 		}
-		
+
 		$this->render('create',array(
 			'model'=>$model,
 		));
@@ -82,6 +91,7 @@ class CategoryController extends AdminController
 	public function actionUpdate($id){
 		$model=$this->loadModel($id);
 		$old_photo = $model['photo'];
+		$old_photo2 = $model['avatar'];
 		if(isset($_POST['Category'])){
 			$model->attributes=$_POST['Category'];
 			$model->slug = StringHelper::makeLink($model['name']);
@@ -99,6 +109,19 @@ class CategoryController extends AdminController
                    }
                }else{
                    $model->photo = $old_photo;
+               }
+
+			$file2 = CUploadedFile::getInstance($model, 'avatar');
+               if ($file2 !== null) {
+                   $ran = rand(0, 999999999);
+                   $cover_photo2 = date("Y-m-d-H-i-s") . '-'.$file2->name;
+                   $model['avatar'] = $cover_photo2;
+                   $file2->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo2");
+			    if($old_photo2 && file_exists(Yii::app()->basePath . "/../uploads/$old_photo2")){
+                       unlink(Yii::app()->basePath . "/../uploads/$old_photo2");
+                   }
+               }else{
+                   $model->avatar = $old_photo2;
                }
 			if(isset($_POST['CustomField'])){
 				$model['field_custom_1'] = json_encode($_POST['CustomField']);

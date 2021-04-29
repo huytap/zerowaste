@@ -119,8 +119,7 @@ class Users extends CActiveRecord
 	 * @return CActiveDataProvider the data provider that can return the models
 	 * based on the search/filter conditions.
 	 */
-	public function search()
-	{
+	public function search($is_admin){
 		// @todo Please modify the following code to remove attributes that should not be searched.
 
 		$criteria=new CDbCriteria;
@@ -138,7 +137,7 @@ class Users extends CActiveRecord
 		$criteria->compare('cellphone',$this->cellphone,true);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('remarks',$this->remarks,true);
-		$criteria->compare('is_admin',$this->is_admin);
+		$criteria->compare('is_admin',$is_admin, false);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
@@ -153,5 +152,21 @@ class Users extends CActiveRecord
 	public static function model($className=__CLASS__)
 	{
 		return parent::model($className);
+	}
+
+	public function getList(){
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('is_admin', 0, false);
+		$criteria->compare('status', 'A', false);
+		$data = new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => false
+		));
+		$arrData = array();
+		foreach($data->getData() as $dt){
+			$arrData[$dt['id']] = $dt['fullname'];
+		}
+		return $arrData;
 	}
 }

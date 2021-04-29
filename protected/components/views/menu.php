@@ -11,8 +11,10 @@
     <li><a href="<?php echo Yii::app()->baseUrl;?>/about.html"><span>Giới thiệu</span></a></li>
     <?php
     if(Yii::app()->user->id>0){
+	    $user=Users::model()->findByPk(Yii::app()->user->id);
 	    	echo '<li class="user">';
-			echo '<a href="javascript:void(0);" class=""><img src="'.Yii::app()->baseUrl.'/images/cta_sign-up.svg" width="30"></a>';
+			echo '<a href="javascript:void(0);" class="hidden-xs"><img src="'.Yii::app()->baseUrl.'/uploads/'.$user['avatar'].'" width="30"></a>';
+			echo '<a href="'.Yii::app()->baseUrl.'site/logout" class="hidden-lg hidden-md hidden-sm">Thoát</a>';
 			?>
 			<ul class="submenu">
 				<li><a href="<?php echo Yii::app()->baseUrl?>/site/logout">Thoát</a></li>
@@ -20,7 +22,7 @@
 			<?php
 		echo '</li>';
     }else{
-    		echo '<li><a href="'.Yii::app()->baseUrl.'/site/login">Đăng kí/Đăng nhập</a></li>';
+    		echo '<li class="user"><a href="'.Yii::app()->baseUrl.'/site/login"><span class="hidden-lg hidden-md hidden-sm">Đăng nhập</span><img src="'.Yii::app()->baseUrl.'/images/cta_sign-up.svg" width="30" class="hidden-xs"></a></li>';
 	}?>
   </ul>
 </div>

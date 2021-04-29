@@ -38,7 +38,7 @@ class AjaxController extends Controller{
 			$model->attributes = $_POST['Comment'];
 			$model->date = date('Y-m-d H:m:i');
 			//$model->user_id = Yii::app()->user->id;
-			$model->user_id = 1;
+			$model->user_id = Yii::app()->user->id;
 			if(!is_dir(Yii::app()->basePath . '/../uploads/comment')){
 	   			mkdir(Yii::app()->basePath . '/../uploads/comment');
 	   		}

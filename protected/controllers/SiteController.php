@@ -63,6 +63,8 @@ class SiteController extends Controller{
 	}
 
 	public function actionProductdetail($pslug){
+		if(!Yii::app()->user->id)
+			Yii::app()->SESSION['link_product_detail'] = Yii::app()->baseUrl.'/products/'.$pslug.'.html';
 		$model = Category::model()->getDetail($pslug);
 		$gallery = Gallery::model()->getListByProduct($model['id']);
 		$comments = Comment::model()->getListByProduct($model['id']);
@@ -123,6 +125,7 @@ class SiteController extends Controller{
 		if(Yii::app()->user->id>0){
 			$this->redirect(Yii::app()->baseUrl.'/');
 		}
+
 		$model=new LoginForm;
 
 		if(isset($_POST['ajax']) && $_POST['ajax']==='login-form'){
@@ -132,8 +135,12 @@ class SiteController extends Controller{
 
 		if(isset($_POST['LoginForm'])){
 			$model->attributes=$_POST['LoginForm'];
-			if($model->validate() && $model->login())
+			if($model->validate() && $model->login()){
+				if(Yii::app()->SESSION['link_product_detail']){
+					$this->redirect(Yii::app()->SESSION['link_product_detail']);
+				}
 				$this->redirect(Yii::app()->user->returnUrl);
+			}
 		}
 		$this->render('login',array('model'=>$model));
 	}
@@ -144,8 +151,11 @@ class SiteController extends Controller{
 		}
 		$model= new Users('register');
 		if(isset($_REQUEST['Users'])){
+			$avatarlist = Category::model()->getListAvatar();
+			$random_keys=array_rand($avatarlist,1);
 			$model->attributes=$_POST['Users'];
 			$model->is_admin=0;
+			$model->avatar = $avatarlist[$random_keys];
 			ExtraHelper::update_tracking_data($model, 'create');
 			if(!empty($model->password)){
 				$model->password = sha1(md5($model->password));

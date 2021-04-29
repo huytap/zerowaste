@@ -1,4 +1,4 @@
-<?php 
+<?php
 $form = $this->beginWidget('CActiveForm', array(
     'id' => 'grid',
     'enableClientValidation' => true,
@@ -24,7 +24,7 @@ $form = $this->beginWidget('CActiveForm', array(
                 <?php echo $form->error($model, 'fullname'); ?>
             </div>
 
-            <div class="clear"></div>            
+            <div class="clear"></div>
             <div class="col-sm-6 p-none-l form-group">
                 <?php echo $form->labelEx($model, 'password'); ?>
                 <input type="password" name="Users[password]" placeholder="Password" class="form-control">
@@ -50,18 +50,6 @@ $form = $this->beginWidget('CActiveForm', array(
     </div>
     <div class="basiccus section col-xs-12">
         <div class="col-sm-3 ws-nm">
-            <h4>Hotel</h4>
-            <p>Select hotel for user management</p>
-        </div>
-        <div class="col-sm-9 wrapper-content p-t15">
-            <div class="col-sm-12 p-none-l form-group">
-                <?php echo $form->dropDownlist($model, 'hotel_id', array('' => 'Manage all hotels')+Hotel::model()->getList2(),array('class'=>'chzn-select')); ?>
-                <?php echo $form->error($model, 'hotel_id'); ?>
-            </div>                         
-        </div>
-    </div>
-    <div class="basiccus section col-xs-12">
-        <div class="col-sm-3 ws-nm">
             <h4>Roles</h4>
             <p>Set role for user</p>
         </div>
@@ -71,8 +59,8 @@ $form = $this->beginWidget('CActiveForm', array(
                     <?php  $arr_roles = Role::model()->getAllRoleName();
                     $roles=array();
                      foreach($arr_roles as $k => $v){
-                        $roles[$k] = $k;                      
-                     } 
+                        $roles[$k] = $k;
+                     }
                     ?>
                     <?php echo $form->dropDownlist($model, 'roles',$roles, array('class'=>'chzn-select','multiple'=>true)); ?>
                     <?php echo $form->error($model, 'roles'); ?>

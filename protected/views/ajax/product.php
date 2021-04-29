@@ -21,6 +21,7 @@
 	#product-detail{
 		border-radius:10px;
 		padding: 50px 50px 65px;
+		box-shadow:9px 8px 5px 0px rgb(0 0 0 / 17%)
 	}
 ');?>
 <div class="col-md-5 col-xs-12" id="ptgallery">
@@ -46,7 +47,7 @@
   if(count($cf1)){?>
 	  <div class="pr-des row">
 		  <?php for($i=0;$i<$st1;$i++){?>
-		  <div class="col-md-3 col-sm-3">
+		  <div class="col-md-3 col-sm-3 col-xs-6">
 			  <h4><?php echo $cf1['title_'.$i];?></h4>
 			  <p><?php echo $cf1['description_'.$i];?></p>
 		  </div>

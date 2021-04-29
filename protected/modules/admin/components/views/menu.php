@@ -172,6 +172,39 @@
                         <span class="menu-hover"></span>
                     </a>
                 </li>
+			 <li>
+                    <a href="<?php echo Yii::app()->createUrl('admin/member/admin');?>">
+                        <span class="menu-icon">
+                            <i class="fa fa-th-large"></i>
+                        </span>
+                        <span class="text">
+                            Members
+                        </span>
+                        <span class="menu-hover"></span>
+                    </a>
+                </li>
+			 <li>
+                    <a href="<?php echo Yii::app()->createUrl('admin/user/admin');?>">
+                        <span class="menu-icon">
+                            <i class="fa fa-th-large"></i>
+                        </span>
+                        <span class="text">
+                            Users
+                        </span>
+                        <span class="menu-hover"></span>
+                    </a>
+                </li>
+			 <li>
+                    <a href="<?php echo Yii::app()->createUrl('admin/roles/admin');?>">
+                        <span class="menu-icon">
+                            <i class="fa fa-th-large"></i>
+                        </span>
+                        <span class="text">
+                            Roles
+                        </span>
+                        <span class="menu-hover"></span>
+                    </a>
+                </li>
                 <li>
                     <a href="<?php echo Yii::app()->createUrl('admin/settings/admin');?>">
                         <span class="menu-icon">

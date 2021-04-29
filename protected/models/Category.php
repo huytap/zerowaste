@@ -29,11 +29,12 @@ class Category extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, description, photo, category, status, store_id', 'required'),
+			array('name, description, photo, category, status, store_id, avatar', 'required'),
 			array('status', 'numerical', 'integerOnly'=>true),
 			array('name, photo, slug', 'length', 'max'=>128),
 			array('category', 'length', 'max'=>32),
 			array('field_custom_1, field_custom_2', 'safe'),
+			array('review_description, descrition', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
 			array('id, name, description, photo, category, status', 'safe', 'on'=>'search'),
@@ -151,5 +152,19 @@ class Category extends CActiveRecord
 		$criteria = new CDbCriteria;
 		$criteria->compare('slug', $slug, false);
 		return Category::model()->find($criteria);
+	}
+
+	public function getListAvatar(){
+		$criteria=new CDbCriteria;
+		$data = new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => false
+		));
+		$arrData = array();
+		foreach($data->getData() as $dt){
+			$arrData[$dt['id']] = $dt['avatar'];
+		}
+
+		return $arrData;
 	}
 }

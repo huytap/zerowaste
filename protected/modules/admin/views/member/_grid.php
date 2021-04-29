@@ -2,7 +2,7 @@
 $this->widget('booster.widgets.TbJsonGridView', array(
     'type' => 'table table-striped table-bordered table-hover dataTable',
     'id' => 'grid',
-    'dataProvider' => $model->search(1),
+    'dataProvider' => $model->search(0),
     'template' => "{items}\n{pager}",
     'htmlOptions' => array('class' => 'table table-striped table-bordered table-hover dataTable'),
     'columns' => array(

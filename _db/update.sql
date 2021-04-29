@@ -28,3 +28,7 @@ ALTER TABLE `stores` ADD `logo` VARCHAR(128) NOT NULL AFTER `description`;
 /*16/04/2021*/
 ALTER TABLE `categories` ADD `field_custom_1` TEXT NOT NULL AFTER `store_id`, ADD `field_custom_2` TEXT NOT NULL AFTER `field_custom_1`;
 ALTER TABLE `categories` ADD `slug` VARCHAR(128) NOT NULL AFTER `name`;
+
+
+ALTER TABLE `categories` ADD `avatar` VARCHAR(128) NOT NULL AFTER `photo`;
+ALTER TABLE `categories` ADD `review_description` TEXT NOT NULL AFTER `description`;

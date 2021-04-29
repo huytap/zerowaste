@@ -75,7 +75,7 @@
 				    	  <?php }
 				    	}
 				      ?>
-					 <a href="<?php echo Yii::app()->baseUrl?>/store.html?filter=<?php echo $model['store_id'];?>" class="btncontact btn-buy">TÌM MUA</a>
+					 <div class="timmua"><a href="<?php echo Yii::app()->baseUrl?>/store.html?filter=<?php echo $model['store_id'];?>" class="btncontact btn-buy">TÌM MUA</a></div>
 			    </div>
 		    </div>
 	    </div>
@@ -168,7 +168,7 @@
      		    </div>
      		    <div class="col-md-8 col-xs-12">
 				    <h3 class="cmtTitle">Viết nhận xét của bạn</h3>
-				    <div class="box-cmt">
+				    <a class="box-cmt" data-toggle="modal" data-target="#popupCmt" href="#">
 					    <div class="row">
 						    <div class="col-md-4 col-sm-4">
 							    <h4>Đánh giá</h4>
@@ -181,13 +181,13 @@
 	     					    </ul>
 						    </div>
 						    <div class="col-md-8 col-sm-8">
-							    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor.</p>
+							    <?php echo Settings::model()->getSetting('comment_content');?>
 							    <div class="text-center">
-								    <a href="#" data-toggle="modal" data-target="#popupCmt" class="btncontact btnWrite">VIẾT NHẬN XÉT</a>
+								    <span class="btncontact btnWrite">VIẾT NHẬN XÉT</span>
 							    </div>
 						    </div>
 					    </div>
-				    </div>
+				    </a>
 			    </div>
      	    </div>
 		</div>
@@ -198,7 +198,7 @@
 			    <div class="row">
 				    <div class="col-sm-4 col-xs-12">&nbsp;</div>
 				    <div class="col-md-8 col-xs-12">
-					    <h3 class="title-box">Nhận xét</h3>
+					    <h3 class="title-box">Nhận xét <span><?php echo $total_comment;?></span></h3>
 					    <?php
 					    $this->widget('zii.widgets.CListView', array(
 						    'id' => 'listcomment',
@@ -206,6 +206,7 @@
 						    'itemView'=>'_item_comment',
 						    'ajaxUpdate'=>false,
 						    'ajaxUpdate'=> 'listcomment',
+						    'afterAjaxUpdate' => 'likeCMT',
 						    'ajaxVar' => 'id',
 						    //'ajaxUrl'=>array($this->getRoute()),
 						    'enablePagination'=>true,
@@ -241,7 +242,7 @@
 			  <div class="detail-header">
 			    <div class="container">
 				    <h3>Viết nhận xét của bạn<br/>về <spa id="categoryName"><?php echo $model['name'];?></span></h3>
-				    <?php echo $model['description'];?>
+				    <?php echo $model['review_description'];?>
 			    </div>
 
 		    </div>
@@ -273,7 +274,7 @@
 									  ?>
 								  </select>
 							  </div>
-							  <h4>TẦM GIÁ (VNĐ)</h4>
+							  <h4>TẦM GIÁ</h4>
 							  <div class="custom-select field" style="width:100%;" id="price">
 								  <select name="Comment[price]">
 									  <option value="">Chọn tầm giá</option>
@@ -312,17 +313,20 @@
 								    }?>
 							    </ul>
 							    <h4>NỘI DUNG</h4>
-							    <textarea rows="3" name="Comment[content]" id="message" placeholder="Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et"></textarea>
+							    <textarea rows="4" name="Comment[content]" id="message" placeholder="<?php echo strip_tags(Settings::model()->getSetting('comment_content'));?>"></textarea>
 							    <h4>UPLOAD ẢNH <span>(tối đa 5 ảnh)</span></h4>
-							    <div class="loadImg"><input name="items[]" maxlength="2" multiple type="file" id="imgUpload"></div>
-
+							    <div class="listphoto">
+								    <div id="listPT"></div>
+							    	    <div class="loadImg"><input name="items[]" maxlength="2" multiple type="file" id="imgUpload"></div>
+							    </div>
+							    <p id="messagesuccess">Cảm ơn bạn đã gửi nhận xét!</p>
 						    </div>
 
 				    </div>
 			    </div>
 			    <div class="row">
 				    <div class="col-xs-12 text-center">
-					    <button type="submit" class="submitForm"><img width="215" src="<?php echo Yii::app()->baseUrl?>/images/btn_tim-mua.svg"></button>
+					    <button type="submit" class="submitForm"><img width="215" src="<?php echo Yii::app()->baseUrl?>/images/btn_tim-mua@2x.png"></button>
 				    </div>
 				</div>
 		    </div>
@@ -359,6 +363,9 @@
 	 border-radius:10px;
 	 padding: 50px 50px 65px;
  }
+ .modal-body{
+	 padding-bottom: 100px!important;
+ }
 ');?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/swiper-bundle.min.js', CClientScript::POS_END);?>
 <?php Yii::app()->clientScript->registerScript('product', '
@@ -367,33 +374,67 @@ $(document).ready(function(){
 	  slidesPerView: 1,
 	  centeredSlides: true,
 	  grabCursor: true,
-   pagination: {
-	   el: ".swiper-pagination",
-    clickable: true,
+   	  pagination: {
+	   	el: ".swiper-pagination",
+    	  clickable: true,
 	 },
      });
 });
+
+//check login
+$(".btncontact.btnWrite").click(function(){
+	let uid = "'.Yii::app()->user->id.'";
+	if(uid.length){
+
+	}else{
+		location.href="'.Yii::app()->baseUrl.'/site/login";
+	}
+})
 
 $(".formsubmit ul.starlist li").each(function(i,j){
 	$(j).click(function(){
 		$(".formsubmit ul.starlist li").removeClass("active")
 		for(var ii=0;ii<=i;ii++){
-			$("li:nth-child("+(ii+1)+")").addClass("active")
+			$(".formsubmit ul.starlist").find("li:nth-child("+(ii+1)+")").addClass("active")
 		}
 		$("#star").val((i+1));
 	})
 
 });
 
-$(".listTag li").each(function(i, j){
-	$(j).click(function(){
+$(".listTag li").each(function(ii, jj){
+	$(jj).click(function(){
 		$(".listTag li").removeClass("active")
-		$(j).addClass("active")
-		let txt = $(j).attr("data");
+		$(jj).addClass("active")
+		let txt = $(jj).attr("data");
 		$("#title").val(txt)
 	})
 })
-
+//Preview an image before it is uploaded
+$("[name=\"items[]\"]").change(function(){
+	var fileElements = $("[name=\"items[]\"]");
+     var filesCount = $(fileElements[0]).prop("files").length;
+	if(filesCount>5){
+		if(!$(".loadImg").next().hasClass("error"))
+		    $(".loadImg").after("<p class=\"error\">Tối đa chỉ được 5 hình</p>");
+	}else{
+		$("#listPT").html("");
+		readURL(this);
+	}
+});
+function readURL(input) {
+	if (input.files && input.files[0]) {
+        var i;
+        for (i = 0; i < input.files.length; ++i) {
+          var reader = new FileReader();
+          reader.onload = function (e) {
+              $("#listPT").append("<img src=\""+e.target.result+"\">");
+          }
+          reader.readAsDataURL(input.files[i]);
+        }
+    }
+}
+//form submit comment
 $("#form").on("submit", function(e){
 	e.preventDefault();
 	let star="", store="",price="", title="",message="",photo="";
@@ -474,9 +515,16 @@ $("#form").on("submit", function(e){
 		    	if(data==0){
 
 		    	}else{
-				alert("Cảm ơn bạn đã đánh giá!")
-				$("#popupCmt").modal("hide")
+				$("#popupCmt").modal("hide").on("hidden.bs.modal", function (e) {
+		                $("#popupsuccess").modal("show");
+		                $(this).off("hidden.bs.modal");
+		            });
+				//$("#popupCmt").modal("hide")
 		     	$("#form")[0].reset();
+				$(".starlist li").removeClass("active");
+				$("#store").find(".select-selected").text("Chọn cửa hàng");
+				$("#price").find(".select-selected").text("Chọn tầm giá");
+				$(".listTag").removeClass("active")
 		    	}
 		   },
 		   error: function(e){
@@ -485,39 +533,46 @@ $("#form").on("submit", function(e){
 	   	});
 	}
 });
-
+//scroll to rating
+$(".star span").click(function(){
+	$(window).scrollTop($(".comment").offset().top, 500);
+})
+$(".main-menu li:nth-child(2)").addClass("active")
 //pager
 $("#pager li").click(function(){
 	$(window).scrollTop($("#listcomment").offset().top);
 })
 //like comments
-$("#listcomment").find(".box-items").each(function(i, j){
-	if($(this).find(".content-cmt").height() < 40){
-		$(this).find(".content-cmt").next().hide();
-	}
-	$(j).find(".like").click(function(){
-		let lk = $(this).attr("data");
-		if(lk){
-			$.ajax({
-				url: "'.Yii::app()->baseUrl.'/ajax/likecmt",
-				dataType: "json",
-				type: "post",
-				data: {lk:lk},
-				success: function(data){
-					if(data == "1"){
-						$(j).find(".like").addClass("active")
-					}else if(data == "2"){
-						if($(j).find(".like").hasClass("active")){
-							$(j).find(".like").removeClass("active")
-						}else{
+likeCMT();
+function likeCMT(){
+	$("#listcomment").find(".box-items").each(function(i, j){
+		if($(this).find(".content-cmt").height() < 40){
+			$(this).find(".content-cmt").next().hide();
+		}
+		$(j).find(".like").click(function(){
+			let lk = $(this).attr("data");
+			if(lk){
+				$.ajax({
+					url: "'.Yii::app()->baseUrl.'/ajax/likecmt",
+					dataType: "json",
+					type: "post",
+					data: {lk:lk},
+					success: function(data){
+						if(data == "1"){
 							$(j).find(".like").addClass("active")
+						}else if(data == "2"){
+							if($(j).find(".like").hasClass("active")){
+								$(j).find(".like").removeClass("active")
+							}else{
+								$(j).find(".like").addClass("active")
+							}
 						}
 					}
-				}
-			})
-		}
-	})
-});
+				})
+			}
+		})
+	});
+}
 //view more cmt
 $(".viewmore-cmt").click(function(){
 	if(!$(".content-cmt").hasClass("active")){

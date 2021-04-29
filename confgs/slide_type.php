@@ -1,6 +1,6 @@
 <?php
-	$hotel = array(
+	$page = array(
 		'home' => 'Trang chủ',
 		'events'=>'Tàu siêu tốc thông tin'
 	);
-	return $hotel;
+	return $page;

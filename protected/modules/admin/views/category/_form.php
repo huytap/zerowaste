@@ -61,6 +61,21 @@ $form = $this->beginWidget('CActiveForm', array(
        }
        ?>
   </div>
+ <div class="row">
+	 <div class="col-sm-3 form-group">
+		<?php echo $form->label($model, 'avatar');?>
+		<?php echo $form->fileField($model, "avatar"); ?>
+		<?php echo $form->error($model, 'avatar'); ?>
+	 </div>
+	 <?php
+	 if($model->avatar){?>
+		<div class="col-sm-3 form-group">
+		    <?php echo '<img src="'.Yii::app()->baseUrl.'/uploads/'.$model->avatar.'" width="100">';?>
+		</div>
+	 <?php
+	 }
+	 ?>
+ </div>
   <h3>Custom field</h3>
   <?php
   $cf1 = Settings::model()->getSetting('custom_field_1');
@@ -111,6 +126,13 @@ $form = $this->beginWidget('CActiveForm', array(
    }
    ?>
    <div class="row">
+ 	  <div class="col-md-9 form-group">
+ 		 <?php echo $form->label($model, 'review_description');?>
+ 		 <?php echo $form->error($model, 'review_description'); ?>
+      	<?php echo $form->textArea($model, 'review_description');?>
+ 	  </div>
+    </div>
+   <div class="row">
  	  <div class="col-sm-3">
  		 <div class="form-group">
  			<?php echo $form->labelEx($model, 'status', array('class' => 'control-label'));?>
@@ -129,4 +151,7 @@ $form = $this->beginWidget('CActiveForm', array(
         CKEDITOR.replace( 'Category[description]', {
 			      allowedContent: 'p span'
 			  });
+			  CKEDITOR.replace( 'Category[review_description]', {
+		  			   allowedContent: 'p span'
+		  		    });
 </script>

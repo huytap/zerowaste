@@ -104,6 +104,7 @@ class Comment extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
+			'pagination' => array('pageSize' => 100)
 		));
 	}
 
@@ -145,7 +146,8 @@ class Comment extends CActiveRecord
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'pagination' => array('pageSize' => 3)
+			'pagination' => array('pageSize' => 3),
+			'sort' => array('defaultOrder' => 'date desc')
 		));
 	}
 }

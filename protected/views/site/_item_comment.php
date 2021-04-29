@@ -7,7 +7,7 @@ $likesCMT = CommentLikes::model()->checkLikeByCMT($data['id'], $user_id);
 	<div class="row">
 		<div class="col-md-3 col-sm-3">
 			<h5><?php echo $data['user']['fullname'];?></h5>
-			<img src="<?php echo Yii::app()->baseUrl?>/images/avatar.svg" class="img-responsive"/>
+			<img src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['user']['avatar'];?>" class="img-responsive"/>
 		</div>
 		<div class="col-md-9 col-sm-9">
 			<div class="box-top">
@@ -24,12 +24,18 @@ $likesCMT = CommentLikes::model()->checkLikeByCMT($data['id'], $user_id);
 					}?>
 				</ul>
 				<p class="box-title-cmt"><?php echo $data['title'];?></p>
+				<span>Đăng:
+					<?php
+
+					echo ExtraHelper::timeago($data["date"]);
+					?>
+				</span>
 			</div>
 			<div class="box-mid">
 				<div class="row">
 					<div class="col-md-6">
 						<img src="<?php echo Yii::app()->baseUrl?>/images/icn_location.svg" width="20"/>
-						<?php echo $data['store']['name'];?>
+						<a href="<?php echo Yii::app()->baseUrl.'/store/'.StringHelper::makeLink($data['store']['name']).'-'.$data['store']['id']?>.html"><?php echo $data['store']['name'];?></a>
 					</div>
 					<div class="col-md-6 text-right">
 						<img src="<?php echo Yii::app()->baseUrl?>/images/icn_money.svg" width="20"/>

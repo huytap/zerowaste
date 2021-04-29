@@ -13,8 +13,9 @@ return array(
 	'seo' => array('admin','create','update', 'delete'),
 	'contact' => array('admin', 'view', 'delete'),
 	'commenttag' => array('admin','create','update', 'delete'),
-	'comment' => array('admin', 'delete'),
+	'comment' => array('admin', 'view', 'delete'),
 	'settings' => array('admin','create','update', 'delete'),
+	'member' => array('admin', 'create', 'update', 'delete'),
 	'user' => array('admin', 'create', 'update', 'delete'),
 	'roles' => array('admin', 'create', 'update', 'delete'),
 )

@@ -1168,7 +1168,32 @@ a.viewmore-store{
 	font-size: 12px;
 }
 }
+@media(max-width: 768px){
+	.detail-header .col-md-8 {
+	    padding-left: 15px;
+	}
+}
 @media(max-width: 767px){
+	.btn-buy {
+	    padding-left: 30px;
+	    font-size: 15px;
+	    padding-right: 30px;
+	    display: inline-block;
+	    margin-right: 0;
+	}
+	.btncontact.btn-viewmores{
+		padding-right: 50px;
+		margin-right: 10px;
+	}
+	.star{
+		padding:10px 0;
+	}
+	.timmua{
+		text-align: center;
+	}
+	.btncontact.btn-viewmores img{
+		width: 23px;
+	}
 	#store-content-detail .top-info{
 		padding-top: 20px;
 	}
@@ -1578,6 +1603,7 @@ a.viewmore-store{
 	}
 	.pr-des.row{
 		padding-top: 10px;
+		text-align: left;
 	}
 	.pr-des .col-md-3{
 		margin-bottom: 15px;
@@ -1610,7 +1636,18 @@ a.viewmore-store{
 		padding: 0;
 	}
 	.cmtTitle{
-		font-size: 25px;
+		font-size: 22px;
+	}
+	.product-details,.box-items{
+		font-size: 15px;
+	}
+	.box-top span {
+	    position: relative;
+	    padding-bottom: 10px;
+	    display: block;
+	}
+	.box-bottom{
+		font-size: 14px;
 	}
 }
 @media(max-width:375px){

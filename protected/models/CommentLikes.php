@@ -106,4 +106,9 @@ class CommentLikes extends CActiveRecord
 
 		return CommentLikes::model()->find($criteria);
 	}
+	public function getQuantity($comment_id){
+		$criteria=new CDbCriteria;
+		$criteria->compare('comment_id',$comment_id, false);
+		return CommentLikes::model()->count($criteria);
+	}
 }
