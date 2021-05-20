@@ -62,7 +62,7 @@ class MemberController extends AdminController{
 			}
 			$model->validate();
 			if($model->save()){
-				$this->redirect(Yii::app()->createUrl('admin/user/admin'));
+				$this->redirect(Yii::app()->createUrl('admin/member/admin'));
 			}
 		}
 		$this->render('create',compact('model'));
@@ -70,11 +70,16 @@ class MemberController extends AdminController{
 
 	public function actionUpdate($id){
 		$model = $this->loadModel($id);
-		$model->scenario= 'update';
+		//$model->scenario= 'update';
 		$old_password=$model->password;
 		if(isset($_POST['Users'])){
 			$model->attributes = $_POST['Users'];
 			$model->is_admin=0;
+			if(!$model->avatar){
+				$avatarlist = Category::model()->getListAvatar();
+				$random_keys=array_rand($avatarlist,1);
+				$model->avatar = $avatarlist[$random_keys];
+			}
 			ExtraHelper::update_tracking_data($model, 'update');
 			if(!empty($model->password)){
 				$model->password = sha1(md5($model->password));
@@ -88,7 +93,7 @@ class MemberController extends AdminController{
 			}
 			$model->validate();
 			if(!$model->hasErrors() && $model->save())
-				$this->redirect(Yii::app()->createUrl('admin/user/admin'));
+				$this->redirect(Yii::app()->createUrl('admin/member/admin'));
 		}
 		$this->render('update', compact('model'));
 	}

@@ -2406,7 +2406,7 @@ a.viewmore{
 }
 .btncontact.btn-viewmores img{
     display: inline-block;
-    margin-left: 12px;
+    right: 12px;
     top: 8px;
     position: absolute;
 }
@@ -2421,7 +2421,7 @@ a.viewmore{
 	top:0;
 	left:0;
 	background: #FEBDC5 ;
-	border-radius: 0 0 35% 35% / 0 0% 6% 6%;
+	border-radius: 0 0 30% 30% / 0 0 6% 6%;
 	z-index: -1;
 }
 .breadcrum{
@@ -2631,6 +2631,7 @@ ul.starlist li{
 }
 .box-items .col-md-3 img{
 	width: 100px;
+  border-radius: 50%;
     margin: 0 auto;
 }
 .like.active{
@@ -2788,6 +2789,7 @@ ul.yiiPager .selected a{
 }
 .user img{
 	margin-top: -5px;
+  border-radius: 50%;
 }
 .submenu{
 	display: none;
@@ -2803,6 +2805,6 @@ li.user:hover ul{
 }
 @media(max-width: 1024px){
 	.detail-header:after{
-		height: 80%;
+		height: 90%;
 	}
 }

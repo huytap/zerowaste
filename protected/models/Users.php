@@ -35,11 +35,11 @@ class Users extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('username, fullname, email', 'required', 'on'=>'create,update'),
+			array('username, fullname, email', 'required', 'on'=>'create'),
 			array('username, password, fullname', 'required', 'on'=>'register', 'message' => 'Vui lòng nhập {attribute}'),
 			//array('password, cellphone, gender, hotel_id, is_admin, roles, remarks, status', 'on' => 'create, update'),
 			array('old_password, new_password, confirm_new_password', 'required', 'on'=>'change'),
-			array('username', 'validateUsername'),
+			array('username', 'validateUsername', 'on' => 'create'),
 			array('confirm_new_password', 'compare', 'compareAttribute'=>'new_password', 'message' => 'Confirm new password not true', 'on'=>'change'),
 			array('old_password', 'equalPasswords', 'on'=>'change'),
 			array('password', 'required', 'on'=>'create'),

@@ -1181,6 +1181,11 @@ a.viewmore-store{
 	    display: inline-block;
 	    margin-right: 0;
 	}
+  .timmua .btn-buy {
+      padding-left: 35px;
+      font-size: 18px;
+      padding-right: 35px;
+  }
 	.btncontact.btn-viewmores{
 		padding-right: 50px;
 		margin-right: 10px;
