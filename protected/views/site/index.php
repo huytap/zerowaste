@@ -824,7 +824,7 @@ video{
 		    		    html += '<div class=\"box-pr\"><div><h3 class=\"box-title\">'+ data.district+'</h3>';
 				    html +='<p>'+data.total+' cửa hàng</p></div></div>';
 				    $('#map2').html(html);
-				    $('#map2').css('display', 'flex');
+				    $('#map2').css('display', 'block');
 
 		    }
 	    })

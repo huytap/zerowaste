@@ -594,29 +594,29 @@ video {
   display: none;
 }*/
 #map2{
-	align-items: center;
   position: absolute;
   display: none;
-  width: 280px;
-background: #fff;
+  width: 237px;
+  background: #fff;
 border-radius: 15px;
 box-shadow: 9px 8px 5px 0px rgba(0, 0, 0, 0.17);
-height: 135px;
+height: 394px;
+border: 2px solid #040505;
 }
 .box-pp{
-	width: 115px;
-    float: left;
+	width: 100%;
+  background: #FFE6E6;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  height: 256px;
 }
 .box-pp img{
 
 }
 .box-pr{
-	float: left;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: calc(100% - 115px);
-    padding-left: 10px;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
 }
 .box-title{
 	color:#ec5c89;
