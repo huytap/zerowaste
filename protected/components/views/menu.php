@@ -22,11 +22,12 @@
 			<?php
 		echo '</li>';
     }else{
-    		echo '<li class="user"><a href="'.Yii::app()->baseUrl.'/site/login"><span class="hidden-lg hidden-md hidden-sm">Đăng nhập</span><img src="'.Yii::app()->baseUrl.'/images/cta_sign-up.svg" width="30" class="hidden-xs"></a></li>';
+    		echo '<li class="user"><a href="#loginPopup" data-toggle="modal"><span class="hidden-lg hidden-md hidden-sm">Đăng nhập</span><img src="'.Yii::app()->baseUrl.'/images/cta_sign-up.svg" width="30" class="hidden-xs"></a></li>';
 	}?>
   </ul>
 </div>
 </div>
+<?php require_once('login.php');?>
 <?php Yii::app()->clientScript->registerScript('menu', '
 $(".menuicon").click(function(){
   $(".menu-main").show();
