@@ -36,7 +36,7 @@ class Users extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('username, fullname, email', 'required', 'on'=>'create'),
-			array('username, password, fullname', 'required', 'on'=>'register', 'message' => 'Vui lòng nhập {attribute}'),
+			array('email, password, fullname', 'required', 'on'=>'register', 'message' => 'Vui lòng nhập {attribute}'),
 			//array('password, cellphone, gender, hotel_id, is_admin, roles, remarks, status', 'on' => 'create, update'),
 			array('old_password, new_password, confirm_new_password', 'required', 'on'=>'change'),
 			array('username', 'validateUsername', 'on' => 'create'),
@@ -168,5 +168,11 @@ class Users extends CActiveRecord
 			$arrData[$dt['id']] = $dt['fullname'];
 		}
 		return $arrData;
+	}
+
+	public function checkEmail($email){
+		$criteria = new CDbCriteria;
+		$criteria->compare('email', $email, false);
+		return Users::model()->find($criteria);
 	}
 }

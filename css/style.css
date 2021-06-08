@@ -2803,6 +2803,207 @@ ul.yiiPager .selected a{
 li.user:hover ul{
 	display: block;
 }
+.formPopup{
+  background: #f2fdff;
+}
+.formPopup .modal-dialog{
+  width: 100%;
+    background: #f2fdff;
+    height: 100%;
+    top: 0;
+    margin: 0;
+}
+.loginBox{
+  max-width: 1046px;
+  max-height: 578px;
+  border: 2px solid #030504;
+  border-radius: 27px;
+  margin: 0 auto;
+  position: relative;
+}
+.login-box-left{
+  background: #FDC10F;
+  position: relative;
+  border-top-left-radius: 27px;
+  border-bottom-left-radius: 27px;
+  position: relative;
+  height: 574px;
+}
+.login-box-left img{
+  position: absolute;
+}
+.login-box-left img:first-child{
+  top: 88px;
+  left: 93px;
+}
+.login-box-left img:nth-child(2){
+  bottom: 48px;
+  left: 0;
+  right:0;
+  margin: 0 auto;
+}
+.login-box-left img:last-child{
+  bottom: 24px;
+  left: 0;
+  right:0;
+  margin: 0 auto;
+}
+.formtab h3,
+.formtab ul{
+  margin: 50px 0;
+}
+.formtab h3,
+.formtab li{
+  cursor: pointer;
+  text-align: center;
+  font: normal normal normal 36px/18px Bungee;
+  color: #E2E2E2;
+  display: inline-block;
+}
+.formtab h3{
+  display: block;
+}
+.formtab li:last-child{
+  padding-left:10px;
+}
+.formtab h3,
+.formtab li.active{
+  color: #329B82;
+}
+.formtab{
+  padding-left: 20px;
+  padding-right: 50px;
+  position: relative;
+}
+.formPopup input{
+  text-align: left;
+  font: normal normal bold 18px/24px Comfortaa;
+  color: #B1B1B1;
+  border:0;
+  border-bottom: 1px solid #329B82;
+  border-radius: 0 0;
+  -webkit-border-radius: 0 0;
+  background: transparent;
+  width: 100%;
+}
+.formPopup input::placeholder{
+  color: #B1B1B1;
+}
+.formPopup input:focus{
+  outline: none;
+}
+.formPopup .form-group{
+  margin-bottom: 30px;
+  position: relative;
+}
+.formPopup .btncontact{
+  margin-top: 83px;
+  position: relative;
+  padding: 10px 40px;
+}
+#openForgot{
+  display: block;
+  text-align: center;
+  text-decoration: underline;
+  font: normal normal bold 16px/20px Comfortaa;
+  color: #000000;
+}
+.loginElement{
+  position: relative;
+}
+.loginElement img{
+  position: absolute;
+}
+.loginElement img:first-child{
+  bottom: 110px;
+  left:-236px;
+  z-index: 10;
+}
+.loginElement img:nth-child(2){
+  bottom:-30px;
+  left:-66px;
+  z-index: 10;
+}
+.loginElement img:nth-child(3){
+  bottom:-70px;
+  right:-60px;
+  z-index: 10;
+}
+.loginElement img:last-child{
+  bottom:150px;
+  right:-85px;
+  z-index: 10;
+}
+#registerPopup .login-box-left{
+  background: url(../images/bg.svg) no-repeat;
+}
+#registerPopup.formPopup .btncontact{
+  margin-top: 10px;
+}
+#registerPopup .loginElement img:nth-child(2) {
+    right: -115px;
+    left: auto;
+}
+#registerPopup .loginElement img:nth-child(3) {
+    left: 36%;
+}
+#registerPopup .login-box-left img:first-child {
+    bottom: -95px;
+    left: -128px;
+    top:auto;
+}
+#registerPopup .login-box-left img:last-child {
+    bottom: 50px;
+    right: 0;
+    left: auto;
+}
+.formPopup .form-group span{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.formPopup a{
+  text-decoration: underline;
+}
+#forgotPopup .login-box-left,
+#resetPopup .login-box-left{
+  background: #806FD7;
+}
+#registerPopup.success .login-box-left:before{
+  content:"";
+  position: absolute;
+  top:35px;
+  left: -15px;
+  width: 115%;
+  height: 100%;
+  background: url(../images/aw_confetti.svg) no-repeat;
+}
+#resetPopup.success .login-box-left:before{
+  content:"";
+  position: absolute;
+  top:35px;
+  left: -15px;
+  width: 115%;
+  height: 100%;
+  background: url(../images/aw_confetti.svg) no-repeat, url(../images/aw_confetti-1.svg) no-repeat 70px 110px;
+}
+.btncontact.confirm{
+  background: #897DFF;
+}
+#resend{
+  display: none;
+}
+.formPopup .formtab:nth-child(2),
+.formPopup.success .formtab:first-child{
+  display: none;
+}
+.formPopup.success .formtab:nth-child(2){
+  display: block;
+}
+.formPopup a.btncontact{
+  text-decoration: none;
+  margin-top: 175px;
+}
 @media(max-width: 1024px){
 	.detail-header:after{
 		height: 90%;

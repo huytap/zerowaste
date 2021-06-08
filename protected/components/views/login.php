@@ -1,95 +1,4 @@
-<style>
-#loginPopup{
-  background: #f2fdff;
-}
-#loginPopup .modal-dialog{
-  width: 100%;
-    background: #f2fdff;
-    height: 100%;
-    top: 0;
-    margin: 0;
-}
-.loginBox{
-  max-width: 1046px;
-  max-height: 578px;
-  border: 2px solid #030504;
-  border-radius: 27px;
-  margin: 0 auto;
-}
-.login-box-left{
-  background: #FDC10F;
-}
-.login-box-left{
-  border-top-left-radius: 27px;
-  border-bottom-left-radius: 27px;
-  position: relative;
-  height: 574px;
-}
-.login-box-left img{
-  position: absolute;
-}
-.login-box-left img:first-child{
-  top: 88px;
-  left: 63px;
-}
-.login-box-left img:nth-child(2){
-  bottom: 48px;
-  left: 0;
-  right:0;
-  margin: 0 auto;
-}
-.login-box-left img:last-child{
-  bottom: 24px;
-  left: 0;
-  right:0;
-  margin: 0 auto;
-}
-.formtab ul{
-  margin: 50px 0;
-}
-.formtab li{
-  cursor: pointer;
-  text-align: center;
-  font: normal normal normal 36px/18px Bungee;
-  color: #E2E2E2;
-  display: inline-block;
-}
-.formtab li.active{
-  color: #329B82;
-}
-.formtab{
-  padding-left: 30px;
-  padding-right: 60px;
-}
-#loginform input{
-  text-align: left;
-  font: normal normal bold 18px/24px Comfortaa;
-  color: #B1B1B1;
-  border:0;
-  border-bottom: 1px solid #329B82;
-  border-radius: 0 0;
-  -webkit-border-radius: 0 0;
-  background: transparent;
-  width: 100%;
-}
-#loginform input:focus{
-  outline: none;
-}
-#loginform .form-group{
-  margin-bottom: 30px;
-}
-#loginform .btncontact{
-  margin-top: 113px;
-}
-#openForgot{
-  display: block;
-  text-align: center;
-  text-decoration: underline;
-  font: normal normal bold 16px/20px Comfortaa;
-  color: #000000;
-}
-</style>
-<div id="loginPopup" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
+<div id="loginPopup" class="modal fade formPopup" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
    <div class="modal-dialog" role="document">
       <div class="modal-content">
          <div class="modal-header">
@@ -110,7 +19,7 @@
                     <div class="formtab">
                       <ul>
                         <li class="active">ĐĂNG NHẬP</li>
-                        <li data-toggle="modal" id="openRegister" data-target="#formRegister">ĐĂNG KÝ</li>
+                        <li data-toggle="modal" data-target="#registerPopup">ĐĂNG KÝ</li>
                       </ul>
                       <form method="post" id="loginform">
         		        		<div class="form-group">
@@ -121,12 +30,19 @@
         		        		</div>
         		        		<p class="error" id="errorLogin" style="display: none;color:#fcc630!important;margin-bottom: 15px!important;"></p>
         		        		<div class="form-group text-center">
-        		        			<button type="submit" class="btncontact">ĐĂNG NHẬP</button>
+        		        			<button type="submit" class="btncontact">ĐĂNG NHẬP
+                          <span><img src="<?php echo Yii::app()->baseUrl?>/images/aw_kitty-hand.svg"></button>
         		        		</div>
-        		        		<a href="#" data-toggle="modal" id="openForgot" data-target="#formForgot">bạn quên mật khẩu?</a><br/>
+        		        		<a href="#" data-toggle="modal" id="openForgot" data-target="#forgotPopup">bạn quên mật khẩu?</a><br/>
         		        	</form>
                     </div>
                   </div>
+                </div>
+                <div class="loginElement">
+                  <img src="<?php echo Yii::app()->baseUrl?>/images/aw_rock.svg"/>
+                  <img src="<?php echo Yii::app()->baseUrl?>/images/aw_bush.svg"/>
+                  <img src="<?php echo Yii::app()->baseUrl?>/images/aw_bush-1.svg"/>
+                  <img src="<?php echo Yii::app()->baseUrl?>/images/aw_bush-2.svg"/>
                 </div>
               </div>
             </div>
@@ -135,5 +51,32 @@
    </div>
 </div>
 <?php
-   Yii::app()->clientScript->registerScript('loginPopup', '
+   Yii::app()->clientScript->registerScript('weloginPopup', '
+   $("#loginform").on("submit", function(e){
+     e.preventDefault();
+     $.ajax({
+           url: "'.Yii::app()->baseUrl.'/site/login",
+         type: "POST",
+         data:  new FormData(this),
+         dataType: "json",
+         contentType: false,
+         cache: false,
+         processData:false,
+         beforeSend : function(){
+           //$("#loading").show();
+         },
+         success: function(data){
+           //$("#loading").hide();
+           if(data==0){
+             $("#errorLogin").text("Sai tên đăng nhập hoặc mật khẩu");
+             $("#errorLogin").show();
+           }else{
+             location.reload();
+           }
+         },
+         error: function(e){
+
+         }
+       });
+   });
    ', CClientScript::POS_END);?>

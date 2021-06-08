@@ -122,6 +122,7 @@ class SiteController extends Controller{
 	}
 
 	public function actionLogin(){
+		$this->layout =false;
 		if(Yii::app()->user->id>0){
 			$this->redirect(Yii::app()->baseUrl.'/');
 		}
@@ -135,38 +136,51 @@ class SiteController extends Controller{
 
 		if(isset($_POST['LoginForm'])){
 			$model->attributes=$_POST['LoginForm'];
-			if($model->validate() && $model->login()){
-				if(Yii::app()->SESSION['link_product_detail']){
+			if($model->login()){
+				/*if(Yii::app()->SESSION['link_product_detail']){
 					$this->redirect(Yii::app()->SESSION['link_product_detail']);
-				}
-				$this->redirect(Yii::app()->user->returnUrl);
+				}*/
+				echo json_encode(1);
+			}else{
+				echo json_encode(0);
 			}
 		}
-		$this->render('login',array('model'=>$model));
+		//$this->render('login',array('model'=>$model));
 	}
 
 	public function actionRegister(){
 		if(Yii::app()->user->id>0){
 			$this->redirect(Yii::app()->baseUrl.'/');
 		}
+		$this->layout = false;
 		$model= new Users('register');
 		if(isset($_REQUEST['Users'])){
-			$avatarlist = Category::model()->getListAvatar();
-			$random_keys=array_rand($avatarlist,1);
-			$model->attributes=$_POST['Users'];
-			$model->is_admin=0;
-			$model->avatar = $avatarlist[$random_keys];
-			ExtraHelper::update_tracking_data($model, 'create');
-			if(!empty($model->password)){
-				$model->password = sha1(md5($model->password));
-			}
-			$model->roles="user";
-			$model->validate();
-			if($model->save()){
-				$this->redirect(Yii::app()->createUrl('site/login'));
+			$checkemail = Users::model()->checkEmail($_REQUEST['Users']['email']);
+			if(!$checkemail){
+				$avatarlist = Category::model()->getListAvatar();
+				$random_keys=array_rand($avatarlist,1);
+				$model->attributes=$_POST['Users'];
+				$model->username = explode("@", $model->email)[0];
+				$model->is_admin=0;
+				$model->avatar = $avatarlist[$random_keys];
+				$model->updated_by = 9999;
+				//ExtraHelper::update_tracking_data($model, 'create');
+				$model->added_date = date('Y-m-d H:i:s');
+				$model->updated_date = date('Y-m-d H:i:s');
+				if(!empty($model->password)){
+					$model->password = sha1(md5($model->password));
+				}
+				$model->roles="user";
+				$model->validate();
+				if($model->save()){
+					echo json_encode(1);
+				}else{
+					echo json_encode(0);
+				}
+			}else{
+				echo json_encode(-1);
 			}
 		}
-		$this->render('register',compact('model'));
 	}
 
 	public function actionLogout(){
