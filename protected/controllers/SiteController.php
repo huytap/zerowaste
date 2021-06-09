@@ -217,19 +217,24 @@ class SiteController extends Controller{
 				$criteria = new CDbCriteria;
 				$criteria->compare('password_reset_token', $_GET['string'], false);
 				$model = Users::model()->find($criteria);
-				$model->scenario = 'forgotpassword';
-				$flag = false;
-				if(isset($_POST['Users'])){
-					$model->attributes = $_POST['Users'];
-					$model->password = sha1(md5($model['confirm_new_password']));
-					$model->validate();
-					if(!$model->hasErrors() && $model->update()){
-						$model->password_reset_token = '';
-						$model->update();
-						$flag = true;
+				if($model){
+					$model->scenario = 'forgotpassword';
+					$flag = false;
+					if(isset($_POST['Users'])){
+						$model->attributes = $_POST['Users'];
+						$model->password = sha1(md5($model['confirm_new_password']));
+						$model->validate();
+						if(!$model->hasErrors() && $model->update()){
+							$model->password_reset_token = '';
+							$model->update();
+							$flag = true;
+						}
 					}
+					$this->render('resetpassword', compact(array('model', 'flag')));
+				}else{
+					$this->render('error');
 				}
-				$this->render('resetpassword', compact(array('model', 'flag')));
+				
 			}
 		}
 

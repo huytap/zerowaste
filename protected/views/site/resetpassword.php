@@ -6,7 +6,9 @@
       <div class="modal-content">
          <div class="modal-body">
             <div class="container">
+              <?php if(isset($model)){?>
               <div class="loginBox">
+                
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="login-box-left">
@@ -58,7 +60,11 @@
                   <img src="<?php echo Yii::app()->baseUrl?>/images/aw_bush-1.svg"/>
                   <img src="<?php echo Yii::app()->baseUrl?>/images/aw_bush-2.svg"/>
                 </div>
+              
               </div>
+              <?php }else{?>
+                <p>Link đã hết hạn hoặc không tồn tại</p>
+              <?php }?>
             </div>
          </div>
       </div>
