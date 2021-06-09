@@ -31,7 +31,7 @@
                             <span><img src="<?php echo Yii::app()->baseUrl?>/images/aw_kitty-hand-forgot.svg"></button>
         		        		</div>
         		        		<div class="text-center">
-                          <a href="#" data-toggle="modal" data-target="#loginPopup">trở lại màn hình Đăng nhập</a><br/>
+                          <a href="#" data-toggle="modal" data-target="#loginPopup" id="returnLogin">trở lại màn hình Đăng nhập</a><br/>
                           <a href="#" id="resend">Bạn chưa nhận được link reset? Gửi lại</a>
                         </div>
         		        	</form>
@@ -51,5 +51,8 @@
    </div>
 </div>
 <?php
-   Yii::app()->clientScript->registerScript('loginPopup', '
+   Yii::app()->clientScript->registerScript('forgotPopup', '
+   $("#returnLogin").on("click", function () {
+     $("#forgotPopup").modal("hide");
+   });
    ', CClientScript::POS_END);?>

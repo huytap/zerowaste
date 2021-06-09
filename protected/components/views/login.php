@@ -19,7 +19,7 @@
                     <div class="formtab">
                       <ul>
                         <li class="active">ĐĂNG NHẬP</li>
-                        <li data-toggle="modal" data-target="#registerPopup">ĐĂNG KÝ</li>
+                        <li data-toggle="modal" data-target="#registerPopup" id="openRegister">ĐĂNG KÝ</li>
                       </ul>
                       <form method="post" id="loginform">
         		        		<div class="form-group">
@@ -52,6 +52,10 @@
 </div>
 <?php
    Yii::app()->clientScript->registerScript('weloginPopup', '
+   $("#openRegister, #openForgot").on("click", function () {
+     $("#loginPopup").modal("hide");
+   });
+
    $("#loginform").on("submit", function(e){
      e.preventDefault();
      $.ajax({

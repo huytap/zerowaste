@@ -17,7 +17,7 @@
                   <div class="col-sm-6">
                     <div class="formtab">
                       <ul>
-                        <li data-toggle="modal" data-target="#loginPopup">ĐĂNG NHẬP</li>
+                        <li data-toggle="modal" data-target="#loginPopup" id="openLogin">ĐĂNG NHẬP</li>
                         <li class="active">ĐĂNG KÝ</li>
                       </ul>
                       <form method="post" id="registerform">
@@ -43,9 +43,9 @@
                     </div>
                     <div class="formtab">
                       <h3 class="text-center">THÀNH CÔNG!</h3>
-                      <p class="text-center">Đặt lại mật khẩu thành công rồi nhé!</p>
+                      <p class="text-center">Bạn đã đăng ký thành công!</p>
     		        			<div class="form-group text-center">
-                        <a data-toggle="modal" data-target="#loginPopup" href="#" class="btncontact">ĐĂNG NHẬP</a>
+                        <a data-toggle="modal" data-target="#loginPopup" href="#" class="btncontact" id="backLogin">ĐĂNG NHẬP</a>
                       </div>
                     </div>
                   </div>
@@ -64,6 +64,10 @@
 </div>
 <?php
    Yii::app()->clientScript->registerScript('PPRegister', '
+   $("#openLogin, #backLogin").on("click", function () {
+     $("#registerPopup").modal("hide");
+   });
+
    $("#registerform").on("submit", function(e){
      e.preventDefault();
      if($.trim($("#registerform").find(".form-group:first-child input").val()) == ""){

@@ -2959,8 +2959,13 @@ li.user:hover ul{
 }
 .formPopup .form-group span{
   position: absolute;
-  right: 0;
-  top: 0;
+  right: -15px;
+  top: 15px;
+}
+#registerPopup.formPopup .form-group span {
+    right: 0;
+    top: 0;
+    cursor: pointer;
 }
 .formPopup a{
   text-decoration: underline;
@@ -3003,6 +3008,9 @@ li.user:hover ul{
 .formPopup a.btncontact{
   text-decoration: none;
   margin-top: 175px;
+}
+#registerPopup.formPopup #backLogin.btncontact{
+  margin-top: 165px;
 }
 @media(max-width: 1024px){
 	.detail-header:after{
