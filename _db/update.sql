@@ -34,3 +34,5 @@ ALTER TABLE `categories` ADD `avatar` VARCHAR(128) NOT NULL AFTER `photo`;
 ALTER TABLE `categories` ADD `review_description` TEXT NOT NULL AFTER `description`;
 
 ALTER TABLE `users` CHANGE `id` `id` INT(10) UNSIGNED NOT NULL AUTO_INCREMENT, CHANGE `added_date` `added_date` DATETIME NULL, CHANGE `updated_date` `updated_date` DATETIME NULL, CHANGE `updated_by` `updated_by` INT(11) NULL, CHANGE `last_login_date` `last_login_date` DATETIME NULL, CHANGE `cellphone` `cellphone` VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_general_ci NULL, CHANGE `remarks` `remarks` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL, CHANGE `ip_address` `ip_address` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL, CHANGE `hotel_id` `hotel_id` INT(11) NULL, CHANGE `password_reset_token` `password_reset_token` VARCHAR(728) CHARACTER SET utf8 COLLATE utf8_general_ci NULL, CHANGE `gender` `gender` ENUM('male','female') CHARACTER SET utf8 COLLATE utf8_general_ci NULL;
+ALTER TABLE `system_settings` DROP `hotel_id`;
+ALTER TABLE `Users` DROP `hotel_id`;

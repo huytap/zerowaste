@@ -4,7 +4,7 @@ class Settings extends CActiveRecord{
 	{
 		return parent::model($className);
 	}
-	
+
 	public function tableName()
 	{
 		return 'system_settings';
@@ -19,13 +19,13 @@ class Settings extends CActiveRecord{
 		// will receive user inputs.
 		return array(
 			array('s_key, s_value', 'required'),
-			array('hotel_id, updated_by', 'numerical', 'integerOnly'=>true),
+			array('updated_by', 'numerical', 'integerOnly'=>true),
 			array('s_key', 'length', 'max'=>32),
 			array('s_value, remarks', 'safe'),
 			array('added_date, updated_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, hotel_id, s_key, s_value, remarks, added_date', 'safe', 'on'=>'search'),
+			array('id, s_key, s_value, remarks, added_date', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -37,7 +37,6 @@ class Settings extends CActiveRecord{
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'hotel' => array(self::BELONGS_TO, 'Hotel', 'hotel_id')
 		);
 	}
 
@@ -48,7 +47,6 @@ class Settings extends CActiveRecord{
 	{
 		return array(
 			'id' => 'ID',
-			'hotel_id' => 'hotel_id',
 			's_key' => 'Key',
 			's_value' => 'Value',
 			'added_date' => 'added_date',
@@ -69,7 +67,7 @@ class Settings extends CActiveRecord{
 		$data->setPagination(false);
 		return $data;
 	}
-	
+
 	public function getSetting($key) {
 		$ret = FALSE;
 		$criteria=new CDbCriteria;

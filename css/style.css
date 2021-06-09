@@ -2996,7 +2996,8 @@ li.user:hover ul{
   background: #897DFF;
 }
 #resend{
-  display: none;
+  margin-top: 175px;
+  display: block;
 }
 .formPopup .formtab:nth-child(2),
 .formPopup.success .formtab:first-child{

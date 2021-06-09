@@ -48,7 +48,9 @@ return array(
 			'class'=>'MyUrlManager'
 		),
 
-
+		'mailer'=>array(
+            'class'=>'Mailer',
+		),
 		// database settings are configured in database.php
 		'db'=>require(dirname(__FILE__).'/database.php'),
 

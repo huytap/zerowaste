@@ -183,6 +183,53 @@ class SiteController extends Controller{
 		}
 	}
 
+	public function actionForgotpassword(){
+		$this->layout = false;
+		if(isset($_REQUEST['Users']['email'])){
+			$checkemail = Users::model()->checkEmail($_REQUEST['Users']['email']);
+			if($checkemail){
+				$random_keys = ExtraHelper::generateRandomString(32);
+				$checkemail->password_reset_token = $random_keys;
+				if($checkemail->update()){
+					$template_file = Settings::model()->getSetting('email_forgotpassword');
+					$subject = 'Quên mật khẩu';
+	        $output = "";
+	        $full_name = 'Zerowaste';
+	        $data['fullname'] = $model['fullname'];
+	        $data['link_active'] = Yii::app()->params['link'].'/site/resetpassword?string='.$checkemail->password_reset_token;
+					$result = Yii::app()->mailer->send_email($subject, $template_file, $full_name, $data, array($checkemail['email'] => $checkemail['email']), array(), $output);
+					echo json_encode(array(
+						'status' => 1,
+						'src' => Yii::app()->baseUrl.'/images/aw_crocs_forgot2.svg',
+						'email' => $_REQUEST['email']
+					));
+			}else{
+				echo json_encode(array('status' =>-1));
+			}
+		}else{
+			echo json_encode(array('status' =>-1));
+		}
+		}
+	}
+		public function actionResetpassword(){
+			if(isset($_GET['string'])){
+				$criteria = new CDbCriteria;
+				$criteria->compare('password_reset_token', $_GET['string'], false);
+				$model = Member::model()->find($criteria);
+				$model->scenario = 'forgotpassword';
+				$flag = false;
+				if(isset($_POST['Member'])){
+					$model->attributes = $_POST['Member'];
+					$model->password = sha1(md5($model['new_password']));
+					$model->validate();
+					if(!$model->hasErrors() && $model->update()){
+						$flag = true;
+					}
+				}
+				$this->render('forgotpassword', compact(array('model', 'flag')));
+			}
+		}
+
 	public function actionLogout(){
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);

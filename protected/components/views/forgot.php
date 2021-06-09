@@ -17,24 +17,25 @@
                   </div>
                   <div class="col-sm-6">
                     <div class="formtab">
-                      <ul>
-                        <li class="active">BẠN QUÊN MẬT KHẨU?</li>
-                      </ul>
-                      <form method="post">
+                      <h3>BẠN QUÊN MẬT KHẨU?</h3>
+                      <form method="post" id="forgotpassword">
         		        		<div class="form-group">
-        		        			<input type="text" name="LoginForm[email]" placeholder="nhập email">
+        		        			<input type="text" id="fgEmail" name="Users[email]" placeholder="nhập email">
                           <!--Link reset mật khẩu đã được gửi về email zukop@gmail.com-->
         		        		</div>
-        		        		<p class="error" id="errorLogin" style="display: none;color:#fcc630!important;margin-bottom: 15px!important;"></p>
+        		        		<p class="error" style="display: none;color:#fcc630!important;margin-bottom: 15px!important;"></p>
         		        		<div class="form-group text-center">
-        		        			<button type="submit" class="btncontact">TIẾP TỤC
+        		        			<button type="submit" class="btncontact" id="continueForgot">TIẾP TỤC
                             <span><img src="<?php echo Yii::app()->baseUrl?>/images/aw_kitty-hand-forgot.svg"></button>
         		        		</div>
+        		        	</form>
+                    </div>
+                    <div class="formtab">
+                      <h3>BẠN QUÊN MẬT KHẨU?</h3>
         		        		<div class="text-center">
-                          <a href="#" data-toggle="modal" data-target="#loginPopup" id="returnLogin">trở lại màn hình Đăng nhập</a><br/>
+                          <p>Link reset mật khẩu đã được gửi về email <span id="emailForgot"></span></p>
                           <a href="#" id="resend">Bạn chưa nhận được link reset? Gửi lại</a>
                         </div>
-        		        	</form>
                     </div>
                   </div>
                 </div>
@@ -55,4 +56,45 @@
    $("#returnLogin").on("click", function () {
      $("#forgotPopup").modal("hide");
    });
+   $("#forgotpassword").on("submit", function(e){
+     e.preventDefault();
+     if($.trim($("#fgEmail").val()) == ""){
+       $("#forgotpassword").find(".error").text("Vui lòng nhập Email")
+       $("#forgotpassword").find(".error").show();
+       $("#fgEmail").focus();
+       flag = false;
+     }else if(!isEmail($("#fgEmail").val())){
+       $("#forgotpassword").find(".error").text("Vui lòng nhập đúng định dạng Email")
+       $("#forgotpassword").find(".error").show();
+       $("#fgEmail").focus();
+       flag = false;
+     }else{
+       $.ajax({
+             url: "'.Yii::app()->baseUrl.'/site/forgotpassword",
+           type: "POST",
+           data:  new FormData(this),
+           dataType: "json",
+           contentType: false,
+           cache: false,
+           processData:false,
+           beforeSend : function(){
+             $("#loading").show();
+           },
+           success: function(data){
+             $("#loading").hide();
+             if(data.status == -1){
+               $("#forgotpassword").find(".error").text("Email này không tồn tại trong hệ thống. Vui lòng kiểm tra lại");
+               $("#forgotpassword").find(".error").show();
+               $("#emailForgot").text(data.email)
+             }else{
+               $("#forgotPopup").addClass("success");
+               $("#forgotPopup").find(".login-box-left").find("img:nth-child(2)").attr("src", data.src)
+             }
+           },
+           error: function(e){
+
+           }
+         });
+     }
+   })
    ', CClientScript::POS_END);?>

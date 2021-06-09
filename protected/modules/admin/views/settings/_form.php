@@ -100,6 +100,6 @@
 <?php $this->endWidget(); ?>
 <script>
         CKEDITOR.replace( 'Settings[s_value]', {
-			      allowedContent: 'p span'
+			      //allowedContent: 'p span'
 			  });
 </script>

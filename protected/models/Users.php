@@ -43,12 +43,12 @@ class Users extends CActiveRecord
 			array('confirm_new_password', 'compare', 'compareAttribute'=>'new_password', 'message' => 'Confirm new password not true', 'on'=>'change'),
 			array('old_password', 'equalPasswords', 'on'=>'change'),
 			array('password', 'required', 'on'=>'create'),
-			array('updated_by, is_admin, hotel_id', 'numerical', 'integerOnly'=>true),
+			array('updated_by, is_admin', 'numerical', 'integerOnly'=>true),
 			array('username, password', 'length', 'max'=>128),
 			array('status', 'length', 'max'=>1),
 			array('roles, avatar', 'length', 'max'=>255),
 			array('fullname, email', 'length', 'max'=>200),
-			array('ip_address','safe'),
+			array('ip_address, password_reset_token','safe'),
 			array('cellphone,last_login_date, gender', 'length', 'max'=>32),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
@@ -100,7 +100,7 @@ class Users extends CActiveRecord
 			'email' => 'Email',
 			'remarks' => 'Remarks',
 			'is_admin' => 'Is Admin',
-			'hotel_id' => 'Hotel',
+			'password_reset_token' => 'password_reset_token',
 			'new_password'=>'New password',
 			'old_password'=>'Old password',
 			'confirm_new_password'=>'Confirm new password'
@@ -173,6 +173,7 @@ class Users extends CActiveRecord
 	public function checkEmail($email){
 		$criteria = new CDbCriteria;
 		$criteria->compare('email', $email, false);
+		$criteria->compare('is_admin', 0, false);
 		return Users::model()->find($criteria);
 	}
 }
