@@ -30,7 +30,7 @@
 <?php require_once('login.php');?>
 <?php require_once('register.php');?>
 <?php require_once('forgot.php');?>
-<?php require_once('reset.php');?>
+<?php //require_once('reset.php');?>
 <?php Yii::app()->clientScript->registerScript('menu', '
 $(".menuicon").click(function(){
   $(".menu-main").show();

@@ -2,7 +2,7 @@
 return array(
        'server'=>'smtp.gmail.com',
         'user' => 'huytapptit@gmail.com',
-        'password' => 'ipbfblmoprmwfdaw',
+        'password' => 'ajdrkqeybagckzrx',
         'email_from_name' => 'Tap Nguyen'
         /*'server'=>'anhphuongthucac.com',
         'user' => 'no_reply@anhphuongthucac.com',

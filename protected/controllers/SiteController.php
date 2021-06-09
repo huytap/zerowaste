@@ -198,11 +198,12 @@ class SiteController extends Controller{
 	        $data['fullname'] = $model['fullname'];
 	        $data['link_active'] = Yii::app()->params['link'].'/site/resetpassword?string='.$checkemail->password_reset_token;
 					$result = Yii::app()->mailer->send_email($subject, $template_file, $full_name, $data, array($checkemail['email'] => $checkemail['email']), array(), $output);
-					echo json_encode(array(
-						'status' => 1,
-						'src' => Yii::app()->baseUrl.'/images/aw_crocs_forgot2.svg',
-						'email' => $_REQUEST['email']
-					));
+					if($result)
+						echo json_encode(array(
+							'status' => 1,
+							'src' => Yii::app()->baseUrl.'/images/aw_crocs_forgot2.svg',
+							'email' => $_REQUEST['Users']['email']
+						));
 			}else{
 				echo json_encode(array('status' =>-1));
 			}
@@ -215,18 +216,20 @@ class SiteController extends Controller{
 			if(isset($_GET['string'])){
 				$criteria = new CDbCriteria;
 				$criteria->compare('password_reset_token', $_GET['string'], false);
-				$model = Member::model()->find($criteria);
+				$model = Users::model()->find($criteria);
 				$model->scenario = 'forgotpassword';
 				$flag = false;
-				if(isset($_POST['Member'])){
-					$model->attributes = $_POST['Member'];
-					$model->password = sha1(md5($model['new_password']));
+				if(isset($_POST['Users'])){
+					$model->attributes = $_POST['Users'];
+					$model->password = sha1(md5($model['confirm_new_password']));
 					$model->validate();
 					if(!$model->hasErrors() && $model->update()){
+						$model->password_reset_token = '';
+						$model->update();
 						$flag = true;
 					}
 				}
-				$this->render('forgotpassword', compact(array('model', 'flag')));
+				$this->render('resetpassword', compact(array('model', 'flag')));
 			}
 		}
 

@@ -83,6 +83,7 @@ return array(
 		// this is used in contact page
 		'link' => 'http://localhost/zerowaste',
 		'adminEmail'=>'webmaster@example.com',
+		'mailer_config' => require_once("confgs/mailer.php"),
 		'district' => require_once('confgs/district.php')
 	),
 );

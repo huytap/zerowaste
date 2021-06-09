@@ -39,9 +39,13 @@ class Users extends CActiveRecord
 			array('email, password, fullname', 'required', 'on'=>'register', 'message' => 'Vui lòng nhập {attribute}'),
 			//array('password, cellphone, gender, hotel_id, is_admin, roles, remarks, status', 'on' => 'create, update'),
 			array('old_password, new_password, confirm_new_password', 'required', 'on'=>'change'),
+			array('new_password, confirm_new_password', 'required', 'on'=>'forgotpassword', 'message' => 'Vui lòng nhập {attribute}'),
+			array('confirm_new_password', 'compare', 'compareAttribute' => 'new_password', 'on'=>'forgotpassword', 'message' => 'nhập lại mật khẩu không đúng'),
+
 			array('username', 'validateUsername', 'on' => 'create'),
 			array('confirm_new_password', 'compare', 'compareAttribute'=>'new_password', 'message' => 'Confirm new password not true', 'on'=>'change'),
 			array('old_password', 'equalPasswords', 'on'=>'change'),
+
 			array('password', 'required', 'on'=>'create'),
 			array('updated_by, is_admin', 'numerical', 'integerOnly'=>true),
 			array('username, password', 'length', 'max'=>128),
@@ -101,9 +105,9 @@ class Users extends CActiveRecord
 			'remarks' => 'Remarks',
 			'is_admin' => 'Is Admin',
 			'password_reset_token' => 'password_reset_token',
-			'new_password'=>'New password',
+			'new_password'=>'Mật khẩu',
 			'old_password'=>'Old password',
-			'confirm_new_password'=>'Confirm new password'
+			'confirm_new_password'=>'lại mật khẩu'
 		);
 	}
 

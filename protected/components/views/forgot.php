@@ -1,9 +1,9 @@
 <div id="forgotPopup" class="modal fade formPopup" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
+   <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="<?php echo Yii::app()->baseUrl?>/images/btn_Close.png"></span></button>
+   </div>
    <div class="modal-dialog" role="document">
       <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="<?php echo Yii::app()->baseUrl?>/images/btn_Close.png"></span></button>
-         </div>
          <div class="modal-body">
             <div class="container">
               <div class="loginBox">
@@ -85,9 +85,10 @@
              if(data.status == -1){
                $("#forgotpassword").find(".error").text("Email này không tồn tại trong hệ thống. Vui lòng kiểm tra lại");
                $("#forgotpassword").find(".error").show();
-               $("#emailForgot").text(data.email)
+               
              }else{
                $("#forgotPopup").addClass("success");
+               $("#emailForgot").text(data.email)
                $("#forgotPopup").find(".login-box-left").find("img:nth-child(2)").attr("src", data.src)
              }
            },
@@ -96,5 +97,8 @@
            }
          });
      }
-   })
+   });
+   $("#resend").click(function(){
+      $("#forgotpassword").submit();
+    })
    ', CClientScript::POS_END);?>

@@ -1,3 +1,6 @@
+<div id="loading">
+  <img src="<?php echo Yii::app()->baseUrl?>/themes/admin/img/progress.gif">
+</div>
 <?php
 if(Yii::app()->controller->action->id !== 'productdetail'){?>
 <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>

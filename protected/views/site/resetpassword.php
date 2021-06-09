@@ -1,6 +1,6 @@
-<div id="resetPopup" class="modal fade formPopup" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
+<div id="resetPopup" class="modal fade formPopup in <?php if($flag) echo 'success';?>" style="display:block" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="<?php echo Yii::app()->baseUrl?>/images/btn_Close.png"></span></button>
+      <a href="<?php echo Yii::app()->baseUrl?>/" class="close"><span aria-hidden="true"><img src="<?php echo Yii::app()->baseUrl?>/images/btn_Close.png"></span></a>
    </div>
    <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -18,20 +18,30 @@
                   <div class="col-sm-6">
                     <div class="formtab">
                       <h3 class="text-center">ĐẶT LẠI MẬT KHẨU</h3>
-                      <form method="post">
+                      <?php 
+                      $form = $this->beginWidget('CActiveForm', array(
+                          'id' => 'grid',
+                          'enableClientValidation' => true,
+                          'htmlOptions' => array(
+                              'class' => 'no-margin',
+                          ),
+                      ));?>
                         <div class="form-group">
-        		        			<input type="password" name="LoginForm[password]" placeholder="mật khẩu">
+                          <?php echo $form->passwordField($model, "new_password", array('placeholder' => 'mật khẩu')); ?>                          
                           <span><img src="<?php echo Yii::app()->baseUrl?>/images/icn_hide.svg" /></span>
+                          <?php echo $form->error($model, 'new_password', array('class' => 'error')); ?>
                         </div>
         		        		<div class="form-group">
-        		        			<input type="password" name="LoginForm[confirm_new_password]" placeholder="nhập lại mật khẩu">
+                          <?php echo $form->passwordField($model, "confirm_new_password", array('placeholder' => 'nhập lại mật khẩu')); ?> 
+
                           <span><img src="<?php echo Yii::app()->baseUrl?>/images/icn_hide.svg" /></span>
+                          <?php echo $form->error($model, 'confirm_new_password', array('class' => 'error')); ?>
         		        		</div>
         		        		<p class="error" id="errorLogin" style="display: none;color:#fcc630!important;margin-bottom: 15px!important;"></p>
         		        		<div class="form-group text-center">
         		        			<button type="submit" class="btncontact confirm">XÁC NHẬN</button>
         		        		</div>
-        		        	</form>
+        		        	<?php $this->endWidget(); ?>
                     </div>
                     <div class="formtab">
                       <h3 class="text-center">THÀNH CÔNG!</h3>

@@ -1,9 +1,9 @@
 <div id="registerPopup" class="modal fade formPopup" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
+   <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="<?php echo Yii::app()->baseUrl?>/images/btn_Close.png"></span></button>
+   </div>
    <div class="modal-dialog" role="document">
       <div class="modal-content">
-         <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true"><img src="<?php echo Yii::app()->baseUrl?>/images/btn_Close.png"></span></button>
-         </div>
          <div class="modal-body">
             <div class="container">
               <div class="loginBox">
@@ -29,11 +29,11 @@
         		        		</div>
         		        		<div class="form-group">
         		        			<input type="password" name="Users[password]" placeholder="mật khẩu">
-                          <span><img src="<?php echo Yii::app()->baseUrl?>/images/icn_hide" /></span>
+                          <span><img src="<?php echo Yii::app()->baseUrl?>/images/icn_hide.svg" /></span>
                         </div>
         		        		<div class="form-group">
         		        			<input type="password" name="Users[confirm_new_password]" placeholder="nhập lại mật khẩu">
-                          <span><img src="<?php echo Yii::app()->baseUrl?>/images/icn_hide" /></span>
+                          <span><img src="<?php echo Yii::app()->baseUrl?>/images/icn_hide.svg" /></span>
         		        		</div>
         		        		<p class="error" style="display: none;color:#fcc630!important;margin-bottom: 15px!important;"></p>
         		        		<div class="form-group text-center">

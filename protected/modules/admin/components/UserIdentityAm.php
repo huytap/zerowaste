@@ -31,8 +31,6 @@ class UserIdentityAm extends CUserIdentity
 				$roles = trim($arrUsers[0]['roles']);
 				Yii::app()->user->id = $this->_id;
 				Yii::app()->user->setState('type', strtolower($roles));
-				Yii::app()->user->setState('hotel_id', $arrUsers[0]['hotel_id']);
-				Yii::app()->session['hotel'] = $arrUsers[0]['hotel_id'];
 				Yii::app()->user->setState('displayname', $arrUsers[0]['fullname']); 
 				$this->errorCode=self::ERROR_NONE;
 				$arrUsers[0]['ip_address']=$_SERVER['REMOTE_ADDR'];

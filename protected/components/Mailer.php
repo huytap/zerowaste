@@ -35,6 +35,7 @@ class Mailer {
 				$content = str_replace("~~$key~~", $val, $content);
 			}
 		}
+
 		return $content;
 	}
 
@@ -53,9 +54,9 @@ class Mailer {
 	}
 
 	function send_email($subject, $template_file, $full_name, $data, $arr_to, $arr_cc, &$output, $flag=false) {
-		
 		$this->mailer->ClearAllRecipients();
 		if (!$this->mailer->Host || !$this->mailer->Username || !$this->mailer->Password) {
+			var_dump($this);
 			/* echo "NO SEND"; */
 			return FALSE;
 		}
@@ -76,7 +77,7 @@ class Mailer {
 			$email_content = $this->template2content($template_file, $data);
 		}
 		
-
+		
 		//var_dump($email_content);
 		//$email_content = $template_file;
 		$this->mailer->FromName   = $full_name;

@@ -2957,11 +2957,6 @@ li.user:hover ul{
     right: 0;
     left: auto;
 }
-.formPopup .form-group span{
-  position: absolute;
-  right: -15px;
-  top: 15px;
-}
 #registerPopup.formPopup .form-group span {
     right: 0;
     top: 0;
@@ -3012,6 +3007,54 @@ li.user:hover ul{
 }
 #registerPopup.formPopup #backLogin.btncontact{
   margin-top: 165px;
+}
+.formPopup .modal-dialog{
+  transform: translate(0, 0);
+  margin-top: 0;
+  margin-bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.formPopup .modal-header{
+  position: absolute;
+  right: 0;
+  z-index: 1;
+}
+.formPopup .form-group span{
+  position: absolute;
+  right: -15px;
+  top: 15px;
+}
+.formPopup #loginform .form-group span{
+  display: none;
+}
+.error{
+  color:#fcc630;
+  padding-top: 10px;
+}
+#loginform .btncontact:hover span{
+  display: block;
+}
+#loading{
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,.5);
+  z-index: 9999999;
+  top: 0;
+  text-align: center;
+  display: none;
+}
+#loading img{
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  right: 0;
+  left: 0;
 }
 @media(max-width: 1024px){
 	.detail-header:after{
