@@ -3098,12 +3098,12 @@ body:not(.modal-open){
 }
 .userinfo .usr-setting{
   position: absolute;
-  top: 38px;
-  right: 30px;
+  top: 43px;
+  right: 20px;
   cursor: pointer;
 }
 .userinfo h3{
-  font: normal normal normal 36px/18px Bungee;
+  font: normal normal normal 30px/18px Bungee;
   color: #000000;
   padding: 30px 0 10px;
 }
@@ -3121,7 +3121,7 @@ body:not(.modal-open){
   display: inline-block;
   border-right: 2px solid #EFBF7B;
   text-align: center;
-  width: calc(100% / 3 - 10px);
+  width: calc(100% / 3 - 5px);
 }
 .user-list-item li:last-child{
   border-right: 0;
@@ -3144,11 +3144,11 @@ body:not(.modal-open){
   vertical-align: middle;
 }
 .user-list-item li .usr-number{
-  font: normal normal normal 36px/18px Bungee;
+  font: normal normal normal 30px/18px Bungee;
   line-height: 1.3;
 }
 .user-list-item li .usr-text{
-  font: normal normal normal 20px/18px Bungee;
+  font: normal normal normal 16px/14px Bungee;
   line-height: 1.3;
 }
 .userinfo .usr-logout{
@@ -3177,6 +3177,7 @@ body:not(.modal-open){
 }
 .myaccount .nav li{
   margin-right: 40px;
+  cursor: pointer;
 }
 .myaccount .nav li:last-child{
   margin-right: 0;
@@ -3213,14 +3214,35 @@ body:not(.modal-open){
   background: rgba(210, 201, 247, 1);
 }
 .myaccount .stored{
-  font: normal normal normal 20px/30px Comfortaa;
+  font: normal normal normal 16px/26px Comfortaa;
   margin-bottom: 16px;
 }
 .myaccount .stored span{
+  font: normal normal normal 16px/26px Bungee;
+  background: #FFE6E6;
+  border-radius: 15px;
+  width: 45px;
+  text-align: center;
   display: inline-block;
+}
+.myaccount .stored span{
+  display: inline-block;
+}
+.nav-tabs>li{
+  margin-bottom: 0;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+  border:0;
 }
 @media(max-width: 1024px){
 	.detail-header:after{
 		height: 90%;
 	}
+}
+
+.nav-tabs>li{
+  margin-bottom: 0;
+}
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
+  border:0;
 }
