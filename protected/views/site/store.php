@@ -68,15 +68,15 @@
         <div class="item col-md-4 col-sm-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
           <div data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>" class="subitem">
       		  <div class="row item-title active" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
-			   <div class="col-xs-4 hidden-lg hidden-md hidden-sm"><img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['logo'];?>"></div>
-    			   <div class="col-xs-8 col-sm-12 col-lg-12">
-      	              <h3><?php echo $data['name'];?></h3>
-      	              <span><?php echo $district[0]['address'].', '. (isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
-      	            </div>
+  	           <div class="col-xs-4 hidden-lg hidden-md hidden-sm"><img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['logo'];?>"></div>
+      			   <div class="col-xs-8 col-sm-12 col-lg-12">
+  	              <h3><?php echo $data['name'];?></h3>
+  	              <span><?php echo $district[0]['address'].', '. (isset($arr_district[$district[0]['district']])?$arr_district[$district[0]['district']]:'');?></span>
+  	            </div>
       		  </div>
                   <div class="photo" style="background:url(<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>) no-repeat center center;background-size: cover;">
-				<div class="hidden-lg hidden-md hidden-sm" style="background:url(<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>) no-repeat center center;background-size: cover;height:164px;border-top:2px solid #000"></div>
-				<!--img class="img-responsive hidden-lg hidden-md hidden-sm" src="<?php //echo Yii::app()->baseUrl?>/uploads/<?php //echo $data['photo'];?>"-->
+                  <div class="hidden-lg hidden-md hidden-sm" style="background:url(<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['photo'];?>) no-repeat center center;background-size: cover;height:164px;border-top:2px solid #000"></div>
+                  <!--img class="img-responsive hidden-lg hidden-md hidden-sm" src="<?php //echo Yii::app()->baseUrl?>/uploads/<?php //echo $data['photo'];?>"-->
                     <div class="item-content hidden-sm" style="background:#<?php echo $background[$rand_keys]['content'];?>">
                       <?php
                       $category = explode(',', $data['store_category_id']);
@@ -97,6 +97,10 @@
                       <?php echo $data['description'];?>
                     </div>
                   </div>
+            <span class="wishlist"><svg width="1.5em" height="1.5em" viewBox="0 0 16 16" class="bi bi-heart" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M8 2.748l-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+                </svg>
+              </span>
       		  <span style="background:#<?php echo $background[$rand_keys]['title'];?>" href="javascript:void(0)" class="viewdetail hidden-lg hidden-md"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="16"></span>
       	  </div>
         </div>

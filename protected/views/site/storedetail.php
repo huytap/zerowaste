@@ -61,7 +61,7 @@
 	         <img src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $store['photo'];?>" class="img-responsive">
 	      </div>
 	      <div class="col-md-7 col-sm-6">
-	         <ul class="category hidden-xs">
+	         <ul class="row category hidden-xs">
 	            <?php
 	               $ct_html = '';
 	               foreach($category as $ct){
@@ -100,6 +100,7 @@
    				}
    				echo '<li>'.$linkmap.'</li>';
    				?>
+          <li class="wishlist active"><img src="<?php echo Yii::app()->baseUrl?>/images/icn_fav.svg"/></li>
 	         </ul>
 	         <div class="info">
 	            <div class="">

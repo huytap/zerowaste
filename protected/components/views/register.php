@@ -29,11 +29,11 @@
         		        		</div>
         		        		<div class="form-group">
         		        			<input type="password" name="Users[password]" placeholder="mật khẩu">
-                          <span><img src="<?php echo Yii::app()->baseUrl?>/images/icn_hide.svg" /></span>
+                          <span class="showpassword"><img src="<?php echo Yii::app()->baseUrl?>/images/icn_hide.svg" /></span>
                         </div>
         		        		<div class="form-group">
         		        			<input type="password" name="Users[confirm_new_password]" placeholder="nhập lại mật khẩu">
-                          <span><img src="<?php echo Yii::app()->baseUrl?>/images/icn_hide.svg" /></span>
+                          <span class="showpassword"><img src="<?php echo Yii::app()->baseUrl?>/images/icn_hide.svg" /></span>
         		        		</div>
         		        		<p class="error" style="display: none;color:#fcc630!important;margin-bottom: 15px!important;"></p>
         		        		<div class="form-group text-center">
@@ -64,6 +64,12 @@
 </div>
 <?php
    Yii::app()->clientScript->registerScript('PPRegister', '
+   $(".showpassword").click(function(){
+     if($(this).prev().attr("type") == "password")
+      $(this).prev().attr("type", "text");
+    else
+      $(this).prev().attr("type", "password");
+   })
    $("#openLogin, #backLogin").on("click", function () {
      $("#registerPopup").modal("hide");
    });

@@ -8,7 +8,7 @@
             <div class="container">
               <?php if(isset($model)){?>
               <div class="loginBox">
-                
+
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="login-box-left">
@@ -20,7 +20,7 @@
                   <div class="col-sm-6">
                     <div class="formtab">
                       <h3 class="text-center">ĐẶT LẠI MẬT KHẨU</h3>
-                      <?php 
+                      <?php
                       $form = $this->beginWidget('CActiveForm', array(
                           'id' => 'grid',
                           'enableClientValidation' => true,
@@ -29,14 +29,13 @@
                           ),
                       ));?>
                         <div class="form-group">
-                          <?php echo $form->passwordField($model, "new_password", array('placeholder' => 'mật khẩu')); ?>                          
-                          <span><img src="<?php echo Yii::app()->baseUrl?>/images/icn_hide.svg" /></span>
+                          <?php echo $form->passwordField($model, "new_password", array('placeholder' => 'mật khẩu')); ?>
+                          <span class="showpassword"><img src="<?php echo Yii::app()->baseUrl?>/images/icn_hide.svg" /></span>
                           <?php echo $form->error($model, 'new_password', array('class' => 'error')); ?>
                         </div>
         		        		<div class="form-group">
-                          <?php echo $form->passwordField($model, "confirm_new_password", array('placeholder' => 'nhập lại mật khẩu')); ?> 
-
-                          <span><img src="<?php echo Yii::app()->baseUrl?>/images/icn_hide.svg" /></span>
+                          <?php echo $form->passwordField($model, "confirm_new_password", array('placeholder' => 'nhập lại mật khẩu')); ?>
+                          <span class="showpassword"><img src="<?php echo Yii::app()->baseUrl?>/images/icn_hide.svg" /></span>
                           <?php echo $form->error($model, 'confirm_new_password', array('class' => 'error')); ?>
         		        		</div>
         		        		<p class="error" id="errorLogin" style="display: none;color:#fcc630!important;margin-bottom: 15px!important;"></p>
@@ -60,7 +59,7 @@
                   <img src="<?php echo Yii::app()->baseUrl?>/images/aw_bush-1.svg"/>
                   <img src="<?php echo Yii::app()->baseUrl?>/images/aw_bush-2.svg"/>
                 </div>
-              
+
               </div>
               <?php }else{?>
                 <p>Link đã hết hạn hoặc không tồn tại</p>
