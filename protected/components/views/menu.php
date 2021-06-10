@@ -13,12 +13,15 @@
     if(Yii::app()->user->id>0){
 	    $user=Users::model()->findByPk(Yii::app()->user->id);
 	    	echo '<li class="user">';
-			echo '<a href="javascript:void(0);" class="hidden-xs"><img src="'.Yii::app()->baseUrl.'/uploads/'.$user['avatar'].'" width="30"></a>';
+			echo '<a href="'.Yii::app()->baseUrl.'/site/myaccount" class="hidden-xs"><img src="'.Yii::app()->baseUrl.'/uploads/'.$user['avatar'].'" width="30"></a>';
 			echo '<a href="'.Yii::app()->baseUrl.'site/logout" class="hidden-lg hidden-md hidden-sm">Thoát</a>';
 			?>
-			<ul class="submenu">
-				<li><a href="<?php echo Yii::app()->baseUrl?>/site/logout">Thoát</a></li>
-			</ul>
+			<!--ul class="submenu">
+        <li><a href="<?php echo Yii::app()->baseUrl?>/site/logout">Tài khoản</a></li>
+        <li><a href="<?php echo Yii::app()->baseUrl?>/site/logout">Địa điểm</a></li>
+        <li><a href="<?php echo Yii::app()->baseUrl?>/site/logout">Nhận xét</a></li>
+				<li><a href="<?php echo Yii::app()->baseUrl?>/site/logout">Đăng xuất</a></li>
+			</ul-->
 			<?php
 		echo '</li>';
     }else{

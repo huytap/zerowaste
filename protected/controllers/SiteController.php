@@ -234,12 +234,31 @@ class SiteController extends Controller{
 				}else{
 					$this->render('error');
 				}
-				
+
 			}
 		}
 
 	public function actionLogout(){
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
+	}
+
+	public function actionMyaccount(){
+		if(isset(Yii::app()->user->id)){
+			$userid= Yii::app()->user->id;
+			$user = Users::model()->findByPk($userid);
+
+			if(isset($_POST['page'])){
+				$this->layout = false;
+				$criteria = new CDbCriteria;
+				$criteria->limit = 12;
+				$criteria->offset = $_POST['page']*$criteria->limit - $criteria->limit;
+			  $stores = UserStore::model()->getList($userid);
+				$this->render('loadstore', compact('stores'));
+				Yii::app()->end();
+			}
+			$stores = UserStore::model()->getList($userid);
+			$this->render('myaccount', compact(array('user', 'stores')));
+		}
 	}
 }
