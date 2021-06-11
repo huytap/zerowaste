@@ -150,4 +150,26 @@ class Comment extends CActiveRecord
 			'sort' => array('defaultOrder' => 'date desc')
 		));
 	}
+
+	public function getListByMember($user_id){
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('user_id',$user_id, false);
+
+		return new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			'pagination' => array('pageSize' => 10),
+			'sort' => array('defaultOrder' => 'date desc')
+		));
+	}
+
+	public function getTotalCommentByMember($user_id){
+		$count = $this->count(array(
+					'condition'=>'user_id = :cid',
+					'params'=>array(
+							':cid'=>$user_id,
+					),
+			 ));
+			 return $count;
+	}
 }

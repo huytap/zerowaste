@@ -8,13 +8,15 @@
      <div class="row">
        <div class="col-md-8">
          <div class="row">
-           <ul class="nav nav-tabs">
-             <li class="active"><a id="store-tab" data-toggle="tab" href="#store-tab" role="tab" aria-controls="store-tab" aria-selected="true"><span><img src="<?php echo Yii::app()->baseUrl?>/images/010-placeholder.svg"></span>ĐỊA ĐIỂM</a></li>
-             <li><a id="comment-tab" data-toggle="tab" href="#comment-tab" role="tab" aria-controls="comment-tab" aria-selected="false"><span><img src="<?php echo Yii::app()->baseUrl?>/images/007-favorite.svg"></span>NHẬN XÉT</a></li>
-           </ul>
+					 <div class="col-md-12">
+	           <ul class="nav nav-tabs">
+	             <li class="active"><a data-toggle="tab" href="#store-tab" role="tab" aria-controls="store-tab" aria-selected="true"><span><img src="<?php echo Yii::app()->baseUrl?>/images/010-placeholder.svg"></span>ĐỊA ĐIỂM</a></li>
+	             <li><a data-toggle="tab" href="#comment-tab" role="tab" aria-controls="comment-tab" aria-selected="false"><span><img src="<?php echo Yii::app()->baseUrl?>/images/007-favorite.svg"></span>NHẬN XÉT</a></li>
+	           </ul>
+					 </div>
          </div>
-				 <div class="tab-content" id="myTabContent">
-					  <div class="tab-pane fade show active" id="store-tab" role="tabpanel" aria-labelledby="store-tab">
+				 <div class="tab-content">
+					  <div class="tab-pane fade in active" id="store-tab" role="tabpanel" aria-labelledby="store-tab">
 							<div class="row store">
 		            <div class="col-xs-12">
 		              <p class="stored">Bạn đã lưu <span class="usr-total-store"><?php echo ($stores) ? count($stores->getData()) : 0;?></span> địa điểm zero-waste</p>
@@ -81,9 +83,33 @@
 
 		          </div>
 		        </div>
-						</div>
 					  <div class="tab-pane fade" id="comment-tab" role="tabpanel" aria-labelledby="comment-tab">
+							<ul class="comment-type">
+								<li><span><?php echo Comment::model()->getTotalCommentByMember($user['id']);?></span>Nhận xét của tôi</li>
+								<li><span><?php echo CommentLikes::model()->getTotalLikeByMember($user['id']);?></span>Nhận xét tôi thích</li>
+							</ul>
+							<div class="">
+								<?php
+						    $this->widget('zii.widgets.CListView', array(
+							    'id' => 'listcomment',
+							    'dataProvider'=> $comments,
+							    'itemView'=>'_item_comment_in_account',
+							    'ajaxVar' => 'id',
+							    //'ajaxUrl'=>array($this->getRoute()),
+							    'enablePagination'=>true,
+							    'template' => '{items}{pager}',
 
+							    'pager' => array(
+								    'id' => 'pager',
+								    //'listViewId' => 'listcomment',
+								    //'class' => 'ext.infiniteScroll.IasPager',
+								    'header' => '',
+								    'nextPageLabel' => '<img src="'.Yii::app()->baseUrl.'/images/btn_pagination@2x.png" width="36">',
+								    'prevPageLabel' => '<img src="'.Yii::app()->baseUrl.'/images/btn_pagination_left.png" width="36">'
+							    ),
+							));?>
+							</div>
+						</div>
 						</div>
 					</div>
 
@@ -102,13 +128,13 @@
              </li>
              <li>
                <span class="usr-img"><img src="<?php echo Yii::app()->baseUrl;?>/images/007-favorite.svg"></span>
-               <span class="usr-number">16</span>
-               <span class="usr-text">ĐỊA ĐIỂM</span>
+               <span class="usr-number"><?php echo Comment::model()->getTotalCommentByMember($user['id']);?></span>
+               <span class="usr-text">NHẬN XÉT</span>
              </li>
              <li>
                <span class="usr-img"><img src="<?php echo Yii::app()->baseUrl;?>/images/icn_fav_acc.svg"></span>
-               <span class="usr-number">16</span>
-               <span class="usr-text">ĐỊA ĐIỂM</span>
+               <span class="usr-number"><?php echo CommentLikes::model()->getTotalLikeByMember($user['id']);?></span>
+               <span class="usr-text">LỜI CẢM ƠN</span>
              </li>
            </ul>
            <div class="text-center"><a class="usr-logout" href="<?php echo Yii::app()->baseUrl?>/site/logout">ĐĂNG XUẤT</a></div>

@@ -111,4 +111,14 @@ class CommentLikes extends CActiveRecord
 		$criteria->compare('comment_id',$comment_id, false);
 		return CommentLikes::model()->count($criteria);
 	}
+
+	public function getTotalLikeByMember($user_id){
+		$count = $this->count(array(
+					'condition'=>'user_id = :cid',
+					'params'=>array(
+							':cid'=>$user_id,
+					),
+			 ));
+			 return $count;
+	}
 }

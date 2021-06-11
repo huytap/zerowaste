@@ -2627,16 +2627,18 @@ ul.starlist li{
 }
 .box-top{
 	position: relative;
+  padding: 0 40px 0 30px;
+  margin-right: 13px;
 }
 .box-top span{
 	position: absolute;
-    right: 0;
+    right:40px;
     bottom: 0;
     font-size: 12px;
 }
 .box-items{
 	margin-bottom: 40px;
-	border: 1px solid #000;
+	border: 2px solid #000;
 	border-radius: 25px;
 	font-size: 18px;
 	color:#000;
@@ -2675,16 +2677,16 @@ ul.starlist li{
 	width: 20px;
 	height: 20px;
 	position: absolute;
-	right: 0;
+	right: 45px;
 	background: url(../images/icn_love-deactive.svg) no-repeat;
 	cursor: pointer;
 }
 .box-items .col-md-9{
 	padding-top: 40px;
-	padding-right: 40px;
+	padding-right: 0;
 	padding-bottom: 40px;
-	border-left: 1px solid #000;
-	padding-left: 30px;
+	border-left: 2px solid #000;
+	padding-left: 0;
 }
 .box-items h5{
 	font-size: 18px;
@@ -2698,9 +2700,10 @@ ul.starlist li{
 }
 .box-mid{
 	font-size: 14px;
-	border-top: 1px solid #000;
-	border-bottom: 1px solid #000;
-	padding: 10px;
+	border-top: 2px solid #000;
+	border-bottom: 2px solid #000;
+  margin-right: 13px;
+	padding: 10px 40px 10px 30px;
 }
 .box-bottom{
 	padding-top: 20px;
@@ -3079,12 +3082,13 @@ body:not(.modal-open){
 }
 .myaccount .bg-header{
   background: #DFF2F6;
-  min-height: 340px;
+  min-height: 270px;
   width: 100%;
 }
 .myaccount .avatar img{
   border-radius: 50%;
   margin: 0 auto;
+  max-width: 250px;
 }
 .myaccount .avatar{
   margin-top: -40%;
@@ -3094,7 +3098,7 @@ body:not(.modal-open){
   border-radius: 10px;
   background: #FFF3D6;
   position: relative;
-  margin-top: 60px;
+  margin-top: 85px;
 }
 .userinfo .usr-setting{
   position: absolute;
@@ -3169,11 +3173,12 @@ body:not(.modal-open){
   margin-top: 30px;
 }
 .myaccount .nav li a{
-  font: normal normal normal 32px/18px Bungee;
+  font: normal normal normal 28px/18px Bungee;
   background: rgba(236, 92, 137, 1) 0% 0% no-repeat padding-box;
   box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.16);
   border-radius: 14px;
   border:0;
+  padding: 10px 35px;
 }
 .myaccount .nav li{
   margin-right: 40px;
@@ -3188,9 +3193,9 @@ body:not(.modal-open){
 .myaccount .nav li a span{
   border-radius: 50%;
   display: inline-block;
-  width: 60px;
-  height: 60px;
-  line-height: 60px;
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
   text-align: center;
   margin-right: 15px;
 }
@@ -3234,6 +3239,55 @@ body:not(.modal-open){
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover{
   border:0;
 }
+.myaccount .box-items .col-md-9{
+  padding-top: 10px;
+}
+.box-custom{
+  padding: 0 40px 15px 30px;
+}
+.box-custom h3{
+  font: normal normal normal 22px/18px Bungee;
+}
+.myaccount .box-items .col-md-3 img{
+  border-radius: 0 0;
+}
+.myaccount .box-top{
+  padding: 10px 40px 10px 30px;
+}
+.myaccount .box-top::before{
+  border-top: 2px solid #000;
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  margin-left: -31px;
+  top:0;
+  border-bottom: 2px solid #000;
+}
+.myaccount .box-top span {
+    right: 40px;
+    bottom: 15px;
+}
+.box-bottom{
+  padding: 20px 55px 0 30px;
+}
+.comment-type{
+  margin-bottom: 23px;
+}
+.comment-type li{
+  display: inline-block;
+  background: #FFE6E6;
+  border: 1px solid #000000;
+  border-radius: 30px;
+  font: normal normal normal 14px/18px Comfortaa;
+  padding: 2px 10px 0px;
+}
+.comment-type li span{
+  font: normal normal normal 16px/18px Bungee;
+  display: inline-block;
+  padding-right: 5px;
+}
+.comment-type li{}
 @media(max-width: 1024px){
 	.detail-header:after{
 		height: 90%;

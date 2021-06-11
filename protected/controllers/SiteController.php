@@ -21,12 +21,7 @@ class SiteController extends Controller{
 	}
 
 	public function actionStore($page){
-		if(isset($_GET['tag'])){
-			$model = Store::model()->getListSearch('', $_GET['tag'], '');
-		}elseif(isset($_GET['related'])){
-			$model = Store::model()->getListSearch($_GET['related'], '', '');
-		}else{
-			if(isset($_POST['page'])){
+		if(isset($_REQUEST['tag']) && isset($_POST['page'])){
 				$this->layout = false;
 				$criteria = new CDbCriteria;
 				//$criteria->compare('')
@@ -41,7 +36,11 @@ class SiteController extends Controller{
 			  $model = Store::model()->findAll($criteria);
 				$this->render('loadstore', compact('model'));
 				Yii::app()->end();
-			}
+		}elseif(isset($_GET['tag'])){
+			$model = Store::model()->getListSearch('', $_GET['tag'], '');
+		}elseif(isset($_GET['related'])){
+			$model = Store::model()->getListSearch($_GET['related'], '', '');
+		}else{
 			$model = Store::model()->getList();
 		}
 		$this->render('store', compact(array('model', 'pages')));
@@ -258,7 +257,8 @@ class SiteController extends Controller{
 				Yii::app()->end();
 			}
 			$stores = UserStore::model()->getList($userid);
-			$this->render('myaccount', compact(array('user', 'stores')));
+			$comments = Comment::model()->getListByMember($user_id);
+			$this->render('myaccount', compact(array('user', 'stores', 'comments')));
 		}
 	}
 }
