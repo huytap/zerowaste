@@ -13,8 +13,8 @@
     if(Yii::app()->user->id>0){
 	    $user=Users::model()->findByPk(Yii::app()->user->id);
 	    	echo '<li class="user">';
-			echo '<a href="'.Yii::app()->baseUrl.'/site/myaccount" class="hidden-xs"><img src="'.Yii::app()->baseUrl.'/uploads/'.$user['avatar'].'" width="30"></a>';
-			echo '<a href="'.Yii::app()->baseUrl.'site/logout" class="hidden-lg hidden-md hidden-sm">Thoát</a>';
+			echo '<a href="'.Yii::app()->baseUrl.'/site/myaccount" class="hidden-xs"><img src="'.Yii::app()->baseUrl.'/timthumb.php?src='.Yii::app()->baseUrl.'/uploads/'.$user['avatar'].'&w=30&h=30"></a>';
+			echo '<a href="'.Yii::app()->baseUrl.'/site/logout" class="hidden-lg hidden-md hidden-sm">Thoát</a>';
 			?>
 			<!--ul class="submenu">
         <li><a href="<?php echo Yii::app()->baseUrl?>/site/logout">Tài khoản</a></li>
@@ -30,10 +30,12 @@
   </ul>
 </div>
 </div>
+<?php if(!Yii::app()->user->id){?>
 <?php require_once('login.php');?>
 <?php require_once('register.php');?>
 <?php require_once('forgot.php');?>
 <?php //require_once('reset.php');?>
+<?php }?>
 <?php Yii::app()->clientScript->registerScript('menu', '
 $(".menuicon").click(function(){
   $(".menu-main").show();

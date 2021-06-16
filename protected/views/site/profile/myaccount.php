@@ -6,6 +6,39 @@
    </div>
    <div class="container">
      <div class="row">
+			 <div class="col-xs-12 hidden-lg hidden-md hidden-sm">
+
+         <div class="userinfo text-center">
+					 <div class="avatar">
+						 <img src="<?php echo Yii::app()->baseUrl;?>/timthumb.php?src=<?php echo Yii::app()->baseUrl;?>/uploads/<?php echo $user['avatar'];?>&w=250&h=250" class="img-responsive">
+						 <span class="changeAvt">
+							 <span><a href="javascript:void(0);">Đổi</a></span>
+						 </span>
+					 </div>
+           <h3><?php echo $user['fullname'];?></h3>
+           <p class="user-email"><?php echo $user['email'];?></p>
+           <p class="user-date">Tham gia: <?php echo ExtraHelper::timeago($user['added_date']);?></p>
+           <a class="usr-setting" href="#" data-toggle="modal" id="openForgot" data-target="#updatePopup"><img src="<?php echo Yii::app()->baseUrl;?>/images/icn_setting.svg" width="30"></a>
+           <ul class="user-list-item">
+             <li>
+               <span class="usr-img"><img src="<?php echo Yii::app()->baseUrl;?>/images/icn_location_acc.svg"></span>
+               <span class="usr-number">16</span>
+               <span class="usr-text">ĐỊA ĐIỂM</span>
+             </li>
+             <li>
+               <span class="usr-img"><img src="<?php echo Yii::app()->baseUrl;?>/images/007-favorite.svg"></span>
+               <span class="usr-number"><?php echo Comment::model()->getTotalCommentByMember($user['id']);?></span>
+               <span class="usr-text">NHẬN XÉT</span>
+             </li>
+             <li>
+               <span class="usr-img"><img src="<?php echo Yii::app()->baseUrl;?>/images/icn_fav_acc.svg"></span>
+               <span class="usr-number"><?php echo CommentLikes::model()->getTotalLikeByMember($user['id']);?></span>
+               <span class="usr-text">LỜI CẢM ƠN</span>
+             </li>
+           </ul>
+           <div class="text-center"><a class="usr-logout" href="<?php echo Yii::app()->baseUrl?>/site/logout">ĐĂNG XUẤT</a></div>
+         </div>
+       </div>
        <div class="col-md-8">
          <div class="row">
 					 <div class="col-md-12">
@@ -43,7 +76,7 @@
 		            }
 		              ?>
 		              <?php $rand_keys = array_rand($background, 1);?>
-		              <div class="item col-md-6 col-sm-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store']['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
+		              <div class="item col-md-4 col-sm-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store']['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
 		                <div data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['store']['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>" class="subitem">
 		            		 <div class="row item-title active" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
 		            			 <div class="col-xs-4 hidden-lg hidden-md hidden-sm"><img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['store']['logo'];?>"></div>
@@ -93,7 +126,7 @@
 						    $this->widget('zii.widgets.CListView', array(
 							    'id' => 'listcomment',
 							    'dataProvider'=> $comments,
-							    'itemView'=>'_item_comment_in_account',
+							    'itemView'=>'profile/_item_comment_in_account',
 							    'ajaxVar' => 'id',
 							    //'ajaxUrl'=>array($this->getRoute()),
 							    'enablePagination'=>true,
@@ -113,13 +146,18 @@
 						</div>
 					</div>
 
-       <div class="col-md-4">
-         <div class="avatar"><img src="<?php echo Yii::app()->baseUrl;?>/uploads/<?php echo $user['avatar'];?>" class="img-responsive"></div>
+       <div class="col-md-4 hidden-xs">
+         <div class="avatar">
+					 <img src="<?php echo Yii::app()->baseUrl;?>/timthumb.php?src=<?php echo Yii::app()->baseUrl;?>/uploads/<?php echo $user['avatar'];?>&w=250&h=250" class="img-responsive">
+					 <span class="changeAvt">
+						 <span><a href="javascript:void(0);">Đổi</a></span>
+					 </span>
+				 </div>
          <div class="userinfo text-center">
            <h3><?php echo $user['fullname'];?></h3>
            <p class="user-email"><?php echo $user['email'];?></p>
            <p class="user-date">Tham gia: <?php echo ExtraHelper::timeago($user['added_date']);?></p>
-           <span class="usr-setting"><img src="<?php echo Yii::app()->baseUrl;?>/images/icn_setting.svg" width="30"></span>
+           <a class="usr-setting" href="#" data-toggle="modal" id="openForgot" data-target="#updatePopup"><img src="<?php echo Yii::app()->baseUrl;?>/images/icn_setting.svg" width="30"></a>
            <ul class="user-list-item">
              <li>
                <span class="usr-img"><img src="<?php echo Yii::app()->baseUrl;?>/images/icn_location_acc.svg"></span>
@@ -142,4 +180,5 @@
        </div>
      </div>
    </div>
+	<?php $this->renderPartial('profile/update', compact(array('user')));?>
  </div>

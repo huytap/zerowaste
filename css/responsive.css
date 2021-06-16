@@ -1654,6 +1654,87 @@ a.viewmore-store{
 	.box-bottom{
 		font-size: 14px;
 	}
+  .formPopup .modal-dialog{
+    display: block;
+  }
+  .formPopup .container{
+    padding: 0;
+  }
+  .loginBox{
+    border:0;
+    max-height: none;
+    margin-bottom: 30px;
+  }
+  .login-box-left{
+    border-radius: 0 0;
+    max-height: 400px;
+  }
+  .login-box-left img:nth-child(2){
+    max-width: 162px;
+    bottom: 125px;
+  }
+  .login-box-left img:first-child {
+    top: 10px;
+    left: 115px;
+    max-width: 90px;
+  }
+  .login-box-left img:last-child {
+      bottom: 110px;
+      max-width: 240px;
+  }
+  .formtab h3, .formtab li{
+    font: normal normal normal 20px/18px Bungee;
+  }
+  .formtab h3, .formtab ul {
+    margin: 30px 0;
+  }
+  .formtab li:last-child {
+    padding-left: 30px;
+  }
+  .formtab {
+    border: 2px solid #000;
+    border-radius: 15px;
+    margin: -60px 15px 0;
+    background: #fff;
+    box-shadow: 9px 8px 5px 0px rgb(0 0 0 / 17%);
+  }
+  .formPopup .btncontact {
+    margin-top: 30px;
+  }
+  #openForgot{
+    margin-bottom: 50px;
+  }
+  .modal-header .close {
+      margin-right: 0;
+  }
+  .aw_bush {
+    position: absolute;
+    bottom: 64px;
+    width: 100px;
+    left: 45px;
+  }
+  #registerPopup .login-box-left{
+    background-position: 0 -150px;
+  }
+  #registerPopup .login-box-left img:last-child {
+    bottom: 125px;
+    right: -27px;
+  }
+  #registerPopup .login-box-left img:first-child {
+    bottom: 68px;
+    left: 25px;
+    max-width: 176px;
+  }
+  #registerPopup.formPopup .btncontact {
+    margin-bottom: 30px;
+  }
+  #returnLogin{
+    margin-bottom: 100px;
+    display: block;
+  }
+  .myaccount .userinfo {
+    margin-top: -100px;
+  }
 }
 @media(max-width:375px){
 	.home-content{

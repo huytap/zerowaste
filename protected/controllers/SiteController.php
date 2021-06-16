@@ -229,7 +229,7 @@ class SiteController extends Controller{
 							$flag = true;
 						}
 					}
-					$this->render('resetpassword', compact(array('model', 'flag')));
+					$this->render('profile/resetpassword', compact(array('model', 'flag')));
 				}else{
 					$this->render('error');
 				}
@@ -258,7 +258,32 @@ class SiteController extends Controller{
 			}
 			$stores = UserStore::model()->getList($userid);
 			$comments = Comment::model()->getListByMember($user_id);
-			$this->render('myaccount', compact(array('user', 'stores', 'comments')));
+			$this->render('profile/myaccount', compact(array('user', 'stores', 'comments')));
+		}
+	}
+
+	public function actionUpdate(){
+		if(isset($_POST['Users']) && isset(Yii::app()->user->id)){
+			$userid= Yii::app()->user->id;
+			$user = Users::model()->findByPk($userid);
+			$user->attributes = $_POST['Users'];
+			if(!$user->new_password){
+				$user->password = sha1(md5($user['new_password']));
+			}
+			$photo = CUploadedFile::getInstance($user, 'avatar');
+
+			if($photo !== null){
+					$ran = rand(0, 999999999);
+					$cover_photo = $photo->name;
+					$user['avatar'] = $cover_photo;
+					$photo->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo");
+			}
+
+			if($user->update()){
+				echo json_encode(1);
+			}else{
+				echo json_encode(0);
+			}
 		}
 	}
 }

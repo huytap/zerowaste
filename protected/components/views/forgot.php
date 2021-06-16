@@ -28,6 +28,7 @@
         		        			<button type="submit" class="btncontact" id="continueForgot">TIẾP TỤC
                             <span><img src="<?php echo Yii::app()->baseUrl?>/images/aw_kitty-hand-forgot.svg"></button>
         		        		</div>
+                        <a href="#" data-toggle="modal" id="returnLogin" data-target="#loginPopup" class="text-center">Trở lại màn hình Đăng nhập?</a><br/>
         		        	</form>
                     </div>
                     <div class="formtab">
@@ -39,7 +40,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="loginElement">
+                <div class="loginElement hidden-xs">
                   <img src="<?php echo Yii::app()->baseUrl?>/images/aw_rock.svg"/>
                   <img src="<?php echo Yii::app()->baseUrl?>/images/aw_bush.svg"/>
                   <img src="<?php echo Yii::app()->baseUrl?>/images/aw_bush-1.svg"/>
@@ -55,6 +56,9 @@
    Yii::app()->clientScript->registerScript('forgotPopup', '
    $("#returnLogin").on("click", function () {
      $("#forgotPopup").modal("hide");
+     $("#loginPopup").on("hidden.bs.modal", function () {
+        $("body").addClass("modal-open")
+      })
    });
    $("#forgotpassword").on("submit", function(e){
      e.preventDefault();
@@ -85,7 +89,7 @@
              if(data.status == -1){
                $("#forgotpassword").find(".error").text("Email này không tồn tại trong hệ thống. Vui lòng kiểm tra lại");
                $("#forgotpassword").find(".error").show();
-               
+
              }else{
                $("#forgotPopup").addClass("success");
                $("#emailForgot").text(data.email)

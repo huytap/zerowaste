@@ -2826,6 +2826,7 @@ li.user:hover ul{
 }
 .formPopup{
   background: #f2fdff;
+  padding-right: 0!important;
 }
 .formPopup .modal-dialog{
   width: 100%;
@@ -3046,6 +3047,7 @@ li.user:hover ul{
   position: absolute;
   right: -15px;
   top: 15px;
+  cursor: pointer;
 }
 .formPopup #loginform .form-group span{
   display: none;
@@ -3089,9 +3091,59 @@ body:not(.modal-open){
   border-radius: 50%;
   margin: 0 auto;
   max-width: 250px;
+  z-index: 1;
+  position: relative;
+  padding: 10px;
+  background: #fff;
+  border: 2px solid #000;
+}
+.avatar img:hover + .changeAvt{
+  display: block;
+}
+.changeAvt{
+  position: absolute;
+  bottom: 3px;
+  left: 0;
+  right: 0;
+  display: inline-block;
+  text-align: center;
+  max-width: 248px;
+  border-radius: 50%;
+  margin: 0 auto;
+  background: transparent;
+  height: 248px;
+  overflow: hidden;
+  display: none;
+  z-index: 10;
+}
+.changeAvt span{
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  left: 0;
+  background: #fff;
+  padding: 10px;
+}
+.changeAvt a{
+  text-decoration: none;
+}
+.changeAvt input{
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  right: 0;
+  margin: 0 auto;
+  z-index: 11;
+  cursor: pointer;
+  height: 70px;
+  width: 100%;
 }
 .myaccount .avatar{
   margin-top: -40%;
+  position: relative;
 }
 .myaccount .userinfo{
   border:2px solid #000;
@@ -3099,6 +3151,31 @@ body:not(.modal-open){
   background: #FFF3D6;
   position: relative;
   margin-top: 85px;
+}
+.myaccount .store .item {
+    padding-bottom: 30px;
+}
+.myaccount .store .item-title{
+  padding: 10px 0 10px;
+}
+.myaccount .store .item-title h3 {
+    font-size: 14px;
+    margin-top: 0;
+    margin-bottom: 4px;
+}
+.myaccount .store .item-title span {
+    font-size: 13px;
+    height: 35px;
+}
+.myaccount .store .photo {
+    min-height: 220px;
+}
+.myaccount .item-content{
+    font-size: 12px;
+    padding: 10px 15px;
+}
+.myaccount .store ul {
+    padding-bottom: 10px;
 }
 .userinfo .usr-setting{
   position: absolute;
@@ -3240,13 +3317,18 @@ body:not(.modal-open){
   border:0;
 }
 .myaccount .box-items .col-md-9{
-  padding-top: 10px;
+  padding-top: 11px;
 }
 .box-custom{
   padding: 0 40px 15px 30px;
 }
 .box-custom h3{
-  font: normal normal normal 22px/18px Bungee;
+  font: normal normal normal 20px/18px Bungee;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.myaccount .box-items .col-md-9{
+  padding-bottom: 46px;
 }
 .myaccount .box-items .col-md-3 img{
   border-radius: 0 0;
@@ -3268,6 +3350,10 @@ body:not(.modal-open){
     right: 40px;
     bottom: 15px;
 }
+.myaccount .box-items{
+  margin-top: -2px;
+}
+
 .box-bottom{
   padding: 20px 55px 0 30px;
 }
@@ -3287,7 +3373,59 @@ body:not(.modal-open){
   display: inline-block;
   padding-right: 5px;
 }
-.comment-type li{}
+.myaccount #updatePopup .bg-header{
+  position: absolute;
+  top: 0;
+}
+.bg-header h3{
+  text-align: center;
+  font: normal normal normal 36px/48px Bungee;
+  margin-top: 50px;
+}
+#updatePopup .loginBox{
+  background: #FFF3D6;
+  padding: 100px 0 100px 30px;
+}
+#updatePopup .btncontact{
+  background: #4BBAA2;
+  width: 340px;
+  margin-top: 30px;
+  font: normal normal normal 20px/18px Bungee;
+  padding: 12px;
+}
+.loginBox label{
+  font: normal normal normal 20px/18px Bungee;
+}
+.myaccount #updatePopup .avatar{
+  margin-top: 0;
+}
+#updatePopup.formPopup .form-group span{
+  right: 45px;
+  top: 25px;
+}
+#updatePopup.formPopup .form-group span.icon_update{
+  right: 0;
+  top: 25px;
+}
+#updatePopup.formPopup input{
+  color:#000;
+  margin-top: 10px;
+}
+#updatePopup .modal-content{
+  top: 150px;
+}
+#updatePopup.formPopup .modal-dialog{
+  display: block;
+}
+.myaccount .store ul li {
+    padding-top: 0;
+    font-size: 13px;
+}
+a#reutrnLogin{
+  text-decoration: underline;
+  text-align: center;
+  display: block;
+}
 @media(max-width: 1024px){
 	.detail-header:after{
 		height: 90%;

@@ -9,9 +9,13 @@
               <div class="loginBox">
                 <div class="row">
                   <div class="col-sm-6">
-                    <div class="login-box-left">
+                    <div class="login-box-left hidden-xs">
                       <img src="<?php echo Yii::app()->baseUrl?>/images/zebra.svg">
                       <img src="<?php echo Yii::app()->baseUrl?>/images/artwork_dangky.svg">
+                    </div>
+                    <div class="login-box-left hidden-lg hidden-md hidden-sm">
+                      <img src="<?php echo Yii::app()->baseUrl?>/images/zebra.svg">
+                      <img src="<?php echo Yii::app()->baseUrl?>/images/artwork_zebra-group.svg">
                     </div>
                   </div>
                   <div class="col-sm-6">
@@ -50,7 +54,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="loginElement">
+                <div class="loginElement hidden-xs">
                   <img src="<?php echo Yii::app()->baseUrl?>/images/aw_rock.svg"/>
                   <img src="<?php echo Yii::app()->baseUrl?>/images/aw_bush.svg"/>
                   <img src="<?php echo Yii::app()->baseUrl?>/images/aw_bush-1.svg"/>
@@ -70,8 +74,12 @@
     else
       $(this).prev().attr("type", "password");
    })
+
    $("#openLogin, #backLogin").on("click", function () {
      $("#registerPopup").modal("hide");
+     $("#loginPopup").on("hidden.bs.modal", function () {
+        $("body").addClass("modal-open")
+      })
    });
 
    $("#registerform").on("submit", function(e){

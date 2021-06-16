@@ -14,6 +14,7 @@
                       <img src="<?php echo Yii::app()->baseUrl?>/images/aw_crocs.svg">
                       <img src="<?php echo Yii::app()->baseUrl?>/images/aw_ground.svg">
                     </div>
+                    <img src="<?php echo Yii::app()->baseUrl?>/images/aw_bush.svg" class="aw_bush hidden-lg hidden-md hidden-sm"/>
                   </div>
                   <div class="col-sm-6">
                     <div class="formtab">
@@ -38,7 +39,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="loginElement">
+                <div class="loginElement hidden-xs">
                   <img src="<?php echo Yii::app()->baseUrl?>/images/aw_rock.svg"/>
                   <img src="<?php echo Yii::app()->baseUrl?>/images/aw_bush.svg"/>
                   <img src="<?php echo Yii::app()->baseUrl?>/images/aw_bush-1.svg"/>
@@ -54,6 +55,10 @@
    Yii::app()->clientScript->registerScript('weloginPopup', '
    $("#openRegister, #openForgot").on("click", function () {
      $("#loginPopup").modal("hide");
+     $("#loginPopup").on("hidden.bs.modal", function () {
+        $("body").addClass("modal-open")
+      })
+
    });
 
    $("#loginform").on("submit", function(e){
