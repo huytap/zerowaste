@@ -117,4 +117,12 @@ class UserStore extends CActiveRecord
 			'pagination' => array('pageSize' => 12)
 		));
 	}
+
+	public function getByStoreUser($userid, $store_id){
+		$criteria=new CDbCriteria;
+
+		$criteria->compare('user_id', $userid, false);
+		$criteria->compare('store_id', $store_id, false);
+		return self::find($criteria);
+	}
 }

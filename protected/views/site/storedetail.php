@@ -100,7 +100,17 @@
    				}
    				echo '<li>'.$linkmap.'</li>';
    				?>
-          <li class="wishlist active"><img src="<?php echo Yii::app()->baseUrl?>/images/icn_fav.svg"/></li>
+          <li class="wishlist">
+            <?php
+            $checkW = UserStore::model()->getByStoreUser(Yii::app()->user->id, $store['id']);
+            if($checkW && $checkW['status'] == 1){?>
+            <img src="<?php echo Yii::app()->baseUrl?>/images/icn_fav_select.svg" width="60"/>
+          <?php }else{
+            ?>
+            <img src="<?php echo Yii::app()->baseUrl?>/images/icn_fav.svg" width="60"/>
+            <?php
+          }?>
+          </li>
 	         </ul>
 	         <div class="info">
 	            <div class="">

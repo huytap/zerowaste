@@ -1,7 +1,45 @@
 <?php
 class AjaxController extends Controller{
   public $layout = false;
+  public function actionWishlist(){
+    $userid = Yii::app()->user->id;
+    if(isset($_POST['store_id']) && $userid>0){
+      $data = UserStore::model()->getByStoreUser($userid, $_POST['store_id']);
+      if($data){
+        if($data->status == 0){
+          $data->status = 1;
+          $data->update();
+          echo json_encode(array(
+            'status' => 1,
+            'store' => $data->store->name
+          ));
+        }else{
+          $data->status = 0;
+          $data->update();
+          echo json_encode(array(
+            'status' => 2,
+            'store' => $data->store->name
+          ));
+        }
 
+      }else{
+        $model = new UserStore;
+        $model->user_id = $userid;
+        $model->store_id = $_POST['store_id'];
+        $model->status = 1;
+        $model->added_date = date('Y-m-d H:i:s');
+        $model->updated_date = date('Y-m-d H:i:s');
+        if($model->save()){
+          echo json_encode(array(
+            'status' => 1,
+            'store' => $store->store->name
+          ));
+        }else{
+          echo json_encode(0);
+        }
+      }
+    }
+  }
 	public function actionLikecmt(){
 		if(isset($_POST['lk'])){
 			$data = Comment::model()->findByPk($_POST['lk']);

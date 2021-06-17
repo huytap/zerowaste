@@ -866,9 +866,16 @@ border: 2px solid #040505;
   right: 15px;
   z-index: 99;
   display: none;
+  width: 32px;
+  height: 32px;
+  background: url(../images/icn_fav_item.svg) no-repeat;
 }
 .store .subitem:hover .wishlist{
   display: block;
+}
+.store .subitem .wishlist:hover,
+.store .subitem .wishlist.selected{
+  background: url(../images/icn_fav_active.svg) no-repeat;
 }
 .modal-header .close {
     opacity: 1;
@@ -1680,15 +1687,15 @@ h1 span{
   float:left;
 }
 .category li.wishlist{
-  border: 2px solid #000;
+  /*border: 2px solid #000;
     border-radius: 50%;
-    padding: 12px;
+    padding: 12px;*/
     cursor: pointer;
     float: right;
 }
-.category li.wishlist.active{
+/*.category li.wishlist.active{
   background: #FD5D63;
-}
+}*/
 .category li:nth-child(2){
 	float: right;
 }
