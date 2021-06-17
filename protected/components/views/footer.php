@@ -9,6 +9,42 @@ if(Yii::app()->controller->action->id !== 'productdetail'){?>
 <script src="<?php echo Yii::app()->baseUrl?>/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="<?php echo Yii::app()->baseUrl?>/js/slick.min.js" type="text/javascript"></script>
 <script src="<?php echo Yii::app()->baseUrl?>/js/script.js?v=004" type="text/javascript"></script>
+<?php
+Yii::app()->clientScript->registerScript('wishlist', "
+  var is_login = '".(Yii::app()->user->id>0 ? '1': '0')."'
+  wishlist()
+  function wishlist(){
+    
+    if($('.wishlist').length){
+        $('.wishlist').click(function(){
+          if(is_login == 0){
+            $('#loginPopup').modal('show');
+          }
+          let store_id = $(this).attr('data');
+          if(store_id>0){
+            $.ajax({
+              url: '".Yii::app()->baseUrl."/ajax/wishlist',
+              data:{store_id:store_id},
+              type: 'post',
+              dataType: 'json',
+              success: function(data){
+                //data = JSON.parse(data)
+                if(data.status == '1'){
+                  $('.wishlist[data=\"'+store_id+'\"]').addClass('selected')
+                  alert('Bạn đã lưu địa điểm '+ data.store + ' vào danh sách ưa thích');
+                }else if(data.status == '2'){
+                  $('.wishlist[data=\"'+store_id+'\"]').removeClass('selected')
+                  alert('Bạn đã xóa địa điểm '+ data.store + ' khỏi danh sách ưa thích');
+                }
+              }
+            });
+          }
+          return false;
+        })
+      }
+    }
+", CClientScript::POS_END);
+ ?>
 <script type="text/javascript">
 var x, i, j, l, ll, selElmnt, a, b, c;
 x = document.getElementsByClassName("custom-select");

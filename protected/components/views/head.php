@@ -15,7 +15,7 @@
 			$des = $store['description'];
 			?>
 			<title><?php echo $store['name'];?> - Zero Waste Wonderland</title>
-			<meta property="og:image" itemprop="thumbnailUrl" content="<?php echo Yii::app()->params['link']?>/uploads/<?php if($store['large_photo']) echo $store['large_photo'];else echo $store['photo'];?>" />
+			<meta property="og:image" itemprop="thumbnailUrl" content="<?php echo Yii::app()->params['link']?>/uploads/<?php if(isset($store['large_photo'])) echo $store['large_photo'];else echo $store['photo'];?>" />
 			<meta name="description" content="<?php echo limitParagraphs($des, 128);?>">
 			<?php
 		}elseif($page == 'events'){

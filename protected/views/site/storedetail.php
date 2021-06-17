@@ -98,7 +98,7 @@
    				}else{
    				 	$linkmap = '<a href="https://www.google.com/maps/place/'.urlencode($district[0]['address'].', Phường '. str_replace('P.','', $district[0]['ward']).', '.(isset($arr_district[$district[0]['district']])?(', '.str_replace("Q.","Quận ", $arr_district[$district[0]['district']])):'').', '.$district[0]['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
    				}
-   				echo '<li>'.$linkmap.'</li>';
+   				echo '<li class="mapw">'.$linkmap.'</li>';
    				?>
           <li class="wishlist">
             <?php
@@ -247,6 +247,16 @@
                         <?php echo $data['description'];?>
                      </div>
                   </div>
+                  <?php 
+                  $selectW= false;
+                   if(Yii::app()->user->id>0){
+                     $checkW = UserStore::model()->getByStoreUser(Yii::app()->user->id, $data['id']);
+                     if($checkW && $checkW['status'] == 1){
+                       $selectW = true;
+                     }
+                   }
+                   ?>
+                  <span class="wishlist <?php if($selectW == true) echo 'selected';?>" data="<?php echo $data['id'];?>"></span>
                </div>
             </div>
             <?php }?>
@@ -299,6 +309,16 @@
                         <?php echo $data['description'];?>
                      </div>
                   </div>
+                  <?php 
+                  $selectW= false;
+                   if(Yii::app()->user->id>0){
+                     $checkW = UserStore::model()->getByStoreUser(Yii::app()->user->id, $data['id']);
+                     if($checkW && $checkW['status'] == 1){
+                       $selectW = true;
+                     }
+                   }
+                   ?>
+                  <span class="wishlist <?php if($selectW == true) echo 'selected';?>" data="<?php echo $data['id'];?>"></span>
                </div>
             </div>
             <?php }?>

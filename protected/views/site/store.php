@@ -199,6 +199,7 @@ function loadStore(){
         dataType: "html",
         type: "post",
         success: function(data){
+          wishlist()
           $("#store-content-detail").html(data)
           $("#store-detail").modal({
               show: "false"
@@ -374,6 +375,7 @@ function loadStoreM(){
             $("#store-detail").animate({
                   scrollTop: $("#store-content-detail").offset().top
             }, 1000);
+
           }//end success
         })
 

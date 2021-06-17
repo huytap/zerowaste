@@ -62,7 +62,7 @@ $category = explode(',', $store['store_category_id']);
 		 <img src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $store['photo'];?>" class="img-responsive">
 	   </div>
 	   <div class="col-md-7 col-sm-6">
-		 <ul class="category hidden-xs">
+		 <ul class="row category hidden-xs">
 		    <?php
 			  $ct_html = '';
 			  foreach($category as $ct){
@@ -99,8 +99,19 @@ $category = explode(',', $store['store_category_id']);
 				  }else{
 					  $linkmap = '<a href="https://www.google.com/maps/place/'.urlencode($district[0]['address'].', Phường '. str_replace('P.','', $district[0]['ward']).', '.(isset($arr_district[$district[0]['district']])?(', '.str_replace("Q.","Quận ", $arr_district[$district[0]['district']])):'').', '.$district[0]['city']).'" target="_blank" class="btncontact viewmap">xem bản đồ</a>';
 				  }
-				  echo '<li>'.$linkmap.'</li>';
+				  echo '<li class="mapw">'.$linkmap.'</li>';
 				  ?>
+				  <li class="wishlist">
+		            <?php
+		            $checkW = UserStore::model()->getByStoreUser(Yii::app()->user->id, $store['id']);
+		            if($checkW && $checkW['status'] == 1){?>
+		            <img src="<?php echo Yii::app()->baseUrl?>/images/icn_fav_select.svg" width="60"/>
+		          <?php }else{
+		            ?>
+		            <img src="<?php echo Yii::app()->baseUrl?>/images/icn_fav.svg" width="60"/>
+		            <?php
+		          }?>
+		          </li>
 		 </ul>
 		 <div class="info">
 		    <div class="">
@@ -237,6 +248,16 @@ $category = explode(',', $store['store_category_id']);
 				    <?php echo $data['description'];?>
 				 </div>
 			   </div>
+			   <?php 
+                  $selectW= false;
+                   if(Yii::app()->user->id>0){
+                     $checkW = UserStore::model()->getByStoreUser(Yii::app()->user->id, $data['id']);
+                     if($checkW && $checkW['status'] == 1){
+                       $selectW = true;
+                     }
+                   }
+                   ?>
+                  <span class="wishlist <?php if($selectW == true) echo 'selected';?>" data="<?php echo $data['id'];?>"></span>
 		     </div>
 		  </div>
 		  <?php }?>
@@ -289,6 +310,16 @@ $category = explode(',', $store['store_category_id']);
 				    <?php echo $data['description'];?>
 				 </div>
 			   </div>
+			   <?php 
+                  $selectW= false;
+                   if(Yii::app()->user->id>0){
+                     $checkW = UserStore::model()->getByStoreUser(Yii::app()->user->id, $data['id']);
+                     if($checkW && $checkW['status'] == 1){
+                       $selectW = true;
+                     }
+                   }
+                   ?>
+                  <span class="wishlist <?php if($selectW == true) echo 'selected';?>" data="<?php echo $data['id'];?>"></span>
 		     </div>
 		  </div>
 		  <?php }?>

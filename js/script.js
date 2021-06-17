@@ -1,29 +1,4 @@
 $(document).ready(function(){
-
-	if($('.wishlist').length){
-		$('.wishlist').click(function(){
-			let store_id = $(this).attr('data');
-			if(store_id>0){
-				$.ajax({
-					url: 'http://localhost/zerowaste/ajax/wishlist',
-					data:{store_id:store_id},
-					type: 'post',
-					dataType: 'json',
-					success: function(data){
-						//data = JSON.parse(data)
-						if(data.status == '1'){
-							$('.wishlist[data="'+store_id+'"]').addClass('selected')
-							alert("Bạn đã lưu địa điểm "+ data.store + " vào danh sách ưa thích");
-						}else if(data.status == '2'){
-							$('.wishlist[data="'+store_id+'"]').removeClass('selected')
-							alert("Bạn đã xóa địa điểm "+ data.store + " khỏi danh sách ưa thích");
-						}
-					}
-				});
-			}
-			return false;
-		})
-	}
 	var lastScroll = 62;
 	$(window).scroll(function(event){
 	    var st = $(this).scrollTop();

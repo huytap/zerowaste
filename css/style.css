@@ -1696,7 +1696,7 @@ h1 span{
 /*.category li.wishlist.active{
   background: #FD5D63;
 }*/
-.category li:nth-child(2){
+.category li.mapw{
 	float: right;
 }
 .gallery .swiper-slide{
