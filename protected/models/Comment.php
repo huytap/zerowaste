@@ -154,11 +154,11 @@ class Comment extends CActiveRecord
 	public function getListByMember($user_id){
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('user_id',$user_id, false);
+		$criteria->addCondition('user_id='.$user_id);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'pagination' => array('pageSize' => 10),
+			'pagination' => array('pageSize' => 50),
 			'sort' => array('defaultOrder' => 'date desc')
 		));
 	}

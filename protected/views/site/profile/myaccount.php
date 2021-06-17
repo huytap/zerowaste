@@ -22,7 +22,7 @@
            <ul class="user-list-item">
              <li>
                <span class="usr-img"><img src="<?php echo Yii::app()->baseUrl;?>/images/icn_location_acc.svg"></span>
-               <span class="usr-number">16</span>
+               <span class="usr-number"><?php echo count($stores->getData());?></span>
                <span class="usr-text">ĐỊA ĐIỂM</span>
              </li>
              <li>
@@ -161,7 +161,7 @@
            <ul class="user-list-item">
              <li>
                <span class="usr-img"><img src="<?php echo Yii::app()->baseUrl;?>/images/icn_location_acc.svg"></span>
-               <span class="usr-number">16</span>
+               <span class="usr-number"><?php echo count($stores->getData());?></span>
                <span class="usr-text">ĐỊA ĐIỂM</span>
              </li>
              <li>
