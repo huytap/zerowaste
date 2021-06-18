@@ -1791,6 +1791,7 @@ a.viewmore-store{
     padding: 20px 30px;
     font:normal normal normal 20px/18px Bungee;
     line-height: 20px;
+    display: block;
   }
   .myaccount .nav li{
     text-align: center;

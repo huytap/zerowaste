@@ -3275,6 +3275,10 @@ body:not(.modal-open){
 .nav-tabs{
   border-bottom: 0;
 }
+.myaccount .nav li a{
+  display: flex;
+  align-items: center;
+}
 .myaccount .nav li a span{
   border-radius: 50%;
   display: inline-block;
@@ -3285,7 +3289,7 @@ body:not(.modal-open){
   margin-right: 15px;
 }
 .myaccount .nav li:first-child a span{
-  background: rgba(254, 189, 197, 1);
+  background: url(../images/010-placeholder-none.svg) no-repeat center center #FEBDC5;
 }
 .myaccount .nav li:first-child a{
   background: rgba(255, 242, 242, 1);
@@ -3294,14 +3298,22 @@ body:not(.modal-open){
   background: rgba(236, 92, 137, 1);
   color:#fff;
 }
-.myaccount .nav li:first-child .active a span{
-  background: rgba(254, 189, 197, 1);
+.myaccount .nav li:first-child.active a span{
+  background: url(../images/010-placeholder.svg) no-repeat center center #FEBDC5;
 }
 .myaccount .nav li:last-child a{
   background: rgba(240, 239, 255, 1);
 }
+.myaccount .nav li:last-child.active a{
+  background: #897DFF;
+  color:#fff;
+  border:2px solid #000;
+}
 .myaccount .nav li:last-child a span{
-  background: rgba(210, 201, 247, 1);
+  background: url(../images/007-favorite.svg) no-repeat center #D2C9F7;
+}
+.myaccount .nav li:last-child.active a span{
+  background: url(../images/007-favorite-active.svg) no-repeat center #D2C9F7;
 }
 .myaccount .stored{
   font: normal normal normal 16px/26px Comfortaa;
@@ -3370,11 +3382,17 @@ body:not(.modal-open){
 }
 .comment-type li{
   display: inline-block;
-  background: #FFE6E6;
+  background: #C2E6DA;
   border: 1px solid #000000;
   border-radius: 30px;
   font: normal normal normal 14px/18px Comfortaa;
   padding: 2px 10px 0px;
+}
+.comment-type li a:focus{
+  text-decoration: none;
+}
+.comment-type li.active{
+  background: #FFE6E6;
 }
 .comment-type li span{
   font: normal normal normal 16px/18px Bungee;

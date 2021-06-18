@@ -14,9 +14,9 @@ Yii::app()->clientScript->registerScript('wishlist', "
   var is_login = '".(Yii::app()->user->id>0 ? '1': '0')."'
   wishlist()
   function wishlist(){
-
     if($('.wishlist').length){
-        $('.wishlist').click(function(){
+        $('.wishlist').click(function(e){
+          e.preventDefault();
           if(is_login == 0){
             $('#loginPopup').modal('show');
           }
@@ -31,10 +31,10 @@ Yii::app()->clientScript->registerScript('wishlist', "
                 //data = JSON.parse(data)
                 if(data.status == '1'){
                   $('.wishlist[data=\"'+store_id+'\"]').addClass('selected')
-                  alert('Bạn đã lưu địa điểm '+ data.store + ' vào danh sách ưa thích');
+                  //alert('Bạn đã lưu địa điểm '+ data.store + ' vào danh sách ưa thích');
                 }else if(data.status == '2'){
                   $('.wishlist[data=\"'+store_id+'\"]').removeClass('selected')
-                  alert('Bạn đã xóa địa điểm '+ data.store + ' khỏi danh sách ưa thích');
+                  //alert('Bạn đã xóa địa điểm '+ data.store + ' khỏi danh sách ưa thích');
                 }
               }
             });

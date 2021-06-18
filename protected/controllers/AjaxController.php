@@ -1,6 +1,26 @@
 <?php
 class AjaxController extends Controller{
   public $layout = false;
+  public function actionChangeAvt(){
+    $userid = Yii::app()->user->id;
+    //if($userid>0 && isset($_FILES['Users']['avatar'])){
+
+      $model = Users::model()->findByPk($userid);
+      $photo = CUploadedFile::getInstance($model, 'avatar');
+      if($photo !== null){
+          $ran = rand(0, 999999999);
+          $cover_photo = $ran.'-'.$photo->name;
+          $model['avatar'] = $cover_photo;
+          $photo->saveAs(Yii::app()->basePath . "/../uploads/$cover_photo");
+          if($model->save()){
+            echo json_encode(array(
+              'status' => 1,
+              'img_url' => Yii::app()->baseUrl.'/timthumb.php?src='.Yii::app()->baseUrl.'/uploads/'.$model['avatar'].'&w=250&h=250'
+            ));
+          }
+      }
+    //}
+  }
   public function actionWishlist(){
     $userid = Yii::app()->user->id;
     if(isset($_POST['store_id']) && $userid>0){

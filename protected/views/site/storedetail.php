@@ -247,7 +247,7 @@
                         <?php echo $data['description'];?>
                      </div>
                   </div>
-                  <?php 
+                  <?php
                   $selectW= false;
                    if(Yii::app()->user->id>0){
                      $checkW = UserStore::model()->getByStoreUser(Yii::app()->user->id, $data['id']);
@@ -309,7 +309,7 @@
                         <?php echo $data['description'];?>
                      </div>
                   </div>
-                  <?php 
+                  <?php
                   $selectW= false;
                    if(Yii::app()->user->id>0){
                      $checkW = UserStore::model()->getByStoreUser(Yii::app()->user->id, $data['id']);
@@ -368,6 +368,7 @@ function loadStore(){
 						history.pushState(null, null, "'.Yii::app()->baseUrl.'/store.html");
 					});
 					loadStore();
+          wishlist()
 					$("#store-detail").animate({
 						scrollTop: 0
 					}, 1000);

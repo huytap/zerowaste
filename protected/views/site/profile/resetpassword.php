@@ -69,6 +69,3 @@
       </div>
    </div>
 </div>
-<?php
-   Yii::app()->clientScript->registerScript('loginPopup', '
-   ', CClientScript::POS_END);?>

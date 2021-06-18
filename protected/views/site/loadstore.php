@@ -18,6 +18,10 @@ $district = array(
 );
 
 }
+$checkW = UserStore::model()->getByStoreUser(Yii::app()->user->id, $data['id']);
+if($checkW && $checkW['status'] == 1){
+  $selectW = true;
+}
   ?>
   <?php $rand_keys = array_rand($background, 1);?>
   <div class="item col-md-4 col-sm-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
@@ -48,12 +52,13 @@ $district = array(
 			   <?php
 			 }
 			 ?>
-
+       <span class="wishlist <?php if($selectW == true) echo 'selected';?>" data="<?php echo $data['id'];?>"></span>
 			 <?php echo $data['description'];?>
 		    </div>
 		  </div>
 		 <span style="background:#<?php echo $background[$rand_keys]['title'];?>" href="javascript:void(0)" class="viewdetail hidden-lg hidden-md"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="16"></span>
-	 </div>
+     <span class="wishlist desk <?php if($selectW == true) echo 'selected';?>" data="<?php echo $data['id'];?>"></span>
+   </div>
   </div>
   <?php
 }

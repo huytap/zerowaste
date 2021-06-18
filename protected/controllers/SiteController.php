@@ -249,7 +249,8 @@ class SiteController extends Controller{
 			$user = Users::model()->findByPk($userid);
 			$stores = UserStore::model()->getList($userid);
 			$comments = Comment::model()->getListByMember($userid);
-			$this->render('profile/myaccount', compact(array('user', 'stores', 'comments')));
+			$comment_likes = CommentLikes::model()->getListByMember($userid);
+			$this->render('profile/myaccount', compact(array('user', 'stores', 'comments', 'comment_likes')));
 		}
 	}
 

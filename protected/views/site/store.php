@@ -178,7 +178,8 @@ Yii::app()->clientScript->registerScript('loadStore', '
 			   }, 1000)*/
               },
               complete:function(data){
-                loadStore()
+                loadStore();
+                wishlist()
               }
           }).always(function(){
               // Sau khi thực hiện xong thì đổi giá trị cho button
@@ -246,6 +247,7 @@ $("#typeStore").keyup(function(){
     success: function(data){
       $("#btnLoadmore").parent().hide();
       if(data.length){
+        wishlist();
         $("#store-items").html(data);
         if($(window).width()>575){
           loadStore();
@@ -276,6 +278,7 @@ function changeData(){
        success: function(data){
          $("#btnLoadmore").parent().hide();
          if(data.length){
+           wishlist();
            $("#store-items").html(data);
            if($(window).width()>575){
              loadStore();

@@ -7,7 +7,7 @@ $likesCMT = CommentLikes::model()->checkLikeByCMT($data['id'], $user_id);
 	<div class="row">
 		<div class="col-md-3 col-sm-3 col-sm-12">
 			<h5><?php echo $data['user']['fullname'];?></h5>
-			<img src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['user']['avatar'];?>" class="img-responsive"/>
+			<img src="<?php echo Yii::app()->baseUrl?>/timthumb.php?src=<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['user']['avatar'];?>&w=100&h=100" class="img-responsive"/>
 		</div>
 		<div class="col-md-9 col-sm-9 col-sm-12">
 			<div class="box-top">

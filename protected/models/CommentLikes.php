@@ -43,6 +43,8 @@ class CommentLikes extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
+			'comment' => array(self::BELONGS_TO, 'Comment', 'comment_id'),
+			'user' => array(self::BELONGS_TO, 'Users', 'user_id')
 		);
 	}
 
@@ -120,5 +122,17 @@ class CommentLikes extends CActiveRecord
 					),
 			 ));
 			 return $count;
+	}
+
+	public function getListByMember($user_id){
+		$criteria=new CDbCriteria;
+		$criteria->compare('user_id', $user_id, false);
+		$data = new CActiveDataProvider($this, array(
+			'criteria'=>$criteria,
+			//'pagination' => array('pageSize' => 7)
+		));
+		$data->setPagination(false);
+
+		return $data;
 	}
 }

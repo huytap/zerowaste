@@ -43,8 +43,8 @@
          <div class="row">
 					 <div class="col-md-12 col-sm-12 col-xs-12">
 	           <ul class="nav nav-tabs">
-	             <li class="active"><a data-toggle="tab" href="#store-tab" role="tab" aria-controls="store-tab" aria-selected="true"><span><img src="<?php echo Yii::app()->baseUrl?>/images/010-placeholder.svg"></span>ĐỊA ĐIỂM</a></li>
-	             <li><a data-toggle="tab" href="#comment-tab" role="tab" aria-controls="comment-tab" aria-selected="false"><span><img src="<?php echo Yii::app()->baseUrl?>/images/007-favorite.svg"></span>NHẬN XÉT</a></li>
+	             <li class="active"><a data-toggle="tab" href="#store-tab" role="tab" aria-controls="store-tab" aria-selected="true"><span></span>ĐỊA ĐIỂM</a></li>
+	             <li><a data-toggle="tab" href="#comment-tab" role="tab" aria-controls="comment-tab" aria-selected="false"><span></span>NHẬN XÉT</a></li>
 	           </ul>
 					 </div>
          </div>
@@ -118,29 +118,52 @@
 		        </div>
 					  <div class="tab-pane fade" id="comment-tab" role="tabpanel" aria-labelledby="comment-tab">
 							<ul class="comment-type">
-								<li><span><?php echo Comment::model()->getTotalCommentByMember($user['id']);?></span>Nhận xét của tôi</li>
-								<li><span><?php echo CommentLikes::model()->getTotalLikeByMember($user['id']);?></span>Nhận xét tôi thích</li>
+								<li class="active"><a data-toggle="tab" href="#cmt-tab" role="tab" aria-controls="cmt-tab" aria-selected="true"><span><?php echo Comment::model()->getTotalCommentByMember($user['id']);?></span>Nhận xét của tôi</a></li>
+								<li><a data-toggle="tab" href="#like-tab" role="tab" aria-controls="like-tab" aria-selected="true"><span><?php echo CommentLikes::model()->getTotalLikeByMember($user['id']);?></span>Nhận xét tôi thích</a></li>
 							</ul>
-							<div class="">
-								<?php
-						    $this->widget('zii.widgets.CListView', array(
-							    'id' => 'listcomment',
-							    'dataProvider'=> $comments,
-							    'itemView'=>'profile/_item_comment_in_account',
-							    'ajaxVar' => 'id',
-							    //'ajaxUrl'=>array($this->getRoute()),
-							    'enablePagination'=>true,
-							    'template' => '{items}{pager}',
+							<div class="tab-content">
+								<div id="cmt-tab" class="tab-pane fade in active">
+									<?php
+								    $this->widget('zii.widgets.CListView', array(
+									    'id' => 'listcomment',
+									    'dataProvider'=> $comments,
+									    'itemView'=>'profile/_item_comment_in_account',
+									    'ajaxVar' => 'id',
+									    //'ajaxUrl'=>array($this->getRoute()),
+									    'enablePagination'=>true,
+									    'template' => '{items}{pager}',
 
-							    'pager' => array(
-								    'id' => 'pager',
-								    //'listViewId' => 'listcomment',
-								    //'class' => 'ext.infiniteScroll.IasPager',
-								    'header' => '',
-								    'nextPageLabel' => '<img src="'.Yii::app()->baseUrl.'/images/btn_pagination@2x.png" width="36">',
-								    'prevPageLabel' => '<img src="'.Yii::app()->baseUrl.'/images/btn_pagination_left.png" width="36">'
-							    ),
-							));?>
+									    'pager' => array(
+										    'id' => 'pager',
+										    //'listViewId' => 'listcomment',
+										    //'class' => 'ext.infiniteScroll.IasPager',
+										    'header' => '',
+										    'nextPageLabel' => '<img src="'.Yii::app()->baseUrl.'/images/btn_pagination@2x.png" width="36">',
+										    'prevPageLabel' => '<img src="'.Yii::app()->baseUrl.'/images/btn_pagination_left.png" width="36">'
+									    ),
+									));?>
+								</div>
+								<div id="like-tab" class="tab-pane fade">
+								<?php
+							    $this->widget('zii.widgets.CListView', array(
+								    'id' => 'listcommentlikes',
+								    'dataProvider'=> $comment_likes,
+								    'itemView'=>'profile/_item_commentlike_in_account',
+								    'ajaxVar' => 'id',
+								    //'ajaxUrl'=>array($this->getRoute()),
+								    'enablePagination'=>true,
+								    'template' => '{items}{pager}',
+
+								    'pager' => array(
+									    'id' => 'pager',
+									    //'listViewId' => 'listcomment',
+									    //'class' => 'ext.infiniteScroll.IasPager',
+									    'header' => '',
+									    'nextPageLabel' => '<img src="'.Yii::app()->baseUrl.'/images/btn_pagination@2x.png" width="36">',
+									    'prevPageLabel' => '<img src="'.Yii::app()->baseUrl.'/images/btn_pagination_left.png" width="36">'
+								    ),
+								));?>
+							</div>
 							</div>
 						</div>
 						</div>
@@ -148,8 +171,12 @@
 
        <div class="col-md-4 hidden-sm hidden-xs">
          <div class="avatar">
-					 <img src="<?php echo Yii::app()->baseUrl;?>/timthumb.php?src=<?php echo Yii::app()->baseUrl;?>/uploads/<?php echo $user['avatar'];?>&w=250&h=250" class="img-responsive">
+					 <img id="imgAvt" src="<?php echo Yii::app()->baseUrl;?>/timthumb.php?src=<?php echo Yii::app()->baseUrl;?>/uploads/<?php echo $user['avatar'];?>&w=250&h=250" class="img-responsive">
 					 <span class="changeAvt">
+						 <form method="post" enctype="multipart/form-data" id="avtProfile">
+							 <input type="file" name="Users[avatar]" id="avatarA">
+							 <button type="submit" style="opacity:0" id="btnSubmitAvt"></button>
+						 </form>
 						 <span><a href="javascript:void(0);">Đổi</a></span>
 					 </span>
 				 </div>
@@ -182,3 +209,30 @@
    </div>
 	<?php $this->renderPartial('profile/update', compact(array('user')));?>
  </div>
+ <?php
+    Yii::app()->clientScript->registerScript('myaccount', '
+		$("#avatarA").change(function(){
+			$("#btnSubmitAvt").trigger("click")
+		})
+		$("#avtProfile").on("submit", function(e){
+			 e.preventDefault();
+	      var formData = new FormData(this);
+				$.ajax({
+	            url: "'.Yii::app()->baseUrl.'/ajax/changeAvt",
+	          type: "POST",
+	          data:  new FormData(this),
+	          dataType: "json",
+	          contentType: false,
+	          cache: false,
+	          processData:false,
+	          beforeSend : function(){
+	            //$("#loading").show();
+	            $(".error").hide();
+	          },
+	          success: function(data){
+							if(data.status == 1)
+		            $("#imgAvt").attr("src", data.img_url);
+	          }
+	        });
+		});
+    ', CClientScript::POS_END);?>
