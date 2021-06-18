@@ -367,9 +367,23 @@
 	 padding-bottom: 100px!important;
  }
 ');?>
+<?php Yii::app()->clientScript->registerScriptFile("https://code.jquery.com/jquery-2.2.0.min.js", CClientScript::POS_HEAD);?>
 <?php Yii::app()->clientScript->registerScriptFile(Yii::app()->baseUrl.'/js/swiper-bundle.min.js', CClientScript::POS_END);?>
+<?php
+Yii::app()->clientScript->scriptMap=array(
+
+        'jquery.js'=>false,
+        'jquery.ba-bbq.js' => false
+
+);
+?>
 <?php Yii::app()->clientScript->registerScript('product', '
 $(document).ready(function(){
+  $(function(){
+	  var hash = window.location.hash;
+    if(hash.length)
+	   $("html, body").animate({ scrollTop: $(hash).offset().top });
+	});
  var swiper = new Swiper(".swiper-container", {
 	  slidesPerView: 1,
 	  centeredSlides: true,
@@ -387,7 +401,7 @@ $(".btncontact.btnWrite").click(function(){
 	if(uid.length){
 
 	}else{
-		location.href="'.Yii::app()->baseUrl.'/site/login";
+		$("#loginPopup").modal("show");
 	}
 })
 

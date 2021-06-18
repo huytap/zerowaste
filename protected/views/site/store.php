@@ -100,13 +100,14 @@
                         <?php
                       }
                       ?>
-
+                      <span class="wishlist <?php if($selectW == true) echo 'selected';?>" data="<?php echo $data['id'];?>"></span>
                       <?php echo $data['description'];?>
                     </div>
                   </div>
-                  <span class="wishlist <?php if($selectW == true) echo 'selected';?>" data="<?php echo $data['id'];?>"></span>
+
       		  <span style="background:#<?php echo $background[$rand_keys]['title'];?>" href="javascript:void(0)" class="viewdetail hidden-lg hidden-md"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="16"></span>
-      	  </div>
+            <span class="wishlist desk <?php if($selectW == true) echo 'selected';?>" data="<?php echo $data['id'];?>"></span>
+          </div>
         </div>
         <?php
       }

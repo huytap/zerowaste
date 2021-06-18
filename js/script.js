@@ -108,3 +108,16 @@ $('.main-menu').find('li').each(function(i,j){
     $(j).removeClass('active')
   }
 })
+$(document).ready(function(){
+	$(".showpassword").click(function(){
+		if($(this).prev().attr("type") == "password"){
+		 $(this).prev().attr("type", "text");
+		 var src= $(this).find('img').attr('src').replace('icn_hide', 'icn_show');
+		 $(this).find('img').attr('src', src)
+	 }else{
+		 $(this).prev().attr("type", "password");
+		 var src= $(this).find('img').attr('src').replace('icn_show', 'icn_hide');
+		 $(this).find('img').attr('src', src)
+	 }
+	})
+})

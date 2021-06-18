@@ -36,7 +36,7 @@ $likesCMT = CommentLikes::model()->checkLikeByCMT($data['id'], $user_id);
 				<div class="content-cmt">
 					<?php echo $data['content'];?>
 				</div>
-				<a href="javascript:void(0)" class="pull-right viewmore-cmt">xem thêm</a>
+				<a href="<?php echo Yii::app()->baseUrl?>/products/<?php echo $data['category']['slug']?>.html#box-items<?php echo $data['id'];?>" class="pull-right viewmore-cmt">xem thêm</a>
 				<div class="box-img">
 					<div class="box-left">
 						<?php if($gallery_cmt && count($gallery_cmt->getData())){?>

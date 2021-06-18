@@ -68,12 +68,7 @@
 </div>
 <?php
    Yii::app()->clientScript->registerScript('PPRegister', '
-   $(".showpassword").click(function(){
-     if($(this).prev().attr("type") == "password")
-      $(this).prev().attr("type", "text");
-    else
-      $(this).prev().attr("type", "password");
-   })
+   
 
    $("#openLogin, #backLogin").on("click", function () {
      $("#registerPopup").modal("hide");

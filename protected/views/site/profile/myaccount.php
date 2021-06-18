@@ -6,7 +6,7 @@
    </div>
    <div class="container">
      <div class="row">
-			 <div class="col-xs-12 hidden-lg hidden-md hidden-sm">
+			 <div class="col-xs-12 col-sm-12 hidden-lg hidden-md">
 
          <div class="userinfo text-center">
 					 <div class="avatar">
@@ -39,9 +39,9 @@
            <div class="text-center"><a class="usr-logout" href="<?php echo Yii::app()->baseUrl?>/site/logout">ĐĂNG XUẤT</a></div>
          </div>
        </div>
-       <div class="col-md-8">
+       <div class="col-md-8 col-sm-12 col-xs-12">
          <div class="row">
-					 <div class="col-md-12">
+					 <div class="col-md-12 col-sm-12 col-xs-12">
 	           <ul class="nav nav-tabs">
 	             <li class="active"><a data-toggle="tab" href="#store-tab" role="tab" aria-controls="store-tab" aria-selected="true"><span><img src="<?php echo Yii::app()->baseUrl?>/images/010-placeholder.svg"></span>ĐỊA ĐIỂM</a></li>
 	             <li><a data-toggle="tab" href="#comment-tab" role="tab" aria-controls="comment-tab" aria-selected="false"><span><img src="<?php echo Yii::app()->baseUrl?>/images/007-favorite.svg"></span>NHẬN XÉT</a></li>
@@ -51,7 +51,7 @@
 				 <div class="tab-content">
 					  <div class="tab-pane fade in active" id="store-tab" role="tabpanel" aria-labelledby="store-tab">
 							<div class="row store">
-		            <div class="col-xs-12">
+		            <div class="col-md-12 col-sm-12 col-xs-12">
 		              <p class="stored">Bạn đã lưu <span class="usr-total-store"><?php echo ($stores) ? count($stores->getData()) : 0;?></span> địa điểm zero-waste</p>
 		            </div>
 		            <?php
@@ -76,7 +76,7 @@
 		            }
 		              ?>
 		              <?php $rand_keys = array_rand($background, 1);?>
-		              <div class="item col-md-4 col-sm-4" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store']['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
+		              <div class="item col-md-4 col-sm-4 col-xs-12" data-bg="#<?php echo $background[$rand_keys]['content'];?>" data-id="<?php echo $data['id'];?>" group1="<?php echo $data['store']['store_category_id'];?>" group2="Ăn uống" group3="Quận 1">
 		                <div data-href="<?php echo Yii::app()->baseUrl?>/store/<?php echo StringHelper::makeLink($data['store']['name'])?>-<?php echo $data['id']?>.html?bg=<?php echo $background[$rand_keys]['content'];?>" data-bg="#<?php echo $background[$rand_keys]['content'];?>" style="background:#<?php echo $background[$rand_keys]['content'];?>" class="subitem">
 		            		 <div class="row item-title active" style="background:#<?php echo $background[$rand_keys]['title'];?>;">
 		            			 <div class="col-xs-4 hidden-lg hidden-md hidden-sm"><img class="img-responsive" src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['store']['logo'];?>"></div>
@@ -146,7 +146,7 @@
 						</div>
 					</div>
 
-       <div class="col-md-4 hidden-xs">
+       <div class="col-md-4 hidden-sm hidden-xs">
          <div class="avatar">
 					 <img src="<?php echo Yii::app()->baseUrl;?>/timthumb.php?src=<?php echo Yii::app()->baseUrl;?>/uploads/<?php echo $user['avatar'];?>&w=250&h=250" class="img-responsive">
 					 <span class="changeAvt">

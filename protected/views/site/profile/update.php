@@ -56,12 +56,7 @@
 </div>
 <?php
    Yii::app()->clientScript->registerScript('updatePopup', '
-   $(".showpassword").click(function(){
-     if($(this).prev().attr("type") == "password")
-      $(this).prev().attr("type", "text");
-    else
-      $(this).prev().attr("type", "password");
-   })
+   
    $("#updateform").on("submit", function(e){
      e.preventDefault();
      $.ajax({

@@ -14,7 +14,7 @@ Yii::app()->clientScript->registerScript('wishlist', "
   var is_login = '".(Yii::app()->user->id>0 ? '1': '0')."'
   wishlist()
   function wishlist(){
-    
+
     if($('.wishlist').length){
         $('.wishlist').click(function(){
           if(is_login == 0){

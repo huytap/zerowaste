@@ -21,7 +21,8 @@ class SiteController extends Controller{
 	}
 
 	public function actionStore($page){
-		if(isset($_REQUEST['tag']) && isset($_POST['page'])){
+		//if(isset($_REQUEST['tag']) && isset($_POST['page'])){
+		if(isset($_POST['page'])){
 				$this->layout = false;
 				$criteria = new CDbCriteria;
 				//$criteria->compare('')

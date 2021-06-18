@@ -3259,6 +3259,7 @@ body:not(.modal-open){
 .myaccount .nav li a{
   font: normal normal normal 28px/18px Bungee;
   background: rgba(236, 92, 137, 1) 0% 0% no-repeat padding-box;
+  line-height: 28px;
   box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.16);
   border-radius: 14px;
   border:0;

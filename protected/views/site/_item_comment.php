@@ -3,13 +3,13 @@ $gallery_cmt = CommentImage::model()->getListByCMT($data['id']);
 $user_id = Yii::app()->user->id?Yii::app()->user->id:1;
 $likesCMT = CommentLikes::model()->checkLikeByCMT($data['id'], $user_id);
 ?>
-<div class="box-items">
+<div class="box-items" id="box-items<?php echo $data['id'];?>">
 	<div class="row">
-		<div class="col-md-3 col-sm-3">
+		<div class="col-md-3 col-sm-3 col-sm-12">
 			<h5><?php echo $data['user']['fullname'];?></h5>
 			<img src="<?php echo Yii::app()->baseUrl?>/uploads/<?php echo $data['user']['avatar'];?>" class="img-responsive"/>
 		</div>
-		<div class="col-md-9 col-sm-9">
+		<div class="col-md-9 col-sm-9 col-sm-12">
 			<div class="box-top">
 				<ul class="cmt-star-list">
 					<?php
@@ -33,11 +33,11 @@ $likesCMT = CommentLikes::model()->checkLikeByCMT($data['id'], $user_id);
 			</div>
 			<div class="box-mid">
 				<div class="row">
-					<div class="col-md-6">
+					<div class="col-md-6 col-xs-12">
 						<img src="<?php echo Yii::app()->baseUrl?>/images/icn_location.svg" width="20"/>
 						<a href="<?php echo Yii::app()->baseUrl.'/store/'.StringHelper::makeLink($data['store']['name']).'-'.$data['store']['id']?>.html"><?php echo $data['store']['name'];?></a>
 					</div>
-					<div class="col-md-6 text-right">
+					<div class="col-md-6 col-xs-12 text-right">
 						<img src="<?php echo Yii::app()->baseUrl?>/images/icn_money.svg" width="20"/>
 						<?php echo $data['price'];?>
 					</div>
