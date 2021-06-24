@@ -71,7 +71,7 @@ Yii::app()->clientScript->registerScript('loadNews', '
 function loadNews(){
   if($(window).width()>1024){
   	$(".events").find(".event-item").each(function(i, j){
-  	  $(j).click(function(){
+  	  $(j).unbind().click(function(){
   	    let id = $(this).attr("data-id");
   	    $.ajax({
   	      url: "'.Yii::app()->baseUrl.'/ajax/news",
@@ -87,7 +87,7 @@ function loadNews(){
   		   let current_url = $(j).attr("data-href");
   		   history.pushState(null, null, current_url);
 
-  		   $("#btn-closeStoreDetail").click(function(){
+  		   $("#btn-closeStoreDetail").unbind().click(function(){
   			$("#event-detail").modal("hide");
   			history.pushState(null, null, "'.Yii::app()->baseUrl.'/events.html");
   		   });
@@ -98,7 +98,7 @@ function loadNews(){
   	})
   }else{
   	$(".events").find(".event-item").each(function(i, j){
-  	  $(j).find(".viewdetail,a").click(function(){
+  	  $(j).find(".viewdetail,a").unbind().click(function(){
   	    let id = $(j).attr("data-id");
   	    $.ajax({
   	      url: "'.Yii::app()->baseUrl.'/ajax/news",
@@ -114,7 +114,7 @@ function loadNews(){
     		   let current_url = $(j).attr("data-href");
     		   history.pushState(null, null, current_url);
 
-    		   $("#btn-closeStoreDetail").click(function(){
+    		   $("#btn-closeStoreDetail").unbind().click(function(){
       			 $("#event-detail").modal("hide");
       			 history.pushState(null, null, "'.Yii::app()->baseUrl.'/events.html");
     		   });

@@ -15,10 +15,16 @@ Yii::app()->clientScript->registerScript('wishlist', "
   wishlist()
   function wishlist(){
     if($('.wishlist').length){
-        $('.wishlist').click(function(e){
+        $('.wishlist').unbind().click(function(e){
           e.preventDefault();
           if(is_login == 0){
             $('#loginPopup').modal('show');
+            if($('#store-detail').css('display') == 'block'){
+              $('#store-detail').modal('hide');
+              $('#store-detail').on('hidden.bs.modal', function () {
+                $('body').addClass('modal-open')
+              })
+            }
           }
           let store_id = $(this).attr('data');
           if(store_id>0){

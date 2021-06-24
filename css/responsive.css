@@ -1737,6 +1737,33 @@ a.viewmore-store{
     background: #fff;
     box-shadow: 9px 8px 5px 0px rgb(0 0 0 / 17%);
   }
+  #updateform .formtab{
+    background: transparent;
+    padding: 0 15px;
+    margin: 0;
+  }
+  #updatePopup .loginBox{
+    padding:0;
+    margin: 0 15px;
+  }
+  .myaccount #updatePopup .avatar {
+    margin-top: -25%;
+  }
+  #updateform h3 {
+    text-align: center;
+    font: normal normal normal 18px/20px Bungee;
+    margin-top: 50px;
+    color:#000;
+  }
+  .loginBox label {
+     font: normal normal normal 16px/18px Bungee;
+  }
+  .changeAvt {
+    display: block;
+    bottom: 1px;
+    max-width: 175px;
+    height: 180px;
+  }
   .formPopup .btncontact {
     margin-top: 30px;
   }

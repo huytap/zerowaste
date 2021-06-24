@@ -396,7 +396,7 @@ $(document).ready(function(){
 });
 
 //check login
-$(".btncontact.btnWrite").click(function(){
+$(".btncontact.btnWrite").unbind().click(function(){
 	let uid = "'.Yii::app()->user->id.'";
 	if(uid.length){
 
@@ -406,7 +406,7 @@ $(".btncontact.btnWrite").click(function(){
 })
 
 $(".formsubmit ul.starlist li").each(function(i,j){
-	$(j).click(function(){
+	$(j).unbind().click(function(){
 		$(".formsubmit ul.starlist li").removeClass("active")
 		for(var ii=0;ii<=i;ii++){
 			$(".formsubmit ul.starlist").find("li:nth-child("+(ii+1)+")").addClass("active")
@@ -417,7 +417,7 @@ $(".formsubmit ul.starlist li").each(function(i,j){
 });
 
 $(".listTag li").each(function(ii, jj){
-	$(jj).click(function(){
+	$(jj).unbind().click(function(){
 		$(".listTag li").removeClass("active")
 		$(jj).addClass("active")
 		let txt = $(jj).attr("data");
@@ -548,12 +548,12 @@ $("#form").on("submit", function(e){
 	}
 });
 //scroll to rating
-$(".star span").click(function(){
+$(".star span").unbind().click(function(){
 	$(window).scrollTop($(".comment").offset().top, 500);
 })
 $(".main-menu li:nth-child(2)").addClass("active")
 //pager
-$("#pager li").click(function(){
+$("#pager li").unbind().click(function(){
 	$(window).scrollTop($("#listcomment").offset().top);
 })
 //like comments
@@ -563,7 +563,7 @@ function likeCMT(){
 		if($(this).find(".content-cmt").height() < 40){
 			$(this).find(".content-cmt").next().hide();
 		}
-		$(j).find(".like").click(function(){
+		$(j).find(".like").unbind().click(function(){
 			let lk = $(this).attr("data");
 			if(lk){
 				$.ajax({
@@ -588,7 +588,7 @@ function likeCMT(){
 	});
 }
 //view more cmt
-$(".viewmore-cmt").click(function(){
+$(".viewmore-cmt").unbind().click(function(){
 	if(!$(".content-cmt").hasClass("active")){
 		$(this).prev().addClass("active");
 		$(this).text("Thu gọn");

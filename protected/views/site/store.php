@@ -143,7 +143,7 @@ Yii::app()->clientScript->registerScript('loadStore', '
   var stopped = false;
   $(document).ready(function(){
       // Khi kéo scroll thì xử lý
-      $("#btnLoadmore").click(function(){
+      $("#btnLoadmore").unbind().click(function(){
           // Element append nội dung
           $element = $("#store-items");
           // ELement hiển thị chữ loading
@@ -192,16 +192,18 @@ Yii::app()->clientScript->registerScript('loadStore', '
   });
 function loadStore(){
   $(".store").find(".item").each(function(i, j){
-    $(j).click(function(){
+    $(j).unbind().click(function(e){
+      e.preventDefault();
       let id = $(j).attr("data-id");
       let bg = $(j).attr("data-bg");
+      
+      if(id>0 && bg!=="")
       $.ajax({
         url: "'.Yii::app()->baseUrl.'/ajax/store",
         data: {id: id, bg:bg},
         dataType: "html",
         type: "post",
         success: function(data){
-          wishlist()
           $("#store-content-detail").html(data)
           $("#store-detail").modal({
               show: "false"
@@ -209,16 +211,19 @@ function loadStore(){
 
       		let current_url = $(j).find(".subitem").attr("data-href");
       		history.pushState(null, null, current_url);
-
-    		  $("#btn-closeStoreDetail").click(function(){
-      		  $("#store-detail").modal("hide");
-      		  history.pushState(null, null, "'.Yii::app()->baseUrl.'/store.html");
-    	  	});
-    			loadStore();
-      		$("#store-detail").animate({
-      	        scrollTop: $("#store-content-detail").offset().top
-          }, 1000);
-        }//end success
+    		  
+        },//end success
+        complete: function (data) {
+            /*$("#store-detail").animate({
+                  scrollTop: $("#store-content-detail").offset().top
+            }, 1000);*/
+            wishlist();
+            //loadStore();
+            $("#btn-closeStoreDetail").unbind().click(function(){
+              $("#store-detail").modal("hide");
+              history.pushState(null, null, "'.Yii::app()->baseUrl.'/store.html");
+            });
+          }
       });
     });
   })
@@ -294,13 +299,13 @@ function changeData(){
 
 
 //mobile
-$(".filter-m").click(function(){
+$(".filter-m").unbind().click(function(){
   $(".subbox").show();
 });
-$(".btnclose-m").click(function(){
+$(".btnclose-m").unbind().click(function(){
 	$(".subbox").hide();
 });
-$("#btnapply").click(function(){
+$("#btnapply").unbind().click(function(){
 	var ht = "";
 	if($("#storecate").val() !== ""){
 		ht += "<li id=\"catestore\">"+$("#storecate").next().html()+" <img src=\"'.Yii::app()->baseUrl.'/images/btncloseitem.png\" width=\"13\"></li>";
@@ -313,7 +318,7 @@ $("#btnapply").click(function(){
 
 	changeData();
 	$(".subbox").hide();
-	$("#catestore").find("img").click(function(){
+	$("#catestore").find("img").unbind().click(function(){
 		$("#catestore").remove();
 		$("#catestore").val("");
 		$("#storecate").next().html("Tất cả")
@@ -321,7 +326,7 @@ $("#btnapply").click(function(){
 		changeData();
 	})
 
-	$("#whereis").find("img").click(function(){
+	$("#whereis").find("img").unbind().click(function(){
 		$("#whereis").remove();
 		$("#where").val("");
 		$("#where").next().html("Tất cả")
@@ -329,7 +334,7 @@ $("#btnapply").click(function(){
 		changeData();
 	});
 });
-$("#inputsearch").click(function(){
+$("#inputsearch").unbind().click(function(){
 	$("#typeStore").show();
 	$(this).parent().hide();
 });
@@ -337,7 +342,7 @@ function loadStoreM(){
 	var storeid = 0;
 
 	$(".store").find(".item").each(function(i, j){
-	  	$(j).find(".item-title").click(function(){
+	  	$(j).find(".item-title").unbind().click(function(){
 			$(".store").find(".item").find(".photo").removeClass("active");
 			$(".store").find(".item").find(".subitem").removeClass("active");
 			//$(".store").find(".item").find(".item-title").addClass("active");
@@ -353,7 +358,7 @@ function loadStoreM(){
 			}
 		});
 	});
-  $(".viewdetail").click(function(){
+  $(".viewdetail").unbind().click(function(){
       let id = $(this).parent().parent().attr("data-id");
       let bg = $(this).parent().parent().attr("data-bg");
         $.ajax({
@@ -362,6 +367,7 @@ function loadStoreM(){
           dataType: "html",
           type: "post",
           success: function(data){
+            
             $("#store-content-detail").html(data)
             $("#store-detail").modal({
                 show: "false"
@@ -371,7 +377,7 @@ function loadStoreM(){
             console.log(current_url)
             history.pushState(null, null, current_url);
 
-            $("#btn-closeStoreDetail").click(function(){
+            $("#btn-closeStoreDetail").unbind().click(function(){
               $("#store-detail").modal("hide");
               history.pushState(null, null, "'.Yii::app()->baseUrl.'/store.html");
             });
@@ -380,7 +386,11 @@ function loadStoreM(){
                   scrollTop: $("#store-content-detail").offset().top
             }, 1000);
 
-          }//end success
+          },//end success
+          complete: function (data) {
+            console.log(data)
+            wishlist();
+          }
         })
 
   })

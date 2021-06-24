@@ -4,7 +4,7 @@
    </div>
    <div class="modal-dialog" role="document">
       <div class="bg-header">
-        <h3>Chỉnh sửa thông tin</h3>
+        <h3 class="hidden-xs">Chỉnh sửa thông tin</h3>
       </div>
       <div class="modal-content">
          <div class="modal-body">
@@ -12,9 +12,18 @@
               <div class="loginBox">
                 <div class="row">
                   <form method="post" id="updateform">
-                  <div class="col-sm-7">
+                  
+                  <div class="col-md-7 col-sm-7 col-xs-12">
                     <div class="formtab">
-
+                        <div class="hidden-lg hidden-md hidden-sm">
+                          <div class="avatar">
+                            <img src="<?php echo Yii::app()->baseUrl;?>/timthumb.php?src=<?php echo Yii::app()->baseUrl;?>/uploads/<?php echo $user['avatar'];?>&w=250&h=250" class="img-responsive">
+                            <span class="changeAvt"><input type="file" name="Users[avatar]" id="avatar">
+                              <span><a href="javascript:void(0);">Đổi</a></span>
+                            </span>
+                          </div>
+                          <h3 class="text-center">Chỉnh sửa thông tin</h3>
+                        </div>
                         <div class="form-group">
                           <label>TÊN HIỂN THỊ</label>
                           <input type="text" name="Users[fullname]" placeholder="tên hiển thị" value="<?php echo $user->fullname;?>">
@@ -37,7 +46,7 @@
                         </div>
                     </div>
                   </div>
-                  <div class="col-sm-5">
+                  <div class="col-sm-5 hidden-xs">
                     <div class="avatar">
                       <img src="<?php echo Yii::app()->baseUrl;?>/timthumb.php?src=<?php echo Yii::app()->baseUrl;?>/uploads/<?php echo $user['avatar'];?>&w=250&h=250" class="img-responsive">
                       <span class="changeAvt"><input type="file" name="Users[avatar]" id="avatar">

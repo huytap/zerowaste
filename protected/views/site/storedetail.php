@@ -348,7 +348,7 @@ $(document).ready(function(){
         });
 function loadStore(){
 	$(".store").find(".item").each(function(i, j){
-		$(j).click(function(){
+		$(j).unbind().click(function(){
 			let id = $(j).attr("data-id");
 			let bg = $(j).attr("data-bg");
 			$.ajax({
@@ -363,7 +363,7 @@ function loadStore(){
 					});
 					let current_url = $(j).find(".subitem").attr("data-href");
 					history.pushState(null, null, current_url);
-					$("#btn-closeStoreDetail").click(function(){
+					$("#btn-closeStoreDetail").unbind().click(function(){
 						$("#store-detail").modal("hide");
 						history.pushState(null, null, "'.Yii::app()->baseUrl.'/store.html");
 					});

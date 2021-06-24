@@ -797,7 +797,7 @@ video{
 	   });
   }
   //map hover
-  $('.map-right').find('g[data-dist]').click(function() {
+  $('.map-right').find('g[data-dist]').unbind().click(function() {
 	var dis = $(this).attr('data-dist');
 	location.href= '".Yii::app()->baseUrl."/store.html?tag='+dis
   });

@@ -67,7 +67,7 @@
 
 Yii::app()->clientScript->registerScript('loadNews3', '
 $(".event-lq").find(".event-items").each(function(i, j){
-  $(j).click(function(){
+  $(j).unbind().click(function(){
     let id = $(this).attr("data-id");
     $.ajax({
       url: "'.Yii::app()->baseUrl.'/ajax/news",
@@ -83,7 +83,7 @@ $(".event-lq").find(".event-items").each(function(i, j){
   	   let current_url = $(j).attr("data-href");
   	   history.pushState(null, null, current_url);
 
-  	   $("#btn-closeStoreDetail").click(function(){
+  	   $("#btn-closeStoreDetail").unbind().click(function(){
     		$("#event-detail").modal("hide");
     		history.pushState(null, null, "'.Yii::app()->baseUrl.'/events.html");
   	   });

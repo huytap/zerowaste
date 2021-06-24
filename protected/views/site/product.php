@@ -68,7 +68,7 @@ $background = array(
 <?php Yii::app()->clientScript->registerScript('product', '
 function viewDetail(){
   $("#photos").find(".item div").each(function(i, j){
-    $(j).click(function(){
+    $(j).unbind().click(function(){
       let id = $(j).attr("data-id");
       let bg = $(j).attr("data-bg");
 	 let flag = true;

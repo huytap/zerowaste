@@ -337,7 +337,7 @@ $category = explode(',', $store['store_category_id']);
 <?php Yii::app()->clientScript->registerScript('storeSlide2', '
 	$(document).ready(function(){
             $(".lightgallery").lightGallery();
-		  $(".btnCloseMap").click(function(){
+		  $(".btnCloseMap").unbind().click(function(){
   			$("#viewmap").modal("hide");
   			$("#viewmap").on("hidden.bs.modal", function () {
   			   $("body").addClass("modal-open");
@@ -377,7 +377,7 @@ if($(window).width()>575){
 }else{
 
 	$("#store-content-detail").find(".item").each(function(i, j){
-    $(j).click(function(){
+    $(j).unbind().click(function(){
       let id = $(j).attr("data-id");
       let bg = $(j).attr("data-bg");
       $.ajax({
@@ -394,7 +394,7 @@ if($(window).width()>575){
       		let current_url = $(j).find(".subitem").attr("data-href");
       		history.pushState(null, null, current_url);
 
-    		  $("#btn-closeStoreDetail").click(function(){
+    		  $("#btn-closeStoreDetail").unbind().click(function(){
       		  $("#store-detail").modal("hide");
       		  history.pushState(null, null, "'.Yii::app()->baseUrl.'/store.html");
     	  	});

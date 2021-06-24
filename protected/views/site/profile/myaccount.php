@@ -12,6 +12,10 @@
 					 <div class="avatar">
 						 <img src="<?php echo Yii::app()->baseUrl;?>/timthumb.php?src=<?php echo Yii::app()->baseUrl;?>/uploads/<?php echo $user['avatar'];?>&w=250&h=250" class="img-responsive">
 						 <span class="changeAvt">
+							 <form method="post" enctype="multipart/form-data" class="avtProfile">
+								 <input type="file" name="Users[avatar]" class="avatarA">
+								 <button type="submit" style="opacity:0" class="btnSubmitAvt"></button>
+							 </form>
 							 <span><a href="javascript:void(0);">Đổi</a></span>
 						 </span>
 					 </div>
@@ -173,9 +177,9 @@
          <div class="avatar">
 					 <img id="imgAvt" src="<?php echo Yii::app()->baseUrl;?>/timthumb.php?src=<?php echo Yii::app()->baseUrl;?>/uploads/<?php echo $user['avatar'];?>&w=250&h=250" class="img-responsive">
 					 <span class="changeAvt">
-						 <form method="post" enctype="multipart/form-data" id="avtProfile">
-							 <input type="file" name="Users[avatar]" id="avatarA">
-							 <button type="submit" style="opacity:0" id="btnSubmitAvt"></button>
+						 <form method="post" enctype="multipart/form-data" class="avtProfile">
+							 <input type="file" name="Users[avatar]" class="avatarA">
+							 <button type="submit" style="opacity:0" class="btnSubmitAvt"></button>
 						 </form>
 						 <span><a href="javascript:void(0);">Đổi</a></span>
 					 </span>
@@ -211,10 +215,10 @@
  </div>
  <?php
     Yii::app()->clientScript->registerScript('myaccount', '
-		$("#avatarA").change(function(){
-			$("#btnSubmitAvt").trigger("click")
+		$(".avatarA").unbind().change(function(){
+			$(".btnSubmitAvt").unbind().trigger("click")
 		})
-		$("#avtProfile").on("submit", function(e){
+		$(".avtProfile").on("submit", function(e){
 			 e.preventDefault();
 	      var formData = new FormData(this);
 				$.ajax({
@@ -230,8 +234,8 @@
 	            $(".error").hide();
 	          },
 	          success: function(data){
-							if(data.status == 1)
-		            $("#imgAvt").attr("src", data.img_url);
+				if(data.status == 1)
+	            	$("#imgAvt").attr("src", data.img_url);
 	          }
 	        });
 		});
