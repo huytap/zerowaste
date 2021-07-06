@@ -3,7 +3,7 @@
 </div>
 <?php
 if(Yii::app()->controller->action->id !== 'productdetail'){?>
-<script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+<script src="<?php echo Yii::app()->baseUrl?>/js/jquery.2.0.min.js" type="text/javascript"></script>
 <?php
 }?>
 <script src="<?php echo Yii::app()->baseUrl?>/js/bootstrap.min.js" type="text/javascript"></script>
@@ -50,7 +50,48 @@ Yii::app()->clientScript->registerScript('wishlist', "
       }
     }
 ", CClientScript::POS_END);
+Yii::app()->clientScript->registerScript('load_store', '
+  function loadStore(){
+  $(".store").find(".item").each(function(i, j){
+    $(j).unbind().click(function(e){
+      e.preventDefault();
+      let id = $(j).attr("data-id");
+      let bg = $(j).attr("data-bg");
+      
+      if(id>0 && bg!=="")
+      $.ajax({
+        url: "'.Yii::app()->baseUrl.'/ajax/store",
+        data: {id: id, bg:bg},
+        dataType: "html",
+        type: "post",
+        success: function(data){
+          $("#store-content-detail").html(data)
+          $("#store-detail").modal({
+              show: "false"
+          });
+
+          let current_url = $(j).find(".subitem").attr("data-href");
+          history.pushState(null, null, current_url);
+          
+        },//end success
+        complete: function (data) {
+            /*$("#store-detail").animate({
+                  scrollTop: $("#store-content-detail").offset().top
+            }, 1000);*/
+            wishlist();
+            //loadStore();
+            $("#btn-closeStoreDetail").unbind().click(function(){
+              $("#store-detail").modal("hide");
+              history.pushState(null, null, "'.Yii::app()->baseUrl.'/store.html");
+            });
+          }
+      });
+    });
+  })
+}', CClientScript::POS_END);
  ?>
+
+
 <script type="text/javascript">
 var x, i, j, l, ll, selElmnt, a, b, c;
 x = document.getElementsByClassName("custom-select");

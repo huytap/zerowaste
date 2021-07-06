@@ -115,13 +115,19 @@ class CommentLikes extends CActiveRecord
 	}
 
 	public function getTotalLikeByMember($user_id){
-		$count = $this->count(array(
+		$criteria = new CDbCriteria;
+		$criteria->together = true;
+		$criteria->with = 'comment';
+		$criteria->join = 'left JOIN comments as cmt ON cmt.id=t.comment_id';
+		$criteria->condition = 'cmt.user_id='.$user_id;
+		/*$count = $this->count(array(
 					'condition'=>'user_id = :cid',
 					'params'=>array(
 							':cid'=>$user_id,
 					),
 			 ));
-			 return $count;
+			 return $count;*/
+		return $this->count($criteria);
 	}
 
 	public function getListByMember($user_id){

@@ -190,44 +190,7 @@ Yii::app()->clientScript->registerScript('loadStore', '
 
       });
   });
-function loadStore(){
-  $(".store").find(".item").each(function(i, j){
-    $(j).unbind().click(function(e){
-      e.preventDefault();
-      let id = $(j).attr("data-id");
-      let bg = $(j).attr("data-bg");
-      
-      if(id>0 && bg!=="")
-      $.ajax({
-        url: "'.Yii::app()->baseUrl.'/ajax/store",
-        data: {id: id, bg:bg},
-        dataType: "html",
-        type: "post",
-        success: function(data){
-          $("#store-content-detail").html(data)
-          $("#store-detail").modal({
-              show: "false"
-          });
 
-      		let current_url = $(j).find(".subitem").attr("data-href");
-      		history.pushState(null, null, current_url);
-    		  
-        },//end success
-        complete: function (data) {
-            /*$("#store-detail").animate({
-                  scrollTop: $("#store-content-detail").offset().top
-            }, 1000);*/
-            wishlist();
-            //loadStore();
-            $("#btn-closeStoreDetail").unbind().click(function(){
-              $("#store-detail").modal("hide");
-              history.pushState(null, null, "'.Yii::app()->baseUrl.'/store.html");
-            });
-          }
-      });
-    });
-  })
-}
 if($(window).width()>575){
 	loadStore();
 }else{

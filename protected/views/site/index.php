@@ -802,14 +802,15 @@ video{
 	location.href= '".Yii::app()->baseUrl."/store.html?tag='+dis
   });
   var dis_new = 0;
-  $('.map-right').find('g[data-dist]').hover(function() {
-		$('#map2').html('');
-		$('#map2').hide()
+  $('.map-right').find('g[data-dist]').unbind().hover(function() {
+	$('#map2').html('');
+	
     var offset = $(this).offset();
     var dis = $(this).attr('data-dist');
-    var top = offset.top + $(this).height()-150;
+    var top = offset.top-300;
     var left = offset.left + $(this).width()/2;
     $('#map2').css({'top':top+'px','left':left+'px'});
+    console.log(dis_new)
     if(dis !== undefined && dis_new !== dis){
 	    $.ajax({
 		    url: '".Yii::app()->baseUrl."/ajax/loadmap',
@@ -817,6 +818,7 @@ video{
 		    data:{dist:dis},
 		    dataType: 'json',
 		    success:function(data){
+		    	$('#map2').hide()
 					//if(data.total > 0){
 				    dis_new = dis;
 				    var html = '';
@@ -828,6 +830,9 @@ video{
 
 		    }
 	    })
+    }
+    if($('#map2').text()==''){
+    	$('#map2').hide();
     }
 });
 ", CClientScript::POS_END);?>

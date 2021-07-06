@@ -1686,13 +1686,25 @@ a.viewmore-store{
 		font-size: 15px;
 	}
 	.box-top span {
+    right: 0;
 	    position: relative;
 	    padding-bottom: 10px;
 	    display: block;
 	}
 	.box-bottom{
 		font-size: 14px;
+    padding: 20px 15px 0 15px;
 	}
+  .myaccount .box-top {
+    padding: 10px 15px 10px 15px;
+    margin-right: 0px;
+  }
+  .myaccount .box-custom {
+    padding: 0 15px 15px 15px;
+  }
+  .myaccount .box-top::before{
+    margin-left: -15px;
+  }
   .formPopup .modal-dialog{
     display: block;
   }
@@ -1846,7 +1858,7 @@ a.viewmore-store{
     opacity: 0;
   }
   .formtab{
-    padding-right: 20px;
+    padding:0 20px;
   }
 }
 @media(max-width:376px){

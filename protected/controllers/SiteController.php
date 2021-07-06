@@ -259,7 +259,7 @@ class SiteController extends Controller{
 			$userid= Yii::app()->user->id;
 			$user = Users::model()->findByPk($userid);
 			$user->attributes = $_POST['Users'];
-			if(!$user->new_password){
+			if($user->new_password !== ''){
 				$user->password = sha1(md5($user['new_password']));
 			}
 			$photo = CUploadedFile::getInstance($user, 'avatar');

@@ -59,6 +59,12 @@
 		              <p class="stored">Bạn đã lưu <span class="usr-total-store"><?php echo ($stores) ? count($stores->getData()) : 0;?></span> địa điểm zero-waste</p>
 		            </div>
 		            <?php
+		            $selectW= false;
+			       	$checkW = UserStore::model()->getByStoreUser(Yii::app()->user->id, $data['id']);
+		   	    	if($checkW && $checkW['status'] == 1){
+			        	$selectW = true;
+			       	}
+
 		            $background = array(
 		              array('title' => 'fd949e', 'content' => 'ffdfdf'),
 		              array('title' => 'fab537', 'content' => 'fff3d6'),
@@ -107,11 +113,12 @@
 		            			   <?php
 		            			 }
 		            			 ?>
-
+		            			 <span class="wishlist <?php if($selectW == true) echo 'selected';?>" data="<?php echo $data['id'];?>"></span>
 		            			 <?php echo $data['store']['description'];?>
 		            		    </div>
 		            		  </div>
 		            		 <span style="background:#<?php echo $background[$rand_keys]['title'];?>" href="javascript:void(0)" class="viewdetail hidden-lg hidden-md"><img src="<?php echo Yii::app()->baseUrl?>/images/viewdetail-store.png" width="16"></span>
+		            		 <span class="wishlist desk <?php if($selectW == true) echo 'selected';?>" data="<?php echo $data['id'];?>"></span>
 		            	 </div>
 		              </div>
 		              <?php
@@ -213,8 +220,40 @@
    </div>
 	<?php $this->renderPartial('profile/update', compact(array('user')));?>
  </div>
+ 
+<div id="store-detail" class="modal fade store-modal" tabindex="-1" role="dialog" aria-labelledby="menu" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" id="btn-closeStoreDetail" class="close"><span><img src="<?php echo Yii::app()->baseUrl?>/images/btn_Close.png"></span></button>
+      </div>
+      <div class="modal-body" id="store-content-detail">
+      </div>
+    </div>
+  </div>
+</div>
  <?php
     Yii::app()->clientScript->registerScript('myaccount', '
+    	var storeid = 0;
+
+		$(".store").find(".item").each(function(i, j){
+		  	$(j).find(".item-title").unbind().click(function(){
+				$(".store").find(".item").find(".photo").removeClass("active");
+				$(".store").find(".item").find(".subitem").removeClass("active");
+				//$(".store").find(".item").find(".item-title").addClass("active");
+				$(this).removeClass("active");
+				if(storeid == $(j).attr("data-id")){
+					$(j).find(".subitem").removeClass("active");
+					$(j).find(".photo").removeClass("active");
+					storeid = 0;
+				}else{
+					storeid = $(j).attr("data-id");
+					$(j).find(".subitem").addClass("active");
+					$(j).find(".photo").addClass("active");
+				}
+			});
+		});
+
 		$(".avatarA").unbind().change(function(){
 			$(".btnSubmitAvt").unbind().trigger("click")
 		})
@@ -239,4 +278,5 @@
 	          }
 	        });
 		});
+		loadStore();
     ', CClientScript::POS_END);?>

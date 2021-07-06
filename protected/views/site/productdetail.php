@@ -9,7 +9,7 @@
 	  <div class="detail-header">
 	    <div class="container">
 		    <div class="breadcrum">
-		         <a href="<?php echo Yii::app()->baseUrl?>/product.html">Vật dụng</a>
+		         <a href="<?php echo Yii::app()->baseUrl?>/products.html">Vật dụng</a>
 		         <span>/</span>
 		         <span><?php echo $model['name'];?></span>
 		    </div>
