@@ -40,10 +40,14 @@
 	   </div>
 	   <div class="custom-select" style="width:180px">
 	        <select id="where">
-	          <option value="">Chọn quận</option>
 			<option value="">Tất cả</option>
-	          <?php foreach($arr_district as $key => $value){
-              echo '<option value="'.$key.'">'.$value.'</option>';
+	          <?php 
+            foreach($arr_district as $key => $value){
+              $selected=  '';
+              if(isset($_GET['tag']) && $_GET['tag'] == $key){
+                $selected = 'selected="selected"';
+              }
+              echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
             }
             ?>
 	        </select>
@@ -162,7 +166,7 @@ Yii::app()->clientScript->registerScript('loadStore', '
               dataType: "html",
               //url: "'.Yii::app()->baseUrl.'/store.html",
 		    url: window.location.href,
-              data: {page: page},
+              data: {page: page, cate:$("#storecate").val(), tag:$("#where").val()},
               success: function(result){
                   var html = "";
                   // Trường hợp hết dữ liệu cho trang kết tiếp
@@ -213,7 +217,7 @@ $("#typeStore").keyup(function(){
     type: "post",
     dataType: "html",
     success: function(data){
-      $("#btnLoadmore").parent().hide();
+      //$("#btnLoadmore").parent().hide();
       if(data.length){
         wishlist();
         $("#store-items").html(data);
@@ -244,7 +248,7 @@ function changeData(){
        type: "post",
        dataType: "html",
        success: function(data){
-         $("#btnLoadmore").parent().hide();
+         //$("#btnLoadmore").parent().hide();
          if(data.length){
            wishlist();
            $("#store-items").html(data);
@@ -326,7 +330,7 @@ function loadStoreM(){
       let bg = $(this).parent().parent().attr("data-bg");
         $.ajax({
           url: "'.Yii::app()->baseUrl.'/ajax/store",
-          data: {id: id, bg:bg},
+          data: {id: id, bg:bg, where:$("#where").val()},
           dataType: "html",
           type: "post",
           success: function(data){

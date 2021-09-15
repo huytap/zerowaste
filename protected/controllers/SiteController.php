@@ -23,20 +23,25 @@ class SiteController extends Controller{
 	public function actionStore($page){
 		//if(isset($_REQUEST['tag']) && isset($_POST['page'])){
 		if(isset($_POST['page'])){
-				$this->layout = false;
-				$criteria = new CDbCriteria;
-				//$criteria->compare('')
-				$criteria->limit = 12;
-				if(isset($_GET['filter'])){
-					$criteria->addInCondition('id', explode(',',$_GET['filter']), 'OR');
-				}
-				$criteria->offset = $_POST['page']*$criteria->limit - $criteria->limit;
-				if(isset($_POST['cate']) && $_POST['cate'] !== "0"){
-					$criteria->addInCondition('id', explode(',',$_POST['cate']), 'OR');
-				}
-			  $model = Store::model()->findAll($criteria);
-				$this->render('loadstore', compact('model'));
-				Yii::app()->end();
+			$this->layout = false;
+			$criteria = new CDbCriteria;
+			//$criteria->compare('')
+			$criteria->limit = 12;
+			if(isset($_REQUEST['tag']) && $_REQUEST['tag']){
+				$criteria->select = 'distinct t.name, t.photo, t.logo, t.description, t.store_category_id, t.id';
+				$criteria->addCondition('store_brands.district="'.$_REQUEST['tag'].'"');
+				$criteria->join = 'LEFT JOIN store_brands ON store_brands.store_id = t.id';
+			}
+			if(isset($_GET['filter'])){
+				$criteria->addInCondition('id', explode(',',$_GET['filter']), 'OR');
+			}
+			$criteria->offset = $_POST['page']*$criteria->limit - $criteria->limit;
+			if(isset($_POST['cate']) && $_POST['cate'] && $_POST['cate'] !== "0"){
+				$criteria->addInCondition('id', explode(',',$_POST['cate']), 'OR');
+			}
+		  	$model = Store::model()->findAll($criteria);
+			$this->render('loadstore', compact('model'));
+			Yii::app()->end();
 		}elseif(isset($_GET['tag'])){
 			$model = Store::model()->getListSearch('', $_GET['tag'], '');
 		}elseif(isset($_GET['related'])){

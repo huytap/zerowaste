@@ -144,7 +144,6 @@ class Store extends CActiveRecord
 			}else{
 
 			}
-
 		}
 		if($text_search){
 			$criteria->addCondition('name like "%'.$text_search.'%"');
@@ -160,7 +159,7 @@ class Store extends CActiveRecord
 
 		$data = new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'pagination' => false
+			'pagination' => array('pageSize' => 12)
 		));
 
 		return $data;

@@ -172,6 +172,15 @@ $category = explode(',', $store['store_category_id']);
 	 </div>
    </div>
    <div class="moreinfo hidden-lg hidden-md">
+   	<?php $selectW= false;
+     if(Yii::app()->user->id>0){
+       $checkW = UserStore::model()->getByStoreUser(Yii::app()->user->id, $store['id']);
+       if($checkW && $checkW['status'] == 1){
+         $selectW = true;
+       }
+     }?>
+
+    <span class="wishlist <?php if($selectW == true) echo 'selected';?>" data="<?php echo $store['id'];?>"></span>
 	 <?php
 	    echo $linkmap;
 		?>

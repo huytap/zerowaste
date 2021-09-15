@@ -61,7 +61,7 @@ Yii::app()->clientScript->registerScript('load_store', '
       if(id>0 && bg!=="")
       $.ajax({
         url: "'.Yii::app()->baseUrl.'/ajax/store",
-        data: {id: id, bg:bg},
+        data: {id: id, bg:bg, where:$("#where").val()},
         dataType: "html",
         type: "post",
         success: function(data){

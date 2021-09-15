@@ -877,12 +877,18 @@ border: 2px solid #040505;
 .store .subitem .wishlist.selected{
   background: url(../images/icn_fav_active.svg) no-repeat;
 }
+.moreinfo span.wishlist{
+  vertical-align: middle;
+  display: inline-block;
+}
+.moreinfo span.wishlist,
 .category .wishlist{
   width: 60px;
   height: 60px;
   background: url(../images/icn_fav.svg) no-repeat;
   background-size: 100%;
 }
+.moreinfo span.wishlist.selected,
 .category .wishlist.selected{
   background: url(../images/icn_fav_select.svg) no-repeat;
   background-size: 100%;

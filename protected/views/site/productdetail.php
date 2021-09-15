@@ -336,7 +336,7 @@
 	 </div>
 </div>
 <?php if($comments && count($comments->getData()) == 0){
-	Yii::app()->clientScript->registerScriptFile('https://code.jquery.com/jquery-2.2.0.min.js', CClientScript::POS_HEAD);
+	//Yii::app()->clientScript->registerScriptFile('https://code.jquery.com/jquery-2.2.0.min.js', CClientScript::POS_HEAD);
 }
 	?>
 <?php Yii::app()->clientScript->registerCssFile(Yii::app()->baseUrl.'/css/swiper-bundle.min.css');?>

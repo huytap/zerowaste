@@ -119,7 +119,7 @@ class CommentLikes extends CActiveRecord
 		$criteria->together = true;
 		$criteria->with = 'comment';
 		$criteria->join = 'left JOIN comments as cmt ON cmt.id=t.comment_id';
-		$criteria->condition = 'cmt.user_id='.$user_id;
+		$criteria->condition = 't.user_id='.$user_id;
 		/*$count = $this->count(array(
 					'condition'=>'user_id = :cid',
 					'params'=>array(
