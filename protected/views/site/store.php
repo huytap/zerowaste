@@ -341,7 +341,6 @@ function loadStoreM(){
             });
 
             let current_url = $("#store-items").find(".subitem.active").attr("data-href");
-            console.log(current_url)
             history.pushState(null, null, current_url);
 
             $("#btn-closeStoreDetail").unbind().click(function(){
